@@ -1,0 +1,14 @@
+# Build output
+Output/
+MigrationTool_Setup.exe
+
+# Export artifacts (generated at runtime)
+MigrationExport/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+*.code-workspace
