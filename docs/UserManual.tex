@@ -1,0 +1,250 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{dirtree}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    urlcolor=blue!70!black
+}
+
+\definecolor{codebg}{HTML}{F5F5F5}
+\definecolor{codeframe}{HTML}{CCCCCC}
+
+\lstset{
+    backgroundcolor=\color{codebg},
+    frame=single,
+    rulecolor=\color{codeframe},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Windows 11 Migration Tool}
+\fancyhead[R]{User Manual}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Windows 11 Migration Tool}\\[0.5em]\large User Manual}
+\author{}
+\date{May 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\vfill
+\begin{center}
+\textit{A complete guide to exporting and restoring your Windows 11 environment.}
+\end{center}
+\newpage
+
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------
+\section{Introduction}
+
+The Windows 11 Migration Tool is a PowerShell-based application (with an optional GUI) that helps you move your environment from one Windows 11 machine to another. It automates the tedious parts of PC migration:
+
+\begin{itemize}
+    \item Exporting WSL distributions as \texttt{.tar} archives
+    \item Inventorying all installed software (Win32 and Store apps)
+    \item Retrieving license keys (Windows, Office, registry-stored serials)
+    \item Exporting winget packages for bulk reinstall
+    \item Generating a self-contained restore script
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{System Requirements}
+
+\begin{itemize}
+    \item Windows 11 (both source and destination machines)
+    \item PowerShell 5.1 or later
+    \item \textbf{Administrator privileges} (the tool must be run as Admin)
+    \item An external drive or network share with sufficient space for WSL exports
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{Installation}
+
+\subsection{Option A: Installer}
+
+\begin{enumerate}
+    \item Download and install \href{https://jrsoftware.org/isinfo.php}{Inno Setup 6}.
+    \item Compile \texttt{installer.iss} to produce \texttt{MigrationTool\_Setup.exe}.
+    \item Run the installer---it creates a Start Menu shortcut and an optional desktop icon.
+\end{enumerate}
+
+\subsection{Option B: Portable (No Install)}
+
+Simply double-click \texttt{MigrationTool.cmd} or run \texttt{MigrationTool-GUI.ps1} directly from an elevated PowerShell prompt. No installation is required.
+
+%----------------------------------------------------------------------
+\section{Usage}
+
+\subsection{GUI Mode}
+
+Launch the application from the Start Menu, the desktop shortcut, or by running \texttt{MigrationTool.cmd}.
+
+\begin{enumerate}
+    \item Click \textbf{Browse} to select your external drive or output folder.
+    \item Click \textbf{Export} to begin the migration export on the source machine.
+    \item On the destination machine, click \textbf{Browse} to locate the export folder, then click \textbf{Restore}.
+\end{enumerate}
+
+The GUI features:
+\begin{itemize}
+    \item Dark (Catppuccin-style) color scheme
+    \item Live log output showing progress
+    \item Progress bar
+    \item Automatic self-elevation to Administrator
+    \item Non-blocking UI (export/restore runs in background threads)
+\end{itemize}
+
+\subsection{Command-Line Mode}
+
+\subsubsection{Exporting (On the Old Machine)}
+
+\begin{lstlisting}[language=bash]
+# Export to an external drive
+.\Migrate-Machine.ps1 -OutputPath "E:\MigrationExport"
+
+# Or use the default (Desktop\MigrationExport)
+.\Migrate-Machine.ps1
+\end{lstlisting}
+
+\subsubsection{Restoring (On the New Machine)}
+
+Move the external drive to the new machine, then run:
+
+\begin{lstlisting}[language=bash]
+E:\MigrationExport\Restore-Machine.ps1
+\end{lstlisting}
+
+Or specify the import path manually:
+
+\begin{lstlisting}[language=bash]
+.\Restore-Machine.ps1 -ImportPath "E:\MigrationExport"
+\end{lstlisting}
+
+%----------------------------------------------------------------------
+\section{Migration Workflow}
+
+The recommended end-to-end workflow:
+
+\begin{enumerate}
+    \item Plug an external drive into the \textbf{old machine}.
+    \item Run the export (GUI or command line) targeting the external drive.
+    \item Wait for the export to complete (WSL archives may take time for large distros).
+    \item Move the drive to the \textbf{new machine}.
+    \item Run the restore script from the export folder.
+    \item Complete the post-restore steps (see Section~\ref{sec:postrestore}).
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Output Structure}
+
+The export produces a self-contained folder with the following layout:
+
+\begin{lstlisting}
+MigrationExport/
+  license_keys.txt          # Windows/Office/software keys
+  installed_software.csv    # Full inventory (machine-readable)
+  installed_software.txt    # Full inventory (human-readable)
+  winget_packages.json      # For 'winget import'
+  WSL/
+    Ubuntu.tar              # (example) WSL distro archive
+    .wslconfig              # WSL global config
+  Restore-Machine.ps1       # Run this on the new machine
+  migration_log_*.txt       # Export log
+\end{lstlisting}
+
+\subsection{File Descriptions}
+
+\begin{description}[style=nextline]
+    \item[\texttt{license\_keys.txt}] Contains product keys retrieved from BIOS/UEFI, Office \texttt{ospp.vbs}, and a registry scan for common key names (Serial, LicenseKey, ProductKey, CDKey, etc.).
+    \item[\texttt{installed\_software.csv}] Machine-readable inventory of all installed applications with names, versions, and download URLs.
+    \item[\texttt{installed\_software.txt}] Human-readable version of the software inventory.
+    \item[\texttt{winget\_packages.json}] Package list for \texttt{winget import} to automate bulk reinstallation.
+    \item[\texttt{WSL/*.tar}] Each WSL distribution exported as a tar archive.
+    \item[\texttt{WSL/.wslconfig}] Global WSL configuration file.
+    \item[\texttt{Restore-Machine.ps1}] Auto-generated restore script that uses \texttt{\$PSScriptRoot} to locate sibling data files.
+    \item[\texttt{migration\_log\_*.txt}] Timestamped log of the export process.
+\end{description}
+
+%----------------------------------------------------------------------
+\section{What the Restore Script Does}
+
+The generated \texttt{Restore-Machine.ps1} script performs:
+
+\begin{enumerate}
+    \item \textbf{winget import} --- Reads \texttt{winget\_packages.json} and installs all listed packages.
+    \item \textbf{WSL import} --- Runs \texttt{wsl --import} for each \texttt{.tar} archive in the \texttt{WSL/} folder, restoring your Linux distributions.
+\end{enumerate}
+
+The script is self-contained: it uses \texttt{\$PSScriptRoot} so it works from wherever the export folder is located on the new machine.
+
+%----------------------------------------------------------------------
+\section{Post-Restore Steps}
+\label{sec:postrestore}
+
+After running the restore script, complete these manual steps:
+
+\begin{enumerate}
+    \item \textbf{Set WSL default users:} For each restored distro, run:\\
+    \texttt{<distro> config --default-user <username>}
+    \item \textbf{Install remaining apps:} Check \texttt{installed\_software.csv} for applications not available via winget and install them manually.
+    \item \textbf{Re-enter license keys:} Open \texttt{license\_keys.txt} and activate software that requires manual key entry.
+    \item \textbf{Restore app-specific settings:} Any application configurations not covered by this tool (browser profiles, IDE settings, etc.) must be transferred separately.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\section{Limitations}
+
+\begin{itemize}
+    \item License keys are only retrievable if stored in BIOS/UEFI or the Windows registry. Digital licenses tied to a Microsoft account transfer automatically and will not appear in the export.
+    \item Some winget packages may fail to import if the source or package ID has changed since the export.
+    \item WSL exports include the full filesystem---large distributions will produce large \texttt{.tar} files. Ensure your external drive has sufficient free space.
+    \item Framework and runtime packages from the Microsoft Store are filtered out to reduce noise, but some may still appear.
+\end{itemize}
+
+%----------------------------------------------------------------------
+\section{Troubleshooting}
+
+\begin{description}[style=nextline]
+    \item[``Access Denied'' or permission errors]
+    Ensure you are running the tool as Administrator. The GUI self-elevates automatically; for command-line use, right-click PowerShell and select ``Run as administrator.''
+
+    \item[WSL export fails]
+    Verify that WSL is installed and that your distributions are in a stopped state. Run \texttt{wsl --shutdown} before exporting.
+
+    \item[winget import partially fails]
+    Some packages may have been removed or renamed. Check the log file and install those packages manually.
+
+    \item[Export folder is very large]
+    WSL distributions contain full Linux filesystems. Consider cleaning up unnecessary files inside WSL before exporting (e.g., package caches, temp files).
+\end{description}
+
+%----------------------------------------------------------------------
+\section{Project Files Reference}
+
+\begin{description}[style=nextline]
+    \item[\texttt{Migrate-Machine.ps1}] Main export script. Accepts \texttt{-OutputPath} parameter.
+    \item[\texttt{MigrationTool-GUI.ps1}] WPF-based graphical interface.
+    \item[\texttt{MigrationTool.cmd}] CMD launcher that starts the GUI without a console flash.
+    \item[\texttt{installer.iss}] Inno Setup 6 script for building the Windows installer.
+    \item[\texttt{icon.ico}] Application icon used by the installer.
+\end{description}
+
+\end{document}
