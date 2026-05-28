@@ -69,16 +69,27 @@ The Windows 11 Migration Tool is a PowerShell-based application (with an optiona
 \section{System Requirements}
 
 \begin{itemize}
-    \item Windows 11 (both source and destination machines)
+    \item Windows 10 (version 1709 or later) or Windows 11 on the \textbf{source} machine
+    \item Windows 11 on the \textbf{destination} machine
     \item PowerShell 5.1 or later
     \item \textbf{Administrator privileges} (the tool must be run as Admin)
     \item An external drive or network share with sufficient space for WSL exports
+    \item winget (pre-installed on Windows 11; on Windows 10, install from the \href{https://apps.microsoft.com/detail/9NBLGGH4NNS1}{Microsoft Store} or \href{https://github.com/microsoft/winget-cli/releases}{GitHub})
 \end{itemize}
 
 %----------------------------------------------------------------------
 \section{Installation}
 
-\subsection{Option A: Installer}
+\subsection{Option A: Download from GitHub Releases}
+
+\begin{enumerate}
+    \item Go to the \href{https://github.com/rory/PCmigrate/releases}{Releases} page on GitHub.
+    \item Download \texttt{MigrationTool\_Setup.exe} (installer) or \texttt{MigrationTool\_Portable.zip} (no install required).
+    \item For the installer: run it---it creates a Start Menu shortcut and an optional desktop icon.
+    \item For portable: extract the zip and run \texttt{MigrationTool.cmd}.
+\end{enumerate}
+
+\subsection{Option B: Build the Installer Yourself}
 
 \begin{enumerate}
     \item Download and install \href{https://jrsoftware.org/isinfo.php}{Inno Setup 6}.
@@ -86,7 +97,7 @@ The Windows 11 Migration Tool is a PowerShell-based application (with an optiona
     \item Run the installer---it creates a Start Menu shortcut and an optional desktop icon.
 \end{enumerate}
 
-\subsection{Option B: Portable (No Install)}
+\subsection{Option C: Portable (No Install, from Source)}
 
 Simply double-click \texttt{MigrationTool.cmd} or run \texttt{MigrationTool-GUI.ps1} directly from an elevated PowerShell prompt. No installation is required.
 
@@ -237,6 +248,29 @@ After running the restore script, complete these manual steps:
 \end{description}
 
 %----------------------------------------------------------------------
+\section{Continuous Integration \& Releases}
+
+The project includes GitHub Actions workflows for automated builds:
+
+\begin{description}[style=nextline]
+    \item[\texttt{.github/workflows/build-installer.yml}] Runs on every push and pull request to \texttt{main}. Compiles the Inno Setup installer and uploads it as a workflow artifact.
+    \item[\texttt{.github/workflows/release.yml}] Triggered when a version tag (e.g., \texttt{v1.0.0}) is pushed. Builds the installer, packages a portable zip, and publishes both as GitHub Release assets.
+\end{description}
+
+To create a release:
+
+\begin{lstlisting}[language=bash]
+git tag v1.0.0
+git push origin v1.0.0
+\end{lstlisting}
+
+This produces a GitHub Release with two downloadable assets:
+\begin{itemize}
+    \item \texttt{MigrationTool\_Setup.exe} --- full Windows installer
+    \item \texttt{MigrationTool\_Portable.zip} --- portable scripts (no installation required)
+\end{itemize}
+
+%----------------------------------------------------------------------
 \section{Project Files Reference}
 
 \begin{description}[style=nextline]
@@ -245,6 +279,8 @@ After running the restore script, complete these manual steps:
     \item[\texttt{MigrationTool.cmd}] CMD launcher that starts the GUI without a console flash.
     \item[\texttt{installer.iss}] Inno Setup 6 script for building the Windows installer.
     \item[\texttt{icon.ico}] Application icon used by the installer.
+    \item[\texttt{.github/workflows/build-installer.yml}] CI workflow for building the installer on push/PR.
+    \item[\texttt{.github/workflows/release.yml}] Release workflow for publishing tagged versions.
 \end{description}
 
 \end{document}

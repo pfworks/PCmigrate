@@ -1,15 +1,17 @@
 <#
 .SYNOPSIS
-    Windows 11 Migration Script - Exports installed software, license keys, 
+    Windows Migration Script - Exports installed software, license keys, 
     WSL instances, and download sources for setting up a new machine.
 .DESCRIPTION
-    Run as Administrator on the SOURCE machine. Creates a migration folder with:
+    Run as Administrator on the SOURCE machine (Windows 10 1709+ or Windows 11).
+    Creates a migration folder with:
     - WSL distribution tar archives
     - Installed software list with versions and download URLs
     - Windows/Office license keys (where retrievable)
     - Winget export for automated reinstall on new machine
 .NOTES
     Requires: Administrator privileges, PowerShell 5.1+
+    Windows 10: winget must be installed (get it from the Microsoft Store or GitHub)
 #>
 
 #Requires -RunAsAdministrator
@@ -30,8 +32,14 @@ function Write-Log {
     Add-Content -Path $logFile -Value $entry
 }
 
-Write-Log "=== Windows 11 Migration Export Started ==="
+Write-Log "=== Windows Migration Export Started ==="
 Write-Log "Output: $OutputPath"
+
+# Check winget availability early
+if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
+    Write-Log "WARNING: winget not found. Install it from the Microsoft Store or https://github.com/microsoft/winget-cli/releases"
+    Write-Log "         Winget export will be skipped, but all other exports will proceed."
+}
 
 # ─────────────────────────────────────────────
 # 1. LICENSE KEYS

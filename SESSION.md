@@ -60,3 +60,26 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 - Filtered out framework/runtime packages from Store app list to reduce noise
 - GUI calls existing scripts rather than duplicating logic — single source of truth
 - CMD launcher hides the PowerShell console window for a clean app experience
+
+## Session 3 — 2026-05-27
+
+### Added
+- **`.github/workflows/build-installer.yml`** — GitHub Actions workflow that builds the Inno Setup installer on every push/PR to `main`. Uploads `MigrationTool_Setup.exe` as a workflow artifact.
+- **`.github/workflows/release.yml`** — GitHub Actions workflow triggered by version tags (`v*`). Builds the installer, packages a portable zip, and publishes both as GitHub Release assets.
+
+### Release Workflow
+- Push a tag like `v1.0.0` to trigger a release
+- Produces two assets:
+  - `MigrationTool_Setup.exe` — full installer
+  - `MigrationTool_Portable.zip` — scripts only, no install needed
+- Uses `softprops/action-gh-release@v2` for release creation
+
+### README Updated
+- Added "Download from GitHub Releases" as the primary installation option
+- Documented installer and portable zip availability from releases page
+- Updated requirements to support Windows 10 (1709+) as source machine
+- Added winget install instructions for Windows 10 users
+
+### Script Updated
+- `Migrate-Machine.ps1` now warns early if winget is not found, with install links
+- Updated synopsis to reflect Win10 support

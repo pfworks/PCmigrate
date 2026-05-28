@@ -12,19 +12,26 @@ A Windows application (with GUI) to export and restore your environment when mov
 
 ## Requirements
 
-- Windows 11 (source and destination)
+- Windows 10 (version 1709+) or Windows 11 on the source machine
+- Windows 11 on the destination machine
 - PowerShell 5.1+
 - **Run as Administrator**
 - External drive or network share with enough space for WSL exports
+- winget (pre-installed on Windows 11; on Windows 10, install from the [Microsoft Store](https://apps.microsoft.com/detail/9NBLGGH4NNS1) or [GitHub](https://github.com/microsoft/winget-cli/releases))
 
 ## Installation
 
-### Option A: Installer
+### Option A: Download from GitHub Releases
+1. Go to the [Releases](../../releases) page
+2. Download `MigrationTool_Setup.exe` (installer) or `MigrationTool_Portable.zip` (no install)
+3. For the installer: run it — it creates a Start Menu shortcut and optional desktop icon
+4. For portable: extract the zip and run `MigrationTool.cmd`
+
+### Option B: Build the Installer Yourself
 1. Download and install [Inno Setup 6](https://jrsoftware.org/isinfo.php)
 2. Compile `installer.iss` to produce `MigrationTool_Setup.exe`
-3. Run the installer — it creates a Start Menu shortcut and optional desktop icon
 
-### Option B: Portable (no install)
+### Option C: Portable (no install, from source)
 Double-click `MigrationTool.cmd` or run `MigrationTool-GUI.ps1` directly.
 
 ## Usage
