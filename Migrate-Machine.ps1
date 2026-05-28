@@ -82,13 +82,26 @@ $regPaths = @(
 )
 $knownKeyNames = @("Serial", "SerialNumber", "LicenseKey", "ProductKey", "Registration", "CDKey")
 $foundKeys = @()
-foreach ($keyName in $knownKeyNames) {
-    $results = Get-ChildItem "HKLM:\SOFTWARE","HKLM:\SOFTWARE\WOW6432Node" -Recurse -ErrorAction SilentlyContinue |
-        Get-ItemProperty -ErrorAction SilentlyContinue |
-        Where-Object { $_.$keyName -and $_.$keyName -match "^[A-Z0-9-]{5,}" } |
-        Select-Object @{N='Path';E={$_.PSPath}}, @{N='KeyName';E={$keyName}}, @{N='Value';E={$_.$keyName}}
-    $foundKeys += $results
+$regJob = Start-Job -ScriptBlock {
+    param($knownKeyNames)
+    $results = @()
+    foreach ($keyName in $knownKeyNames) {
+        $found = Get-ChildItem "HKLM:\SOFTWARE","HKLM:\SOFTWARE\WOW6432Node" -Recurse -ErrorAction SilentlyContinue |
+            Get-ItemProperty -ErrorAction SilentlyContinue |
+            Where-Object { $_.$keyName -and $_.$keyName -match "^[A-Z0-9-]{5,}" } |
+            Select-Object @{N='Path';E={$_.PSPath}}, @{N='KeyName';E={$keyName}}, @{N='Value';E={$_.$keyName}}
+        $results += $found
+    }
+    $results
+} -ArgumentList (,$knownKeyNames)
+$regJob | Wait-Job -Timeout 120 | Out-Null
+if ($regJob.State -eq 'Completed') {
+    $foundKeys = Receive-Job $regJob
+} else {
+    Stop-Job $regJob
+    Write-Log "WARNING: Registry key scan timed out after 120 seconds"
 }
+Remove-Job $regJob -Force
 if ($foundKeys) {
     $content += "[Other Software Keys Found in Registry]`n"
     $foundKeys | ForEach-Object { $content += "  $($_.Path -replace 'Microsoft.PowerShell.Core\\Registry::',''): $($_.KeyName) = $($_.Value)`n" }
