@@ -28,13 +28,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run export script
-        shell: powershell
+        shell: pwsh
         run: |
           $OutputPath = "$env:GITHUB_WORKSPACE\TestExport"
           .\Migrate-Machine.ps1 -OutputPath $OutputPath
 
       - name: Verify output structure
-        shell: powershell
+        shell: pwsh
         run: |
           $OutputPath = "$env:GITHUB_WORKSPACE\TestExport"
           $errors = @()
