@@ -21,3 +21,58 @@ jobs:
         with:
           name: MigrationTool_Setup
           path: Output/MigrationTool_Setup.exe
+
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run export script
+        shell: powershell
+        run: |
+          $OutputPath = "$env:GITHUB_WORKSPACE\TestExport"
+          .\Migrate-Machine.ps1 -OutputPath $OutputPath
+
+      - name: Verify output structure
+        shell: powershell
+        run: |
+          $OutputPath = "$env:GITHUB_WORKSPACE\TestExport"
+          $errors = @()
+
+          # Required files
+          $required = @(
+            "license_keys.txt",
+            "installed_software.csv",
+            "installed_software.txt",
+            "Restore-Machine.ps1"
+          )
+          foreach ($file in $required) {
+            if (-not (Test-Path (Join-Path $OutputPath $file))) {
+              $errors += "MISSING: $file"
+            }
+          }
+
+          # Log file should exist
+          $logs = Get-ChildItem $OutputPath -Filter "migration_log_*.txt"
+          if ($logs.Count -eq 0) { $errors += "MISSING: migration log file" }
+
+          # WSL directory should exist (even if empty)
+          if (-not (Test-Path (Join-Path $OutputPath "WSL"))) {
+            $errors += "MISSING: WSL directory"
+          }
+
+          # Restore script should be valid PowerShell
+          $restore = Join-Path $OutputPath "Restore-Machine.ps1"
+          if (Test-Path $restore) {
+            $parseErrors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($restore, [ref]$null, [ref]$parseErrors)
+            if ($parseErrors.Count -gt 0) { $errors += "Restore-Machine.ps1 has parse errors: $($parseErrors[0].Message)" }
+          }
+
+          # Report
+          if ($errors.Count -gt 0) {
+            $errors | ForEach-Object { Write-Error $_ }
+            exit 1
+          }
+          Write-Host "All output files verified successfully." -ForegroundColor Green
+          Get-ChildItem $OutputPath -Recurse | Select-Object FullName, Length | Format-Table -AutoSize
