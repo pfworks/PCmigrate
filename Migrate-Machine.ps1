@@ -57,7 +57,7 @@ $content = @"
 === LICENSE KEYS ($(Get-Date)) ===
 
 [Windows Product Key]
-Key: $($biosKey ?? 'Not found (likely digital license tied to Microsoft account)')
+Key: $(if ($biosKey) { $biosKey } else { 'Not found (likely digital license tied to Microsoft account)' })
 
 "@
 
@@ -120,7 +120,7 @@ foreach ($path in $uninstallPaths) {
                 Publisher   = $_.Publisher
                 InstallDate = $_.InstallDate
                 Source      = "Win32"
-                DownloadURL = $_.URLInfoAbout ?? $_.URLUpdateInfo ?? $_.HelpLink ?? ""
+                DownloadURL = $(if ($_.URLInfoAbout) { $_.URLInfoAbout } elseif ($_.URLUpdateInfo) { $_.URLUpdateInfo } elseif ($_.HelpLink) { $_.HelpLink } else { "" })
             }
         }
 }
