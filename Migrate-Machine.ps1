@@ -17,7 +17,8 @@
 #Requires -RunAsAdministrator
 
 param(
-    [string]$OutputPath = "$env:USERPROFILE\Desktop\MigrationExport"
+    [string]$OutputPath = "$env:USERPROFILE\Desktop\MigrationExport",
+    [switch]$Bundle
 )
 
 $ErrorActionPreference = "Continue"
@@ -64,7 +65,9 @@ Key: $(if ($biosKey) { $biosKey } else { 'Not found (likely digital license tied
 # Office key (partial - last 5 chars via ospp.vbs)
 $officePaths = @(
     "${env:ProgramFiles}\Microsoft Office\Office16",
-    "${env:ProgramFiles(x86)}\Microsoft Office\Office16"
+    "${env:ProgramFiles(x86)}\Microsoft Office\Office16",
+    "${env:ProgramFiles}\Microsoft Office\Office15",
+    "${env:ProgramFiles(x86)}\Microsoft Office\Office15"
 )
 foreach ($op in $officePaths) {
     $ospp = Join-Path $op "ospp.vbs"
@@ -75,22 +78,38 @@ foreach ($op in $officePaths) {
     }
 }
 
+# Try Microsoft 365 / Click-to-Run Office
+$c2rPath = "${env:ProgramFiles}\Microsoft Office\root\Licenses16"
+if (-not $content.Contains("[Microsoft Office]") -and (Test-Path $c2rPath)) {
+    $officeC2R = Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Office\ClickToRun\Configuration" -ErrorAction SilentlyContinue
+    if ($officeC2R) {
+        $content += "[Microsoft Office (Click-to-Run)]`n"
+        $content += "  Product: $($officeC2R.ProductReleaseIds)`n"
+        $content += "  Version: $($officeC2R.VersionToReport)`n"
+        $content += "  License: Likely tied to Microsoft account (check account.microsoft.com)`n`n"
+    }
+}
+
 # Registry-stored keys for other software
-$regPaths = @(
-    "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\DigitalProductId",
-    "HKLM:\SOFTWARE\WOW6432Node\*"
-)
-$knownKeyNames = @("Serial", "SerialNumber", "LicenseKey", "ProductKey", "Registration", "CDKey")
+$knownKeyNames = @("Serial", "SerialNumber", "LicenseKey", "ProductKey", "Registration", "CDKey", "Key", "DigitalProductId", "LicenseCode", "ActivationCode")
 $foundKeys = @()
 $regJob = Start-Job -ScriptBlock {
     param($knownKeyNames)
     $results = @()
+    $searchPaths = @(
+        "HKLM:\SOFTWARE",
+        "HKLM:\SOFTWARE\WOW6432Node",
+        "HKCU:\SOFTWARE"
+    )
     foreach ($keyName in $knownKeyNames) {
-        $found = Get-ChildItem "HKLM:\SOFTWARE","HKLM:\SOFTWARE\WOW6432Node" -Recurse -ErrorAction SilentlyContinue |
-            Get-ItemProperty -ErrorAction SilentlyContinue |
-            Where-Object { $_.$keyName -and $_.$keyName -match "^[A-Z0-9-]{5,}" } |
-            Select-Object @{N='Path';E={$_.PSPath}}, @{N='KeyName';E={$keyName}}, @{N='Value';E={$_.$keyName}}
-        $results += $found
+        foreach ($searchPath in $searchPaths) {
+            if (-not (Test-Path $searchPath)) { continue }
+            $found = Get-ChildItem $searchPath -Recurse -ErrorAction SilentlyContinue |
+                Get-ItemProperty -ErrorAction SilentlyContinue |
+                Where-Object { $_.$keyName -and $_.$keyName -is [string] -and $_.$keyName.Trim().Length -ge 5 -and $_.$keyName -match "[A-Za-z0-9]" } |
+                Select-Object @{N='Path';E={$_.PSPath}}, @{N='KeyName';E={$keyName}}, @{N='Value';E={$_.$keyName}}
+            $results += $found
+        }
     }
     $results
 } -ArgumentList (,$knownKeyNames)
@@ -273,6 +292,24 @@ Write-Host "Review license_keys.txt for product keys to re-enter."
 
 Set-Content -Path (Join-Path $OutputPath "Restore-Machine.ps1") -Value $restoreScript
 Write-Log "Restore script created: Restore-Machine.ps1"
+
+# ─────────────────────────────────────────────
+# 6. RESTORE BUNDLE (optional zip)
+# ─────────────────────────────────────────────
+if ($Bundle) {
+    Write-Log "--- Creating restore bundle ---"
+    $parentDir = Split-Path $OutputPath -Parent
+    $folderName = Split-Path $OutputPath -Leaf
+    $zipPath = Join-Path $parentDir "${folderName}_RestoreBundle.zip"
+    if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
+    Compress-Archive -Path "$OutputPath\*" -DestinationPath $zipPath -CompressionLevel Optimal
+    if (Test-Path $zipPath) {
+        $sizeMB = [math]::Round((Get-Item $zipPath).Length / 1MB, 1)
+        Write-Log "Restore bundle created: $zipPath ($sizeMB MB)"
+    } else {
+        Write-Log "WARNING: Failed to create restore bundle"
+    }
+}
 
 # ─────────────────────────────────────────────
 # SUMMARY
