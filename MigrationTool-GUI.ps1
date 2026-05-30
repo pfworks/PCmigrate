@@ -94,9 +94,14 @@ Add-Type -AssemblyName System.Windows.Forms
 
         <!-- Action Buttons -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,16">
-            <Button x:Name="ExportBtn" Content="&#xE898;  Export" Padding="20,12" Margin="0,0,10,0"/>
+            <!-- Export split button -->
+            <Border CornerRadius="6" Margin="0,0,10,0">
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="ExportBtn" Content="&#xE898;  Export" Padding="20,12"/>
+                    <Button x:Name="ExportDropBtn" Content="&#x25BC;" Padding="6,12" FontSize="10" Margin="1,0,0,0"/>
+                </StackPanel>
+            </Border>
             <Button x:Name="ImportBtn" Content="&#xE896;  Restore" Padding="20,12" Margin="0,0,10,0"/>
-            <Button x:Name="BundleBtn" Content="&#x1F4E6;  Create Restore Bundle" Padding="20,12" Margin="0,0,10,0" Background="#a6e3a1"/>
             <Button x:Name="CancelBtn" Content="&#x2716;  Cancel" Padding="14,12" Background="#f38ba8" Visibility="Collapsed"/>
         </StackPanel>
 
@@ -128,8 +133,8 @@ $window = [Windows.Markup.XamlReader]::Load($reader)
 $pathBox = $window.FindName("PathBox")
 $browseBtn = $window.FindName("BrowseBtn")
 $exportBtn = $window.FindName("ExportBtn")
+$exportDropBtn = $window.FindName("ExportDropBtn")
 $importBtn = $window.FindName("ImportBtn")
-$bundleBtn = $window.FindName("BundleBtn")
 $cancelBtn = $window.FindName("CancelBtn")
 $logBlock = $window.FindName("LogBlock")
 $logScroller = $window.FindName("LogScroller")
@@ -146,16 +151,16 @@ $pathBox.Text = "$env:USERPROFILE\Desktop\MigrationExport"
 # Helpers
 function Set-Running {
     $exportBtn.IsEnabled = $false
+    $exportDropBtn.IsEnabled = $false
     $importBtn.IsEnabled = $false
-    $bundleBtn.IsEnabled = $false
     $cancelBtn.Visibility = "Visible"
     $progressBar.IsIndeterminate = $true
 }
 
 function Set-Idle {
     $exportBtn.IsEnabled = $true
+    $exportDropBtn.IsEnabled = $true
     $importBtn.IsEnabled = $true
-    $bundleBtn.IsEnabled = $true
     $cancelBtn.Visibility = "Collapsed"
     $progressBar.IsIndeterminate = $false
 }
@@ -200,8 +205,8 @@ function Start-BackgroundTask {
     $runspace.SessionStateProxy.SetVariable("statusText", $statusText)
     $runspace.SessionStateProxy.SetVariable("progressBar", $progressBar)
     $runspace.SessionStateProxy.SetVariable("exportBtn", $exportBtn)
+    $runspace.SessionStateProxy.SetVariable("exportDropBtn", $exportDropBtn)
     $runspace.SessionStateProxy.SetVariable("importBtn", $importBtn)
-    $runspace.SessionStateProxy.SetVariable("bundleBtn", $bundleBtn)
     $runspace.SessionStateProxy.SetVariable("cancelBtn", $cancelBtn)
 
     foreach ($key in $Variables.Keys) {
@@ -217,37 +222,6 @@ function Start-BackgroundTask {
     $ps.BeginInvoke() | Out-Null
 }
 
-# Export button
-$exportBtn.Add_Click({
-    Set-Running
-    $logBlock.Text = ""
-    $statusText.Text = "Exporting..."
-
-    Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot } -Script {
-        function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logScroller.ScrollToEnd() }) }
-        function Done {
-            $window.Dispatcher.Invoke([Action]{
-                $cancelBtn.Visibility = "Collapsed"
-                $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $bundleBtn.IsEnabled = $true
-                $progressBar.IsIndeterminate = $false; $progressBar.Value = 100
-            })
-        }
-        try {
-            $migrateScript = Join-Path $scriptRoot "Migrate-Machine.ps1"
-            if (-not (Test-Path $migrateScript)) { Log "ERROR: Migrate-Machine.ps1 not found at $scriptRoot"; return }
-            Log "Starting export to: $outputPath"
-            Log ""
-            $output = & $migrateScript -OutputPath $outputPath 2>&1
-            foreach ($line in $output) { Log $line }
-            $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Export complete!" })
-            Log ""; Log "=== DONE ==="; Log "Export folder: $outputPath"
-        } catch {
-            Log "ERROR: $_"
-            $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Export failed" })
-        } finally { Done }
-    }
-})
-
 # Import/Restore button
 $importBtn.Add_Click({
     Set-Running
@@ -259,7 +233,7 @@ $importBtn.Add_Click({
         function Done {
             $window.Dispatcher.Invoke([Action]{
                 $cancelBtn.Visibility = "Collapsed"
-                $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $bundleBtn.IsEnabled = $true
+                $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $exportDropBtn.IsEnabled = $true
                 $progressBar.IsIndeterminate = $false; $progressBar.Value = 100
             })
         }
@@ -283,72 +257,89 @@ $importBtn.Add_Click({
     }
 })
 
-# Create Restore Bundle button
-$bundleBtn.Add_Click({
-    $exportPath = $pathBox.Text
-    if (-not (Test-Path $exportPath)) {
-        $logBlock.Text = "ERROR: Export folder not found at '$exportPath'.`nRun an export first, then create the bundle."
-        return
-    }
-    $restoreScript = Join-Path $exportPath "Restore-Machine.ps1"
-    if (-not (Test-Path $restoreScript)) {
-        $logBlock.Text = "ERROR: No Restore-Machine.ps1 found in '$exportPath'.`nRun an export first."
-        return
-    }
+# Export dropdown menu
+$exportMenu = New-Object System.Windows.Controls.ContextMenu
+$exportMenu.Background = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#313244")
+$exportMenu.Foreground = [System.Windows.Media.BrushConverter]::new().ConvertFrom("#cdd6f4")
+
+$menuExportOnly = New-Object System.Windows.Controls.MenuItem
+$menuExportOnly.Header = "Export Only"
+$menuExportBundle = New-Object System.Windows.Controls.MenuItem
+$menuExportBundle.Header = "Export + Create Restore Bundle"
+
+$exportMenu.Items.Add($menuExportOnly) | Out-Null
+$exportMenu.Items.Add($menuExportBundle) | Out-Null
+
+$exportDropBtn.Add_Click({
+    $exportMenu.PlacementTarget = $exportDropBtn
+    $exportMenu.Placement = "Bottom"
+    $exportMenu.IsOpen = $true
+})
+
+# Shared export logic
+function Start-Export {
+    param([bool]$CreateBundle)
 
     Set-Running
     $logBlock.Text = ""
-    $statusText.Text = "Creating restore bundle..."
+    $statusText.Text = "Exporting..."
 
-    Start-BackgroundTask -Variables @{ exportPath = $exportPath } -Script {
+    Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot; createBundle = $CreateBundle } -Script {
         function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logScroller.ScrollToEnd() }) }
         function Done {
             $window.Dispatcher.Invoke([Action]{
                 $cancelBtn.Visibility = "Collapsed"
-                $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $bundleBtn.IsEnabled = $true
+                $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $exportDropBtn.IsEnabled = $true
                 $progressBar.IsIndeterminate = $false; $progressBar.Value = 100
             })
         }
         try {
-            $parentDir = Split-Path $exportPath -Parent
-            $folderName = Split-Path $exportPath -Leaf
-            $zipName = "${folderName}_RestoreBundle.zip"
-            $zipPath = Join-Path $parentDir $zipName
-
-            Log "Creating restore bundle..."
-            Log "Source: $exportPath"
-            Log "Output: $zipPath"
+            $migrateScript = Join-Path $scriptRoot "Migrate-Machine.ps1"
+            if (-not (Test-Path $migrateScript)) { Log "ERROR: Migrate-Machine.ps1 not found at $scriptRoot"; return }
+            Log "Starting export to: $outputPath"
             Log ""
+            $output = & $migrateScript -OutputPath $outputPath 2>&1
+            foreach ($line in $output) { Log $line }
+            $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Export complete!" })
+            Log ""; Log "=== EXPORT DONE ==="; Log "Export folder: $outputPath"
 
-            if (Test-Path $zipPath) {
-                Remove-Item $zipPath -Force
-                Log "Removed existing bundle."
-            }
-
-            Log "Compressing files (this may take a while for large WSL exports)..."
-            Compress-Archive -Path "$exportPath\*" -DestinationPath $zipPath -CompressionLevel Optimal
-
-            if (Test-Path $zipPath) {
-                $sizeMB = [math]::Round((Get-Item $zipPath).Length / 1MB, 1)
-                Log ""
-                Log "=== BUNDLE CREATED ==="
-                Log "File: $zipPath"
-                Log "Size: $sizeMB MB"
-                Log ""
-                Log "To restore on the new machine:"
-                Log "  1. Copy $zipName to the new machine"
-                Log "  2. Extract the zip"
-                Log "  3. Right-click Restore-Machine.ps1 -> Run with PowerShell (as Admin)"
-                $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Bundle created ($sizeMB MB)" })
-            } else {
-                Log "ERROR: Failed to create zip file."
-                $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Bundle failed" })
+            if ($createBundle) {
+                Log ""; Log "--- Creating restore bundle ---"
+                $parentDir = Split-Path $outputPath -Parent
+                $folderName = Split-Path $outputPath -Leaf
+                $zipName = "${folderName}_RestoreBundle.zip"
+                $zipPath = Join-Path $parentDir $zipName
+                if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
+                Log "Compressing files (this may take a while for large WSL exports)..."
+                Compress-Archive -Path "$outputPath\*" -DestinationPath $zipPath -CompressionLevel Optimal
+                if (Test-Path $zipPath) {
+                    $sizeMB = [math]::Round((Get-Item $zipPath).Length / 1MB, 1)
+                    Log ""
+                    Log "=== BUNDLE CREATED ==="
+                    Log "File: $zipPath"
+                    Log "Size: $sizeMB MB"
+                    Log ""
+                    Log "To restore on the new machine:"
+                    Log "  1. Copy $zipName to the new machine"
+                    Log "  2. Extract the zip"
+                    Log "  3. Right-click Restore-Machine.ps1 -> Run with PowerShell (as Admin)"
+                    $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Bundle created ($sizeMB MB)" })
+                } else {
+                    Log "ERROR: Failed to create zip file."
+                }
             }
         } catch {
             Log "ERROR: $_"
-            $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Bundle failed" })
+            $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Export failed" })
         } finally { Done }
     }
-})
+}
+
+# Export button (default: export only)
+$exportBtn.Add_Click({ Start-Export -CreateBundle $false })
+
+# Menu items
+$menuExportOnly.Add_Click({ Start-Export -CreateBundle $false })
+$menuExportBundle.Add_Click({ Start-Export -CreateBundle $true })
 
 $window.ShowDialog() | Out-Null
