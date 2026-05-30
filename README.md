@@ -1,6 +1,6 @@
-# Windows 11 Migration Tool
+# Windows Migration Tool
 
-A Windows application (with GUI) to export and restore your environment when moving to a new Windows 11 machine.
+A Windows application (with GUI) to export and restore your environment when moving to a new Windows 10/11 machine.
 
 ## What It Does
 

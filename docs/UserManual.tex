@@ -31,11 +31,11 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{Windows 11 Migration Tool}
+\fancyhead[L]{Windows Migration Tool}
 \fancyhead[R]{User Manual}
 \fancyfoot[C]{\thepage}
 
-\title{\textbf{Windows 11 Migration Tool}\\[0.5em]\large User Manual}
+\title{\textbf{Windows Migration Tool}\\[0.5em]\large User Manual}
 \author{}
 \date{May 2026}
 
@@ -45,7 +45,7 @@
 \thispagestyle{empty}
 \vfill
 \begin{center}
-\textit{A complete guide to exporting and restoring your Windows 11 environment.}
+\textit{A complete guide to exporting and restoring your Windows environment.}
 \end{center}
 \newpage
 
@@ -55,7 +55,7 @@
 %----------------------------------------------------------------------
 \section{Introduction}
 
-The Windows 11 Migration Tool is a PowerShell-based application (with an optional GUI) that helps you move your environment from one Windows 11 machine to another. It automates the tedious parts of PC migration:
+The Windows Migration Tool is a PowerShell-based application (with an optional GUI) that helps you move your environment from one Windows 10 or 11 machine to another. It automates the tedious parts of PC migration:
 
 \begin{itemize}
     \item Exporting WSL distributions as \texttt{.tar} archives
@@ -88,6 +88,8 @@ The Windows 11 Migration Tool is a PowerShell-based application (with an optiona
     \item For the installer: run it---it creates a Start Menu shortcut and an optional desktop icon.
     \item For portable: extract the zip and run \texttt{MigrationTool.cmd}.
 \end{enumerate}
+
+\noindent\textbf{Note:} Windows SmartScreen may block the unsigned installer. Click \textbf{``More info''} then \textbf{``Run anyway''} to proceed.
 
 \subsection{Option B: Build the Installer Yourself}
 

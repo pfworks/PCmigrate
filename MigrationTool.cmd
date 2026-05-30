@@ -1,5 +1,5 @@
 @echo off
-:: Launcher for Windows 11 Migration Tool GUI
+:: Launcher for Windows Migration Tool GUI
 :: Requires: Run as Administrator
 
 :: Check for admin privileges

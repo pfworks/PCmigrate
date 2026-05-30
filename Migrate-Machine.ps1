@@ -235,7 +235,7 @@ param(
     [string]$ImportPath = $PSScriptRoot
 )
 
-Write-Host "=== Windows 11 Migration Import ===" -ForegroundColor Cyan
+Write-Host "=== Windows Migration Import ===" -ForegroundColor Cyan
 
 # Install winget packages
 $wingetFile = Join-Path $ImportPath "winget_packages.json"

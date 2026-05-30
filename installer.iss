@@ -1,7 +1,7 @@
-; Windows 11 Migration Tool - Inno Setup Installer Script
+; Windows Migration Tool - Inno Setup Installer Script
 ; Compile with Inno Setup 6+ (https://jrsoftware.org/isinfo.php)
 
-#define MyAppName "Windows 11 Migration Tool"
+#define MyAppName "Windows Migration Tool"
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "Rory"
 #define MyAppExeName "MigrationTool.cmd"

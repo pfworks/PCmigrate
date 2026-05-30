@@ -1,11 +1,12 @@
 <#
 .SYNOPSIS
-    Windows 11 Migration Tool - GUI Application
+    Windows Migration Tool - GUI Application
 .DESCRIPTION
     WPF GUI wrapper for Migrate-Machine.ps1 and Restore-Machine.ps1.
     Provides a visual interface for export and import operations.
 .NOTES
     Requires: Administrator privileges, PowerShell 5.1+, .NET Framework 4.5+
+    Supports: Windows 10 (1709+) and Windows 11
 #>
 
 # Self-elevate to admin if not already
@@ -22,7 +23,7 @@ Add-Type -AssemblyName System.Windows.Forms
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Windows 11 Migration Tool" Height="520" Width="650"
+        Title="Windows Migration Tool" Height="520" Width="650"
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
         Background="#1e1e2e">
     <Window.Resources>
@@ -73,7 +74,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
         <!-- Header -->
         <StackPanel Grid.Row="0" Margin="0,0,0,20">
-            <TextBlock Text="Windows 11 Migration Tool" FontSize="24" FontWeight="Bold" Foreground="#cdd6f4"/>
+            <TextBlock Text="Windows Migration Tool" FontSize="24" FontWeight="Bold" Foreground="#cdd6f4"/>
             <TextBlock Text="Export your environment or restore on a new machine" FontSize="13" Foreground="#a6adc8" Margin="0,4,0,0"/>
         </StackPanel>
 

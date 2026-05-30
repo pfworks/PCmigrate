@@ -2,7 +2,7 @@
 
 ## Goal
 
-Create a PowerShell-based migration tool for moving from one Windows 11 machine to another.
+Create a PowerShell-based migration tool for moving from one Windows 10/11 machine to another.
 
 ## Requirements Discussed
 
@@ -83,3 +83,20 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 ### Script Updated
 - `Migrate-Machine.ps1` now warns early if winget is not found, with install links
 - Updated synopsis to reflect Win10 support
+
+## Session 4 — 2026-05-29
+
+### Fixed
+- **`MigrationTool.cmd`** — Rewrote launcher to self-elevate via UAC prompt and show errors instead of silently failing. Removed `-WindowStyle Hidden` so users can see what's happening.
+- **PowerShell 5.1 compatibility** — Replaced all `??` (null-coalescing) operators in `Migrate-Machine.ps1` with `if/elseif/else` blocks. Script now works on stock Windows 10 without PowerShell 7.
+- **Registry scan timeout** — Wrapped the recursive registry key search in a background job with a 120-second timeout to prevent hangs on machines with large registries (or CI runners).
+- **CI workflow branch trigger** — Fixed workflows to trigger on `master` (actual default branch) instead of `main`.
+
+### Updated
+- **README.md** — Title changed to "Windows Migration Tool" (not Win11-only). Added SmartScreen bypass note for unsigned installer.
+- **CI test job** — Runs under PowerShell 5.1 (`powershell` shell) to catch compatibility issues early.
+
+### Decisions
+- CMD launcher handles UAC elevation itself (no more reliance on GUI self-elevation alone)
+- PowerShell 5.1 is the minimum supported version (matches README requirements)
+- Registry scan is non-blocking — if it times out, export continues without those keys
