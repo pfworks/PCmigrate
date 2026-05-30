@@ -27,6 +27,8 @@ A Windows application (with GUI) to export and restore your environment when mov
 3. For the installer: run it — it creates a Start Menu shortcut and optional desktop icon
 4. For portable: extract the zip and run `MigrationTool.cmd`
 
+> **Note:** Windows SmartScreen may block the unsigned installer. Click **"More info"** → **"Run anyway"** to proceed.
+
 ### Option B: Build the Installer Yourself
 1. Download and install [Inno Setup 6](https://jrsoftware.org/isinfo.php)
 2. Compile `installer.iss` to produce `MigrationTool_Setup.exe`
