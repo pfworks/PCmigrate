@@ -361,8 +361,9 @@ if ($Bundle) {
     $items = Get-ChildItem -LiteralPath $OutputPath
     Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
     if (Test-Path $zipPath) {
-        $sizeMB = [math]::Round((Get-Item $zipPath).Length / 1MB, 1)
-        Write-Log "Restore bundle created: $zipPath ($sizeMB MB)"
+        $sizeBytes = (Get-Item $zipPath).Length
+        $sizeStr = if ($sizeBytes -ge 1MB) { "$([math]::Round($sizeBytes / 1MB, 1)) MB" } else { "$([math]::Round($sizeBytes / 1KB, 0)) KB" }
+        Write-Log "Restore bundle created: $zipPath ($sizeStr)"
     } else {
         Write-Log "WARNING: Failed to create restore bundle"
     }

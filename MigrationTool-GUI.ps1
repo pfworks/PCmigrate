@@ -340,17 +340,18 @@ function Start-Export {
                 $items = Get-ChildItem -LiteralPath $outputPath
                 Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
                 if (Test-Path $zipPath) {
-                    $sizeMB = [math]::Round((Get-Item $zipPath).Length / 1MB, 1)
+                    $sizeBytes = (Get-Item $zipPath).Length
+                    $sizeStr = if ($sizeBytes -ge 1MB) { "$([math]::Round($sizeBytes / 1MB, 1)) MB" } else { "$([math]::Round($sizeBytes / 1KB, 0)) KB" }
                     Log ""
                     Log "=== BUNDLE CREATED ==="
                     Log "File: $zipPath"
-                    Log "Size: $sizeMB MB"
+                    Log "Size: $sizeStr"
                     Log ""
                     Log "To restore on the new machine:"
                     Log "  1. Copy $zipName to the new machine"
                     Log "  2. Extract the zip"
                     Log "  3. Right-click Restore-Machine.ps1 -> Run with PowerShell (as Admin)"
-                    $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Bundle created ($sizeMB MB)" })
+                    $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Bundle created ($sizeStr)" })
                 } else {
                     Log "ERROR: Failed to create zip file."
                 }
