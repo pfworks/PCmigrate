@@ -18,7 +18,8 @@
 
 param(
     [string]$OutputPath = "$env:USERPROFILE\Desktop\MigrationExport",
-    [switch]$Bundle
+    [switch]$Bundle,
+    [switch]$WslOnly
 )
 
 $ErrorActionPreference = "Continue"
@@ -35,6 +36,7 @@ function Write-Log {
 
 Write-Log "=== Windows Migration Export Started ==="
 Write-Log "Output: $OutputPath"
+if ($WslOnly) { Write-Log "Mode: WSL Only" }
 
 # Check winget availability early
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
@@ -42,6 +44,7 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     Write-Log "         Winget export will be skipped, but all other exports will proceed."
 }
 
+if (-not $WslOnly) {
 # ─────────────────────────────────────────────
 # 1. LICENSE KEYS
 # ─────────────────────────────────────────────
@@ -269,6 +272,7 @@ if (Get-Command winget -ErrorAction SilentlyContinue) {
 } else {
     Write-Log "WARNING: winget not found, skipping"
 }
+} # end if (-not $WslOnly)
 
 # ─────────────────────────────────────────────
 # 4. WSL EXPORT
@@ -361,6 +365,33 @@ Write-Host "`n=== Import Complete ===" -ForegroundColor Green
 Write-Host "Review installed_software.csv for apps that need manual installation."
 Write-Host "Review license_keys.txt for product keys to re-enter."
 '@
+
+if ($WslOnly) {
+    # Simpler restore script for WSL-only mode
+    $restoreScript = @'
+#Requires -RunAsAdministrator
+param([string]$ImportPath = $PSScriptRoot)
+Write-Host "=== WSL Restore ===" -ForegroundColor Cyan
+$wslDir = Join-Path $ImportPath "WSL"
+if (Test-Path $wslDir) {
+    $wslConfig = Join-Path $wslDir ".wslconfig"
+    if (Test-Path $wslConfig) {
+        Copy-Item $wslConfig -Destination "$env:USERPROFILE\.wslconfig" -Force
+        Write-Host "  Restored .wslconfig"
+    }
+    Get-ChildItem $wslDir -Filter "*.tar" | ForEach-Object {
+        $name = $_.BaseName
+        $installDir = "$env:LOCALAPPDATA\WSL\$name"
+        Write-Host "  Importing $name..."
+        wsl.exe --import $name $installDir $_.FullName
+        Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
+    }
+} else {
+    Write-Host "No WSL exports found in $wslDir" -ForegroundColor DarkYellow
+}
+Write-Host "`n=== WSL Restore Complete ===" -ForegroundColor Green
+'@
+}
 
 Set-Content -Path (Join-Path $OutputPath "Restore-Machine.ps1") -Value $restoreScript
 Write-Log "Restore script created: Restore-Machine.ps1"

@@ -290,9 +290,12 @@ $menuExportOnly = New-Object System.Windows.Controls.MenuItem
 $menuExportOnly.Header = "Export Only"
 $menuExportBundle = New-Object System.Windows.Controls.MenuItem
 $menuExportBundle.Header = "Export + Create Restore Bundle"
+$menuWslOnly = New-Object System.Windows.Controls.MenuItem
+$menuWslOnly.Header = "WSL Only"
 
 $exportMenu.Items.Add($menuExportOnly) | Out-Null
 $exportMenu.Items.Add($menuExportBundle) | Out-Null
+$exportMenu.Items.Add($menuWslOnly) | Out-Null
 
 $exportDropBtn.Add_Click({
     $exportMenu.PlacementTarget = $exportDropBtn
@@ -302,13 +305,13 @@ $exportDropBtn.Add_Click({
 
 # Shared export logic
 function Start-Export {
-    param([bool]$CreateBundle)
+    param([bool]$CreateBundle, [bool]$WslOnly)
 
     Set-Running
     $logBlock.Text = ""
-    $statusText.Text = "Exporting..."
+    $statusText.Text = if ($WslOnly) { "Exporting WSL..." } else { "Exporting..." }
 
-    Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot; createBundle = $CreateBundle } -Script {
+    Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot; createBundle = $CreateBundle; wslOnly = $WslOnly } -Script {
         function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logScroller.ScrollToEnd() }) }
         function Done {
             try {
@@ -324,7 +327,9 @@ function Start-Export {
             if (-not (Test-Path $migrateScript)) { Log "ERROR: Migrate-Machine.ps1 not found at $scriptRoot"; return }
             Log "Starting export to: $outputPath"
             Log ""
-            $output = & $migrateScript -OutputPath $outputPath 2>&1
+            $params = @{ OutputPath = $outputPath }
+            if ($wslOnly) { $params.WslOnly = $true }
+            $output = & $migrateScript @params 2>&1
             foreach ($line in $output) { Log $line }
             $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Export complete!" })
             Log ""; Log "=== EXPORT DONE ==="; Log "Export folder: $outputPath"
@@ -364,10 +369,11 @@ function Start-Export {
 }
 
 # Export button (default: export only)
-$exportBtn.Add_Click({ Start-Export -CreateBundle $false })
+$exportBtn.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false })
 
 # Menu items
-$menuExportOnly.Add_Click({ Start-Export -CreateBundle $false })
-$menuExportBundle.Add_Click({ Start-Export -CreateBundle $true })
+$menuExportOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false })
+$menuExportBundle.Add_Click({ Start-Export -CreateBundle $true -WslOnly $false })
+$menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true })
 
 $window.ShowDialog() | Out-Null
