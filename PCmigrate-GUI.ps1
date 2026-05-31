@@ -175,8 +175,8 @@ $menuAbout = $window.FindName("MenuAbout")
 $menuExit.Add_Click({ $window.Close() })
 
 $menuRetro.Add_Click({
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File `"$PSScriptRoot\PCmigrate-Retro.ps1`""
     $window.Close()
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-Retro.ps1`"" -Verb RunAs
 })
 
 $menuHelp.Add_Click({

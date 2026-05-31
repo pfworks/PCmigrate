@@ -167,8 +167,8 @@ $menuAbout = $window.FindName("MenuAbout")
 $menuExit.Add_Click({ $window.Close() })
 
 $menuModern.Add_Click({
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File `"$PSScriptRoot\PCmigrate-GUI.ps1`""
     $window.Close()
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-GUI.ps1`"" -Verb RunAs
 })
 
 $menuHelp.Add_Click({
