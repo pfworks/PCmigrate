@@ -309,7 +309,8 @@ function Start-Export {
 
     Set-Running
     $logBlock.Text = ""
-    $statusText.Text = if ($WslOnly) { "Exporting WSL..." } else { "Exporting..." }
+    $statusText.Text = "Exporting..."
+    if ($WslOnly) { $statusText.Text = "Exporting WSL..." }
 
     Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot; createBundle = $CreateBundle; wslOnly = $WslOnly } -Script {
         function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logScroller.ScrollToEnd() }) }
@@ -346,7 +347,7 @@ function Start-Export {
                 Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
                 if (Test-Path $zipPath) {
                     $sizeBytes = (Get-Item $zipPath).Length
-                    $sizeStr = if ($sizeBytes -ge 1MB) { "$([math]::Round($sizeBytes / 1MB, 1)) MB" } else { "$([math]::Round($sizeBytes / 1KB, 0)) KB" }
+                    if ($sizeBytes -ge 1MB) { $sizeStr = "$([math]::Round($sizeBytes / 1MB, 1)) MB" } else { $sizeStr = "$([math]::Round($sizeBytes / 1KB, 0)) KB" }
                     Log ""
                     Log "=== BUNDLE CREATED ==="
                     Log "File: $zipPath"

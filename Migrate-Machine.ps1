@@ -250,10 +250,11 @@ $htmlRows = $installedApps | ForEach-Object {
         if ($_.Name -and $kName -and $_.Name -like "*$kName*") { $appKey = $keyLookup[$kName]; break }
         if ($_.Name -and $kName -and $kName -like "*$($_.Name)*") { $appKey = $keyLookup[$kName]; break }
     }
-    $keyCell = if ($appKey) {
+    $keyCell = ""
+    if ($appKey) {
         $escapedKey = [System.Net.WebUtility]::HtmlEncode($appKey)
-        "<span class=`"key-hidden`" onclick=`"this.classList.toggle('key-visible')`">$escapedKey</span><button class=`"key-copy`" onclick=`"copyKey(this,'$escapedKey')`">Copy</button>"
-    } else { "" }
+        $keyCell = "<span class=`"key-hidden`" onclick=`"this.classList.toggle('key-visible')`">$escapedKey</span><button class=`"key-copy`" onclick=`"copyKey(this,'$escapedKey')`">Copy</button>"
+    }
     "        <tr><td><input type=`"checkbox`" onchange=`"this.parentElement.parentElement.classList.toggle('done')`"></td><td>$encodedName</td><td>$([System.Net.WebUtility]::HtmlEncode($_.Version))</td><td>$($_.Source)</td><td>$link</td><td>$keyCell</td></tr>"
 }
 $html = @"
@@ -441,7 +442,7 @@ if ($Bundle) {
     Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
     if (Test-Path $zipPath) {
         $sizeBytes = (Get-Item $zipPath).Length
-        $sizeStr = if ($sizeBytes -ge 1MB) { "$([math]::Round($sizeBytes / 1MB, 1)) MB" } else { "$([math]::Round($sizeBytes / 1KB, 0)) KB" }
+        if ($sizeBytes -ge 1MB) { $sizeStr = "$([math]::Round($sizeBytes / 1MB, 1)) MB" } else { $sizeStr = "$([math]::Round($sizeBytes / 1KB, 0)) KB" }
         Write-Log "Restore bundle created: $zipPath ($sizeStr)"
     } else {
         Write-Log "WARNING: Failed to create restore bundle"
