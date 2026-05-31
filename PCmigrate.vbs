@@ -1,0 +1,1 @@
+CreateObject("Shell.Application").ShellExecute "powershell.exe", "-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File """ & CreateObject("Scripting.FileSystemObject").GetParentFolderName(WScript.ScriptFullName) & "\PCmigrate-GUI.ps1""", "", "runas", 0

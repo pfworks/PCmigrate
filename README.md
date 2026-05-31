@@ -1,5 +1,9 @@
 # Windows Migration Tool
 
+<p align="center">
+  <img src="docs/box-cover.svg" alt="PCmigrate Box Cover" width="300"/>
+</p>
+
 A Windows application (with GUI) to export and restore your environment when moving to a new Windows 10/11 machine.
 
 ## What It Does
@@ -23,23 +27,23 @@ A Windows application (with GUI) to export and restore your environment when mov
 
 ### Option A: Download from GitHub Releases
 1. Go to the [Releases](../../releases) page
-2. Download `MigrationTool_Setup.exe` (installer) or `MigrationTool_Portable.zip` (no install)
+2. Download `PCmigrate_Setup.exe` (installer) or `PCmigrate_Portable.zip` (no install)
 3. For the installer: run it — it creates a Start Menu shortcut and optional desktop icon
-4. For portable: extract the zip and run `MigrationTool.cmd`
+4. For portable: extract the zip and run `PCmigrate.cmd`
 
 > **Note:** Windows SmartScreen may block the unsigned installer. Click **"More info"** → **"Run anyway"** to proceed.
 
 ### Option B: Build the Installer Yourself
 1. Download and install [Inno Setup 6](https://jrsoftware.org/isinfo.php)
-2. Compile `installer.iss` to produce `MigrationTool_Setup.exe`
+2. Compile `installer.iss` to produce `PCmigrate_Setup.exe`
 
 ### Option C: Portable (no install, from source)
-Double-click `MigrationTool.cmd` or run `MigrationTool-GUI.ps1` directly.
+Double-click `PCmigrate.cmd` or run `PCmigrate-GUI.ps1` directly.
 
 ## Usage
 
 ### GUI Mode
-Launch the app from the Start Menu, desktop shortcut, or `MigrationTool.cmd`. Use the Browse button to select your external drive, then:
+Launch the app from the Start Menu, desktop shortcut, or `PCmigrate.cmd`. Use the Browse button to select your external drive, then:
 - Click **Export** to back up this machine
 - Click the **▼** arrow next to Export for options: "Export Only" or "Export + Create Restore Bundle"
 - Click **Restore** on the new machine (point it at the export folder)

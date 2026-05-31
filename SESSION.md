@@ -37,8 +37,8 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 ## Session 2 — 2026-05-20
 
 ### Added
-- **MigrationTool-GUI.ps1** — WPF-based GUI with dark theme, Browse button, Export/Restore buttons, live log output, progress bar
-- **MigrationTool.cmd** — CMD launcher that starts the GUI without a console flash
+- **PCmigrate-GUI.ps1** — WPF-based GUI with dark theme, Browse button, Export/Restore buttons, live log output, progress bar
+- **PCmigrate.cmd** — CMD launcher that starts the GUI without a console flash
 - **installer.iss** — Inno Setup 6 script that produces a proper Windows installer with Start Menu and desktop shortcuts
 
 ### GUI Details
@@ -64,14 +64,14 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 ## Session 3 — 2026-05-27
 
 ### Added
-- **`.github/workflows/build-installer.yml`** — GitHub Actions workflow that builds the Inno Setup installer on every push/PR to `main`. Uploads `MigrationTool_Setup.exe` as a workflow artifact.
+- **`.github/workflows/build-installer.yml`** — GitHub Actions workflow that builds the Inno Setup installer on every push/PR to `main`. Uploads `PCmigrate_Setup.exe` as a workflow artifact.
 - **`.github/workflows/release.yml`** — GitHub Actions workflow triggered by version tags (`v*`). Builds the installer, packages a portable zip, and publishes both as GitHub Release assets.
 
 ### Release Workflow
 - Push a tag like `v1.0.0` to trigger a release
 - Produces two assets:
-  - `MigrationTool_Setup.exe` — full installer
-  - `MigrationTool_Portable.zip` — scripts only, no install needed
+  - `PCmigrate_Setup.exe` — full installer
+  - `PCmigrate_Portable.zip` — scripts only, no install needed
 - Uses `softprops/action-gh-release@v2` for release creation
 
 ### README Updated
@@ -87,7 +87,7 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 ## Session 4 — 2026-05-29
 
 ### Fixed
-- **`MigrationTool.cmd`** — Rewrote launcher to self-elevate via UAC prompt and show errors instead of silently failing. Removed `-WindowStyle Hidden` so users can see what's happening.
+- **`PCmigrate.cmd`** — Rewrote launcher to self-elevate via UAC prompt and show errors instead of silently failing. Removed `-WindowStyle Hidden` so users can see what's happening.
 - **PowerShell 5.1 compatibility** — Replaced all `??` (null-coalescing) operators in `Migrate-Machine.ps1` with `if/elseif/else` blocks. Script now works on stock Windows 10 without PowerShell 7.
 - **Registry scan timeout** — Wrapped the recursive registry key search in a background job with a 120-second timeout to prevent hangs on machines with large registries (or CI runners).
 - **CI workflow branch trigger** — Fixed workflows to trigger on `master` (actual default branch) instead of `main`.

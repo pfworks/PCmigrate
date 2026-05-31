@@ -4,7 +4,7 @@
 #define MyAppName "Windows Migration Tool"
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "Rory"
-#define MyAppExeName "MigrationTool.cmd"
+#define MyAppExeName "PCmigrate.vbs"
 
 [Setup]
 AppId={{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}
@@ -13,7 +13,7 @@ AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-OutputBaseFilename=MigrationTool_Setup
+OutputBaseFilename=PCmigrate_Setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -31,8 +31,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "Migrate-Machine.ps1"; DestDir: "{app}"; Flags: ignoreversion
-Source: "MigrationTool-GUI.ps1"; DestDir: "{app}"; Flags: ignoreversion
-Source: "MigrationTool.cmd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "PCmigrate-GUI.ps1"; DestDir: "{app}"; Flags: ignoreversion
+Source: "PCmigrate.cmd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "PCmigrate.vbs"; DestDir: "{app}"; Flags: ignoreversion
 Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
 

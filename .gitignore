@@ -1,6 +1,6 @@
 # Build output
 Output/
-MigrationTool_Setup.exe
+PCmigrate_Setup.exe
 
 # Export artifacts (generated at runtime)
 MigrationExport/

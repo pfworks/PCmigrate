@@ -19,8 +19,8 @@ jobs:
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
         with:
-          name: MigrationTool_Setup
-          path: Output/MigrationTool_Setup.exe
+          name: PCmigrate_Setup
+          path: Output/PCmigrate_Setup.exe
 
   test:
     runs-on: windows-latest

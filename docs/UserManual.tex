@@ -84,9 +84,9 @@ The Windows Migration Tool is a PowerShell-based application (with an optional G
 
 \begin{enumerate}
     \item Go to the \href{https://github.com/rory/PCmigrate/releases}{Releases} page on GitHub.
-    \item Download \texttt{MigrationTool\_Setup.exe} (installer) or \texttt{MigrationTool\_Portable.zip} (no install required).
+    \item Download \texttt{PCmigrate\_Setup.exe} (installer) or \texttt{PCmigrate\_Portable.zip} (no install required).
     \item For the installer: run it---it creates a Start Menu shortcut and an optional desktop icon.
-    \item For portable: extract the zip and run \texttt{MigrationTool.cmd}.
+    \item For portable: extract the zip and run \texttt{PCmigrate.cmd}.
 \end{enumerate}
 
 \noindent\textbf{Note:} Windows SmartScreen may block the unsigned installer. Click \textbf{``More info''} then \textbf{``Run anyway''} to proceed.
@@ -95,20 +95,20 @@ The Windows Migration Tool is a PowerShell-based application (with an optional G
 
 \begin{enumerate}
     \item Download and install \href{https://jrsoftware.org/isinfo.php}{Inno Setup 6}.
-    \item Compile \texttt{installer.iss} to produce \texttt{MigrationTool\_Setup.exe}.
+    \item Compile \texttt{installer.iss} to produce \texttt{PCmigrate\_Setup.exe}.
     \item Run the installer---it creates a Start Menu shortcut and an optional desktop icon.
 \end{enumerate}
 
 \subsection{Option C: Portable (No Install, from Source)}
 
-Simply double-click \texttt{MigrationTool.cmd} or run \texttt{MigrationTool-GUI.ps1} directly from an elevated PowerShell prompt. No installation is required.
+Simply double-click \texttt{PCmigrate.cmd} or run \texttt{PCmigrate-GUI.ps1} directly from an elevated PowerShell prompt. No installation is required.
 
 %----------------------------------------------------------------------
 \section{Usage}
 
 \subsection{GUI Mode}
 
-Launch the application from the Start Menu, the desktop shortcut, or by running \texttt{MigrationTool.cmd}.
+Launch the application from the Start Menu, the desktop shortcut, or by running \texttt{PCmigrate.cmd}.
 
 \begin{enumerate}
     \item Click \textbf{Browse} to select your external drive or output folder.
@@ -277,8 +277,8 @@ git push origin v1.0.0
 
 This produces a GitHub Release with two downloadable assets:
 \begin{itemize}
-    \item \texttt{MigrationTool\_Setup.exe} --- full Windows installer
-    \item \texttt{MigrationTool\_Portable.zip} --- portable scripts (no installation required)
+    \item \texttt{PCmigrate\_Setup.exe} --- full Windows installer
+    \item \texttt{PCmigrate\_Portable.zip} --- portable scripts (no installation required)
 \end{itemize}
 
 %----------------------------------------------------------------------
@@ -286,8 +286,8 @@ This produces a GitHub Release with two downloadable assets:
 
 \begin{description}[style=nextline]
     \item[\texttt{Migrate-Machine.ps1}] Main export script. Accepts \texttt{-OutputPath} parameter.
-    \item[\texttt{MigrationTool-GUI.ps1}] WPF-based graphical interface.
-    \item[\texttt{MigrationTool.cmd}] CMD launcher that starts the GUI without a console flash.
+    \item[\texttt{PCmigrate-GUI.ps1}] WPF-based graphical interface.
+    \item[\texttt{PCmigrate.cmd}] CMD launcher that starts the GUI without a console flash.
     \item[\texttt{installer.iss}] Inno Setup 6 script for building the Windows installer.
     \item[\texttt{icon.ico}] Application icon used by the installer.
     \item[\texttt{.github/workflows/build-installer.yml}] CI workflow for building the installer on push/PR.
