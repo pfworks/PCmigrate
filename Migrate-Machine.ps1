@@ -173,6 +173,28 @@ Get-AppxPackage -ErrorAction SilentlyContinue |
 
 # Sort and export
 $installedApps = $installedApps | Sort-Object Name -Unique
+
+# Search for download URLs for apps missing one
+Write-Log "--- Searching for download links for apps without URLs ---"
+$appsNeedingURL = $installedApps | Where-Object { -not $_.DownloadURL -and $_.Source -eq "Win32" }
+$searchCount = 0
+foreach ($app in $appsNeedingURL) {
+    try {
+        $query = [System.Net.WebUtility]::UrlEncode("$($app.Name) official download")
+        $response = Invoke-WebRequest -Uri "https://www.google.com/search?q=$query&num=5" -UseBasicParsing -TimeoutSec 5 -ErrorAction Stop
+        # Extract non-google, non-ad URLs from results
+        $urls = [regex]::Matches($response.Content, 'href="/url\?q=([^&"]+)') | ForEach-Object { $_.Groups[1].Value }
+        $downloadUrl = $urls | Where-Object { $_ -notmatch "google\.com|youtube\.com|wikipedia\.org|googleadservices|doubleclick\.net" } | Select-Object -First 1
+        if ($downloadUrl) {
+            $app.DownloadURL = [System.Net.WebUtility]::UrlDecode($downloadUrl)
+            $searchCount++
+        }
+    } catch {}
+    # Rate limit to avoid being blocked
+    Start-Sleep -Milliseconds 500
+}
+Write-Log "Found download links for $searchCount additional apps via web search"
+
 $installedApps | Export-Csv -Path (Join-Path $OutputPath "installed_software.csv") -NoTypeInformation
 $installedApps | Format-Table Name, Version, Source, DownloadURL -AutoSize |
     Out-String -Width 300 |
@@ -180,8 +202,14 @@ $installedApps | Format-Table Name, Version, Source, DownloadURL -AutoSize |
 
 # Generate interactive HTML checklist
 $htmlRows = $installedApps | ForEach-Object {
-    $link = if ($_.DownloadURL) { "<a href=`"$($_.DownloadURL)`" target=`"_blank`">Download</a>" } else { "" }
-    "        <tr><td><input type=`"checkbox`" onchange=`"this.parentElement.parentElement.classList.toggle('done')`"></td><td>$([System.Net.WebUtility]::HtmlEncode($_.Name))</td><td>$([System.Net.WebUtility]::HtmlEncode($_.Version))</td><td>$($_.Source)</td><td>$link</td></tr>"
+    $encodedName = [System.Net.WebUtility]::HtmlEncode($_.Name)
+    $searchQuery = [System.Net.WebUtility]::UrlEncode("$($_.Name) download")
+    if ($_.DownloadURL) {
+        $link = "<a href=`"$($_.DownloadURL)`" target=`"_blank`">Download</a>"
+    } else {
+        $link = "<a href=`"https://www.google.com/search?q=$searchQuery`" target=`"_blank`">Search</a>"
+    }
+    "        <tr><td><input type=`"checkbox`" onchange=`"this.parentElement.parentElement.classList.toggle('done')`"></td><td>$encodedName</td><td>$([System.Net.WebUtility]::HtmlEncode($_.Version))</td><td>$($_.Source)</td><td>$link</td></tr>"
 }
 $html = @"
 <!DOCTYPE html>
