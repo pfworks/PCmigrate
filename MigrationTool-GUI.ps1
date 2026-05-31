@@ -168,13 +168,24 @@ function Set-Idle {
 # Cancel button
 $cancelBtn.Add_Click({
     if ($script:currentPowerShell) {
+        # Kill any child processes spawned by the runspace
+        try {
+            $rsProcess = [System.Diagnostics.Process]::GetCurrentProcess()
+            $children = Get-CimInstance Win32_Process | Where-Object { $_.ParentProcessId -eq $rsProcess.Id -and $_.Name -ne "conhost.exe" }
+            foreach ($child in $children) {
+                try { Stop-Process -Id $child.ProcessId -Force -ErrorAction SilentlyContinue } catch {}
+            }
+        } catch {}
+
         $script:currentPowerShell.Stop()
-        $script:currentRunspace.Close()
+        try { $script:currentRunspace.Close() } catch {}
+        $script:currentPowerShell.Dispose()
         $script:currentPowerShell = $null
         $script:currentRunspace = $null
         $logBlock.Text += "`n[CANCELLED] Operation stopped by user.`n"
         $logScroller.ScrollToEnd()
         $statusText.Text = "Cancelled"
+        $progressBar.IsIndeterminate = $false
         $progressBar.Value = 0
         Set-Idle
     }
