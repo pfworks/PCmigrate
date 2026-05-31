@@ -174,8 +174,12 @@ $menuAbout = $window.FindName("MenuAbout")
 # Menu handlers
 $menuExit.Add_Click({ $window.Close() })
 
+$script:switchTo = $null
+
 $menuRetro.Add_Click({
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File `"$PSScriptRoot\PCmigrate-Retro.ps1`""
+    $script:switchTo = "Retro"
+    # Save preference
+    Set-Content -Path (Join-Path $PSScriptRoot ".pcmigrate-style") -Value "Retro"
     $window.Close()
 })
 
@@ -434,3 +438,7 @@ $menuExportBundle.Add_Click({ Start-Export -CreateBundle $true -WslOnly $false }
 $menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true })
 
 $window.ShowDialog() | Out-Null
+
+if ($script:switchTo -eq "Retro") {
+    & "$PSScriptRoot\PCmigrate-Retro.ps1"
+}

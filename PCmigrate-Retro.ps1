@@ -166,8 +166,12 @@ $menuAbout = $window.FindName("MenuAbout")
 
 $menuExit.Add_Click({ $window.Close() })
 
+$script:switchTo = $null
+
 $menuModern.Add_Click({
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File `"$PSScriptRoot\PCmigrate-GUI.ps1`""
+    $script:switchTo = "Modern"
+    # Save preference
+    Set-Content -Path (Join-Path $PSScriptRoot ".pcmigrate-style") -Value "Modern"
     $window.Close()
 })
 
@@ -388,3 +392,7 @@ $menuExportBundle.Add_Click({ Start-Export -CreateBundle $true -WslOnly $false }
 $menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true })
 
 $window.ShowDialog() | Out-Null
+
+if ($script:switchTo -eq "Modern") {
+    & "$PSScriptRoot\PCmigrate-GUI.ps1"
+}

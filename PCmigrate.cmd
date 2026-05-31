@@ -1,15 +1,21 @@
 @echo off
-:: Launcher for Windows Migration Tool GUI
-:: This re-launches via wscript to hide the console window
+:: Launcher for PCmigrate - checks style preference
+:: Requires: Run as Administrator
 
-:: If already admin, launch hidden
+:: Check for admin privileges
 net session >nul 2>&1
-if %errorlevel% equ 0 (
-    start "" /b powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File "%~dp0PCmigrate-GUI.ps1"
+if %errorlevel% neq 0 (
+    echo Requesting administrator privileges...
+    powershell -Command "Start-Process '%~f0' -Verb RunAs"
     exit /b
 )
 
-:: Not admin - use VBS to elevate without visible console
-echo CreateObject("Shell.Application").ShellExecute "powershell.exe", "-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File ""%~dp0PCmigrate-GUI.ps1""", "", "runas", 0 > "%temp%\launch_migration.vbs"
-wscript "%temp%\launch_migration.vbs"
-del "%temp%\launch_migration.vbs"
+:: Check style preference
+set "GUI=PCmigrate-GUI.ps1"
+if exist "%~dp0.pcmigrate-style" (
+    set /p STYLE=<"%~dp0.pcmigrate-style"
+    if /i "%STYLE%"=="Retro" set "GUI=PCmigrate-Retro.ps1"
+)
+
+:: Run the GUI script
+start "" /b powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File "%~dp0%GUI%"
