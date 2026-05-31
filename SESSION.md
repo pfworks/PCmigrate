@@ -158,3 +158,6 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 - All files from `MigrationTool*` to `PCmigrate*`
 - Installer output: `PCmigrate_Setup.exe`
 - Portable zip: `PCmigrate_Portable.zip`
+
+### Added (continued)
+- **Retro DOS GUI** (`PCmigrate-Retro.ps1`) — Alternative GUI with green-on-black CRT aesthetic, ASCII art banner, monospace font, `C:\>` prompt-style path input, and DOS-style button labels (`[F1] EXPORT`, `[F2] RESTORE`, `[ESC] ABORT`). Same full functionality as the main GUI.
