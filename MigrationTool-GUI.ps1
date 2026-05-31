@@ -141,9 +141,11 @@ $logScroller = $window.FindName("LogScroller")
 $progressBar = $window.FindName("ProgressBar")
 $statusText = $window.FindName("StatusText")
 
-# State
-$script:currentPowerShell = $null
-$script:currentRunspace = $null
+# State - use a hashtable so all closures share the same reference
+$state = @{
+    PowerShell = $null
+    Runspace   = $null
+}
 
 # Default path
 $pathBox.Text = "$env:USERPROFILE\Desktop\MigrationExport"
@@ -167,21 +169,24 @@ function Set-Idle {
 
 # Cancel button
 $cancelBtn.Add_Click({
-    if ($script:currentPowerShell) {
+    if ($state.PowerShell) {
         # Kill any child processes spawned by the runspace
         try {
-            $rsProcess = [System.Diagnostics.Process]::GetCurrentProcess()
-            $children = Get-CimInstance Win32_Process | Where-Object { $_.ParentProcessId -eq $rsProcess.Id -and $_.Name -ne "conhost.exe" }
-            foreach ($child in $children) {
-                try { Stop-Process -Id $child.ProcessId -Force -ErrorAction SilentlyContinue } catch {}
+            $myPid = [System.Diagnostics.Process]::GetCurrentProcess().Id
+            Get-CimInstance Win32_Process | Where-Object {
+                $_.ParentProcessId -eq $myPid -and $_.Name -match "wsl|winget|cscript|powershell" -and $_.ProcessId -ne $myPid
+            } | ForEach-Object {
+                Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue
             }
         } catch {}
 
-        $script:currentPowerShell.Stop()
-        try { $script:currentRunspace.Close() } catch {}
-        $script:currentPowerShell.Dispose()
-        $script:currentPowerShell = $null
-        $script:currentRunspace = $null
+        try { $state.PowerShell.Stop() } catch {}
+        try { $state.PowerShell.Dispose() } catch {}
+        try { $state.Runspace.Close() } catch {}
+        try { $state.Runspace.Dispose() } catch {}
+        $state.PowerShell = $null
+        $state.Runspace = $null
+
         $logBlock.Text += "`n[CANCELLED] Operation stopped by user.`n"
         $logScroller.ScrollToEnd()
         $statusText.Text = "Cancelled"
@@ -226,8 +231,8 @@ function Start-BackgroundTask {
 
     $ps = [PowerShell]::Create()
     $ps.Runspace = $runspace
-    $script:currentPowerShell = $ps
-    $script:currentRunspace = $runspace
+    $state.PowerShell = $ps
+    $state.Runspace = $runspace
 
     $ps.AddScript($Script) | Out-Null
     $ps.BeginInvoke() | Out-Null
