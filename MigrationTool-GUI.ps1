@@ -337,7 +337,8 @@ function Start-Export {
                 $zipPath = Join-Path $parentDir $zipName
                 if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
                 Log "Compressing files (this may take a while for large WSL exports)..."
-                Compress-Archive -Path "$outputPath\*" -DestinationPath $zipPath -CompressionLevel Optimal
+                $items = Get-ChildItem -LiteralPath $outputPath
+                Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
                 if (Test-Path $zipPath) {
                     $sizeMB = [math]::Round((Get-Item $zipPath).Length / 1MB, 1)
                     Log ""

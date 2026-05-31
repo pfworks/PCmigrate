@@ -330,7 +330,8 @@ if ($Bundle) {
     $folderName = Split-Path $OutputPath -Leaf
     $zipPath = Join-Path $parentDir "${folderName}_RestoreBundle.zip"
     if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
-    Compress-Archive -Path "$OutputPath\*" -DestinationPath $zipPath -CompressionLevel Optimal
+    $items = Get-ChildItem -LiteralPath $OutputPath
+    Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
     if (Test-Path $zipPath) {
         $sizeMB = [math]::Round((Get-Item $zipPath).Length / 1MB, 1)
         Write-Log "Restore bundle created: $zipPath ($sizeMB MB)"
