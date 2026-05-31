@@ -216,7 +216,7 @@ $html = @"
 <html><head><meta charset="utf-8"><title>Installed Software Checklist</title>
 <style>
 body { font-family: -apple-system, sans-serif; max-width: 1000px; margin: 2em auto; background: #1e1e2e; color: #cdd6f4; }
-h1 { color: #89b4fa; }
+h1, h2 { color: #89b4fa; }
 table { border-collapse: collapse; width: 100%; }
 th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #313244; }
 th { background: #313244; position: sticky; top: 0; }
@@ -225,12 +225,28 @@ tr.done { opacity: 0.4; text-decoration: line-through; }
 a { color: #89b4fa; }
 input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; }
 .count { color: #a6adc8; margin-bottom: 1em; }
+.keys-section { margin-top: 3em; }
+.keys-toggle { background: #89b4fa; color: #1e1e2e; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; margin-right: 8px; }
+.keys-toggle:hover { background: #b4d0fb; }
+.keys-box { display: none; background: #181825; border-radius: 6px; padding: 16px; margin-top: 12px; white-space: pre-wrap; font-family: monospace; font-size: 13px; position: relative; }
+.keys-box.visible { display: block; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #a6e3a1; color: #1e1e2e; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
+.copy-btn:hover { background: #c8f0c8; }
 </style></head><body>
 <h1>Installed Software Checklist</h1>
 <p class="count">$($installedApps.Count) applications &mdash; check off items as you reinstall them</p>
 <table><thead><tr><th></th><th>Name</th><th>Version</th><th>Source</th><th>Link</th></tr></thead><tbody>
 $($htmlRows -join "`n")
-</tbody></table></body></html>
+</tbody></table>
+<div class="keys-section">
+<h2>License Keys</h2>
+<button class="keys-toggle" onclick="var b=document.getElementById('keysBox');b.classList.toggle('visible');this.textContent=b.classList.contains('visible')?'Hide Keys':'Show Keys'">Show Keys</button>
+<div id="keysBox" class="keys-box">
+<button class="copy-btn" onclick="var t=this.parentElement.querySelector('.keys-content').textContent;navigator.clipboard.writeText(t);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+<span class="keys-content">$([System.Net.WebUtility]::HtmlEncode($content))</span>
+</div>
+</div>
+</body></html>
 "@
 Set-Content -Path (Join-Path $OutputPath "installed_software.html") -Value $html -Encoding UTF8
 
