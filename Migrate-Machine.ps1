@@ -252,7 +252,7 @@ $htmlRows = $installedApps | ForEach-Object {
     }
     $keyCell = if ($appKey) {
         $escapedKey = [System.Net.WebUtility]::HtmlEncode($appKey)
-        "<span class=`"key-hidden`" onclick=`"this.classList.toggle('key-visible')`">$escapedKey</span><button class=`"key-copy`" onclick=`"navigator.clipboard.writeText('$escapedKey');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1000)`">Copy</button>"
+        "<span class=`"key-hidden`" onclick=`"this.classList.toggle('key-visible')`">$escapedKey</span><button class=`"key-copy`" onclick=`"copyKey(this,'$escapedKey')`">Copy</button>"
     } else { "" }
     "        <tr><td><input type=`"checkbox`" onchange=`"this.parentElement.parentElement.classList.toggle('done')`"></td><td>$encodedName</td><td>$([System.Net.WebUtility]::HtmlEncode($_.Version))</td><td>$($_.Source)</td><td>$link</td><td>$keyCell</td></tr>"
 }
@@ -280,6 +280,7 @@ input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; }
 <table><thead><tr><th></th><th>Name</th><th>Version</th><th>Source</th><th>Link</th><th>Key</th></tr></thead><tbody>
 $($htmlRows -join "`n")
 </tbody></table>
+<script>function copyKey(btn,key){navigator.clipboard.writeText(key);btn.textContent='Done';setTimeout(function(){btn.textContent='Copy'},1000)}</script>
 </body></html>
 "@
 Set-Content -Path (Join-Path $OutputPath "installed_software.html") -Value $html -Encoding UTF8
