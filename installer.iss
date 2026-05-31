@@ -38,8 +38,8 @@ Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\icon.ico"
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\icon.ico"; Tasks: desktopicon
+Name: "{group}\{#MyAppName}"; Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; IconFilename: "{app}\icon.ico"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; IconFilename: "{app}\icon.ico"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "Launch Migration Tool"; Flags: nowait postinstall skipifsilent runascurrentuser
+Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; Description: "Launch Migration Tool"; Flags: nowait postinstall skipifsilent runascurrentuser
