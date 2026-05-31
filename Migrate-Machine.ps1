@@ -17,7 +17,7 @@
 #Requires -RunAsAdministrator
 
 param(
-    [string]$OutputPath = "$env:USERPROFILE\Desktop\MigrationExport",
+    [string]$OutputPath = "$env:USERPROFILE\Desktop\PCmigrate",
     [switch]$Bundle,
     [switch]$WslOnly
 )

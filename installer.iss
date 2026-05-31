@@ -20,8 +20,8 @@ WizardStyle=modern
 PrivilegesRequired=admin
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
-SetupIconFile=icon.ico
-UninstallDisplayIcon={app}\icon.ico
+SetupIconFile=PCmigrate.ico
+UninstallDisplayIcon={app}\PCmigrate.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -34,12 +34,12 @@ Source: "Migrate-Machine.ps1"; DestDir: "{app}"; Flags: ignoreversion
 Source: "PCmigrate-GUI.ps1"; DestDir: "{app}"; Flags: ignoreversion
 Source: "PCmigrate.cmd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "PCmigrate.vbs"; DestDir: "{app}"; Flags: ignoreversion
-Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "PCmigrate.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; IconFilename: "{app}\icon.ico"
-Name: "{autodesktop}\{#MyAppName}"; Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; IconFilename: "{app}\icon.ico"; Tasks: desktopicon
+Name: "{group}\{#MyAppName}"; Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; IconFilename: "{app}\PCmigrate.ico"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; IconFilename: "{app}\PCmigrate.ico"; Tasks: desktopicon
 
 [Run]
 Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; Description: "Launch Migration Tool"; Flags: nowait postinstall skipifsilent runascurrentuser

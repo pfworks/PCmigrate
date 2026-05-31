@@ -45,7 +45,7 @@ Double-click `PCmigrate.cmd` or run `PCmigrate-GUI.ps1` directly.
 ### GUI Mode
 Launch the app from the Start Menu, desktop shortcut, or `PCmigrate.cmd`. Use the Browse button to select your external drive, then:
 - Click **Export** to back up this machine
-- Click the **▼** arrow next to Export for options: "Export Only" or "Export + Create Restore Bundle"
+- Click the **▼** arrow next to Export for options: "Export Only", "Export + Create Restore Bundle", or "WSL Only"
 - Click **Restore** on the new machine (point it at the export folder)
 - Click **Cancel** at any time to stop a running operation
 
@@ -55,12 +55,15 @@ Launch the app from the Start Menu, desktop shortcut, or `PCmigrate.cmd`. Use th
 
 ```powershell
 # Export to an external drive
-.\Migrate-Machine.ps1 -OutputPath "E:\MigrationExport"
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate"
 
 # Export and create a self-contained restore zip
-.\Migrate-Machine.ps1 -OutputPath "E:\MigrationExport" -Bundle
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -Bundle
 
-# Or default to Desktop\MigrationExport
+# WSL only (skip software inventory and license keys)
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -WslOnly
+
+# Or default to Desktop\PCmigrate
 .\Migrate-Machine.ps1
 ```
 
@@ -69,19 +72,19 @@ Launch the app from the Start Menu, desktop shortcut, or `PCmigrate.cmd`. Use th
 Move the drive over, then:
 
 ```powershell
-E:\MigrationExport\Restore-Machine.ps1
+E:\PCmigrate\Restore-Machine.ps1
 ```
 
 Or specify the path manually:
 
 ```powershell
-.\Restore-Machine.ps1 -ImportPath "E:\MigrationExport"
+.\Restore-Machine.ps1 -ImportPath "E:\PCmigrate"
 ```
 
 ## Output Structure
 
 ```
-MigrationExport/
+PCmigrate/
 ├── license_keys.txt          # Windows/Office/software keys
 ├── installed_software.csv    # Full inventory (machine-readable)
 ├── installed_software.txt    # Full inventory (human-readable)

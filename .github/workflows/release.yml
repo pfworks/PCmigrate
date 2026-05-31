@@ -16,7 +16,7 @@ jobs:
         run: iscc.exe installer.iss
 
       - name: Package portable zip
-        run: Compress-Archive -Path Migrate-Machine.ps1, PCmigrate-GUI.ps1, PCmigrate.cmd, PCmigrate.vbs, icon.ico, README.md -DestinationPath PCmigrate_Portable.zip
+        run: Compress-Archive -Path Migrate-Machine.ps1, PCmigrate-GUI.ps1, PCmigrate.cmd, PCmigrate.vbs, PCmigrate.ico, README.md -DestinationPath PCmigrate_Portable.zip
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

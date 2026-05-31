@@ -29,9 +29,9 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 ## Workflow
 
 1. Plug external drive into old machine
-2. `.\Migrate-Machine.ps1 -OutputPath "E:\MigrationExport"`
+2. `.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate"`
 3. Move drive to new machine
-4. `E:\MigrationExport\Restore-Machine.ps1`
+4. `E:\PCmigrate\Restore-Machine.ps1`
 5. Manual follow-up: set WSL default users, enter license keys, install anything winget missed
 
 ## Session 2 — 2026-05-20
@@ -140,3 +140,21 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 - **Restore bundle 0 MB** — Wildcard glob `"$path\*"` didn't expand in runspaces; switched to `Get-ChildItem -LiteralPath` + explicit paths
 - **Size reporting** — Shows KB for files under 1 MB instead of rounding to "0 MB"
 - **Cancel button** — Used shared hashtable for state (reference type visible across closures); `BeginStop()` for non-blocking cancel; dispose on threadpool to avoid UI deadlock; kills child processes (wsl, winget, cscript)
+
+## Session 7 — 2026-05-31 (continued)
+
+### Added
+- **WSL-only mode** — CLI: `-WslOnly` flag; GUI: "WSL Only" in export dropdown. Skips license keys, software inventory, and winget — only exports WSL distros + .wslconfig
+- **VBS silent launcher** (`PCmigrate.vbs`) — Launches the GUI via `wscript.exe` with no console window flash. Installer shortcuts use `wscript.exe` to invoke it.
+- **80s box cover** (`docs/box-cover.svg`) — Retro synthwave-style software box art, displayed in README
+- **FreeDOS floppy image** (`docs/PCmigrate.img`) — Novelty 1.2MB FAT12 5¼" floppy with ASCII banner
+
+### Fixed
+- **License key detection** — Replaced unreliable full-registry background job with targeted scans of uninstall entries and known software paths (Adobe, Office, Autodesk, VMware). Much faster, no timeout issues.
+- **HTML keys display** — Removed separate keys section; keys now appear as a per-app column (hidden by default, click to reveal, copy button per key)
+- **Installer VBS launch** — Shortcuts and post-install now use `wscript.exe "path\PCmigrate.vbs"` instead of executing .vbs directly
+
+### Renamed
+- All files from `MigrationTool*` to `PCmigrate*`
+- Installer output: `PCmigrate_Setup.exe`
+- Portable zip: `PCmigrate_Portable.zip`

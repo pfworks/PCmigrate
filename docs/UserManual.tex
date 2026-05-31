@@ -113,7 +113,7 @@ Launch the application from the Start Menu, the desktop shortcut, or by running 
 \begin{enumerate}
     \item Click \textbf{Browse} to select your external drive or output folder.
     \item Click \textbf{Export} to back up this machine (export only).
-    \item Click the \textbf{{\footnotesize$\nabla$}} arrow next to Export for options: ``Export Only'' or ``Export + Create Restore Bundle''.
+    \item Click the \textbf{{\footnotesize$\nabla$}} arrow next to Export for options: ``Export Only'', ``Export + Create Restore Bundle'', or ``WSL Only''.
     \item On the destination machine, click \textbf{Browse} to locate the export folder, then click \textbf{Restore}.
     \item Click \textbf{Cancel} at any time to stop a running operation.
 \end{enumerate}
@@ -135,12 +135,15 @@ The GUI features:
 
 \begin{lstlisting}[language=bash]
 # Export to an external drive
-.\Migrate-Machine.ps1 -OutputPath "E:\MigrationExport"
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate"
 
 # Export and create a self-contained restore zip
-.\Migrate-Machine.ps1 -OutputPath "E:\MigrationExport" -Bundle
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -Bundle
 
-# Or use the default (Desktop\MigrationExport)
+# WSL only (skip software inventory and license keys)
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -WslOnly
+
+# Or use the default (Desktop\PCmigrate)
 .\Migrate-Machine.ps1
 \end{lstlisting}
 
@@ -149,13 +152,13 @@ The GUI features:
 Move the external drive to the new machine, then run:
 
 \begin{lstlisting}[language=bash]
-E:\MigrationExport\Restore-Machine.ps1
+E:\PCmigrate\Restore-Machine.ps1
 \end{lstlisting}
 
 Or specify the import path manually:
 
 \begin{lstlisting}[language=bash]
-.\Restore-Machine.ps1 -ImportPath "E:\MigrationExport"
+.\Restore-Machine.ps1 -ImportPath "E:\PCmigrate"
 \end{lstlisting}
 
 %----------------------------------------------------------------------
@@ -178,7 +181,7 @@ The recommended end-to-end workflow:
 The export produces a self-contained folder with the following layout:
 
 \begin{lstlisting}
-MigrationExport/
+PCmigrate/
   license_keys.txt          # Windows/Office/software keys
   installed_software.csv    # Full inventory (machine-readable)
   installed_software.txt    # Full inventory (human-readable)

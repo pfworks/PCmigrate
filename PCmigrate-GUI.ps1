@@ -148,7 +148,7 @@ $state = @{
 }
 
 # Default path
-$pathBox.Text = "$env:USERPROFILE\Desktop\MigrationExport"
+$pathBox.Text = "$env:USERPROFILE\Desktop\PCmigrate"
 
 # Helpers
 function Set-Running {
@@ -265,7 +265,7 @@ $importBtn.Add_Click({
             $restoreScript = Join-Path $importPath "Restore-Machine.ps1"
             if (-not (Test-Path $restoreScript)) {
                 Log "ERROR: Restore-Machine.ps1 not found in $importPath"
-                Log "Make sure you select the MigrationExport folder."
+                Log "Make sure you select the PCmigrate folder."
                 return
             }
             Log "Starting restore from: $importPath"
