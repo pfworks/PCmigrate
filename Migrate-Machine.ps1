@@ -94,39 +94,61 @@ if (-not $content.Contains("[Microsoft Office]") -and (Test-Path $c2rPath)) {
 }
 
 # Registry-stored keys for other software
-$knownKeyNames = @("Serial", "SerialNumber", "LicenseKey", "ProductKey", "Registration", "CDKey", "Key", "DigitalProductId", "LicenseCode", "ActivationCode")
+# Strategy: check uninstall entries and known software paths for key-like values
+$knownKeyNames = @("Serial", "SerialNumber", "LicenseKey", "ProductKey", "Registration", "CDKey", "Key", "LicenseCode", "ActivationCode", "RegisteredKey", "PID", "DigitalProductId")
 $foundKeys = @()
-$regJob = Start-Job -ScriptBlock {
-    param($knownKeyNames)
-    $results = @()
-    $searchPaths = @(
-        "HKLM:\SOFTWARE",
-        "HKLM:\SOFTWARE\WOW6432Node",
-        "HKCU:\SOFTWARE"
-    )
-    foreach ($keyName in $knownKeyNames) {
-        foreach ($searchPath in $searchPaths) {
-            if (-not (Test-Path $searchPath)) { continue }
-            $found = Get-ChildItem $searchPath -Recurse -ErrorAction SilentlyContinue |
-                Get-ItemProperty -ErrorAction SilentlyContinue |
-                Where-Object { $_.$keyName -and $_.$keyName -is [string] -and $_.$keyName.Trim().Length -ge 5 -and $_.$keyName -match "[A-Za-z0-9]" } |
-                Select-Object @{N='Path';E={$_.PSPath}}, @{N='KeyName';E={$keyName}}, @{N='Value';E={$_.$keyName}}
-            $results += $found
+
+# Scan uninstall registry entries (same ones used for software inventory)
+$uninstallPaths = @(
+    "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*",
+    "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*",
+    "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*"
+)
+foreach ($path in $uninstallPaths) {
+    Get-ItemProperty $path -ErrorAction SilentlyContinue | ForEach-Object {
+        $appName = $_.DisplayName
+        if (-not $appName) { return }
+        foreach ($keyName in $knownKeyNames) {
+            $val = $_.$keyName
+            if ($val -and $val -is [string] -and $val.Trim().Length -ge 5 -and $val -match "[A-Z0-9]{3,}") {
+                $foundKeys += [PSCustomObject]@{ App = $appName; KeyName = $keyName; Value = $val.Trim() }
+            }
         }
     }
-    $results
-} -ArgumentList (,$knownKeyNames)
-$regJob | Wait-Job -Timeout 120 | Out-Null
-if ($regJob.State -eq 'Completed') {
-    $foundKeys = Receive-Job $regJob
-} else {
-    Stop-Job $regJob
-    Write-Log "WARNING: Registry key scan timed out after 120 seconds"
 }
-Remove-Job $regJob -Force
+
+# Scan known software registry locations
+$knownPaths = @(
+    "HKLM:\SOFTWARE\Adobe",
+    "HKLM:\SOFTWARE\WOW6432Node\Adobe",
+    "HKLM:\SOFTWARE\Microsoft\Office",
+    "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Office",
+    "HKCU:\SOFTWARE\Adobe",
+    "HKLM:\SOFTWARE\Autodesk",
+    "HKLM:\SOFTWARE\WOW6432Node\Autodesk",
+    "HKLM:\SOFTWARE\VMware, Inc.",
+    "HKLM:\SOFTWARE\WOW6432Node\VMware, Inc."
+)
+foreach ($basePath in $knownPaths) {
+    if (-not (Test-Path $basePath)) { continue }
+    Get-ChildItem $basePath -Recurse -ErrorAction SilentlyContinue |
+        Get-ItemProperty -ErrorAction SilentlyContinue | ForEach-Object {
+            foreach ($keyName in $knownKeyNames) {
+                $val = $_.$keyName
+                if ($val -and $val -is [string] -and $val.Trim().Length -ge 5 -and $val -match "[A-Z0-9]{3,}") {
+                    $pathLabel = $_.PSPath -replace 'Microsoft.PowerShell.Core\\Registry::',''
+                    $foundKeys += [PSCustomObject]@{ App = $pathLabel; KeyName = $keyName; Value = $val.Trim() }
+                }
+            }
+        }
+}
+
+# Deduplicate
+$foundKeys = $foundKeys | Sort-Object App, Value -Unique
+
 if ($foundKeys) {
-    $content += "[Other Software Keys Found in Registry]`n"
-    $foundKeys | ForEach-Object { $content += "  $($_.Path -replace 'Microsoft.PowerShell.Core\\Registry::',''): $($_.KeyName) = $($_.Value)`n" }
+    $content += "`n[Other Software Keys Found in Registry]`n"
+    $foundKeys | ForEach-Object { $content += "  $($_.App): $($_.KeyName) = $($_.Value)`n" }
 }
 
 Set-Content -Path $licenseFile -Value $content
@@ -204,6 +226,16 @@ $installedApps | Format-Table Name, Version, Source, DownloadURL -AutoSize |
     Set-Content (Join-Path $OutputPath "installed_software.txt")
 
 # Generate interactive HTML checklist
+# Build key lookup by app name
+$keyLookup = @{}
+if ($foundKeys) {
+    foreach ($k in $foundKeys) {
+        $keyLookup[$k.App] = $k.Value
+    }
+}
+# Also add Windows key
+if ($biosKey) { $keyLookup["Windows"] = $biosKey }
+
 $htmlRows = $installedApps | ForEach-Object {
     $encodedName = [System.Net.WebUtility]::HtmlEncode($_.Name)
     $searchQuery = [System.Net.WebUtility]::UrlEncode("$($_.Name) download")
@@ -212,14 +244,24 @@ $htmlRows = $installedApps | ForEach-Object {
     } else {
         $link = "<a href=`"https://www.google.com/search?q=$searchQuery`" target=`"_blank`">Search</a>"
     }
-    "        <tr><td><input type=`"checkbox`" onchange=`"this.parentElement.parentElement.classList.toggle('done')`"></td><td>$encodedName</td><td>$([System.Net.WebUtility]::HtmlEncode($_.Version))</td><td>$($_.Source)</td><td>$link</td></tr>"
+    # Match key to app name (partial match)
+    $appKey = ""
+    foreach ($kName in $keyLookup.Keys) {
+        if ($_.Name -and $kName -and $_.Name -like "*$kName*") { $appKey = $keyLookup[$kName]; break }
+        if ($_.Name -and $kName -and $kName -like "*$($_.Name)*") { $appKey = $keyLookup[$kName]; break }
+    }
+    $keyCell = if ($appKey) {
+        $escapedKey = [System.Net.WebUtility]::HtmlEncode($appKey)
+        "<span class=`"key-hidden`" onclick=`"this.classList.toggle('key-visible')`">$escapedKey</span><button class=`"key-copy`" onclick=`"navigator.clipboard.writeText('$escapedKey');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1000)`">Copy</button>"
+    } else { "" }
+    "        <tr><td><input type=`"checkbox`" onchange=`"this.parentElement.parentElement.classList.toggle('done')`"></td><td>$encodedName</td><td>$([System.Net.WebUtility]::HtmlEncode($_.Version))</td><td>$($_.Source)</td><td>$link</td><td>$keyCell</td></tr>"
 }
 $html = @"
 <!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Installed Software Checklist</title>
 <style>
-body { font-family: -apple-system, sans-serif; max-width: 1000px; margin: 2em auto; background: #1e1e2e; color: #cdd6f4; }
-h1, h2 { color: #89b4fa; }
+body { font-family: -apple-system, sans-serif; max-width: 1100px; margin: 2em auto; background: #1e1e2e; color: #cdd6f4; }
+h1 { color: #89b4fa; }
 table { border-collapse: collapse; width: 100%; }
 th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #313244; }
 th { background: #313244; position: sticky; top: 0; }
@@ -228,27 +270,16 @@ tr.done { opacity: 0.4; text-decoration: line-through; }
 a { color: #89b4fa; }
 input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; }
 .count { color: #a6adc8; margin-bottom: 1em; }
-.keys-section { margin-top: 3em; }
-.keys-toggle { background: #89b4fa; color: #1e1e2e; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; margin-right: 8px; }
-.keys-toggle:hover { background: #b4d0fb; }
-.keys-box { display: none; background: #181825; border-radius: 6px; padding: 16px; margin-top: 12px; white-space: pre-wrap; font-family: monospace; font-size: 13px; position: relative; }
-.keys-box.visible { display: block; }
-.copy-btn { position: absolute; top: 8px; right: 8px; background: #a6e3a1; color: #1e1e2e; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600; }
-.copy-btn:hover { background: #c8f0c8; }
+.key-hidden { background: #313244; color: #313244; padding: 2px 6px; border-radius: 3px; cursor: pointer; font-family: monospace; font-size: 12px; user-select: none; }
+.key-hidden.key-visible { color: #f9e2af; }
+.key-copy { background: #45475a; color: #cdd6f4; border: none; padding: 2px 8px; border-radius: 3px; cursor: pointer; font-size: 11px; margin-left: 6px; }
+.key-copy:hover { background: #585b70; }
 </style></head><body>
 <h1>Installed Software Checklist</h1>
-<p class="count">$($installedApps.Count) applications &mdash; check off items as you reinstall them</p>
-<table><thead><tr><th></th><th>Name</th><th>Version</th><th>Source</th><th>Link</th></tr></thead><tbody>
+<p class="count">$($installedApps.Count) applications &mdash; check off items as you reinstall them &mdash; click key fields to reveal</p>
+<table><thead><tr><th></th><th>Name</th><th>Version</th><th>Source</th><th>Link</th><th>Key</th></tr></thead><tbody>
 $($htmlRows -join "`n")
 </tbody></table>
-<div class="keys-section">
-<h2>License Keys</h2>
-<button class="keys-toggle" onclick="var b=document.getElementById('keysBox');b.classList.toggle('visible');this.textContent=b.classList.contains('visible')?'Hide Keys':'Show Keys'">Show Keys</button>
-<div id="keysBox" class="keys-box">
-<button class="copy-btn" onclick="var t=this.parentElement.querySelector('.keys-content').textContent;navigator.clipboard.writeText(t);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
-<span class="keys-content">$([System.Net.WebUtility]::HtmlEncode($content))</span>
-</div>
-</div>
 </body></html>
 "@
 Set-Content -Path (Join-Path $OutputPath "installed_software.html") -Value $html -Encoding UTF8
