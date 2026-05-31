@@ -66,6 +66,20 @@ Add-Type -AssemblyName System.Windows.Forms
             <Setter Property="CaretBrush" Value="#00ff00"/>
         </Style>
     </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Background="Black" Foreground="#00ff00" FontFamily="Consolas" FontSize="12">
+            <MenuItem Header="_File" Foreground="#00ff00">
+                <MenuItem x:Name="MenuExit" Header="E_xit" Foreground="#00ff00" Background="Black"/>
+            </MenuItem>
+            <MenuItem Header="_View" Foreground="#00ff00">
+                <MenuItem x:Name="MenuModern" Header="Switch to _Modern Style" Foreground="#00ff00" Background="Black"/>
+            </MenuItem>
+            <MenuItem Header="_Help" Foreground="#00ff00">
+                <MenuItem x:Name="MenuHelp" Header="_User Manual" Foreground="#00ff00" Background="Black"/>
+                <Separator/>
+                <MenuItem x:Name="MenuAbout" Header="_About" Foreground="#00ff00" Background="Black"/>
+            </MenuItem>
+        </Menu>
     <Border BorderBrush="#00ff00" BorderThickness="2" Margin="8">
         <Grid Margin="16">
             <Grid.RowDefinitions>
@@ -125,6 +139,7 @@ Add-Type -AssemblyName System.Windows.Forms
             </Grid>
         </Grid>
     </Border>
+    </DockPanel>
 </Window>
 "@
 
@@ -142,6 +157,37 @@ $logBlock = $window.FindName("LogBlock")
 $logScroller = $window.FindName("LogScroller")
 $progressBar = $window.FindName("ProgressBar")
 $statusText = $window.FindName("StatusText")
+
+# Menu items
+$menuExit = $window.FindName("MenuExit")
+$menuModern = $window.FindName("MenuModern")
+$menuHelp = $window.FindName("MenuHelp")
+$menuAbout = $window.FindName("MenuAbout")
+
+$menuExit.Add_Click({ $window.Close() })
+
+$menuModern.Add_Click({
+    $window.Close()
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-GUI.ps1`""
+})
+
+$menuHelp.Add_Click({
+    $manualPath = Join-Path $PSScriptRoot "docs\UserManual.pdf"
+    if (Test-Path $manualPath) {
+        Start-Process $manualPath
+    } else {
+        Start-Process "https://github.com/pfworks/PCmigrate#readme"
+    }
+})
+
+$menuAbout.Add_Click({
+    [System.Windows.MessageBox]::Show(
+        "PCmigrate v0.2`nTotal System Transfer Utility`n`n(C) 2026 pfworks`nMIT License`n`nhttps://github.com/pfworks/PCmigrate",
+        "About PCmigrate",
+        "OK",
+        "Information"
+    )
+})
 
 # State
 $state = @{ PowerShell = $null; Runspace = $null }

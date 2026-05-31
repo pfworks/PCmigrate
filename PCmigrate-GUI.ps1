@@ -27,6 +27,14 @@ Add-Type -AssemblyName System.Windows.Forms
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
         Background="#1e1e2e">
     <Window.Resources>
+        <Style TargetType="Menu">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#cdd6f4"/>
+        </Style>
+        <Style TargetType="MenuItem">
+            <Setter Property="Background" Value="#313244"/>
+            <Setter Property="Foreground" Value="#cdd6f4"/>
+        </Style>
         <Style TargetType="Button">
             <Setter Property="Background" Value="#89b4fa"/>
             <Setter Property="Foreground" Value="#1e1e2e"/>
@@ -63,6 +71,21 @@ Add-Type -AssemblyName System.Windows.Forms
             <Setter Property="FontSize" Value="13"/>
         </Style>
     </Window.Resources>
+    <DockPanel>
+        <!-- Menu Bar -->
+        <Menu DockPanel.Dock="Top" Background="#313244" Foreground="#cdd6f4">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="MenuExit" Header="E_xit"/>
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem x:Name="MenuRetro" Header="Switch to _Retro Style"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem x:Name="MenuHelp" Header="_User Manual"/>
+                <Separator/>
+                <MenuItem x:Name="MenuAbout" Header="_About PCmigrate"/>
+            </MenuItem>
+        </Menu>
     <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -123,6 +146,7 @@ Add-Type -AssemblyName System.Windows.Forms
             <TextBlock x:Name="StatusText" Grid.Column="1" Text="Ready" Foreground="#a6adc8" FontSize="12" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
+    </DockPanel>
 </Window>
 "@
 
@@ -140,6 +164,38 @@ $logBlock = $window.FindName("LogBlock")
 $logScroller = $window.FindName("LogScroller")
 $progressBar = $window.FindName("ProgressBar")
 $statusText = $window.FindName("StatusText")
+
+# Menu items
+$menuExit = $window.FindName("MenuExit")
+$menuRetro = $window.FindName("MenuRetro")
+$menuHelp = $window.FindName("MenuHelp")
+$menuAbout = $window.FindName("MenuAbout")
+
+# Menu handlers
+$menuExit.Add_Click({ $window.Close() })
+
+$menuRetro.Add_Click({
+    $window.Close()
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-Retro.ps1`""
+})
+
+$menuHelp.Add_Click({
+    $manualPath = Join-Path $PSScriptRoot "docs\UserManual.pdf"
+    if (Test-Path $manualPath) {
+        Start-Process $manualPath
+    } else {
+        Start-Process "https://github.com/pfworks/PCmigrate#readme"
+    }
+})
+
+$menuAbout.Add_Click({
+    [System.Windows.MessageBox]::Show(
+        "PCmigrate v0.2`nTotal System Transfer Utility`n`n(C) 2026 pfworks`nMIT License`n`nhttps://github.com/pfworks/PCmigrate",
+        "About PCmigrate",
+        "OK",
+        "Information"
+    )
+})
 
 # State - use a hashtable so all closures share the same reference
 $state = @{
