@@ -81,6 +81,7 @@ MigrationExport/
 ├── license_keys.txt          # Windows/Office/software keys
 ├── installed_software.csv    # Full inventory (machine-readable)
 ├── installed_software.txt    # Full inventory (human-readable)
+├── installed_software.html   # Interactive checklist with download links & keys
 ├── winget_packages.json      # For 'winget import'
 ├── WSL/
 │   ├── Ubuntu.tar            # (example) WSL distro archive

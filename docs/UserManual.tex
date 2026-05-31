@@ -182,6 +182,7 @@ MigrationExport/
   license_keys.txt          # Windows/Office/software keys
   installed_software.csv    # Full inventory (machine-readable)
   installed_software.txt    # Full inventory (human-readable)
+  installed_software.html   # Interactive checklist with download links
   winget_packages.json      # For 'winget import'
   WSL/
     Ubuntu.tar              # (example) WSL distro archive
@@ -196,6 +197,7 @@ MigrationExport/
     \item[\texttt{license\_keys.txt}] Contains product keys retrieved from BIOS/UEFI, Office \texttt{ospp.vbs}, and a registry scan for common key names (Serial, LicenseKey, ProductKey, CDKey, etc.).
     \item[\texttt{installed\_software.csv}] Machine-readable inventory of all installed applications with names, versions, and download URLs.
     \item[\texttt{installed\_software.txt}] Human-readable version of the software inventory.
+    \item[\texttt{installed\_software.html}] Interactive checklist with checkboxes, download/search links, and license keys (hidden by default with a copy button). Open in any browser on the new machine.
     \item[\texttt{winget\_packages.json}] Package list for \texttt{winget import} to automate bulk reinstallation.
     \item[\texttt{WSL/*.tar}] Each WSL distribution exported as a tar archive.
     \item[\texttt{WSL/.wslconfig}] Global WSL configuration file.

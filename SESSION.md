@@ -124,3 +124,19 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 ### Rebranding
 - All files updated from "Windows 11 Migration Tool" to "Windows Migration Tool"
 - GUI window title, installer app name, script headers, and User Manual all updated
+
+## Session 6 — 2026-05-31
+
+### Added
+- **Web search for download URLs** — During software discovery, searches Google for download links for apps that don't have a URL in the registry. Filters out sponsored/ad results (googleadservices, doubleclick). Rate-limited to avoid blocking.
+- **Interactive HTML checklist** (`installed_software.html`) — Dark-themed page with:
+  - Checkboxes to mark apps as reinstalled (row grays out)
+  - "Download" links for apps with known URLs
+  - "Search" fallback link for apps without URLs
+  - License keys section (hidden by default, "Show Keys" toggle, "Copy" button)
+- **CLI `-Bundle` flag** creates a self-contained restore zip after export
+
+### Fixed
+- **Restore bundle 0 MB** — Wildcard glob `"$path\*"` didn't expand in runspaces; switched to `Get-ChildItem -LiteralPath` + explicit paths
+- **Size reporting** — Shows KB for files under 1 MB instead of rounding to "0 MB"
+- **Cancel button** — Used shared hashtable for state (reference type visible across closures); `BeginStop()` for non-blocking cancel; dispose on threadpool to avoid UI deadlock; kills child processes (wsl, winget, cscript)
