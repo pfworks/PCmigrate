@@ -394,5 +394,5 @@ $menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true })
 $window.ShowDialog() | Out-Null
 
 if ($script:switchTo -eq "Modern") {
-    & "$PSScriptRoot\PCmigrate-GUI.ps1"
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-GUI.ps1`""
 }

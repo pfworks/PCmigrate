@@ -440,5 +440,5 @@ $menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true })
 $window.ShowDialog() | Out-Null
 
 if ($script:switchTo -eq "Retro") {
-    & "$PSScriptRoot\PCmigrate-Retro.ps1"
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-Retro.ps1`""
 }
