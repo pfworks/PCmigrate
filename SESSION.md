@@ -100,3 +100,27 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 - CMD launcher handles UAC elevation itself (no more reliance on GUI self-elevation alone)
 - PowerShell 5.1 is the minimum supported version (matches README requirements)
 - Registry scan is non-blocking — if it times out, export continues without those keys
+
+## Session 5 — 2026-05-30
+
+### GUI Improvements
+- **Prominent path label** — Yellow "📁 Backup / Restore Location:" header with helper text explaining what the field is for
+- **Cancel button** — Appears during operations, kills the running task immediately via `$ps.Stop()`
+- **Export split button** — Main button does "Export Only"; dropdown arrow (▼) opens a menu with "Export Only" and "Export + Create Restore Bundle"
+- **Restore Bundle** — Zips the entire export folder into a single self-contained `.zip` that can be transferred and restored without the tool installed
+- Removed pause/resume (not reliably implementable in PS 5.1 runspaces)
+- Refactored background task logic into shared `Start-BackgroundTask` helper
+
+### License Key Detection Improvements
+- Added `HKCU:\SOFTWARE` to registry search (catches per-user license keys)
+- Added more key names: `Key`, `DigitalProductId`, `LicenseCode`, `ActivationCode`
+- Relaxed regex filter to catch mixed-case and non-standard key formats
+- Added Microsoft 365 / Click-to-Run Office detection
+- Added Office 2013 (`Office15`) path support
+
+### CLI Addition
+- `Migrate-Machine.ps1 -Bundle` flag creates a restore zip automatically after export
+
+### Rebranding
+- All files updated from "Windows 11 Migration Tool" to "Windows Migration Tool"
+- GUI window title, installer app name, script headers, and User Manual all updated

@@ -39,7 +39,11 @@ Double-click `MigrationTool.cmd` or run `MigrationTool-GUI.ps1` directly.
 ## Usage
 
 ### GUI Mode
-Launch the app from the Start Menu, desktop shortcut, or `MigrationTool.cmd`. Use the Browse button to select your external drive, then click **Export** or **Restore**.
+Launch the app from the Start Menu, desktop shortcut, or `MigrationTool.cmd`. Use the Browse button to select your external drive, then:
+- Click **Export** to back up this machine
+- Click the **▼** arrow next to Export for options: "Export Only" or "Export + Create Restore Bundle"
+- Click **Restore** on the new machine (point it at the export folder)
+- Click **Cancel** at any time to stop a running operation
 
 ### Command Line
 
@@ -48,6 +52,9 @@ Launch the app from the Start Menu, desktop shortcut, or `MigrationTool.cmd`. Us
 ```powershell
 # Export to an external drive
 .\Migrate-Machine.ps1 -OutputPath "E:\MigrationExport"
+
+# Export and create a self-contained restore zip
+.\Migrate-Machine.ps1 -OutputPath "E:\MigrationExport" -Bundle
 
 # Or default to Desktop\MigrationExport
 .\Migrate-Machine.ps1
