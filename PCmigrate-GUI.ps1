@@ -176,7 +176,7 @@ $menuExit.Add_Click({ $window.Close() })
 
 $menuRetro.Add_Click({
     $window.Close()
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-Retro.ps1`""
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-Retro.ps1`"" -Verb RunAs
 })
 
 $menuHelp.Add_Click({

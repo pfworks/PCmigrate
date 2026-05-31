@@ -168,7 +168,7 @@ $menuExit.Add_Click({ $window.Close() })
 
 $menuModern.Add_Click({
     $window.Close()
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-GUI.ps1`""
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-GUI.ps1`"" -Verb RunAs
 })
 
 $menuHelp.Add_Click({
