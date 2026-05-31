@@ -170,22 +170,28 @@ function Set-Idle {
 # Cancel button
 $cancelBtn.Add_Click({
     if ($state.PowerShell) {
-        # Kill any child processes spawned by the runspace
-        try {
-            $myPid = [System.Diagnostics.Process]::GetCurrentProcess().Id
-            Get-CimInstance Win32_Process | Where-Object {
-                $_.ParentProcessId -eq $myPid -and $_.Name -match "wsl|winget|cscript|powershell" -and $_.ProcessId -ne $myPid
-            } | ForEach-Object {
-                Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue
-            }
-        } catch {}
-
-        try { $state.PowerShell.Stop() } catch {}
-        try { $state.PowerShell.Dispose() } catch {}
-        try { $state.Runspace.Close() } catch {}
-        try { $state.Runspace.Dispose() } catch {}
+        $ps = $state.PowerShell
         $state.PowerShell = $null
         $state.Runspace = $null
+
+        # Kill child processes first (fast, no WMI)
+        try {
+            $myPid = $PID
+            Get-Process wsl, winget, cscript -ErrorAction SilentlyContinue | Where-Object {
+                try { 
+                    $parent = (Get-CimInstance Win32_Process -Filter "ProcessId=$($_.Id)" -ErrorAction SilentlyContinue).ParentProcessId
+                    $parent -eq $myPid
+                } catch { $false }
+            } | Stop-Process -Force -ErrorAction SilentlyContinue
+        } catch {}
+
+        # Stop the pipeline (non-blocking) then dispose on a thread pool thread
+        try { $ps.BeginStop($null, $null) } catch {}
+        [System.Threading.ThreadPool]::QueueUserWorkItem([System.Threading.WaitCallback]{
+            param($p)
+            Start-Sleep -Milliseconds 500
+            try { $p.Dispose() } catch {}
+        }, $ps) | Out-Null
 
         $logBlock.Text += "`n[CANCELLED] Operation stopped by user.`n"
         $logScroller.ScrollToEnd()
@@ -247,11 +253,13 @@ $importBtn.Add_Click({
     Start-BackgroundTask -Variables @{ importPath = $pathBox.Text } -Script {
         function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logScroller.ScrollToEnd() }) }
         function Done {
-            $window.Dispatcher.Invoke([Action]{
-                $cancelBtn.Visibility = "Collapsed"
-                $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $exportDropBtn.IsEnabled = $true
-                $progressBar.IsIndeterminate = $false; $progressBar.Value = 100
-            })
+            try {
+                $window.Dispatcher.Invoke([Action]{
+                    $cancelBtn.Visibility = "Collapsed"
+                    $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $exportDropBtn.IsEnabled = $true
+                    $progressBar.IsIndeterminate = $false; $progressBar.Value = 100
+                })
+            } catch {}
         }
         try {
             $restoreScript = Join-Path $importPath "Restore-Machine.ps1"
@@ -303,11 +311,13 @@ function Start-Export {
     Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot; createBundle = $CreateBundle } -Script {
         function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logScroller.ScrollToEnd() }) }
         function Done {
-            $window.Dispatcher.Invoke([Action]{
-                $cancelBtn.Visibility = "Collapsed"
-                $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $exportDropBtn.IsEnabled = $true
-                $progressBar.IsIndeterminate = $false; $progressBar.Value = 100
-            })
+            try {
+                $window.Dispatcher.Invoke([Action]{
+                    $cancelBtn.Visibility = "Collapsed"
+                    $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $exportDropBtn.IsEnabled = $true
+                    $progressBar.IsIndeterminate = $false; $progressBar.Value = 100
+                })
+            } catch {}
         }
         try {
             $migrateScript = Join-Path $scriptRoot "Migrate-Machine.ps1"

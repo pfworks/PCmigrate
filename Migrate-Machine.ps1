@@ -178,6 +178,34 @@ $installedApps | Format-Table Name, Version, Source, DownloadURL -AutoSize |
     Out-String -Width 300 |
     Set-Content (Join-Path $OutputPath "installed_software.txt")
 
+# Generate interactive HTML checklist
+$htmlRows = $installedApps | ForEach-Object {
+    $link = if ($_.DownloadURL) { "<a href=`"$($_.DownloadURL)`" target=`"_blank`">Download</a>" } else { "" }
+    "        <tr><td><input type=`"checkbox`" onchange=`"this.parentElement.parentElement.classList.toggle('done')`"></td><td>$([System.Net.WebUtility]::HtmlEncode($_.Name))</td><td>$([System.Net.WebUtility]::HtmlEncode($_.Version))</td><td>$($_.Source)</td><td>$link</td></tr>"
+}
+$html = @"
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Installed Software Checklist</title>
+<style>
+body { font-family: -apple-system, sans-serif; max-width: 1000px; margin: 2em auto; background: #1e1e2e; color: #cdd6f4; }
+h1 { color: #89b4fa; }
+table { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #313244; }
+th { background: #313244; position: sticky; top: 0; }
+tr:hover { background: #313244; }
+tr.done { opacity: 0.4; text-decoration: line-through; }
+a { color: #89b4fa; }
+input[type=checkbox] { width: 18px; height: 18px; cursor: pointer; }
+.count { color: #a6adc8; margin-bottom: 1em; }
+</style></head><body>
+<h1>Installed Software Checklist</h1>
+<p class="count">$($installedApps.Count) applications &mdash; check off items as you reinstall them</p>
+<table><thead><tr><th></th><th>Name</th><th>Version</th><th>Source</th><th>Link</th></tr></thead><tbody>
+$($htmlRows -join "`n")
+</tbody></table></body></html>
+"@
+Set-Content -Path (Join-Path $OutputPath "installed_software.html") -Value $html -Encoding UTF8
+
 Write-Log "Found $($installedApps.Count) installed applications"
 
 # ─────────────────────────────────────────────
