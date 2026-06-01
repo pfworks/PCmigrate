@@ -12,6 +12,5 @@ Desktop.ini
 # IDE
 .vscode/
 *.code-workspace
-
 # User preference
 .pcmigrate-style

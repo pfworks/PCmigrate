@@ -11,7 +11,7 @@
 
 # Self-elevate to admin if not already
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$PSCommandPath`"" -Verb RunAs
     exit
 }
 
@@ -76,9 +76,6 @@ Add-Type -AssemblyName System.Windows.Forms
         <Menu DockPanel.Dock="Top" Background="#313244" Foreground="#cdd6f4">
             <MenuItem Header="_File">
                 <MenuItem x:Name="MenuExit" Header="E_xit"/>
-            </MenuItem>
-            <MenuItem Header="_View">
-                <MenuItem x:Name="MenuRetro" Header="Switch to _Retro Style"/>
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem x:Name="MenuHelp" Header="_User Manual"/>
@@ -167,21 +164,11 @@ $statusText = $window.FindName("StatusText")
 
 # Menu items
 $menuExit = $window.FindName("MenuExit")
-$menuRetro = $window.FindName("MenuRetro")
 $menuHelp = $window.FindName("MenuHelp")
 $menuAbout = $window.FindName("MenuAbout")
 
 # Menu handlers
 $menuExit.Add_Click({ $window.Close() })
-
-$script:switchTo = $null
-
-$menuRetro.Add_Click({
-    $script:switchTo = "Retro"
-    # Save preference
-    Set-Content -Path (Join-Path $PSScriptRoot ".pcmigrate-style") -Value "Retro"
-    $window.Close()
-})
 
 $menuHelp.Add_Click({
     $manualPath = Join-Path $PSScriptRoot "docs\UserManual.pdf"
@@ -194,7 +181,7 @@ $menuHelp.Add_Click({
 
 $menuAbout.Add_Click({
     [System.Windows.MessageBox]::Show(
-        "PCmigrate v0.2`nTotal System Transfer Utility`n`n(C) 2026 pfworks`nMIT License`n`nhttps://github.com/pfworks/PCmigrate",
+        "PCmigrate v0.3`nTotal System Transfer Utility`n`n(C) 2026 pfworks`nMIT License`n`nhttps://github.com/pfworks/PCmigrate",
         "About PCmigrate",
         "OK",
         "Information"
@@ -438,7 +425,3 @@ $menuExportBundle.Add_Click({ Start-Export -CreateBundle $true -WslOnly $false }
 $menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true })
 
 $window.ShowDialog() | Out-Null
-
-if ($script:switchTo -eq "Retro") {
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -NoProfile -File `"$PSScriptRoot\PCmigrate-Retro.ps1`""
-}
