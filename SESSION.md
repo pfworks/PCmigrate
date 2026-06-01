@@ -178,3 +178,12 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 2. Script detects non-admin → re-launches with `-Verb RunAs -WindowStyle Hidden`
 3. UAC prompt appears → user approves
 4. Elevated PowerShell (hidden console) loads WPF GUI → window appears
+
+## Session 9 — 2026-05-31 (late)
+
+### WSL Export Improvements
+- **Shutdown before export** — Prompts user with Yes/No choice before stopping WSL
+- **Restart after export** — Runs a brief command in the default distro to bring WSL back up
+- **VHDX export on Win11** — Detects build 22000+ and uses `wsl --export --vhd` for faster disk-level export instead of tar
+- **Restore handles both formats** — Imports `.tar` normally, `.vhdx` with `--vhd` flag
+- Both full and WSL-only restore scripts updated
