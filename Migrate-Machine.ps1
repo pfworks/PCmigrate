@@ -343,12 +343,25 @@ if (Get-Command wsl.exe -ErrorAction SilentlyContinue) {
 
             # Detect Win11 for --vhd support (build 22000+)
             $osBuild = [int](Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuildNumber
-            $useVhd = $osBuild -ge 22000
+            $supportsVhd = $osBuild -ge 22000
+
+            # Parse distro WSL versions from 'wsl -l -v'
+            $wslVersionMap = @{}
+            $vOutput = wsl.exe -l -v 2>$null
+            if ($vOutput) {
+                foreach ($line in $vOutput) {
+                    if ($line -match '^\s*\*?\s*(.+?)\s+(Running|Stopped)\s+(\d+)\s*$') {
+                        $wslVersionMap[$Matches[1].Trim()] = [int]$Matches[3]
+                    }
+                }
+            }
 
             foreach ($distro in $distros) {
                 $distro = $distro.Trim()
                 if (-not $distro) { continue }
-                if ($useVhd) {
+                $distroVersion = 0
+                if ($wslVersionMap.ContainsKey($distro)) { $distroVersion = $wslVersionMap[$distro] }
+                if ($supportsVhd -and $distroVersion -eq 2) {
                     $exportFile = Join-Path $wslDir "$distro.vhdx"
                     Write-Log "Exporting WSL distro: $distro -> $exportFile (VHDX - fast)"
                     Write-Log "  (This may take a while for large distributions...)"
