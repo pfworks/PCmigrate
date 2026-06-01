@@ -38,8 +38,8 @@ Source: "PCmigrate.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "README.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; IconFilename: "{app}\PCmigrate.ico"
-Name: "{autodesktop}\{#MyAppName}"; Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; IconFilename: "{app}\PCmigrate.ico"; Tasks: desktopicon
+Name: "{group}\{#MyAppName}"; Filename: "powershell.exe"; Parameters: "-ExecutionPolicy Bypass -NoProfile -File ""{app}\PCmigrate-GUI.ps1"""; WorkingDir: "{app}"; IconFilename: "{app}\PCmigrate.ico"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "powershell.exe"; Parameters: "-ExecutionPolicy Bypass -NoProfile -File ""{app}\PCmigrate-GUI.ps1"""; WorkingDir: "{app}"; IconFilename: "{app}\PCmigrate.ico"; Tasks: desktopicon
 
 [Run]
-Filename: "wscript.exe"; Parameters: """{app}\PCmigrate.vbs"""; Description: "Launch Migration Tool"; Flags: nowait postinstall skipifsilent runascurrentuser
+Filename: "powershell.exe"; Parameters: "-ExecutionPolicy Bypass -NoProfile -File ""{app}\PCmigrate-GUI.ps1"""; Description: "Launch PCmigrate"; Flags: nowait postinstall skipifsilent runascurrentuser
