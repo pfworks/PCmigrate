@@ -319,19 +319,56 @@ if (Get-Command wsl.exe -ErrorAction SilentlyContinue) {
         ForEach-Object { $_ -replace "`0","" }  # Remove null chars from wsl output
 
     if ($distros) {
-        foreach ($distro in $distros) {
-            $distro = $distro.Trim()
-            if (-not $distro) { continue }
-            $tarFile = Join-Path $wslDir "$distro.tar"
-            Write-Log "Exporting WSL distro: $distro -> $tarFile"
-            Write-Log "  (This may take a while for large distributions...)"
-            wsl.exe --export $distro $tarFile
-            if (Test-Path $tarFile) {
-                $sizeMB = [math]::Round((Get-Item $tarFile).Length / 1MB, 1)
-                Write-Log "  Exported $distro ($sizeMB MB)"
-            } else {
-                Write-Log "  WARNING: Export failed for $distro"
+        # Ask user before shutting down WSL
+        $shutdownChoice = $host.UI.PromptForChoice(
+            "WSL Shutdown Required",
+            "WSL must be shut down for a clean export. Running Linux processes will be stopped. Continue?",
+            @([System.Management.Automation.Host.ChoiceDescription]::new("&Yes","Shutdown WSL and export"),
+              [System.Management.Automation.Host.ChoiceDescription]::new("&No","Skip WSL export")),
+            0
+        )
+        if ($shutdownChoice -eq 1) {
+            Write-Log "WSL export skipped by user"
+        } else {
+            Write-Log "Shutting down WSL for clean export..."
+            wsl.exe --shutdown
+            Start-Sleep -Seconds 2
+
+            # Detect Win11 for --vhd support (build 22000+)
+            $osBuild = [int](Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuildNumber
+            $useVhd = $osBuild -ge 22000
+
+            foreach ($distro in $distros) {
+                $distro = $distro.Trim()
+                if (-not $distro) { continue }
+                if ($useVhd) {
+                    $exportFile = Join-Path $wslDir "$distro.vhdx"
+                    Write-Log "Exporting WSL distro: $distro -> $exportFile (VHDX - fast)"
+                    Write-Log "  (This may take a while for large distributions...)"
+                    wsl.exe --export $distro $exportFile --vhd
+                } else {
+                    $exportFile = Join-Path $wslDir "$distro.tar"
+                    Write-Log "Exporting WSL distro: $distro -> $exportFile"
+                    Write-Log "  (This may take a while for large distributions...)"
+                    wsl.exe --export $distro $exportFile
+                }
+                if (Test-Path $exportFile) {
+                    $sizeMB = [math]::Round((Get-Item $exportFile).Length / 1MB, 1)
+                    Write-Log "  Exported $distro ($sizeMB MB)"
+                } else {
+                    Write-Log "  WARNING: Export failed for $distro"
+                }
             }
+
+            # Restart WSL
+            Write-Log "Restarting WSL..."
+            wsl.exe --shutdown 2>$null  # ensure clean state
+            # Start the default distro briefly to restart the WSL service
+            $defaultDistro = ($distros | Select-Object -First 1).Trim()
+            if ($defaultDistro) {
+                wsl.exe -d $defaultDistro -- echo "WSL restarted" 2>$null
+            }
+            Write-Log "WSL restarted"
         }
     } else {
         Write-Log "No WSL distributions found"
@@ -390,6 +427,13 @@ if (Test-Path $wslDir) {
         wsl.exe --import $name $installDir $_.FullName
         Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
     }
+    Get-ChildItem $wslDir -Filter "*.vhdx" | ForEach-Object {
+        $name = $_.BaseName
+        $installDir = "$env:LOCALAPPDATA\WSL\$name"
+        Write-Host "  Importing $name (VHDX)..."
+        wsl.exe --import $name $installDir $_.FullName --vhd
+        Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
+    }
 } else {
     Write-Host "`n[2/2] No WSL exports found, skipping" -ForegroundColor DarkYellow
 }
@@ -417,6 +461,13 @@ if (Test-Path $wslDir) {
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
         Write-Host "  Importing $name..."
         wsl.exe --import $name $installDir $_.FullName
+        Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
+    }
+    Get-ChildItem $wslDir -Filter "*.vhdx" | ForEach-Object {
+        $name = $_.BaseName
+        $installDir = "$env:LOCALAPPDATA\WSL\$name"
+        Write-Host "  Importing $name (VHDX)..."
+        wsl.exe --import $name $installDir $_.FullName --vhd
         Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
     }
 } else {
