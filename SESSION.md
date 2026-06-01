@@ -187,3 +187,11 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 - **VHDX export on Win11** — Detects build 22000+ and uses `wsl --export --vhd` for faster disk-level export instead of tar
 - **Restore handles both formats** — Imports `.tar` normally, `.vhdx` with `--vhd` flag
 - Both full and WSL-only restore scripts updated
+
+## Session 10 — 2026-05-31 (late night)
+
+### Fixed
+- **WSL `--vhd` export failing on WSL 1 distros** — The `--vhd` flag only works with WSL 2 distros. Previously the code assumed all distros on Win11 were WSL 2. Now parses `wsl -l -v` output to check each distro's version and only uses VHDX export for WSL 2 distros; WSL 1 distros fall back to `.tar`.
+
+### Released
+- Tagged and pushed `v0.3.4`
