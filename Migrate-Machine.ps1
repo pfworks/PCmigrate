@@ -319,14 +319,21 @@ if (Get-Command wsl.exe -ErrorAction SilentlyContinue) {
         ForEach-Object { $_ -replace "`0","" }  # Remove null chars from wsl output
 
     if ($distros) {
-        # Ask user before shutting down WSL
-        $shutdownChoice = $host.UI.PromptForChoice(
-            "WSL Shutdown Required",
-            "WSL must be shut down for a clean export. Running Linux processes will be stopped. Continue?",
-            @([System.Management.Automation.Host.ChoiceDescription]::new("&Yes","Shutdown WSL and export"),
-              [System.Management.Automation.Host.ChoiceDescription]::new("&No","Skip WSL export")),
-            0
-        )
+        # Ask user before shutting down WSL (skip prompt in non-interactive hosts)
+        $shutdownChoice = 0
+        if ($host.UI -and $host.Name -eq 'ConsoleHost') {
+            try {
+                $shutdownChoice = $host.UI.PromptForChoice(
+                    "WSL Shutdown Required",
+                    "WSL must be shut down for a clean export. Running Linux processes will be stopped. Continue?",
+                    @([System.Management.Automation.Host.ChoiceDescription]::new("&Yes","Shutdown WSL and export"),
+                      [System.Management.Automation.Host.ChoiceDescription]::new("&No","Skip WSL export")),
+                    0
+                )
+            } catch {
+                $shutdownChoice = 0
+            }
+        }
         if ($shutdownChoice -eq 1) {
             Write-Log "WSL export skipped by user"
         } else {
