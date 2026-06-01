@@ -161,3 +161,20 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 
 ### Added (continued)
 - **Retro DOS GUI** (`PCmigrate-Retro.ps1`) — Alternative GUI with green-on-black CRT aesthetic, ASCII art banner, monospace font, `C:\>` prompt-style path input, and DOS-style button labels (`[F1] EXPORT`, `[F2] RESTORE`, `[ESC] ABORT`). Same full functionality as the main GUI.
+
+## Session 8 — 2026-05-31 (evening)
+
+### Removed
+- **Retro DOS GUI** (`PCmigrate-Retro.ps1`) — Removed due to style-switching issues
+- **Style switching** — Removed View menu and `.pcmigrate-style` preference file
+
+### Fixed
+- **Installer launch** — Shortcuts now use `powershell.exe -WindowStyle Hidden -File` directly with `WorkingDir` set. No more VBS intermediary for shortcuts.
+- **Console window** — Self-elevation in GUI now passes `-WindowStyle Hidden` to hide the blue PowerShell console. WPF window shows independently.
+- **PS 5.1 compatibility** — Fixed `$var = if(){}` expressions (PS7-only) and JS arrow functions in HTML strings
+
+### Current Launch Flow
+1. Shortcut/CMD/VBS calls `powershell.exe -WindowStyle Hidden -File PCmigrate-GUI.ps1`
+2. Script detects non-admin → re-launches with `-Verb RunAs -WindowStyle Hidden`
+3. UAC prompt appears → user approves
+4. Elevated PowerShell (hidden console) loads WPF GUI → window appears

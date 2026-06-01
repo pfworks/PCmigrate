@@ -40,8 +40,6 @@ A Windows application (with GUI) to export and restore your environment when mov
 ### Option C: Portable (no install, from source)
 Double-click `PCmigrate.cmd` or run `PCmigrate-GUI.ps1` directly.
 
-For the retro DOS-style interface, run `PCmigrate-Retro.ps1` instead.
-
 ## Usage
 
 ### GUI Mode
