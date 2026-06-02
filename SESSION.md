@@ -214,3 +214,8 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 - App data backup only runs in full export mode (not WSL-only)
 - 500 MB per-folder cap prevents accidentally zipping browser caches or large game data
 - Restore skips existing folders to avoid overwriting fresh app installs with stale data
+
+## Session 12 — 2026-06-02
+
+### Fixed
+- **WSL restore "system cannot find the path"** — `wsl --import` requires the target install directory to exist. Added `New-Item -Path $installDir -ItemType Directory -Force` before each `wsl.exe --import` call in both the full and WSL-only restore scripts.
