@@ -618,12 +618,18 @@ Write-Log "Restore script created: Restore-Machine.ps1"
 # ─────────────────────────────────────────────
 if ($Bundle) {
     Write-Log "--- Creating restore bundle ---"
-    $parentDir = Split-Path $OutputPath -Parent
-    $folderName = Split-Path $OutputPath -Leaf
+    $resolvedOutput = (Resolve-Path $OutputPath).Path.TrimEnd('\')
+    $parentDir = Split-Path $resolvedOutput -Parent
+    $folderName = Split-Path $resolvedOutput -Leaf
+    if (-not $parentDir) { $parentDir = $resolvedOutput }
     $zipPath = Join-Path $parentDir "${folderName}_RestoreBundle.zip"
     if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
-    $items = Get-ChildItem -LiteralPath $OutputPath
-    Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
+    $items = Get-ChildItem -LiteralPath $resolvedOutput
+    if (-not $items) {
+        Write-Log "WARNING: No files to bundle"
+    } else {
+        Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
+    }
     if (Test-Path $zipPath) {
         $sizeBytes = (Get-Item $zipPath).Length
         if ($sizeBytes -ge 1MB) { $sizeStr = "$([math]::Round($sizeBytes / 1MB, 1)) MB" } else { $sizeStr = "$([math]::Round($sizeBytes / 1KB, 0)) KB" }
