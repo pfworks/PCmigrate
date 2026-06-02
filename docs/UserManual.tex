@@ -55,10 +55,12 @@
 %----------------------------------------------------------------------
 \section{Introduction}
 
-The Windows Migration Tool is a PowerShell-based application (with an optional GUI) that helps you move your environment from one Windows 10 or 11 machine to another. It automates the tedious parts of PC migration:
+The Windows Migration Tool is a PowerShell-based application (with an optional GUI) that helps you move your environment from one Windows 10 or 11 machine to another. It also works as a \textbf{standalone WSL backup and restore tool}---back up your Linux distributions on a schedule or before risky changes, and restore them in minutes.
+
+It automates the tedious parts of PC migration:
 
 \begin{itemize}
-    \item Exporting WSL distributions as \texttt{.tar} archives
+    \item \textbf{Backing up and restoring WSL distributions}---full filesystem export as \texttt{.tar} (WSL~1) or \texttt{.vhdx} (WSL~2), plus \texttt{.wslconfig}. Use it as a dedicated WSL backup tool or as part of a full machine migration.
     \item Inventorying all installed software (Win32 and Store apps)
     \item Retrieving license keys (Windows, Office, registry-stored serials)
     \item Exporting winget packages for bulk reinstall
@@ -176,6 +178,32 @@ The recommended end-to-end workflow:
 \end{enumerate}
 
 %----------------------------------------------------------------------
+\section{Using as a WSL Backup \& Restore Tool}
+
+PCmigrate doubles as a dedicated WSL backup tool. Use the \texttt{-WslOnly} flag (or the ``WSL Only'' option in the GUI) to skip software inventory and license keys and focus exclusively on your Linux distributions.
+
+\subsection{Why Back Up WSL?}
+
+\begin{itemize}
+    \item \textbf{Before risky changes} --- experimenting with system packages, kernel upgrades, or distro upgrades? Take a snapshot first.
+    \item \textbf{Scheduled backups} --- run the export on a cron-like schedule (Task Scheduler) to maintain rolling backups of your dev environment.
+    \item \textbf{Machine migration} --- moving to a new laptop? Export your distros and import them on the other side in minutes.
+    \item \textbf{Disaster recovery} --- if a distro becomes unbootable, restore from the last good export.
+\end{itemize}
+
+\subsection{WSL Backup Workflow}
+
+\begin{lstlisting}[language=bash]
+# Back up all WSL distros to an external drive
+.\Migrate-Machine.ps1 -OutputPath "E:\WSL-Backup" -WslOnly
+
+# Restore on the same or a different machine
+E:\WSL-Backup\Restore-Machine.ps1
+\end{lstlisting}
+
+The export produces \texttt{.tar} files for WSL~1 distros and \texttt{.vhdx} files for WSL~2 distros (on Windows~11 build 22000+). The restore script handles both formats automatically and prints the commands needed to set your default user afterward.
+
+%----------------------------------------------------------------------
 \section{Output Structure}
 
 The export produces a self-contained folder with the following layout:
@@ -187,8 +215,12 @@ PCmigrate/
   installed_software.txt    # Full inventory (human-readable)
   installed_software.html   # Interactive checklist with download links
   winget_packages.json      # For 'winget import'
+  AppData/
+    Roaming_Firefox.zip     # (example) app settings/data
+    Local_VSCode.zip        # (example)
   WSL/
-    Ubuntu.tar              # (example) WSL distro archive
+    Ubuntu.tar              # (example) WSL 1 distro archive
+    Debian.vhdx             # (example) WSL 2 distro disk image
     .wslconfig              # WSL global config
   Restore-Machine.ps1       # Run this on the new machine
   migration_log_*.txt       # Export log
@@ -202,7 +234,9 @@ PCmigrate/
     \item[\texttt{installed\_software.txt}] Human-readable version of the software inventory.
     \item[\texttt{installed\_software.html}] Interactive checklist with checkboxes, download/search links, and license keys (hidden by default with a copy button). Open in any browser on the new machine.
     \item[\texttt{winget\_packages.json}] Package list for \texttt{winget import} to automate bulk reinstallation.
-    \item[\texttt{WSL/*.tar}] Each WSL distribution exported as a tar archive.
+    \item[\texttt{AppData/*.zip}] Zip archives of application settings and data from \texttt{\%APPDATA\%} and \texttt{\%LOCALAPPDATA\%}. Named \texttt{Roaming\_AppName.zip} or \texttt{Local\_AppName.zip}. Only includes folders matching installed apps, up to 500~MB each.
+    \item[\texttt{WSL/*.tar}] Each WSL 1 distribution exported as a tar archive.
+    \item[\texttt{WSL/*.vhdx}] Each WSL 2 distribution exported as a virtual disk image (Windows 11 only).
     \item[\texttt{WSL/.wslconfig}] Global WSL configuration file.
     \item[\texttt{Restore-Machine.ps1}] Auto-generated restore script that uses \texttt{\$PSScriptRoot} to locate sibling data files.
     \item[\texttt{migration\_log\_*.txt}] Timestamped log of the export process.
@@ -215,8 +249,11 @@ The generated \texttt{Restore-Machine.ps1} script performs:
 
 \begin{enumerate}
     \item \textbf{winget import} --- Reads \texttt{winget\_packages.json} and installs all listed packages.
-    \item \textbf{WSL import} --- Runs \texttt{wsl --import} for each \texttt{.tar} archive in the \texttt{WSL/} folder, restoring your Linux distributions.
+    \item \textbf{WSL import} --- Runs \texttt{wsl --import} for each \texttt{.tar} or \texttt{.vhdx} archive in the \texttt{WSL/} folder, restoring your Linux distributions.
+    \item \textbf{App data restore} --- Extracts each zip in \texttt{AppData/} back to the corresponding \texttt{\%APPDATA\%} or \texttt{\%LOCALAPPDATA\%} folder (skips folders that already exist).
 \end{enumerate}
+
+After completion, the script prints a reminder showing the exact commands needed to set your default user for each restored WSL distro.
 
 The script is self-contained: it uses \texttt{\$PSScriptRoot} so it works from wherever the export folder is located on the new machine.
 
@@ -224,11 +261,12 @@ The script is self-contained: it uses \texttt{\$PSScriptRoot} so it works from w
 \section{Post-Restore Steps}
 \label{sec:postrestore}
 
-After running the restore script, complete these manual steps:
+After running the restore script, it prints a reminder with the exact commands you need. Complete these steps:
 
 \begin{enumerate}
-    \item \textbf{Set WSL default users:} For each restored distro, run:\\
-    \texttt{<distro> config --default-user <username>}
+    \item \textbf{Set WSL default users:} Imported distros default to root. The restore script prints the commands, but for reference:\\
+    \texttt{<distro> config --default-user <username>}\\
+    For example: \texttt{Ubuntu config --default-user yourname}
     \item \textbf{Install remaining apps:} Check \texttt{installed\_software.csv} for applications not available via winget and install them manually.
     \item \textbf{Re-enter license keys:} Open \texttt{license\_keys.txt} and activate software that requires manual key entry.
     \item \textbf{Restore app-specific settings:} Any application configurations not covered by this tool (browser profiles, IDE settings, etc.) must be transferred separately.

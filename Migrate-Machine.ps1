@@ -305,6 +305,65 @@ if (Get-Command winget -ErrorAction SilentlyContinue) {
 } else {
     Write-Log "WARNING: winget not found, skipping"
 }
+
+# ─────────────────────────────────────────────
+# 3b. APP DATA BACKUP
+# ─────────────────────────────────────────────
+Write-Log "--- Backing up application data ---"
+$appDataDir = Join-Path $OutputPath "AppData"
+New-Item -Path $appDataDir -ItemType Directory -Force | Out-Null
+
+$maxSizeMB = 500
+$appDataPaths = @($env:APPDATA, $env:LOCALAPPDATA)
+$backedUp = 0
+
+# Build list of app names from installed software inventory
+$appNames = $installedApps | Where-Object { $_.Name } | ForEach-Object {
+    # Try publisher\app and just app name variants
+    $_.Name -replace '[^\w\s\.\-]','' | ForEach-Object { $_.Trim() }
+} | Where-Object { $_.Length -ge 3 } | Sort-Object -Unique
+
+foreach ($baseDir in $appDataPaths) {
+    if (-not (Test-Path $baseDir)) { continue }
+    $folders = Get-ChildItem -Path $baseDir -Directory -ErrorAction SilentlyContinue
+    foreach ($folder in $folders) {
+        # Skip known non-useful folders (caches, runtimes, OS internals)
+        if ($folder.Name -match '^(Microsoft|Windows|Packages|\.|\$|Temp|Cache|Code Cache|CrashDumps|NuGet|npm-cache|pip|Intel|NVIDIA|AMD)$') { continue }
+        # Match folder name against installed app names
+        $matched = $false
+        foreach ($appName in $appNames) {
+            if ($folder.Name -like "*$appName*" -or $appName -like "*$($folder.Name)*") {
+                $matched = $true
+                break
+            }
+        }
+        if (-not $matched) { continue }
+        # Check size
+        $sizeMB = 0
+        try {
+            $sizeMB = [math]::Round(((Get-ChildItem $folder.FullName -Recurse -File -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum / 1MB), 1)
+        } catch {}
+        if ($sizeMB -gt $maxSizeMB) {
+            Write-Log "  Skipping $($folder.Name) ($sizeMB MB > $maxSizeMB MB limit)"
+            continue
+        }
+        if ($sizeMB -eq 0) { continue }
+        # Determine subfolder label (Roaming vs Local)
+        if ($baseDir -eq $env:APPDATA) { $label = "Roaming" } else { $label = "Local" }
+        $zipName = "${label}_$($folder.Name).zip"
+        $zipPath = Join-Path $appDataDir $zipName
+        try {
+            Compress-Archive -Path $folder.FullName -DestinationPath $zipPath -CompressionLevel Fastest -Force
+            if ($sizeMB -ge 1) { $sizeStr = "$sizeMB MB" } else { $sizeStr = "$([math]::Round($sizeMB * 1024, 0)) KB" }
+            Write-Log "  Backed up: $label\$($folder.Name) ($sizeStr)"
+            $backedUp++
+        } catch {
+            Write-Log "  WARNING: Failed to back up $($folder.Name): $_"
+        }
+    }
+}
+Write-Log "Backed up data for $backedUp applications to AppData/"
+
 } # end if (-not $WslOnly)
 
 # ─────────────────────────────────────────────
@@ -425,16 +484,17 @@ Write-Host "=== Windows Migration Import ===" -ForegroundColor Cyan
 # Install winget packages
 $wingetFile = Join-Path $ImportPath "winget_packages.json"
 if (Test-Path $wingetFile) {
-    Write-Host "`n[1/2] Importing winget packages..." -ForegroundColor Yellow
+    Write-Host "`n[1/3] Importing winget packages..." -ForegroundColor Yellow
     winget import -i $wingetFile --accept-package-agreements --accept-source-agreements
 } else {
-    Write-Host "`n[1/2] No winget export found, skipping" -ForegroundColor DarkYellow
+    Write-Host "`n[1/3] No winget export found, skipping" -ForegroundColor DarkYellow
 }
 
 # Import WSL distributions
 $wslDir = Join-Path $ImportPath "WSL"
+$restoredDistros = @()
 if (Test-Path $wslDir) {
-    Write-Host "`n[2/2] Importing WSL distributions..." -ForegroundColor Yellow
+    Write-Host "`n[2/3] Importing WSL distributions..." -ForegroundColor Yellow
     $wslConfig = Join-Path $wslDir ".wslconfig"
     if (Test-Path $wslConfig) {
         Copy-Item $wslConfig -Destination "$env:USERPROFILE\.wslconfig" -Force
@@ -445,20 +505,55 @@ if (Test-Path $wslDir) {
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
         Write-Host "  Importing $name..."
         wsl.exe --import $name $installDir $_.FullName
-        Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
+        Write-Host "  Done: $name"
+        $restoredDistros += $name
     }
     Get-ChildItem $wslDir -Filter "*.vhdx" | ForEach-Object {
         $name = $_.BaseName
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
         Write-Host "  Importing $name (VHDX)..."
         wsl.exe --import $name $installDir $_.FullName --vhd
-        Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
+        Write-Host "  Done: $name"
+        $restoredDistros += $name
     }
 } else {
-    Write-Host "`n[2/2] No WSL exports found, skipping" -ForegroundColor DarkYellow
+    Write-Host "`n[2/3] No WSL exports found, skipping" -ForegroundColor DarkYellow
+}
+
+# Restore application data
+$appDataDir = Join-Path $ImportPath "AppData"
+if (Test-Path $appDataDir) {
+    Write-Host "`n[3/3] Restoring application data..." -ForegroundColor Yellow
+    Get-ChildItem $appDataDir -Filter "*.zip" | ForEach-Object {
+        $zipName = $_.BaseName
+        if ($zipName -match '^(Roaming|Local)_(.+)$') {
+            $label = $Matches[1]
+            $folderName = $Matches[2]
+            if ($label -eq "Roaming") { $dest = Join-Path $env:APPDATA $folderName }
+            else { $dest = Join-Path $env:LOCALAPPDATA $folderName }
+            if (Test-Path $dest) {
+                Write-Host "  Skipping $label\$folderName (already exists)" -ForegroundColor DarkGray
+            } else {
+                Expand-Archive -Path $_.FullName -DestinationPath (Split-Path $dest -Parent) -Force
+                Write-Host "  Restored: $label\$folderName"
+            }
+        }
+    }
+} else {
+    Write-Host "`n[3/3] No app data backups found, skipping" -ForegroundColor DarkYellow
 }
 
 Write-Host "`n=== Import Complete ===" -ForegroundColor Green
+Write-Host ""
+if ($restoredDistros.Count -gt 0) {
+    Write-Host "IMPORTANT: Set your default user for each restored WSL distro:" -ForegroundColor Yellow
+    Write-Host "  (Imported distros default to root - run these commands to fix)" -ForegroundColor DarkGray
+    Write-Host ""
+    foreach ($d in $restoredDistros) {
+        Write-Host "  $d config --default-user <your-username>" -ForegroundColor White
+    }
+    Write-Host ""
+}
 Write-Host "Review installed_software.csv for apps that need manual installation."
 Write-Host "Review license_keys.txt for product keys to re-enter."
 '@
@@ -470,6 +565,7 @@ if ($WslOnly) {
 param([string]$ImportPath = $PSScriptRoot)
 Write-Host "=== WSL Restore ===" -ForegroundColor Cyan
 $wslDir = Join-Path $ImportPath "WSL"
+$restoredDistros = @()
 if (Test-Path $wslDir) {
     $wslConfig = Join-Path $wslDir ".wslconfig"
     if (Test-Path $wslConfig) {
@@ -481,19 +577,32 @@ if (Test-Path $wslDir) {
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
         Write-Host "  Importing $name..."
         wsl.exe --import $name $installDir $_.FullName
-        Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
+        Write-Host "  Done: $name"
+        $restoredDistros += $name
     }
     Get-ChildItem $wslDir -Filter "*.vhdx" | ForEach-Object {
         $name = $_.BaseName
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
         Write-Host "  Importing $name (VHDX)..."
         wsl.exe --import $name $installDir $_.FullName --vhd
-        Write-Host "  Done: $name (set default user with: $name config --default-user USERNAME)"
+        Write-Host "  Done: $name"
+        $restoredDistros += $name
     }
 } else {
     Write-Host "No WSL exports found in $wslDir" -ForegroundColor DarkYellow
 }
 Write-Host "`n=== WSL Restore Complete ===" -ForegroundColor Green
+Write-Host ""
+Write-Host "IMPORTANT: Set your default user for each restored distro:" -ForegroundColor Yellow
+Write-Host "  (Imported distros default to root — run these commands to fix)" -ForegroundColor DarkGray
+Write-Host ""
+foreach ($d in $restoredDistros) {
+    Write-Host "  $d config --default-user <your-username>" -ForegroundColor White
+}
+if ($restoredDistros.Count -eq 0) {
+    Write-Host "  <distro> config --default-user <your-username>" -ForegroundColor White
+}
+Write-Host ""
 '@
 }
 
@@ -532,7 +641,8 @@ Write-Log "  license_keys.txt        - Windows/Office/software license keys"
 Write-Log "  installed_software.csv  - Full software inventory with download URLs"
 Write-Log "  installed_software.txt  - Human-readable software list"
 Write-Log "  winget_packages.json    - Winget package list (for automated reinstall)"
-Write-Log "  WSL\                    - WSL distribution archives (.tar)"
+Write-Log "  AppData\                - Application settings/data backups (.zip)"
+Write-Log "  WSL\                    - WSL distribution archives (.tar/.vhdx)"
 Write-Log "  Restore-Machine.ps1    - Run this on the new machine to import"
 Write-Log ""
 Write-Log "NEXT STEPS:"
@@ -540,3 +650,4 @@ Write-Log "  1. Copy this entire folder to the new machine"
 Write-Log "  2. Run Restore-Machine.ps1 as Administrator on the new machine"
 Write-Log "  3. Manually install apps not available via winget (check the CSV)"
 Write-Log "  4. Re-enter license keys from license_keys.txt"
+Write-Log "  5. Restore app data from AppData\ zips to %APPDATA% / %LOCALAPPDATA%"

@@ -4,11 +4,11 @@
   <img src="docs/box-cover.svg" alt="PCmigrate Box Cover" width="300"/>
 </p>
 
-A Windows application (with GUI) to export and restore your environment when moving to a new Windows 10/11 machine.
+A Windows application (with GUI) to export and restore your environment when moving to a new Windows 10/11 machine. Also works as a **standalone WSL backup and restore tool** — back up your Linux distributions on a schedule or before risky changes, and restore them in minutes.
 
 ## What It Does
 
-- **Exports WSL distributions** as `.tar` archives (plus `.wslconfig`)
+- **Backs up and restores WSL distributions** — full filesystem export as `.tar` (WSL 1) or `.vhdx` (WSL 2), plus `.wslconfig`. Use it as a dedicated WSL backup tool or as part of a full machine migration.
 - **Inventories all installed software** (Win32 + Store apps) with versions and download URLs
 - **Retrieves license keys** — Windows product key, Office activation, registry-stored serials
 - **Exports winget packages** for automated bulk reinstall on the new machine
@@ -90,8 +90,12 @@ PCmigrate/
 ├── installed_software.txt    # Full inventory (human-readable)
 ├── installed_software.html   # Interactive checklist with download links & keys
 ├── winget_packages.json      # For 'winget import'
+├── AppData/
+│   ├── Roaming_Firefox.zip   # (example) app settings/data backups
+│   └── Local_VSCode.zip      # (example)
 ├── WSL/
-│   ├── Ubuntu.tar            # (example) WSL distro archive
+│   ├── Ubuntu.tar            # (example) WSL 1 distro archive
+│   ├── Debian.vhdx           # (example) WSL 2 distro disk image
 │   └── .wslconfig            # WSL global config
 ├── Restore-Machine.ps1       # Run this on the new machine
 └── migration_log_*.txt       # Export log
@@ -99,7 +103,12 @@ PCmigrate/
 
 ## Post-Restore Steps
 
-1. Set your default WSL user: `<distro> config --default-user <username>`
+After restore completes, the script prints a reminder with the exact commands you need. In general:
+
+1. **Set your default WSL user** (imported distros default to root):
+   ```powershell
+   Ubuntu config --default-user yourname
+   ```
 2. Manually install apps not available via winget (check the CSV)
 3. Re-enter license keys from `license_keys.txt`
 4. Restore any app-specific settings/configs not covered by this tool

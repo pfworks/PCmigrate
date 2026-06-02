@@ -195,3 +195,22 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 
 ### Released
 - Tagged and pushed `v0.3.4`
+
+## Session 11 — 2026-06-01
+
+### Improved
+- **Post-restore reminder** — Both the full and WSL-only restore scripts now print a clear reminder after completion showing the exact `<distro> config --default-user` commands needed for each restored distro (instead of generic inline hints during import)
+- **README** — Rewritten intro to emphasize dual-use as a standalone WSL backup/restore tool. Updated feature list to highlight WSL backup with `.tar`/`.vhdx` format details. Updated output structure to show both formats. Post-restore section now mentions the script prints reminders.
+- **User Manual (LaTeX)** — Introduction rewritten to emphasize WSL backup use case. Added dedicated "Using as a WSL Backup & Restore Tool" section with use cases (pre-risky-changes, scheduled backups, machine migration, disaster recovery) and workflow examples. Updated output structure and file descriptions for VHDX. Updated post-restore section to reference printed reminders.
+
+### Decisions
+- Restore scripts track which distros were actually imported and print distro-specific commands (not generic placeholders)
+- WSL backup/restore is now positioned as a first-class use case, not just a sub-feature of migration
+
+### Added (continued)
+- **App data backup** — During full export, scans `%APPDATA%` and `%LOCALAPPDATA%` for folders matching installed app names. Zips each matching folder (up to 500 MB) into `AppData/Roaming_<name>.zip` or `AppData/Local_<name>.zip`. Skips known non-useful folders (Microsoft, Windows, caches, temp, GPU drivers). Restore script extracts them back to the correct location (skips if folder already exists).
+
+### Decisions (continued)
+- App data backup only runs in full export mode (not WSL-only)
+- 500 MB per-folder cap prevents accidentally zipping browser caches or large game data
+- Restore skips existing folders to avoid overwriting fresh app installs with stale data
