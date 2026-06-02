@@ -503,6 +503,7 @@ if (Test-Path $wslDir) {
     Get-ChildItem $wslDir -Filter "*.tar" | ForEach-Object {
         $name = $_.BaseName
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
+        New-Item -Path $installDir -ItemType Directory -Force | Out-Null
         Write-Host "  Importing $name..."
         wsl.exe --import $name $installDir $_.FullName
         Write-Host "  Done: $name"
@@ -511,6 +512,7 @@ if (Test-Path $wslDir) {
     Get-ChildItem $wslDir -Filter "*.vhdx" | ForEach-Object {
         $name = $_.BaseName
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
+        New-Item -Path $installDir -ItemType Directory -Force | Out-Null
         Write-Host "  Importing $name (VHDX)..."
         wsl.exe --import $name $installDir $_.FullName --vhd
         Write-Host "  Done: $name"
@@ -575,6 +577,7 @@ if (Test-Path $wslDir) {
     Get-ChildItem $wslDir -Filter "*.tar" | ForEach-Object {
         $name = $_.BaseName
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
+        New-Item -Path $installDir -ItemType Directory -Force | Out-Null
         Write-Host "  Importing $name..."
         wsl.exe --import $name $installDir $_.FullName
         Write-Host "  Done: $name"
@@ -583,6 +586,7 @@ if (Test-Path $wslDir) {
     Get-ChildItem $wslDir -Filter "*.vhdx" | ForEach-Object {
         $name = $_.BaseName
         $installDir = "$env:LOCALAPPDATA\WSL\$name"
+        New-Item -Path $installDir -ItemType Directory -Force | Out-Null
         Write-Host "  Importing $name (VHDX)..."
         wsl.exe --import $name $installDir $_.FullName --vhd
         Write-Host "  Done: $name"
