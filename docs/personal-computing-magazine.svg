@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1020 9240" width="1020" height="9240">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1020 22440" width="1020" height="22440">
   <!-- 
     PERSONAL COMPUTING MAGAZINE — June 2026
     Portrait format: 1020×1320 per page, 6 pages
@@ -811,5 +811,432 @@
   <text x="510" y="9070" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">MiniScribe • 1861 Lefthand Circle • Longmont, CO 80501 • 303-651-6000</text>
   <text x="510" y="9092" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Available at ComputerLand, Businessland, MicroAge, and leading computer dealers nationwide.</text>
   <text x="510" y="9120" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle" font-style="italic">Circle number 47 on the reader service card.</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGES 8-9: TWO-PAGE SPREAD — Compaq Deskpro 386                     -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="9240" width="1020" height="2640" fill="#1a1a1a"/>
+  <text x="510" y="9340" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+  <!-- Large Compaq logo -->
+  <text x="510" y="9450" font-family="Helvetica, Arial, sans-serif" font-size="52" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="8">COMPAQ</text>
+  <!-- Headline -->
+  <text x="510" y="9550" font-family="Times New Roman, serif" font-size="44" fill="#ffffff" text-anchor="middle" font-style="italic">It simply works better.</text>
+  <!-- Large tower illustration -->
+  <g transform="translate(300, 9600)">
+    <rect x="0" y="0" width="180" height="500" fill="#e0dcd0" rx="6" stroke="#999" stroke-width="2"/>
+    <rect x="15" y="20" width="150" height="30" fill="#333" rx="2"/>
+    <rect x="15" y="60" width="150" height="30" fill="#333" rx="2"/>
+    <text x="90" y="40" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#aaa" text-anchor="middle">5¼" 1.2MB</text>
+    <text x="90" y="80" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#aaa" text-anchor="middle">3½" 1.44MB</text>
+    <circle cx="160" cy="110" r="4" fill="#0a0"/>
+    <rect x="15" y="130" width="150" height="3" fill="#bbb"/>
+    <text x="90" y="470" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888" text-anchor="middle">COMPAQ</text>
+    <text x="90" y="485" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#888" text-anchor="middle">DESKPRO 386/25</text>
+    <!-- Ventilation -->
+    <rect x="50" y="380" width="80" height="2" fill="#ccc"/>
+    <rect x="50" y="386" width="80" height="2" fill="#ccc"/>
+    <rect x="50" y="392" width="80" height="2" fill="#ccc"/>
+    <rect x="50" y="398" width="80" height="2" fill="#ccc"/>
+    <rect x="50" y="404" width="80" height="2" fill="#ccc"/>
+  </g>
+  <!-- Monitor beside tower -->
+  <g transform="translate(530, 9700)">
+    <rect x="0" y="0" width="340" height="260" fill="#e0dcd0" rx="8"/>
+    <rect x="15" y="15" width="310" height="210" fill="#001a00"/>
+    <text x="170" y="80" font-family="Consolas, monospace" font-size="12" fill="#33ff33" text-anchor="middle">C:\&gt; dir /w</text>
+    <text x="170" y="100" font-family="Consolas, monospace" font-size="10" fill="#33ff33" text-anchor="middle">AUTOEXEC BAT  CONFIG  SYS  DOS</text>
+    <text x="170" y="116" font-family="Consolas, monospace" font-size="10" fill="#33ff33" text-anchor="middle">LOTUS  WP51  DBASE  WINDOWS</text>
+    <text x="170" y="136" font-family="Consolas, monospace" font-size="12" fill="#33ff33" text-anchor="middle">C:\&gt;_</text>
+    <rect x="130" y="260" width="80" height="15" fill="#c0b89c"/>
+    <rect x="100" y="275" width="140" height="8" fill="#b0a890" rx="2"/>
+  </g>
+  <!-- Body text -->
+  <text x="510" y="10200" font-family="Times New Roman, serif" font-size="18" fill="#ddd" text-anchor="middle">
+    <tspan x="510" dy="0">The COMPAQ DESKPRO 386/25 delivers 25 MHz Intel 80386 performance</tspan>
+    <tspan x="510" dy="26">with up to 16MB RAM, 300MB hard disk, and full ISA/EISA expansion.</tspan>
+    <tspan x="510" dy="26">Run DOS, OS/2, UNIX, and Windows/386 — all at maximum speed.</tspan>
+  </text>
+  <!-- Specs row -->
+  <text x="150" y="10320" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaa">
+    <tspan x="150" dy="0" font-weight="bold" fill="#fff">CPU:</tspan><tspan> 25 MHz 80386</tspan>
+    <tspan x="150" dy="18" font-weight="bold" fill="#fff">RAM:</tspan><tspan> 1MB–16MB</tspan>
+    <tspan x="150" dy="18" font-weight="bold" fill="#fff">CACHE:</tspan><tspan> 64KB static RAM</tspan>
+  </text>
+  <text x="400" y="10320" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaa">
+    <tspan x="400" dy="0" font-weight="bold" fill="#fff">STORAGE:</tspan><tspan> 40MB–300MB</tspan>
+    <tspan x="400" dy="18" font-weight="bold" fill="#fff">SLOTS:</tspan><tspan> 8 (ISA/EISA)</tspan>
+    <tspan x="400" dy="18" font-weight="bold" fill="#fff">GRAPHICS:</tspan><tspan> VGA standard</tspan>
+  </text>
+  <text x="680" y="10320" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaa">
+    <tspan x="680" dy="0" font-weight="bold" fill="#fff">OS:</tspan><tspan> DOS, OS/2, UNIX</tspan>
+    <tspan x="680" dy="18" font-weight="bold" fill="#fff">NETWORK:</tspan><tspan> Token Ring/Ethernet</tspan>
+    <tspan x="680" dy="18" font-weight="bold" fill="#fff">PRICE:</tspan><tspan> From $6,499</tspan>
+  </text>
+  <!-- Footer -->
+  <line x1="100" y1="10400" x2="920" y2="10400" stroke="#444" stroke-width="1"/>
+  <text x="510" y="10430" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#888" text-anchor="middle">Compaq Computer Corporation • Houston, Texas • 1-800-231-0900</text>
+  <text x="510" y="10455" font-family="Times New Roman, serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">Circle number 2 on the reader service card.</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 10: Full-page — Intel 80387 Math Coprocessor                   -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="11880" width="1020" height="1320" fill="#ffffff"/>
+  <rect x="40" y="11910" width="940" height="1260" fill="none" stroke="#0033aa" stroke-width="2"/>
+  <text x="510" y="11980" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="bold" fill="#0033aa" text-anchor="middle">intel</text>
+  <text x="510" y="12060" font-family="Times New Roman, serif" font-size="34" fill="#000" text-anchor="middle">The 80387.</text>
+  <text x="510" y="12100" font-family="Times New Roman, serif" font-size="34" fill="#000" text-anchor="middle">Your spreadsheet just got wings.</text>
+  <!-- Chip illustration -->
+  <g transform="translate(350, 12140)">
+    <rect x="0" y="0" width="320" height="280" fill="#222" rx="4"/>
+    <rect x="10" y="10" width="300" height="260" fill="#333"/>
+    <!-- Die area -->
+    <rect x="80" y="60" width="160" height="160" fill="#444"/>
+    <rect x="100" y="80" width="120" height="120" fill="#555"/>
+    <!-- Gold dot (pin 1) -->
+    <circle cx="30" cy="30" r="6" fill="#d4a017"/>
+    <!-- Intel text on chip -->
+    <text x="160" y="145" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ccc" text-anchor="middle">intel</text>
+    <text x="160" y="170" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">80387</text>
+    <text x="160" y="190" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#aaa" text-anchor="middle">S SPEC: SX105</text>
+    <!-- Pins along bottom -->
+    <rect x="40" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="52" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="64" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="76" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="88" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="100" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="112" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="124" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="180" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="192" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="204" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="216" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="228" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="240" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="252" y="270" width="4" height="14" fill="#d4a017"/>
+    <rect x="264" y="270" width="4" height="14" fill="#d4a017"/>
+  </g>
+  <text x="510" y="12490" font-family="Times New Roman, serif" font-size="14" fill="#333" text-anchor="middle">
+    <tspan x="510" dy="0">Recalculates in seconds what used to take minutes. The Intel 80387 math coprocessor</tspan>
+    <tspan x="510" dy="20">accelerates floating-point operations up to 500% in Lotus 1-2-3, AutoCAD, and any</tspan>
+    <tspan x="510" dy="20">application that uses the x87 instruction set. Simply plug into the empty socket on</tspan>
+    <tspan x="510" dy="20">your 386 motherboard. No software changes required.</tspan>
+  </text>
+  <text x="510" y="12600" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">Available in 16, 20, 25, and 33 MHz. From $495.</text>
+  <text x="510" y="12640" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Intel Corporation • Santa Clara, CA • Ask your dealer or call 1-800-538-3373</text>
+  <text x="510" y="12670" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 8 on the reader service card.</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 11: Mixed ads — 2 half-page + 2 quarter-page                   -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="13200" width="1020" height="1320" fill="#f5f2ea"/>
+  <text x="510" y="13230" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+
+  <!-- Half-page: US Robotics Courier 9600 -->
+  <g transform="translate(40, 13250)">
+    <rect x="0" y="0" width="940" height="310" fill="#000" rx="3"/>
+    <text x="470" y="40" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="bold" fill="#fff" text-anchor="middle">USRobotics Courier HST 9600</text>
+    <text x="470" y="70" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffcc00" text-anchor="middle">9600 BPS. HALF-DUPLEX. THE BBS OPERATOR'S CHOICE.</text>
+    <!-- Modem body -->
+    <rect x="300" y="90" width="340" height="70" fill="#e0dcd0" rx="4" stroke="#999" stroke-width="1"/>
+    <circle cx="340" cy="125" r="5" fill="#0c0"/>
+    <circle cx="360" cy="125" r="5" fill="#0c0"/>
+    <circle cx="380" cy="125" r="5" fill="#f00"/>
+    <circle cx="400" cy="125" r="5" fill="#0c0"/>
+    <circle cx="420" cy="125" r="5" fill="#333"/>
+    <circle cx="440" cy="125" r="5" fill="#0c0"/>
+    <circle cx="460" cy="125" r="5" fill="#0c0"/>
+    <circle cx="480" cy="125" r="5" fill="#333"/>
+    <text x="560" y="130" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666">Courier HST</text>
+    <text x="470" y="195" font-family="Times New Roman, serif" font-size="12" fill="#ccc" text-anchor="middle">HST proprietary protocol for maximum throughput. V.32 fallback. MNP 5 error correction.</text>
+    <text x="470" y="215" font-family="Times New Roman, serif" font-size="12" fill="#ccc" text-anchor="middle">Auto-answer, auto-dial. Supports NASI, INT14, and FOSSIL. Front-panel LEDs. $995.</text>
+    <text x="470" y="250" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffcc00" text-anchor="middle">USRobotics • Skokie, IL • 1-800-DIAL-USR</text>
+    <text x="470" y="290" font-family="Times New Roman, serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Circle number 38 on the reader service card.</text>
+  </g>
+
+  <!-- Half-page: Western Digital WD1003 controller -->
+  <g transform="translate(40, 13580)">
+    <rect x="0" y="0" width="940" height="280" fill="#fff" stroke="#000" stroke-width="1.5" rx="3"/>
+    <text x="470" y="35" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000" text-anchor="middle">Western Digital WD1006V-SR2</text>
+    <text x="470" y="60" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">RLL HARD DISK / FLOPPY CONTROLLER — ONE ISA SLOT DOES IT ALL</text>
+    <text x="470" y="95" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">Controls 2 RLL hard drives (50% more capacity than MFM!) plus 2 floppy drives.</text>
+    <text x="470" y="115" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">16-bit ISA bus. 1:1 interleave. Hardware data separator. BIOS on-board.</text>
+    <text x="470" y="135" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">Turn your 20MB MFM drive into 30MB with RLL encoding. $149.</text>
+    <text x="470" y="170" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle" font-weight="bold">Western Digital Corporation • Irvine, CA</text>
+    <text x="470" y="200" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 67 on the reader service card.</text>
+    <!-- Quarter-page ads below -->
+  </g>
+
+  <!-- Quarter-page: Tripp Lite UPS -->
+  <g transform="translate(40, 13880)">
+    <rect x="0" y="0" width="455" height="180" fill="#f8f8f0" stroke="#000" stroke-width="1" rx="2"/>
+    <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">Tripp Lite BC-450</text>
+    <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Uninterruptible Power Supply</text>
+    <text x="228" y="72" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">450VA battery backup. Saves your work when</text>
+    <text x="228" y="88" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">power fails. Surge suppression included. LED</text>
+    <text x="228" y="104" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">status. Audible alarm. 4 outlets. UL listed. $279.</text>
+    <text x="228" y="135" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">Tripp Lite • Chicago, IL • 312-329-1777</text>
+    <text x="228" y="165" font-family="Times New Roman, serif" font-size="8" fill="#333" text-anchor="middle" font-style="italic">Circle number 155 on the reader service card.</text>
+  </g>
+
+  <!-- Quarter-page: Practical Peripherals modem -->
+  <g transform="translate(525, 13880)">
+    <rect x="0" y="0" width="455" height="180" fill="#000" rx="2"/>
+    <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">Practical Peripherals</text>
+    <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffcc00" text-anchor="middle">PM2400SA Internal Modem</text>
+    <text x="228" y="75" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">2400 bps. Hayes compatible. Half-length ISA card.</text>
+    <text x="228" y="93" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">Auto-dial/answer. Speaker with volume control.</text>
+    <text x="228" y="111" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">No serial port needed — saves a COM port. Only $149.</text>
+    <text x="228" y="140" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#ffcc00" text-anchor="middle">Westlake Village, CA • 1-800-442-4428</text>
+    <text x="228" y="165" font-family="Times New Roman, serif" font-size="8" fill="#888" text-anchor="middle" font-style="italic">Circle number 112 on the reader service card.</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 12: Full-page — Novell NetWare                                 -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="14520" width="1020" height="1320" fill="#cc0000"/>
+  <text x="510" y="14620" font-family="Helvetica, Arial, sans-serif" font-size="44" font-weight="bold" fill="#fff" text-anchor="middle">NOVELL NetWare 386</text>
+  <text x="510" y="14680" font-family="Times New Roman, serif" font-size="24" fill="#fff" text-anchor="middle" font-style="italic">The network that runs your business.</text>
+  <text x="510" y="14800" font-family="Times New Roman, serif" font-size="16" fill="#ffe0e0" text-anchor="middle">
+    <tspan x="510" dy="0">250 simultaneous users. 32TB volume support. Runs on any 386-based server.</tspan>
+    <tspan x="510" dy="24">File, print, and database services for your entire organization.</tspan>
+    <tspan x="510" dy="24">Certified for Ethernet, Token Ring, and ARCnet. Over 4,000 compatible applications.</tspan>
+    <tspan x="510" dy="24">Industry-leading security with C2 certification. Fault tolerance with SFT III.</tspan>
+  </text>
+  <text x="510" y="14960" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">5-user: $3,495 • 100-user: $12,495</text>
+  <text x="510" y="15000" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffcccc" text-anchor="middle">Novell, Inc. • Provo, Utah • 1-800-453-1267</text>
+  <text x="510" y="15030" font-family="Times New Roman, serif" font-size="10" fill="#ffaaaa" text-anchor="middle" font-style="italic">Circle number 5 on the reader service card.</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 13: Mixed — full-page ad + quarter ads                         -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="15840" width="1020" height="1320" fill="#fff"/>
+  <text x="510" y="15870" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+
+  <!-- Full-page top: Seagate ST-225 -->
+  <g transform="translate(40, 15890)">
+    <rect x="0" y="0" width="940" height="520" fill="#f0f0f0" stroke="#000" stroke-width="1" rx="3"/>
+    <text x="470" y="40" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#000" text-anchor="middle">Seagate</text>
+    <text x="470" y="75" font-family="Times New Roman, serif" font-size="22" fill="#333" text-anchor="middle">The ST-225: America's best-selling hard disk.</text>
+    <!-- Drive illustration -->
+    <rect x="330" y="100" width="280" height="40" fill="#c0c0c0" stroke="#999" stroke-width="1" rx="2"/>
+    <rect x="335" y="105" width="60" height="30" fill="#aaa"/>
+    <text x="470" y="125" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#666" text-anchor="middle">Seagate ST-225</text>
+    <rect x="330" y="145" width="280" height="3" fill="#ddd"/>
+    <text x="470" y="185" font-family="Times New Roman, serif" font-size="13" fill="#333" text-anchor="middle">20MB. 65ms access. MFM. 5¼" half-height. The drive that made hard disks affordable.</text>
+    <text x="470" y="210" font-family="Times New Roman, serif" font-size="13" fill="#333" text-anchor="middle">Over 3 million sold worldwide. Proven reliability. 1-year warranty.</text>
+    <text x="470" y="245" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#000" text-anchor="middle">$225 (drive only) • $349 (with controller)</text>
+    <text x="470" y="280" font-family="Times New Roman, serif" font-size="12" fill="#555" text-anchor="middle">Also available: ST-251 (40MB, 40ms) $395 • ST-4096 (80MB, 28ms) $695</text>
+    <text x="470" y="320" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#333" text-anchor="middle">Seagate Technology • Scotts Valley, CA • 408-438-6550</text>
+    <text x="470" y="350" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 19 on the reader service card.</text>
+  </g>
+
+  <!-- Quarter ads below Seagate -->
+  <!-- Kraft joystick -->
+  <g transform="translate(40, 16440)">
+    <rect x="0" y="0" width="455" height="180" fill="#fff" stroke="#000" stroke-width="1" rx="2"/>
+    <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#000" text-anchor="middle">Kraft Systems Thunderstick</text>
+    <text x="228" y="50" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Premium analog joystick for IBM PC and compatibles.</text>
+    <text x="228" y="70" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Self-centering. 2 fire buttons. Trim adjustment.</text>
+    <text x="228" y="90" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Heavy steel base won't slide. 15-pin game port. $49.95.</text>
+    <text x="228" y="120" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">Kraft Systems • Vista, CA</text>
+    <text x="228" y="165" font-family="Times New Roman, serif" font-size="8" fill="#333" text-anchor="middle" font-style="italic">Circle number 166 on the reader service card.</text>
+  </g>
+
+  <!-- Multitech MultiModem -->
+  <g transform="translate(525, 16440)">
+    <rect x="0" y="0" width="455" height="180" fill="#000" rx="2"/>
+    <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">Multi-Tech MultiModem</text>
+    <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#ffcc00" text-anchor="middle">V.32 9600 bps FULL DUPLEX</text>
+    <text x="228" y="75" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">True V.32 — full 9600 bps in both directions.</text>
+    <text x="228" y="93" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">V.42 error correction. V.42bis compression.</text>
+    <text x="228" y="111" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">Hayes compatible. External RS-232. $1,295.</text>
+    <text x="228" y="140" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#ffcc00" text-anchor="middle">Multi-Tech Systems • Mounds View, MN</text>
+    <text x="228" y="165" font-family="Times New Roman, serif" font-size="8" fill="#888" text-anchor="middle" font-style="italic">Circle number 124 on the reader service card.</text>
+  </g>
+
+  <!-- Quarter ads row 2 -->
+  <!-- DTK 386 clone -->
+  <g transform="translate(40, 16650)">
+    <rect x="0" y="0" width="455" height="180" fill="#f5f5f5" stroke="#000" stroke-width="1" rx="2"/>
+    <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#000" text-anchor="middle">DTK FEAT-3301 Motherboard</text>
+    <text x="228" y="50" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Build your own 386! 33 MHz, 8 ISA slots,</text>
+    <text x="228" y="68" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">1MB RAM on-board (exp. to 8MB). 64K cache.</text>
+    <text x="228" y="86" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">AMI BIOS. Baby AT form factor. $599.</text>
+    <text x="228" y="120" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">DTK Computer • City of Industry, CA</text>
+    <text x="228" y="165" font-family="Times New Roman, serif" font-size="8" fill="#333" text-anchor="middle" font-style="italic">Circle number 173 on the reader service card.</text>
+  </g>
+
+  <!-- Star Micronics printer -->
+  <g transform="translate(525, 16650)">
+    <rect x="0" y="0" width="455" height="180" fill="#fff" stroke="#000" stroke-width="1" rx="2"/>
+    <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#000" text-anchor="middle">Star NX-1000 Rainbow</text>
+    <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#cc0000" text-anchor="middle">COLOR DOT MATRIX PRINTER</text>
+    <text x="228" y="75" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">9-pin. 144 cps draft, 36 cps NLQ. 4-color</text>
+    <text x="228" y="93" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">ribbon (CMY+K). IBM/Epson compatible.</text>
+    <text x="228" y="111" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Parallel interface. Push tractor. $299.</text>
+    <text x="228" y="140" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">Star Micronics • Edison, NJ • 1-800-447-4700</text>
+    <text x="228" y="165" font-family="Times New Roman, serif" font-size="8" fill="#333" text-anchor="middle" font-style="italic">Circle number 78 on the reader service card.</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 14: Full-page — WordPerfect 5.1                                -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="17160" width="1020" height="1320" fill="#003366"/>
+  <text x="510" y="17280" font-family="Helvetica, Arial, sans-serif" font-size="48" font-weight="bold" fill="#fff" text-anchor="middle">WordPerfect 5.1</text>
+  <text x="510" y="17330" font-family="Times New Roman, serif" font-size="22" fill="#aaddff" text-anchor="middle" font-style="italic">The best-selling word processor in the world. Again.</text>
+  <text x="510" y="17420" font-family="Times New Roman, serif" font-size="15" fill="#ddd" text-anchor="middle">
+    <tspan x="510" dy="0">Tables. Pull-down menus. Mouse support. Equations editor. Graphics integration.</tspan>
+    <tspan x="510" dy="24">Spreadsheet import. Labels. Sorting. Macros. Mail merge. Thesaurus. 115,000-word</tspan>
+    <tspan x="510" dy="24">spell checker. Supports over 500 printers. Available in 30 languages.</tspan>
+  </text>
+  <text x="510" y="17540" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">$495 (upgrade from 5.0: $89)</text>
+  <text x="510" y="17590" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaddff" text-anchor="middle">WordPerfect Corporation • Orem, Utah • 1-800-321-4566</text>
+  <text x="510" y="17620" font-family="Times New Roman, serif" font-size="10" fill="#88aacc" text-anchor="middle" font-style="italic">Circle number 3 on the reader service card.</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 15: Mixed half + quarter ads                                   -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="18480" width="1020" height="1320" fill="#f5f2ea"/>
+  <text x="510" y="18510" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+
+  <!-- Half-page: Paradise VGA Plus -->
+  <g transform="translate(40, 18530)">
+    <rect x="0" y="0" width="940" height="280" fill="#000" rx="3"/>
+    <text x="470" y="40" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#fff" text-anchor="middle">Paradise VGA Professional</text>
+    <text x="470" y="68" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffcc00" text-anchor="middle">800×600 IN 16 COLORS. THE SUPER VGA STANDARD.</text>
+    <text x="470" y="105" font-family="Times New Roman, serif" font-size="12" fill="#ccc" text-anchor="middle">512KB video RAM. VGA, EGA, CGA, MDA, and Hercules compatible. Auto-switch modes.</text>
+    <text x="470" y="125" font-family="Times New Roman, serif" font-size="12" fill="#ccc" text-anchor="middle">16-bit ISA bus for maximum performance. Analog and TTL monitor outputs.</text>
+    <text x="470" y="145" font-family="Times New Roman, serif" font-size="12" fill="#ccc" text-anchor="middle">Includes Paradise BIOS extensions for 800×600 and 1024×768 (interlaced). $449.</text>
+    <text x="470" y="185" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#fff" text-anchor="middle">Paradise Systems (Western Digital Imaging) • Milpitas, CA</text>
+    <text x="470" y="220" font-family="Times New Roman, serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Circle number 41 on the reader service card.</text>
+  </g>
+
+  <!-- Half-page: Microsoft Mouse -->
+  <g transform="translate(40, 18830)">
+    <rect x="0" y="0" width="940" height="260" fill="#fff" stroke="#000" stroke-width="1.5" rx="3"/>
+    <text x="470" y="35" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000" text-anchor="middle">Microsoft Mouse</text>
+    <text x="470" y="60" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">with Paintbrush, Windows/286 Runtime, and Mouse Menus</text>
+    <text x="470" y="95" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">Ergonomic design. 200 dpi optical-mechanical sensor. Low-profile 2-button design.</text>
+    <text x="470" y="115" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">Serial or bus (InPort) versions available. Includes Microsoft Paintbrush, Windows</text>
+    <text x="470" y="135" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">runtime, and pop-up menus for 1-2-3, dBASE, WordPerfect, and WordStar. $150.</text>
+    <text x="470" y="175" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#333" text-anchor="middle">Microsoft Corporation • Redmond, WA • 1-800-426-9400</text>
+    <text x="470" y="210" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 12 on the reader service card.</text>
+  </g>
+
+  <!-- Quarter-page: Irwin tape -->
+  <g transform="translate(40, 19110)">
+    <rect x="0" y="0" width="455" height="170" fill="#f8f8f0" stroke="#000" stroke-width="1" rx="2"/>
+    <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">Irwin 2020 Tape Backup</text>
+    <text x="228" y="50" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">20MB tape backup connects to your floppy</text>
+    <text x="228" y="67" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">controller — no ISA slot required! Internal mount.</text>
+    <text x="228" y="84" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">QIC-80 format. AccuTrak head. $295.</text>
+    <text x="228" y="115" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">Irwin Magnetic • Ann Arbor, MI</text>
+    <text x="228" y="155" font-family="Times New Roman, serif" font-size="8" fill="#333" text-anchor="middle" font-style="italic">Circle number 144 on the reader service card.</text>
+  </g>
+
+  <!-- Quarter-page: MISOSYS for TRS-80 -->
+  <g transform="translate(525, 19110)">
+    <rect x="0" y="0" width="455" height="170" fill="#fff" stroke="#000" stroke-width="1" rx="2"/>
+    <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">MISOSYS LS-DOS 6.3</text>
+    <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">For TRS-80 Model 4/4P/4D</text>
+    <text x="228" y="72" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Enhanced TRSDOS. Hard disk support. Subdirectories.</text>
+    <text x="228" y="89" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">128KB RAM disk. Job control language. Utilities. $49.95.</text>
+    <text x="228" y="115" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">MISOSYS, Inc. • Sterling, VA • 703-450-4181</text>
+    <text x="228" y="155" font-family="Times New Roman, serif" font-size="8" fill="#333" text-anchor="middle" font-style="italic">Circle number 191 on the reader service card.</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 16: Full-page — Plus Development HardCard                      -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="19800" width="1020" height="1320" fill="#fff"/>
+  <rect x="30" y="19830" width="960" height="1260" fill="none" stroke="#000" stroke-width="1"/>
+  <text x="510" y="19900" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="bold" fill="#000" text-anchor="middle">Plus Development</text>
+  <text x="510" y="19960" font-family="Times New Roman, serif" font-size="36" fill="#000" text-anchor="middle" font-style="italic">HardCard 40</text>
+  <text x="510" y="20010" font-family="Times New Roman, serif" font-size="18" fill="#333" text-anchor="middle">A hard disk on a card. Just slide it in.</text>
+  <!-- Card illustration -->
+  <g transform="translate(250, 20050)">
+    <rect x="0" y="0" width="520" height="350" fill="#1a6b1a" rx="3" stroke="#0d4d0d" stroke-width="2"/>
+    <!-- Drive mechanism on card -->
+    <rect x="30" y="30" width="300" height="180" fill="#c0c0c0" rx="3" stroke="#999" stroke-width="1"/>
+    <circle cx="180" cy="120" r="60" fill="#ddd" stroke="#bbb" stroke-width="2"/>
+    <circle cx="180" cy="120" r="20" fill="#aaa"/>
+    <circle cx="180" cy="120" r="5" fill="#666"/>
+    <text x="180" y="200" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">Quantum 40MB</text>
+    <!-- Controller chips -->
+    <rect x="360" y="40" width="60" height="30" fill="#111" rx="2"/>
+    <rect x="360" y="85" width="60" height="30" fill="#111" rx="2"/>
+    <rect x="360" y="130" width="45" height="25" fill="#222" rx="1"/>
+    <rect x="440" y="40" width="40" height="40" fill="#111" rx="2"/>
+    <!-- Edge connector -->
+    <rect x="100" y="340" width="320" height="30" fill="#2a5e2a"/>
+    <rect x="110" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="120" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="130" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="140" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="150" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="160" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="170" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="180" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="190" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="200" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="260" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="270" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="280" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="290" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="300" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="310" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="320" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="330" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="340" y="345" width="5" height="20" fill="#d4a017"/>
+    <rect x="350" y="345" width="5" height="20" fill="#d4a017"/>
+    <!-- Bracket -->
+    <rect x="0" y="0" width="14" height="340" fill="#c0c0c0"/>
+  </g>
+  <text x="510" y="20470" font-family="Times New Roman, serif" font-size="14" fill="#333" text-anchor="middle">
+    <tspan x="510" dy="0">No cables. No power connections. No drive bay required. The HardCard 40 is a complete</tspan>
+    <tspan x="510" dy="20">40MB hard disk built onto a full-length ISA card. Slide it into any open slot and your PC</tspan>
+    <tspan x="510" dy="20">has a hard disk. Average access time: 25ms. Works in PC, XT, AT, and compatibles.</tspan>
+  </text>
+  <text x="510" y="20560" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">$695</text>
+  <text x="510" y="20595" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Plus Development (a Quantum company) • Milpitas, CA • 408-434-6900</text>
+  <text x="510" y="20625" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 29 on the reader service card.</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 17: BACK COVER — Full-page IBM PS/2                            -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="21120" width="1020" height="1320" fill="#ffffff"/>
+  <rect x="0" y="21120" width="1020" height="6" fill="#003399"/>
+  <!-- IBM logo -->
+  <text x="510" y="21210" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="bold" fill="#003399" text-anchor="middle" letter-spacing="-2">IBM</text>
+  <text x="510" y="21260" font-family="Times New Roman, serif" font-size="28" fill="#000" text-anchor="middle" font-style="italic">Personal System/2</text>
+  <text x="510" y="21310" font-family="Times New Roman, serif" font-size="18" fill="#333" text-anchor="middle">How're you going to do it?</text>
+  <!-- PS/2 Model 50 illustration -->
+  <g transform="translate(310, 21340)">
+    <rect x="0" y="0" width="400" height="300" fill="#e8e4d8" rx="10"/>
+    <rect x="15" y="15" width="370" height="240" fill="#1a1a1a"/>
+    <rect x="20" y="20" width="360" height="230" fill="#000033"/>
+    <!-- OS/2 desktop mockup -->
+    <rect x="25" y="25" width="350" height="18" fill="#0055aa"/>
+    <text x="200" y="39" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle">OS/2 Presentation Manager</text>
+    <rect x="40" y="60" width="120" height="80" fill="#fff" stroke="#000" stroke-width="1"/>
+    <text x="100" y="85" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#000" text-anchor="middle">File Manager</text>
+    <rect x="180" y="70" width="120" height="80" fill="#fff" stroke="#000" stroke-width="1"/>
+    <text x="240" y="95" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#000" text-anchor="middle">Spreadsheet</text>
+    <!-- Monitor stand -->
+    <rect x="160" y="260" width="80" height="15" fill="#d0c8b0"/>
+    <rect x="130" y="275" width="140" height="8" fill="#c0b898" rx="2"/>
+  </g>
+  <text x="510" y="21690" font-family="Times New Roman, serif" font-size="15" fill="#333" text-anchor="middle">
+    <tspan x="510" dy="0">The IBM Personal System/2 family — from the affordable Model 25 to the</tspan>
+    <tspan x="510" dy="22">powerful Model 80 — brings Micro Channel architecture, 3.5" diskettes, VGA</tspan>
+    <tspan x="510" dy="22">graphics, and OS/2 to your desktop. Solutions for every business need.</tspan>
+  </text>
+  <text x="510" y="21790" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Model 25: $1,350 • Model 30: $1,695 • Model 50: $3,595 • Model 60: $5,295 • Model 80: $6,995</text>
+  <text x="510" y="21830" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Visit your authorized IBM dealer or call 1-800-IBM-2468</text>
+  <text x="510" y="21870" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 4 on the reader service card.</text>
+  <!-- IBM footer -->
+  <rect x="0" y="21920" width="1020" height="3" fill="#003399"/>
+  <text x="510" y="21950" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#666" text-anchor="middle">IBM and Personal System/2 are registered trademarks of International Business Machines Corporation. © 1988 IBM Corp.</text>
 
 </svg>
