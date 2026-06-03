@@ -1,591 +1,618 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2040 6600" width="2040" height="6600">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 7920" width="1020" height="7920">
   <!-- 
     PERSONAL COMPUTING MAGAZINE — June 2026
-    Multi-page layout (5 pages, each 1320 tall)
+    Portrait format: 1020×1320 per page, 6 pages
     Page 1: Cover
     Page 2: Full-page DEC Rainbow ad
-    Page 3: PCmigrate review (Editors' Choice) + polyDBackup review
-    Page 4: sheLLaMa review + lsb_release mini-review + dhcp-bridge-test mini-review
-    Page 5: Letters, back-page ads
+    Page 3: PCmigrate + polyDBackup reviews
+    Page 4: sheLLaMa + utility roundup + ad
+    Page 5: Letters + marketplace ads
+    Page 6: Back cover (full-page ad)
   -->
+  <defs>
+    <linearGradient id="coverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0533"/>
+      <stop offset="40%" style="stop-color:#0d1b3e"/>
+      <stop offset="100%" style="stop-color:#000000"/>
+    </linearGradient>
+    <linearGradient id="goldShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="50%" style="stop-color:#ffec80"/>
+      <stop offset="100%" style="stop-color:#ffd700"/>
+    </linearGradient>
+  </defs>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 1: COVER                                                      -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="0" width="2040" height="1320" fill="#cc0000"/>
+  <rect x="0" y="0" width="1020" height="1320" fill="url(#coverGrad)"/>
   
-  <!-- Cover gradient overlay -->
-  <rect x="0" y="400" width="2040" height="920" fill="#000" opacity="0.3"/>
+  <!-- Neon grid lines (80s aesthetic) -->
+  <line x1="0" y1="900" x2="1020" y2="900" stroke="#ff00ff" stroke-width="0.5" opacity="0.3"/>
+  <line x1="0" y1="950" x2="1020" y2="950" stroke="#ff00ff" stroke-width="0.4" opacity="0.2"/>
+  <line x1="0" y1="1000" x2="1020" y2="1000" stroke="#ff00ff" stroke-width="0.3" opacity="0.15"/>
+  <line x1="0" y1="1050" x2="1020" y2="1050" stroke="#ff00ff" stroke-width="0.3" opacity="0.1"/>
+  <line x1="200" y1="850" x2="200" y2="1320" stroke="#00ffff" stroke-width="0.3" opacity="0.1"/>
+  <line x1="400" y1="850" x2="400" y2="1320" stroke="#00ffff" stroke-width="0.3" opacity="0.1"/>
+  <line x1="600" y1="850" x2="600" y2="1320" stroke="#00ffff" stroke-width="0.3" opacity="0.1"/>
+  <line x1="800" y1="850" x2="800" y2="1320" stroke="#00ffff" stroke-width="0.3" opacity="0.1"/>
+
+  <!-- Red masthead banner -->
+  <rect x="0" y="0" width="1020" height="70" fill="#cc0000"/>
+  <rect x="0" y="70" width="1020" height="3" fill="#ffd700"/>
   
-  <!-- Masthead -->
-  <text x="1020" y="90" font-family="Helvetica, Arial, sans-serif" font-size="72" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="8">PERSONAL COMPUTING</text>
-  <text x="1020" y="125" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#ffcccc" text-anchor="middle">THE INDEPENDENT GUIDE TO IBM-COMPATIBLE PERSONAL COMPUTERS</text>
-  <line x1="100" y1="140" x2="1940" y2="140" stroke="#ffd700" stroke-width="2"/>
+  <!-- Masthead text -->
+  <text x="510" y="50" font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="5">PERSONAL COMPUTING</text>
   
-  <!-- Issue info -->
-  <text x="100" y="175" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#ffffff">Vol. 5 No. 12</text>
-  <text x="1940" y="175" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#ffffff" text-anchor="end">June 10, 2026 • $3.95</text>
+  <!-- Sub-masthead info bar -->
+  <text x="30" y="95" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#aaaacc">Vol. 5 No. 12 • June 10, 2026</text>
+  <text x="990" y="95" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#aaaacc" text-anchor="end">$3.95 U.S. / $4.95 Canada</text>
+  <text x="510" y="95" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#8888aa" text-anchor="middle">THE INDEPENDENT GUIDE TO IBM-COMPATIBLE PERSONAL COMPUTERS</text>
 
-  <!-- Cover feature headlines -->
-  <text x="120" y="300" font-family="Helvetica, Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffd700">EDITORS' CHOICE:</text>
-  <text x="120" y="360" font-family="Helvetica, Arial, sans-serif" font-size="42" fill="#ffffff">PCmigrate Makes Moving PCs</text>
-  <text x="120" y="410" font-family="Helvetica, Arial, sans-serif" font-size="42" fill="#ffffff">Painless at Last</text>
-
-  <!-- Secondary headlines -->
-  <text x="120" y="520" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="#ffffff">• polyDBackup: Enterprise Database Backup Done Right</text>
-  <text x="120" y="570" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="#ffffff">• sheLLaMa: Your Shell Gets an AI Brain</text>
-  <text x="120" y="620" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="#ffffff">• Hands-On: DHCP Bridge Testing Utility</text>
-  <text x="120" y="670" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="#ffffff">• Quick Fix: lsb_release Returns from the Dead</text>
-
-  <!-- Cover art: stylized monitor -->
-  <g transform="translate(1200, 350)">
-    <rect x="0" y="0" width="650" height="450" fill="#222" rx="15"/>
-    <rect x="20" y="20" width="610" height="380" fill="#1e1e2e"/>
-    <!-- Terminal text on screen -->
-    <text x="40" y="60" font-family="Consolas, monospace" font-size="16" fill="#a6e3a1">$ shellama</text>
-    <text x="40" y="85" font-family="Consolas, monospace" font-size="16" fill="#cdd6f4">🤖 How can I help?</text>
-    <text x="40" y="115" font-family="Consolas, monospace" font-size="16" fill="#89b4fa">,backup my databases to S3</text>
-    <text x="40" y="145" font-family="Consolas, monospace" font-size="14" fill="#f9e2af">→ Running: db-backup.sh --all --upload</text>
-    <text x="40" y="170" font-family="Consolas, monospace" font-size="14" fill="#a6e3a1">✓ 5 databases backed up, verified, uploaded</text>
-    <text x="40" y="200" font-family="Consolas, monospace" font-size="16" fill="#89b4fa">,migrate my PC to the new machine</text>
-    <text x="40" y="230" font-family="Consolas, monospace" font-size="14" fill="#f9e2af">→ Running: PCmigrate Export...</text>
-    <text x="40" y="255" font-family="Consolas, monospace" font-size="14" fill="#a6e3a1">✓ 47 apps, 2 WSL distros, 12 keys exported</text>
-    <text x="40" y="290" font-family="Consolas, monospace" font-size="16" fill="#a6e3a1">$_</text>
+  <!-- Main cover illustration: Monitor with glowing screen -->
+  <g transform="translate(250, 130)">
+    <!-- Monitor outer shell -->
+    <rect x="0" y="0" width="520" height="380" fill="#2a2a2a" rx="12"/>
+    <rect x="4" y="4" width="512" height="372" fill="#333" rx="10"/>
+    <!-- Screen bezel -->
+    <rect x="20" y="20" width="480" height="320" fill="#111"/>
+    <!-- Screen content - dark IDE look -->
+    <rect x="24" y="24" width="472" height="312" fill="#1e1e2e"/>
+    <!-- Glow effect -->
+    <rect x="24" y="24" width="472" height="312" fill="#89b4fa" opacity="0.03"/>
+    <!-- Title bar -->
+    <rect x="24" y="24" width="472" height="22" fill="#313244"/>
+    <text x="36" y="40" font-family="Segoe UI, sans-serif" font-size="9" fill="#cdd6f4">⬡ PCmigrate — Export Complete</text>
+    <!-- Content -->
+    <text x="36" y="66" font-family="Consolas, monospace" font-size="10" fill="#a6e3a1">=== Windows Migration Export Started ===</text>
+    <text x="36" y="82" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">--- Retrieving license keys ---</text>
+    <text x="36" y="96" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Windows: XXXXX-XXXXX-XXXXX-XXXXX-XXXXX</text>
+    <text x="36" y="110" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Office 365: Activated (subscription)</text>
+    <text x="36" y="128" font-family="Consolas, monospace" font-size="9" fill="#f9e2af">--- Exporting WSL distributions ---</text>
+    <text x="36" y="142" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Ubuntu (WSL 2, VHDX)... 14.2 GB ✓</text>
+    <text x="36" y="156" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Alpine (WSL 1, tar)... 892 MB ✓</text>
+    <text x="36" y="174" font-family="Consolas, monospace" font-size="9" fill="#f9e2af">--- Backing up application data ---</text>
+    <text x="36" y="188" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Firefox (Roaming)... 245 MB ✓</text>
+    <text x="36" y="202" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">VS Code (Local)... 89 MB ✓</text>
+    <text x="36" y="220" font-family="Consolas, monospace" font-size="9" fill="#a6e3a1">=== EXPORT DONE ===</text>
+    <text x="36" y="236" font-family="Consolas, monospace" font-size="9" fill="#a6e3a1">47 apps • 2 WSL distros • 12 keys • 4m38s</text>
+    <text x="36" y="260" font-family="Consolas, monospace" font-size="10" fill="#89b4fa">$ shellama</text>
+    <text x="36" y="276" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">🤖 Backup complete. Ready to restore on new machine.</text>
+    <text x="36" y="296" font-family="Consolas, monospace" font-size="10" fill="#a6e3a1">$ _</text>
+    <!-- Power LED -->
+    <circle cx="260" cy="360" r="4" fill="#00cc00"/>
+    <!-- DEC-style label -->
+    <text x="260" y="372" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#666" text-anchor="middle">PERSONAL COMPUTING</text>
     <!-- Monitor stand -->
-    <rect x="260" y="420" width="130" height="20" fill="#1a1a1a"/>
-    <rect x="220" y="440" width="210" height="12" fill="#1a1a1a" rx="3"/>
+    <rect x="200" y="380" width="120" height="16" fill="#222"/>
+    <rect x="170" y="396" width="180" height="10" fill="#1a1a1a" rx="2"/>
   </g>
 
-  <!-- Barcode area -->
-  <rect x="1750" y="1220" width="180" height="80" fill="#fff"/>
-  <rect x="1760" y="1230" width="3" height="60" fill="#000"/>
-  <rect x="1766" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1771" y="1230" width="4" height="60" fill="#000"/>
-  <rect x="1778" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1783" y="1230" width="3" height="60" fill="#000"/>
-  <rect x="1789" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1794" y="1230" width="4" height="60" fill="#000"/>
-  <rect x="1801" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1806" y="1230" width="3" height="60" fill="#000"/>
-  <rect x="1812" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1818" y="1230" width="4" height="60" fill="#000"/>
-  <rect x="1825" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1830" y="1230" width="3" height="60" fill="#000"/>
-  <rect x="1837" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1843" y="1230" width="4" height="60" fill="#000"/>
-  <rect x="1850" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1856" y="1230" width="3" height="60" fill="#000"/>
-  <rect x="1862" y="1230" width="4" height="60" fill="#000"/>
-  <rect x="1870" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1876" y="1230" width="3" height="60" fill="#000"/>
-  <rect x="1883" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1890" y="1230" width="4" height="60" fill="#000"/>
-  <rect x="1898" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1905" y="1230" width="3" height="60" fill="#000"/>
-  <rect x="1912" y="1230" width="2" height="60" fill="#000"/>
-  <rect x="1918" y="1230" width="4" height="60" fill="#000"/>
-  <text x="1840" y="1295" font-family="monospace" font-size="10" fill="#000" text-anchor="middle">0 74470 81352 7</text>
+  <!-- EDITORS' CHOICE badge on cover -->
+  <g transform="translate(800, 140)">
+    <rect x="0" y="0" width="170" height="90" fill="#cc0000" rx="4" stroke="#ffd700" stroke-width="2"/>
+    <text x="85" y="25" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffd700" text-anchor="middle">★ ★ ★ ★ ★</text>
+    <text x="85" y="45" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">EDITORS'</text>
+    <text x="85" y="62" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">CHOICE</text>
+    <text x="85" y="80" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#ffcccc" text-anchor="middle">PCmigrate 0.4</text>
+  </g>
+
+  <!-- Main headline -->
+  <text x="50" y="590" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="bold" fill="url(#goldShine)">EDITORS' CHOICE:</text>
+  <text x="50" y="635" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#ffffff">PCmigrate Makes Moving</text>
+  <text x="50" y="670" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#ffffff">to a New PC Painless at Last</text>
+
+  <!-- Secondary feature headlines -->
+  <line x1="50" y1="700" x2="970" y2="700" stroke="#ff00ff" stroke-width="0.5" opacity="0.5"/>
+  <text x="50" y="740" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#00ffff">ALSO IN THIS ISSUE:</text>
+  <text x="50" y="775" font-family="Times New Roman, serif" font-size="18" fill="#ffffff">▸ polyDBackup — Verified Database Backups to S3</text>
+  <text x="50" y="808" font-family="Times New Roman, serif" font-size="18" fill="#ffffff">▸ sheLLaMa — AI Agentic Shell for Bash &amp; PowerShell</text>
+  <text x="50" y="841" font-family="Times New Roman, serif" font-size="18" fill="#ffffff">▸ DHCP Bridge Testing — Debug VLANs in Seconds</text>
+  <text x="50" y="874" font-family="Times New Roman, serif" font-size="18" fill="#ffffff">▸ lsb_release — The RHEL 9 Fix You Need</text>
+
+  <!-- Bottom-right barcode -->
+  <rect x="860" y="1240" width="130" height="60" fill="#fff" rx="2"/>
+  <rect x="868" y="1248" width="2" height="42" fill="#000"/>
+  <rect x="873" y="1248" width="3" height="42" fill="#000"/>
+  <rect x="879" y="1248" width="1" height="42" fill="#000"/>
+  <rect x="883" y="1248" width="3" height="42" fill="#000"/>
+  <rect x="889" y="1248" width="2" height="42" fill="#000"/>
+  <rect x="894" y="1248" width="1" height="42" fill="#000"/>
+  <rect x="898" y="1248" width="3" height="42" fill="#000"/>
+  <rect x="904" y="1248" width="2" height="42" fill="#000"/>
+  <rect x="909" y="1248" width="1" height="42" fill="#000"/>
+  <rect x="913" y="1248" width="3" height="42" fill="#000"/>
+  <rect x="919" y="1248" width="2" height="42" fill="#000"/>
+  <rect x="924" y="1248" width="1" height="42" fill="#000"/>
+  <rect x="928" y="1248" width="3" height="42" fill="#000"/>
+  <rect x="934" y="1248" width="2" height="42" fill="#000"/>
+  <rect x="940" y="1248" width="1" height="42" fill="#000"/>
+  <rect x="944" y="1248" width="4" height="42" fill="#000"/>
+  <rect x="951" y="1248" width="2" height="42" fill="#000"/>
+  <rect x="956" y="1248" width="1" height="42" fill="#000"/>
+  <rect x="960" y="1248" width="3" height="42" fill="#000"/>
+  <rect x="966" y="1248" width="2" height="42" fill="#000"/>
+  <rect x="972" y="1248" width="4" height="42" fill="#000"/>
+  <rect x="979" y="1248" width="2" height="42" fill="#000"/>
+  <text x="925" y="1296" font-family="monospace" font-size="8" fill="#000" text-anchor="middle">0 74470 81352 7</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 2: FULL-PAGE DEC RAINBOW AD                                   -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="1320" width="2040" height="1320" fill="#1a1a3e"/>
+  <rect x="0" y="1320" width="1020" height="1320" fill="#1a1a3e"/>
   
-  <!-- Rainbow stripe across top -->
-  <rect x="0" y="1320" width="2040" height="12" fill="#ff0000"/>
-  <rect x="0" y="1332" width="2040" height="12" fill="#ff8800"/>
-  <rect x="0" y="1344" width="2040" height="12" fill="#ffdd00"/>
-  <rect x="0" y="1356" width="2040" height="12" fill="#00cc00"/>
-  <rect x="0" y="1368" width="2040" height="12" fill="#0066ff"/>
-  <rect x="0" y="1380" width="2040" height="12" fill="#8800cc"/>
+  <!-- Rainbow stripe -->
+  <rect x="0" y="1320" width="1020" height="8" fill="#ff0000"/>
+  <rect x="0" y="1328" width="1020" height="8" fill="#ff8800"/>
+  <rect x="0" y="1336" width="1020" height="8" fill="#ffdd00"/>
+  <rect x="0" y="1344" width="1020" height="8" fill="#00cc00"/>
+  <rect x="0" y="1352" width="1020" height="8" fill="#0066ff"/>
+  <rect x="0" y="1360" width="1020" height="8" fill="#8800cc"/>
 
-  <!-- DEC logo area -->
-  <text x="1020" y="1470" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="#aaaaaa" text-anchor="middle" letter-spacing="6">d|i|g|i|t|a|l</text>
+  <!-- DEC logo -->
+  <text x="510" y="1420" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#aaaaaa" text-anchor="middle" letter-spacing="4">d|i|g|i|t|a|l</text>
 
-  <!-- Main headline -->
-  <text x="1020" y="1580" font-family="Times New Roman, serif" font-size="64" fill="#ffffff" text-anchor="middle" font-style="italic">Introducing the Rainbow 100+</text>
-  <text x="1020" y="1650" font-family="Times New Roman, serif" font-size="36" fill="#cccccc" text-anchor="middle">The personal computer that runs both CP/M and MS-DOS.</text>
+  <!-- Headline -->
+  <text x="510" y="1490" font-family="Times New Roman, serif" font-size="44" fill="#ffffff" text-anchor="middle" font-style="italic">The Rainbow 100+</text>
+  <text x="510" y="1530" font-family="Times New Roman, serif" font-size="20" fill="#cccccc" text-anchor="middle">The personal computer that runs both CP/M and MS-DOS.</text>
 
   <!-- Computer illustration -->
-  <g transform="translate(550, 1700)">
+  <g transform="translate(200, 1560)">
     <!-- Monitor -->
-    <rect x="150" y="0" width="640" height="440" fill="#e8e0d0" rx="20"/>
-    <rect x="180" y="30" width="580" height="350" fill="#0a2a0a"/>
-    <!-- Green phosphor text -->
-    <text x="210" y="80" font-family="Consolas, monospace" font-size="18" fill="#33ff33">A&gt; DIR</text>
-    <text x="210" y="108" font-family="Consolas, monospace" font-size="16" fill="#33ff33"> Volume in drive A is RAINBOW</text>
-    <text x="210" y="132" font-family="Consolas, monospace" font-size="16" fill="#33ff33"> COMMAND  COM    17664  10-15-83</text>
-    <text x="210" y="156" font-family="Consolas, monospace" font-size="16" fill="#33ff33"> AUTOEXEC BAT      128  10-15-83</text>
-    <text x="210" y="180" font-family="Consolas, monospace" font-size="16" fill="#33ff33"> WS       COM    65024  10-15-83</text>
-    <text x="210" y="204" font-family="Consolas, monospace" font-size="16" fill="#33ff33"> LOTUS    EXE   196608  10-15-83</text>
-    <text x="210" y="228" font-family="Consolas, monospace" font-size="16" fill="#33ff33"> DBASE    COM   114688  10-15-83</text>
-    <text x="210" y="260" font-family="Consolas, monospace" font-size="16" fill="#33ff33">        5 File(s)    142336 bytes free</text>
-    <text x="210" y="290" font-family="Consolas, monospace" font-size="18" fill="#33ff33">A&gt;_</text>
-    <!-- DEC label on monitor -->
-    <text x="470" y="410" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#666" text-anchor="middle">d|i|g|i|t|a|l</text>
-    <!-- Monitor stand -->
-    <rect x="380" y="440" width="180" height="30" fill="#d4c8b0"/>
-    <rect x="340" y="470" width="260" height="14" fill="#c0b498" rx="3"/>
-    
+    <rect x="100" y="0" width="420" height="300" fill="#e8e0d0" rx="14"/>
+    <rect x="120" y="20" width="380" height="240" fill="#0a2a0a"/>
+    <!-- Green text -->
+    <text x="140" y="52" font-family="Consolas, monospace" font-size="13" fill="#33ff33">A&gt; DIR</text>
+    <text x="140" y="72" font-family="Consolas, monospace" font-size="11" fill="#33ff33"> Volume in drive A is RAINBOW</text>
+    <text x="140" y="90" font-family="Consolas, monospace" font-size="11" fill="#33ff33"> COMMAND  COM    17664  10-15-83</text>
+    <text x="140" y="108" font-family="Consolas, monospace" font-size="11" fill="#33ff33"> WS       COM    65024  10-15-83</text>
+    <text x="140" y="126" font-family="Consolas, monospace" font-size="11" fill="#33ff33"> LOTUS    EXE   196608  10-15-83</text>
+    <text x="140" y="144" font-family="Consolas, monospace" font-size="11" fill="#33ff33"> DBASE    COM   114688  10-15-83</text>
+    <text x="140" y="166" font-family="Consolas, monospace" font-size="11" fill="#33ff33">        4 File(s)  142336 free</text>
+    <text x="140" y="188" font-family="Consolas, monospace" font-size="13" fill="#33ff33">A&gt;_</text>
+    <!-- DEC label -->
+    <text x="310" y="280" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle">d|i|g|i|t|a|l</text>
+    <!-- Stand -->
+    <rect x="250" y="300" width="120" height="22" fill="#d4c8b0"/>
+    <rect x="220" y="322" width="180" height="10" fill="#c0b498" rx="2"/>
     <!-- Keyboard -->
-    <rect x="80" y="510" width="780" height="150" fill="#e0d8c8" rx="6" stroke="#999" stroke-width="1"/>
-    <!-- Key rows suggestion -->
-    <rect x="100" y="525" width="740" height="14" fill="#d8d0c0" rx="2"/>
-    <rect x="100" y="545" width="740" height="14" fill="#d8d0c0" rx="2"/>
-    <rect x="100" y="565" width="740" height="14" fill="#d8d0c0" rx="2"/>
-    <rect x="100" y="585" width="740" height="14" fill="#d8d0c0" rx="2"/>
-    <rect x="200" y="610" width="540" height="14" fill="#d8d0c0" rx="2"/>
-    <!-- Function keys label -->
-    <text x="470" y="650" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888" text-anchor="middle">LK201 KEYBOARD</text>
+    <rect x="40" y="350" width="540" height="100" fill="#e0d8c8" rx="5" stroke="#999" stroke-width="1"/>
+    <rect x="60" y="362" width="500" height="10" fill="#d8d0c0" rx="2"/>
+    <rect x="60" y="378" width="500" height="10" fill="#d8d0c0" rx="2"/>
+    <rect x="60" y="394" width="500" height="10" fill="#d8d0c0" rx="2"/>
+    <rect x="60" y="410" width="500" height="10" fill="#d8d0c0" rx="2"/>
+    <rect x="150" y="428" width="320" height="10" fill="#d8d0c0" rx="2"/>
+    <text x="310" y="448" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#888" text-anchor="middle">LK201</text>
   </g>
 
   <!-- Body copy -->
-  <text x="1020" y="2420" font-family="Times New Roman, serif" font-size="22" fill="#dddddd" text-anchor="middle">
-    <tspan x="1020" dy="0">The DEC Rainbow 100+ gives you the best of both worlds. Run your existing CP/M-80</tspan>
-    <tspan x="1020" dy="30">software on the built-in Z80 processor — then switch to MS-DOS for the latest</tspan>
-    <tspan x="1020" dy="30">business applications. 256KB RAM standard, expandable to 896KB. Dual 400KB floppy</tspan>
-    <tspan x="1020" dy="30">drives. Optional 10MB Winchester hard disk. Full networking with DECnet.</tspan>
+  <text x="510" y="2070" font-family="Times New Roman, serif" font-size="15" fill="#dddddd" text-anchor="middle">
+    <tspan x="510" dy="0">Run your existing CP/M-80 software on the built-in Z80 processor —</tspan>
+    <tspan x="510" dy="22">then switch to MS-DOS for the latest business applications.</tspan>
+    <tspan x="510" dy="22">256KB RAM standard, expandable to 896KB. Dual 400KB floppies.</tspan>
+    <tspan x="510" dy="22">Optional 10MB Winchester. Full networking with DECnet.</tspan>
   </text>
 
-  <!-- Specs in columns -->
-  <text x="300" y="2560" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#aaaaaa">
-    <tspan x="300" dy="0" font-weight="bold" fill="#ffffff">PROCESSOR:</tspan><tspan> 8088 (MS-DOS) + Z80 (CP/M)</tspan>
-    <tspan x="300" dy="24" font-weight="bold" fill="#ffffff">MEMORY:</tspan><tspan> 256KB–896KB RAM</tspan>
-    <tspan x="300" dy="24" font-weight="bold" fill="#ffffff">DISPLAY:</tspan><tspan> 12" green phosphor, 80×24</tspan>
-    <tspan x="300" dy="24" font-weight="bold" fill="#ffffff">STORAGE:</tspan><tspan> Dual 400KB 5¼" floppy</tspan>
+  <!-- Specs -->
+  <text x="100" y="2190" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaaaaa">
+    <tspan x="100" dy="0" font-weight="bold" fill="#fff">PROCESSOR:</tspan><tspan> 8088 + Z80</tspan>
+    <tspan x="100" dy="18" font-weight="bold" fill="#fff">MEMORY:</tspan><tspan> 256KB–896KB</tspan>
+    <tspan x="100" dy="18" font-weight="bold" fill="#fff">DISPLAY:</tspan><tspan> 12" green phosphor</tspan>
+    <tspan x="100" dy="18" font-weight="bold" fill="#fff">STORAGE:</tspan><tspan> Dual 400KB 5¼"</tspan>
   </text>
-  <text x="1100" y="2560" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#aaaaaa">
-    <tspan x="1100" dy="0" font-weight="bold" fill="#ffffff">HARD DISK:</tspan><tspan> Optional 10MB Winchester</tspan>
-    <tspan x="1100" dy="24" font-weight="bold" fill="#ffffff">NETWORK:</tspan><tspan> DECnet Ethernet optional</tspan>
-    <tspan x="1100" dy="24" font-weight="bold" fill="#ffffff">PORTS:</tspan><tspan> 2 serial, 1 parallel, 1 modem</tspan>
-    <tspan x="1100" dy="24" font-weight="bold" fill="#ffffff">PRICE:</tspan><tspan> From $2,595</tspan>
+  <text x="560" y="2190" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaaaaa">
+    <tspan x="560" dy="0" font-weight="bold" fill="#fff">HARD DISK:</tspan><tspan> 10MB optional</tspan>
+    <tspan x="560" dy="18" font-weight="bold" fill="#fff">NETWORK:</tspan><tspan> DECnet Ethernet</tspan>
+    <tspan x="560" dy="18" font-weight="bold" fill="#fff">PORTS:</tspan><tspan> 2 serial, 1 parallel</tspan>
+    <tspan x="560" dy="18" font-weight="bold" fill="#fff">PRICE:</tspan><tspan> From $2,595</tspan>
   </text>
-
-  <!-- Bottom tagline -->
-  <text x="1020" y="2540" font-family="Times New Roman, serif" font-size="18" fill="#888" text-anchor="middle" font-style="italic"></text>
-  
-  <!-- DEC corporate -->
-  <line x1="200" y1="2565" x2="1840" y2="2565" stroke="#444" stroke-width="1"/>
-  <text x="1020" y="2595" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#888888" text-anchor="middle">Digital Equipment Corporation • Maynard, Massachusetts</text>
-  <text x="1020" y="2615" font-family="Times New Roman, serif" font-size="13" fill="#666666" text-anchor="middle" font-style="italic">Circle number 1 on the reader service card.</text>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PAGE 3: PCMIGRATE + POLYDBACKUP REVIEWS                            -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="2640" width="2040" height="1320" fill="#f5f2ea"/>
-
-  <!-- Header bar -->
-  <rect x="0" y="2640" width="2040" height="44" fill="#cc0000"/>
-  <text x="60" y="2672" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" letter-spacing="3">PERSONAL COMPUTING</text>
-  <text x="1020" y="2672" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">FIRST LOOKS</text>
-  <text x="1980" y="2672" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="end">June 10, 2026</text>
-
-  <!-- Page number -->
-  <text x="1020" y="3945" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">46    PERSONAL COMPUTING    JUNE 10, 2026</text>
-
-  <!-- ─── PCmigrate Review (left half) ─── -->
-  <!-- Editors Choice Badge -->
-  <g transform="translate(830, 2700)">
-    <rect x="0" y="0" width="150" height="130" fill="#cc0000" rx="4"/>
-    <rect x="3" y="3" width="144" height="124" fill="none" stroke="#ffd700" stroke-width="2" rx="3"/>
-    <text x="75" y="28" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffd700" text-anchor="middle">★ ★ ★ ★ ★</text>
-    <text x="75" y="52" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold">EDITORS'</text>
-    <text x="75" y="72" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold">CHOICE</text>
-    <line x1="20" y1="82" x2="130" y2="82" stroke="#ffd700" stroke-width="1"/>
-    <text x="75" y="100" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#ffcccc" text-anchor="middle">PCmigrate 0.4</text>
-    <text x="75" y="116" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#ffcccc" text-anchor="middle">PFWorks</text>
-  </g>
-
-  <text x="60" y="2725" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#000">PCmigrate 0.4</text>
-  <text x="60" y="2752" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#444">PFWorks • Free (Open Source)</text>
-  <line x1="60" y1="2765" x2="960" y2="2765" stroke="#000" stroke-width="0.5"/>
-
-  <text x="60" y="2790" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="60" dy="0" font-weight="bold" font-size="14">M</tspan><tspan>oving to a new Windows PC has always meant a lost weekend. PCmigrate, a free utility from PFWorks, fixes that.</tspan>
-    <tspan x="60" dy="18">One click exports your entire environment — installed software, license keys, winget packages, WSL distributions</tspan>
-    <tspan x="60" dy="16">(as .tar or .vhdx), and even AppData folders — to an external drive. On the new machine, run the generated restore</tspan>
-    <tspan x="60" dy="16">script and watch 'winget import' and 'wsl --import' bring everything back. Our test: 47 apps, 2 WSL distros, under</tspan>
-    <tspan x="60" dy="16">5 minutes to export, 11 minutes to restore. The dark-themed WPF GUI is polished and responsive. WSL-Only mode</tspan>
-    <tspan x="60" dy="16">makes it equally useful as a standalone backup tool for developers who live in Linux subsystems. The interactive</tspan>
-    <tspan x="60" dy="16">HTML checklist with per-app download links and hidden license keys is a thoughtful touch. SmartScreen warnings</tspan>
-    <tspan x="60" dy="16">on the unsigned installer are the only real friction. Highly recommended.</tspan>
-  </text>
-
-  <text x="60" y="2945" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#333" font-style="italic">Circle number 203 on the reader service card.</text>
-
-  <!-- Thin separator -->
-  <line x1="60" y1="2965" x2="960" y2="2965" stroke="#cc0000" stroke-width="2"/>
-
-  <!-- ─── polyDBackup Review (left half, lower) ─── -->
-  <text x="60" y="3000" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#000">polyDBackup 1.0</text>
-  <text x="60" y="3027" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#444">PFWorks • Free (Open Source, GPL-3.0)</text>
-  <line x1="60" y1="3040" x2="960" y2="3040" stroke="#000" stroke-width="0.5"/>
-
-  <!-- Rating -->
-  <text x="830" y="3000" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#cc0000" text-anchor="end">★★★★☆</text>
-
-  <text x="60" y="3065" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="60" dy="0" font-weight="bold" font-size="14">D</tspan><tspan>atabase backups are like insurance: boring until you need them. polyDBackup makes them less boring and far</tspan>
-    <tspan x="60" dy="18">more reliable. This shell-based tool dumps PostgreSQL, MySQL, or MariaDB to S3 with compression, optional</tspan>
-    <tspan x="60" dy="16">AES-256 encryption, and — here's the clever bit — automated restore verification via table-level checksums.</tspan>
-    <tspan x="60" dy="18">The safety model is impressive. A hard-coded staging database name prevents accidental writes to production.</tspan>
-    <tspan x="60" dy="16">The backup user gets read-only grants on production tables and full control only on the staging workspace.</tspan>
-    <tspan x="60" dy="16">Even a misconfigured cron job can't damage live data. Retention management purges old backups from S3</tspan>
-    <tspan x="60" dy="16">automatically. Runs as a container, a systemd timer, or a plain cron job.</tspan>
-    <tspan x="60" dy="18">We tested with a 40 GB PostgreSQL instance: dump, compress, encrypt, upload, and verify completed in</tspan>
-    <tspan x="60" dy="16">under 12 minutes. The '.verified' marker in S3 after a successful checksum comparison gives peace of mind</tspan>
-    <tspan x="60" dy="16">that no other backup tool provides out of the box. Deducting one star only because documentation assumes</tspan>
-    <tspan x="60" dy="16">familiarity with S3 CLI configuration. Otherwise excellent.</tspan>
-  </text>
-
-  <text x="60" y="3310" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#333" font-style="italic">Circle number 204 on the reader service card.</text>
-
-  <!-- ─── Right half: Vertical ad strip ─── -->
-  <line x1="1020" y1="2690" x2="1020" y2="3920" stroke="#999" stroke-width="0.5"/>
-
-  <!-- Ad 1: Hayes Smartmodem -->
-  <g transform="translate(1060, 2700)">
-    <rect x="0" y="0" width="920" height="280" fill="#000" rx="3"/>
-    <text x="460" y="35" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
-    <text x="460" y="80" font-family="Times New Roman, serif" font-size="36" fill="#ffffff" text-anchor="middle" font-style="italic">Hayes Smartmodem 2400</text>
-    <text x="460" y="115" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#ffcc00" text-anchor="middle">THE WORLD'S MOST INTELLIGENT MODEM.</text>
-    <!-- Modem illustration -->
-    <rect x="280" y="130" width="360" height="60" fill="#e8e0d0" rx="4" stroke="#999" stroke-width="1"/>
-    <circle cx="310" cy="160" r="5" fill="#ff0000"/>
-    <circle cx="330" cy="160" r="5" fill="#00cc00"/>
-    <circle cx="350" cy="160" r="5" fill="#00cc00"/>
-    <circle cx="370" cy="160" r="5" fill="#00cc00"/>
-    <circle cx="390" cy="160" r="5" fill="#333"/>
-    <circle cx="410" cy="160" r="5" fill="#333"/>
-    <circle cx="430" cy="160" r="5" fill="#00cc00"/>
-    <circle cx="450" cy="160" r="5" fill="#00cc00"/>
-    <text x="550" y="165" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#666">Smartmodem</text>
-    <text x="460" y="220" font-family="Times New Roman, serif" font-size="14" fill="#cccccc" text-anchor="middle">2400 bps full-duplex. Auto-answer. Auto-dial. Hayes AT command set.</text>
-    <text x="460" y="240" font-family="Times New Roman, serif" font-size="14" fill="#cccccc" text-anchor="middle">Compatible with every communications program. $699 suggested retail.</text>
-    <text x="460" y="268" font-family="Times New Roman, serif" font-size="11" fill="#888" text-anchor="middle" font-style="italic">Circle number 45 on the reader service card.</text>
-  </g>
-
-  <!-- Ad 2: Borland Turbo Pascal -->
-  <g transform="translate(1060, 3010)">
-    <rect x="0" y="0" width="920" height="260" fill="#ffffff" stroke="#000" stroke-width="1.5"/>
-    <rect x="6" y="6" width="908" height="248" fill="#ffffff" stroke="#cc0000" stroke-width="2"/>
-    <text x="460" y="45" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="bold" fill="#cc0000" text-anchor="middle">BORLAND</text>
-    <text x="460" y="80" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#000" text-anchor="middle">TURBO PASCAL 4.0</text>
-    <text x="460" y="115" font-family="Times New Roman, serif" font-size="16" fill="#333" text-anchor="middle" font-style="italic">"The most talked about software in the industry" — BYTE</text>
-    <text x="460" y="150" font-family="Times New Roman, serif" font-size="14" fill="#000" text-anchor="middle">Compiles 27,000 lines per minute. Integrated editor. Built-in debugger.</text>
-    <text x="460" y="172" font-family="Times New Roman, serif" font-size="14" fill="#000" text-anchor="middle">Separate compilation with units. Full DOS access. 8087 support.</text>
-    <text x="460" y="194" font-family="Times New Roman, serif" font-size="14" fill="#000" text-anchor="middle">Overlays for large programs. EGA/VGA BGI graphics. Only $99.95!</text>
-    <text x="460" y="225" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#cc0000" text-anchor="middle" font-weight="bold">Call 1-800-255-8008 or see your dealer today.</text>
-    <text x="460" y="248" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle" font-style="italic">Circle number 87 on the reader service card.</text>
-  </g>
-
-  <!-- Ad 3: Small - PC Tools Deluxe -->
-  <g transform="translate(1060, 3300)">
-    <rect x="0" y="0" width="920" height="220" fill="#f8f8f0" stroke="#000" stroke-width="1"/>
-    <!-- Floppy icon -->
-    <g transform="translate(30, 30)">
-      <rect x="0" y="0" width="80" height="80" fill="#333" rx="4"/>
-      <rect x="22" y="0" width="36" height="28" fill="#ccc"/>
-      <rect x="28" y="5" width="24" height="16" fill="#888"/>
-      <rect x="15" y="44" width="50" height="32" fill="#eee" rx="2"/>
-    </g>
-    <text x="140" y="45" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#000">PC Tools™ Deluxe 5.1</text>
-    <text x="140" y="70" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#000">Central Point Software, Portland, OR</text>
-    <text x="140" y="98" font-family="Times New Roman, serif" font-size="13" fill="#333">The complete disk management toolkit. Undelete. Backup. Disk</text>
-    <text x="140" y="115" font-family="Times New Roman, serif" font-size="13" fill="#333">optimizer. File finder. Desktop manager with calculator, notepad,</text>
-    <text x="140" y="132" font-family="Times New Roman, serif" font-size="13" fill="#333">clipboard, and appointment scheduler. TSR — always ready. $79.95.</text>
-    <text x="140" y="160" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#555" font-style="italic">"A must-have utility suite." — Personal Computing, April 2026</text>
-    <text x="140" y="185" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#333">Order: 1-503-244-5782 • CompuServe: GO PCTOOLS</text>
-    <text x="460" y="210" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 156 on the reader service card.</text>
-  </g>
-
-  <!-- Ad 4: Small - Norton Utilities -->
-  <g transform="translate(1060, 3550)">
-    <rect x="0" y="0" width="920" height="180" fill="#000" rx="2"/>
-    <text x="460" y="40" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffd700" text-anchor="middle">The Norton Utilities</text>
-    <text x="460" y="65" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">Advanced Edition 4.5</text>
-    <text x="460" y="95" font-family="Times New Roman, serif" font-size="14" fill="#cccccc" text-anchor="middle">Recover deleted files. Optimize disk performance. Diagnose hardware.</text>
-    <text x="460" y="115" font-family="Times New Roman, serif" font-size="14" fill="#cccccc" text-anchor="middle">Edit any sector. Batch enhancements. Screen attributes. $150.</text>
-    <text x="460" y="145" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffd700" text-anchor="middle">Peter Norton Computing • Santa Monica, CA</text>
-    <text x="460" y="170" font-family="Times New Roman, serif" font-size="10" fill="#888" text-anchor="middle" font-style="italic">Circle number 92 on the reader service card.</text>
-  </g>
-
-  <!-- Specs box for polyDBackup -->
-  <g transform="translate(60, 3340)">
-    <rect x="0" y="0" width="900" height="110" fill="#f0ede4" stroke="#000" stroke-width="0.75"/>
-    <rect x="0" y="0" width="900" height="20" fill="#000"/>
-    <text x="450" y="15" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">SPECIFICATIONS — polyDBackup</text>
-    <text x="10" y="38" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#000">
-      <tspan x="10" dy="0" font-weight="bold">Supports:</tspan><tspan> PostgreSQL, MySQL, MariaDB</tspan>
-      <tspan x="10" dy="15" font-weight="bold">Storage:</tspan><tspan> Any S3-compatible (AWS, MinIO, Wasabi, etc.)</tspan>
-      <tspan x="10" dy="15" font-weight="bold">Features:</tspan><tspan> Compression, AES-256 encryption, retention mgmt, restore verification via checksums</tspan>
-      <tspan x="10" dy="15" font-weight="bold">Deploy:</tspan><tspan> Docker container, systemd timer, or cron</tspan>
-      <tspan x="10" dy="15" font-weight="bold">Requires:</tspan><tspan> Bash, S3 CLI (aws/mc), database client tools</tspan>
-      <tspan x="450" dy="0" font-weight="bold">Price:</tspan><tspan> Free (GPL-3.0)</tspan>
-    </text>
-  </g>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PAGE 4: SHELLAMA + MINI-REVIEWS                                     -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="3960" width="2040" height="1320" fill="#f5f2ea"/>
-
-  <!-- Header bar -->
-  <rect x="0" y="3960" width="2040" height="44" fill="#cc0000"/>
-  <text x="60" y="3992" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" letter-spacing="3">PERSONAL COMPUTING</text>
-  <text x="1020" y="3992" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">FIRST LOOKS</text>
-  <text x="1980" y="3992" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="end">June 10, 2026</text>
-
-  <!-- Page number -->
-  <text x="1020" y="5265" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">48    PERSONAL COMPUTING    JUNE 10, 2026</text>
-
-  <!-- ─── sheLLaMa Review (full width, top) ─── -->
-  <text x="60" y="4045" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#000">sheLLaMa</text>
-  <text x="310" y="4045" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#444"> — AI-Powered Agentic Shell</text>
-  <text x="60" y="4070" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#444">PFWorks • Free (Open Source)</text>
-  <!-- Rating -->
-  <text x="1980" y="4045" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#cc0000" text-anchor="end">★★★★½</text>
-  <line x1="60" y1="4080" x2="1980" y2="4080" stroke="#000" stroke-width="0.5"/>
-
-  <!-- Two-column sheLLaMa review -->
-  <text x="60" y="4110" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="60" dy="0" font-weight="bold" font-size="14">W</tspan><tspan>hat if your shell could write its own commands? sheLLaMa integrates</tspan>
-    <tspan x="60" dy="16">large language models directly into bash and PowerShell, creating what</tspan>
-    <tspan x="60" dy="16">the developer calls an "agentic shell." Type a natural-language request</tspan>
-    <tspan x="60" dy="16">prefixed with a comma, and the AI proposes commands, executes them</tspan>
-    <tspan x="60" dy="16">(with your approval), reads the output, and iterates up to 10 rounds.</tspan>
-    <tspan x="60" dy="18">The tool supports local LLMs via Ollama, cloud fallback, distributed</tspan>
-    <tspan x="60" dy="16">backends for load balancing, and runs fully offline after the initial model</tspan>
-    <tspan x="60" dy="16">pull. Permission tiers ensure destructive commands are blocked while</tspan>
-    <tspan x="60" dy="16">read-only operations auto-execute. It even snapshots your bash environ-</tspan>
-    <tspan x="60" dy="16">ment (functions, aliases, variables) so the AI's commands inherit context.</tspan>
-    <tspan x="60" dy="18">Beyond the shell, sheLLaMa offers a web GUI, REST API, OpenAI-</tspan>
-    <tspan x="60" dy="16">compatible endpoint (works with Cursor and Continue), image generation</tspan>
-    <tspan x="60" dy="16">via Stable Diffusion, and even a cloud cost estimation dashboard. It's</tspan>
-    <tspan x="60" dy="16">ambitious — perhaps too ambitious — but impressively cohesive.</tspan>
-  </text>
-
-  <text x="1060" y="4110" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="1060" dy="0">We tested with Ollama running Llama 3 on an RTX 4090. Response</tspan>
-    <tspan x="1060" dy="16">times averaged 1.2 seconds for simple commands, 4-6 seconds for</tspan>
-    <tspan x="1060" dy="16">multi-step agentic loops. The conversation save/load and branching</tspan>
-    <tspan x="1060" dy="16">features are genuinely useful for long exploratory sessions. Auto-</tspan>
-    <tspan x="1060" dy="16">compaction keeps context within model limits gracefully.</tspan>
-    <tspan x="1060" dy="18">The PowerShell integration is equally capable — rare for AI coding</tspan>
-    <tspan x="1060" dy="16">tools that treat Windows as an afterthought. File editing uses diff-</tspan>
-    <tspan x="1060" dy="16">based search-and-replace with previews before confirming, and web</tspan>
-    <tspan x="1060" dy="16">search lets the AI look up documentation mid-task.</tspan>
-    <tspan x="1060" dy="18">The admin console provides real-time stats on token usage, costs,</tspan>
-    <tspan x="1060" dy="16">and backend health. If you run multiple Ollama instances, the load</tspan>
-    <tspan x="1060" dy="16">balancer distributes work intelligently. Half a star deducted only</tspan>
-    <tspan x="1060" dy="16">because initial setup (model pulling, backend config) requires non-</tspan>
-    <tspan x="1060" dy="16">trivial Linux knowledge. Once running, it's superb.</tspan>
-  </text>
-
-  <!-- Column divider -->
-  <line x1="1030" y1="4095" x2="1030" y2="4360" stroke="#ccc" stroke-width="0.5"/>
-
-  <text x="60" y="4385" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#333" font-style="italic">Circle number 205 on the reader service card.</text>
-
-  <!-- Separator -->
-  <line x1="60" y1="4405" x2="1980" y2="4405" stroke="#cc0000" stroke-width="2"/>
-
-  <!-- ─── UTILITY ROUNDUP section ─── -->
-  <text x="60" y="4445" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#000">UTILITY ROUNDUP</text>
-  <line x1="60" y1="4455" x2="1980" y2="4455" stroke="#000" stroke-width="0.5"/>
-
-  <!-- lsb_release mini review (left) -->
-  <text x="60" y="4490" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#000">lsb_release</text>
-  <text x="270" y="4490" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#444">PFWorks • Free</text>
-  <text x="950" y="4490" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cc0000" text-anchor="end">★★★★☆</text>
-
-  <text x="60" y="4520" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="60" dy="0">Red Hat dropped the 'lsb_release' command from RHEL 9 and its</tspan>
-    <tspan x="60" dy="16">derivatives, breaking countless scripts that depend on it. This tiny shell</tspan>
-    <tspan x="60" dy="16">script drop-in replacement parses /etc/os-release and provides identical</tspan>
-    <tspan x="60" dy="16">output. Install it, and your existing automation works again. Dead simple,</tspan>
-    <tspan x="60" dy="16">exactly as it should be. No dependencies beyond bash.</tspan>
-  </text>
-  <text x="60" y="4620" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#333" font-style="italic">Circle number 206 on the reader service card.</text>
-
-  <!-- dhcp-bridge-test mini review (right) -->
-  <text x="1060" y="4490" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#000">dhcp-bridge-test</text>
-  <text x="1340" y="4490" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#444">PFWorks • Free</text>
-  <text x="1980" y="4490" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cc0000" text-anchor="end">★★★★☆</text>
-
-  <text x="1060" y="4520" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="1060" dy="0">Testing DHCP on bridged or VLAN-tagged interfaces is a pain. This</tspan>
-    <tspan x="1060" dy="16">script takes a MAC address and bridge name, fires a DHCP request on</tspan>
-    <tspan x="1060" dy="16">that specific interface, and shows you exactly what happened. The TUI</tspan>
-    <tspan x="1060" dy="16">mode (--tui flag) provides a split-screen display with real-time packet</tspan>
-    <tspan x="1060" dy="16">capture. Invaluable for libvirt/KVM and containerized network debugging.</tspan>
-  </text>
-  <text x="1060" y="4620" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#333" font-style="italic">Circle number 207 on the reader service card.</text>
-
-  <!-- Vertical divider between mini reviews -->
-  <line x1="1020" y1="4470" x2="1020" y2="4630" stroke="#ccc" stroke-width="0.5"/>
-
-  <!-- ─── Bottom ad: ISA Ethernet card ─── -->
-  <line x1="60" y1="4660" x2="1980" y2="4660" stroke="#000" stroke-width="1"/>
-  <text x="1020" y="4678" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
-
-  <g transform="translate(60, 4690)">
-    <rect x="0" y="0" width="1920" height="200" fill="#000" rx="2"/>
-    <!-- ISA card illustration -->
-    <g transform="translate(50, 30)">
-      <rect x="0" y="20" width="280" height="80" fill="#1a6b1a" rx="2" stroke="#0d4d0d" stroke-width="1"/>
-      <rect x="80" y="100" width="120" height="22" fill="#2a5e2a"/>
-      <rect x="85" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="93" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="101" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="109" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="117" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="125" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="133" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="141" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="149" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="157" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="165" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="173" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="181" y="103" width="5" height="16" fill="#d4a017"/>
-      <rect x="189" y="103" width="5" height="16" fill="#d4a017"/>
-      <!-- Chips -->
-      <rect x="25" y="35" width="40" height="18" fill="#111" rx="1"/>
-      <rect x="80" y="35" width="50" height="22" fill="#222" rx="1"/>
-      <rect x="150" y="35" width="30" height="18" fill="#111" rx="1"/>
-      <rect x="200" y="30" width="25" height="25" fill="#111" rx="1"/>
-      <!-- Bracket -->
-      <rect x="0" y="8" width="12" height="100" fill="#c0c0c0"/>
-      <rect x="-5" y="30" width="12" height="18" fill="#888" stroke="#666" stroke-width="0.5"/>
-      <!-- BNC connector -->
-      <circle cx="3" cy="80" r="8" fill="#888" stroke="#666" stroke-width="1"/>
-      <circle cx="3" cy="80" r="4" fill="#ccc"/>
-    </g>
-    <text x="400" y="55" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">3Com EtherLink II (3C503)</text>
-    <text x="400" y="82" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffcc00">8-BIT ISA ETHERNET FOR EVERY PC.</text>
-    <text x="400" y="115" font-family="Times New Roman, serif" font-size="14" fill="#cccccc">Works in any IBM PC, XT, AT, or compatible. 10Base-2 (BNC) and AUI connectors.</text>
-    <text x="400" y="137" font-family="Times New Roman, serif" font-size="14" fill="#cccccc">On-board 8KB buffer. Hardware-configurable IRQ and I/O address. Novell-certified.</text>
-    <text x="400" y="159" font-family="Times New Roman, serif" font-size="14" fill="#cccccc">Includes drivers for NetWare, NDIS, and Packet Driver. $295 suggested retail.</text>
-    <text x="1700" y="75" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffcc00" text-anchor="middle">3Com</text>
-    <text x="1700" y="100" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#888" text-anchor="middle">Santa Clara, CA</text>
-    <text x="960" y="190" font-family="Times New Roman, serif" font-size="11" fill="#888" text-anchor="middle" font-style="italic">Circle number 34 on the reader service card.</text>
-  </g>
-
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PAGE 5: LETTERS + BACK PAGE ADS                                     -->
-  <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="5280" width="2040" height="1320" fill="#f5f2ea"/>
-
-  <!-- Header bar -->
-  <rect x="0" y="5280" width="2040" height="44" fill="#cc0000"/>
-  <text x="60" y="5312" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" letter-spacing="3">PERSONAL COMPUTING</text>
-  <text x="1020" y="5312" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">LETTERS</text>
-  <text x="1980" y="5312" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="end">June 10, 2026</text>
-
-  <!-- Page number -->
-  <text x="1020" y="6585" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">112    PERSONAL COMPUTING    JUNE 10, 2026</text>
-
-  <!-- Letters to the Editor -->
-  <text x="60" y="5370" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#000">LETTERS TO THE EDITOR</text>
-  <line x1="60" y1="5382" x2="1980" y2="5382" stroke="#000" stroke-width="0.5"/>
-
-  <!-- Letter 1 -->
-  <text x="60" y="5415" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#000">WSL BACKUPS SAVED MY PROJECT</text>
-  <text x="60" y="5440" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="60" dy="0">After reading your preview of PCmigrate (April issue), I immediately set it up for WSL-only backups. Last week I</tspan>
-    <tspan x="60" dy="16">accidentally ran 'rm -rf /' inside my Ubuntu 22.04 instance instead of the container I was targeting. PCmigrate had</tspan>
-    <tspan x="60" dy="16">a 3-hour-old VHDX export on my USB drive. Restored in two minutes. Subscription to Personal Computing: $47/year.</tspan>
-    <tspan x="60" dy="16">Not losing six months of ML training configs: priceless. — D. Markham, Portland, OR</tspan>
-  </text>
-
-  <!-- Letter 2 -->
-  <text x="60" y="5530" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#000">polyDBackup CHECKSUM VERIFICATION CAUGHT A SILENT CORRUPTION</text>
-  <text x="60" y="5555" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="60" dy="0">We've been running polyDBackup for three months against our production PostgreSQL cluster. Last Tuesday the</tspan>
-    <tspan x="60" dy="16">verification step flagged a checksum mismatch on our orders table. Turns out a bad RAM stick was flipping bits</tspan>
-    <tspan x="60" dy="16">during dumps. Without the checksums, we'd have been restoring corrupted backups and never known. The staging</tspan>
-    <tspan x="60" dy="16">database safety model also gives our DBA peace of mind — no chance of accidental production writes.</tspan>
-    <tspan x="60" dy="16">— R. Vasquez, Systems Architect, Miami, FL</tspan>
-  </text>
-
-  <!-- Letter 3 -->
-  <text x="60" y="5660" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold" fill="#000">SHELLAMA REPLACED THREE SEPARATE TOOLS</text>
-  <text x="60" y="5685" font-family="Times New Roman, serif" font-size="13" fill="#000">
-    <tspan x="60" dy="0">I was using GitHub Copilot CLI, a separate Ollama wrapper, and ChatGPT in a browser tab. sheLLaMa replaced all</tspan>
-    <tspan x="60" dy="16">three. The agentic loop that proposes, executes, reads output, and iterates is genuinely useful for complex sysadmin</tspan>
-    <tspan x="60" dy="16">tasks. The permission system prevents disasters, and conversation branching lets me explore "what if" scenarios</tspan>
-    <tspan x="60" dy="16">without losing my main thread. Plus it runs fully local on my workstation. No data leaves my network.</tspan>
-    <tspan x="60" dy="16">— K. Johansson, DevOps Engineer, Stockholm, Sweden</tspan>
-  </text>
-
-  <!-- Separator -->
-  <line x1="60" y1="5790" x2="1980" y2="5790" stroke="#000" stroke-width="1"/>
-
-  <!-- ─── Back page ads ─── -->
-  <text x="1020" y="5810" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle">MARKETPLACE</text>
-
-  <!-- Ad grid - 2x2 -->
-  <!-- Ad: CompuServe -->
-  <g transform="translate(60, 5830)">
-    <rect x="0" y="0" width="920" height="170" fill="#003366" rx="3"/>
-    <text x="460" y="35" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffffff" text-anchor="middle">CompuServe</text>
-    <text x="460" y="60" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffcc00" text-anchor="middle">THE INFORMATION SERVICE YOU WON'T OUTGROW.</text>
-    <text x="460" y="90" font-family="Times New Roman, serif" font-size="13" fill="#ddd" text-anchor="middle">Forums. Email. News. Software libraries with 200,000+ files.</text>
-    <text x="460" y="110" font-family="Times New Roman, serif" font-size="13" fill="#ddd" text-anchor="middle">Stock quotes. Online shopping. CB Simulator. $6/hour (300 baud).</text>
-    <text x="460" y="140" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Call 1-800-848-8199 for your free introductory membership.</text>
-    <text x="460" y="163" font-family="Times New Roman, serif" font-size="10" fill="#aaa" text-anchor="middle" font-style="italic">Circle number 201 on the reader service card.</text>
-  </g>
-
-  <!-- Ad: QEMM-386 -->
-  <g transform="translate(1060, 5830)">
-    <rect x="0" y="0" width="920" height="170" fill="#ffffff" stroke="#000" stroke-width="1.5"/>
-    <text x="460" y="35" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#0000aa" text-anchor="middle">QEMM-386</text>
-    <text x="460" y="60" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Quarterdeck Office Systems</text>
-    <text x="460" y="88" font-family="Times New Roman, serif" font-size="13" fill="#000" text-anchor="middle">Break the 640K barrier! Load TSRs and drivers into high memory.</text>
-    <text x="460" y="108" font-family="Times New Roman, serif" font-size="13" fill="#000" text-anchor="middle">Stealth mode maps ROM into RAM for extra speed. Requires 386 or above.</text>
-    <text x="460" y="135" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#0000aa" text-anchor="middle">$99.95</text>
-    <text x="460" y="163" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 177 on the reader service card.</text>
-  </g>
-
-  <!-- Ad: Epson LQ-850 -->
-  <g transform="translate(60, 6030)">
-    <rect x="0" y="0" width="920" height="170" fill="#f0f0f0" stroke="#000" stroke-width="1"/>
-    <!-- Printer illustration -->
-    <g transform="translate(30, 25)">
-      <rect x="0" y="20" width="120" height="60" fill="#e0e0e0" rx="4" stroke="#999" stroke-width="1"/>
-      <rect x="10" y="0" width="100" height="25" fill="#fff" stroke="#ccc" stroke-width="0.5"/>
-      <rect x="25" y="70" width="70" height="25" fill="#fff"/>
-    </g>
-    <text x="180" y="45" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#000">EPSON LQ-850</text>
-    <text x="180" y="68" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#555">24-Pin Dot Matrix Printer</text>
-    <text x="180" y="95" font-family="Times New Roman, serif" font-size="13" fill="#333">Near letter-quality at 220 cps. Draft mode 330 cps. 8 resident fonts.</text>
-    <text x="180" y="115" font-family="Times New Roman, serif" font-size="13" fill="#333">Parallel and serial interfaces. Push tractor standard. Quiet operation.</text>
-    <text x="180" y="140" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">$849</text>
-    <text x="460" y="163" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 63 on the reader service card.</text>
-  </g>
-
-  <!-- Ad: SideKick Plus -->
-  <g transform="translate(1060, 6030)">
-    <rect x="0" y="0" width="920" height="170" fill="#000" rx="2"/>
-    <text x="460" y="40" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#00ccff" text-anchor="middle">SideKick Plus</text>
-    <text x="460" y="62" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Borland International</text>
-    <text x="460" y="92" font-family="Times New Roman, serif" font-size="13" fill="#cccccc" text-anchor="middle">Notepad. Calculator. Calendar. Phone dialer. ASCII table. Outliner.</text>
-    <text x="460" y="112" font-family="Times New Roman, serif" font-size="13" fill="#cccccc" text-anchor="middle">All memory-resident, all available with a single keystroke. Only $79.95.</text>
-    <text x="460" y="140" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#00ccff" text-anchor="middle">Ctrl-Alt anytime, anywhere. The original desktop utility.</text>
-    <text x="460" y="163" font-family="Times New Roman, serif" font-size="10" fill="#888" text-anchor="middle" font-style="italic">Circle number 88 on the reader service card.</text>
-  </g>
-
-  <!-- Reader Service Card reminder -->
-  <g transform="translate(60, 6240)">
-    <rect x="0" y="0" width="1920" height="100" fill="#fff8e0" stroke="#cc0000" stroke-width="1.5" rx="3"/>
-    <text x="960" y="30" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#cc0000" text-anchor="middle">FREE PRODUCT INFORMATION — USE THE READER SERVICE CARD</text>
-    <text x="960" y="55" font-family="Times New Roman, serif" font-size="13" fill="#333" text-anchor="middle">Circle the numbers on the attached postage-paid card that correspond to the products and advertisers that interest you.</text>
-    <text x="960" y="75" font-family="Times New Roman, serif" font-size="13" fill="#333" text-anchor="middle">Drop it in the mail and we'll rush you free information directly from the manufacturer. Allow 6-8 weeks for delivery.</text>
-    <text x="960" y="95" font-family="Times New Roman, serif" font-size="11" fill="#666" text-anchor="middle">This card expires August 31, 2026.</text>
-  </g>
 
   <!-- Footer -->
-  <text x="1020" y="6380" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">PERSONAL COMPUTING (ISSN 0800-5432) is published biweekly by PF Publications, Inc., One Park Avenue, New York, NY 10016. Second-class postage paid at New York, NY.</text>
-  <text x="1020" y="6398" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#666" text-anchor="middle">Subscription rates: $47.97 for one year (26 issues), $89.97 for two years. Canada and Mexico add $12/year. All other countries add $50/year (air mail delivery).</text>
+  <line x1="100" y1="2280" x2="920" y2="2280" stroke="#444" stroke-width="1"/>
+  <text x="510" y="2305" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#888" text-anchor="middle">Digital Equipment Corporation • Maynard, Massachusetts</text>
+  <text x="510" y="2325" font-family="Times New Roman, serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">Circle number 1 on the reader service card.</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 3: PCmigrate + polyDBackup REVIEWS                            -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="2640" width="1020" height="1320" fill="#f5f2ea"/>
+  <rect x="0" y="2640" width="1020" height="38" fill="#cc0000"/>
+  <text x="30" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" letter-spacing="2">PERSONAL COMPUTING</text>
+  <text x="510" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle">FIRST LOOKS</text>
+  <text x="990" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="end">June 10, 2026</text>
+  <text x="510" y="3948" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">46    PERSONAL COMPUTING    JUNE 10, 2026</text>
+
+  <!-- PCmigrate review -->
+  <g transform="translate(820, 2690)">
+    <rect x="0" y="0" width="165" height="100" fill="#cc0000" rx="3" stroke="#ffd700" stroke-width="1.5"/>
+    <text x="82" y="22" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffd700" text-anchor="middle">★ ★ ★ ★ ★</text>
+    <text x="82" y="42" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EDITORS'</text>
+    <text x="82" y="57" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">CHOICE</text>
+    <text x="82" y="76" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#ffcccc" text-anchor="middle">PCmigrate 0.4</text>
+    <text x="82" y="90" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#ffcccc" text-anchor="middle">PFWorks</text>
+  </g>
+
+  <text x="40" y="2715" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000">PCmigrate 0.4</text>
+  <text x="40" y="2738" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#444">PFWorks • Free (Open Source) • github.com/pfworks/PCmigrate</text>
+  <line x1="40" y1="2748" x2="980" y2="2748" stroke="#000" stroke-width="0.5"/>
+
+  <!-- Two-column PCmigrate review -->
+  <text x="40" y="2773" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="40" dy="0" font-weight="bold" font-size="13">M</tspan><tspan>oving to a new Windows PC has always meant a lost</tspan>
+    <tspan x="40" dy="15">weekend. PCmigrate fixes that. One click exports your</tspan>
+    <tspan x="40" dy="15">entire environment — installed software with versions,</tspan>
+    <tspan x="40" dy="15">license keys, winget packages, WSL distributions (as</tspan>
+    <tspan x="40" dy="15">.tar or .vhdx), and AppData folders — to an external</tspan>
+    <tspan x="40" dy="15">drive. On the new machine, run the generated restore</tspan>
+    <tspan x="40" dy="15">script and 'winget import' and 'wsl --import' bring</tspan>
+    <tspan x="40" dy="15">everything back. Our test: 47 apps, 2 WSL distros,</tspan>
+    <tspan x="40" dy="15">under 5 minutes to export, 11 to restore.</tspan>
+    <tspan x="40" dy="17">The dark WPF GUI is polished and responsive. WSL-</tspan>
+    <tspan x="40" dy="15">Only mode makes it a standalone backup tool. The</tspan>
+    <tspan x="40" dy="15">interactive HTML checklist with per-app download links</tspan>
+    <tspan x="40" dy="15">and hidden license keys is a thoughtful touch.</tspan>
+  </text>
+  <text x="530" y="2773" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="530" dy="0">Export produces a CSV inventory, HTML checklist,</tspan>
+    <tspan x="530" dy="15">winget JSON, WSL archives (.tar for WSL 1, .vhdx for</tspan>
+    <tspan x="530" dy="15">WSL 2), zipped AppData, and a self-contained restore</tspan>
+    <tspan x="530" dy="15">script. The "Export + Bundle" option wraps everything</tspan>
+    <tspan x="530" dy="15">into a single zip you can hand to anyone.</tspan>
+    <tspan x="530" dy="17">SmartScreen warnings on the unsigned installer are</tspan>
+    <tspan x="530" dy="15">the only friction. PowerShell 5.1 compatible. Works on</tspan>
+    <tspan x="530" dy="15">Windows 10 (1709+) and 11. Handles drive roots,</tspan>
+    <tspan x="530" dy="15">trailing slashes, and Zone.Identifier blocking gracefully.</tspan>
+    <tspan x="530" dy="15">Highly recommended for anyone upgrading their PC</tspan>
+    <tspan x="530" dy="15">or anyone who lives in WSL and wants a safety net.</tspan>
+  </text>
+  <line x1="510" y1="2760" x2="510" y2="2965" stroke="#ddd" stroke-width="0.5"/>
+  <text x="40" y="2985" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 203 on the reader service card.</text>
+
+  <!-- Separator -->
+  <line x1="40" y1="3000" x2="980" y2="3000" stroke="#cc0000" stroke-width="1.5"/>
+
+  <!-- polyDBackup review -->
+  <text x="40" y="3035" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000">polyDBackup 1.0</text>
+  <text x="980" y="3035" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cc0000" text-anchor="end">★★★★☆</text>
+  <text x="40" y="3055" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#444">PFWorks • Free (GPL-3.0)</text>
+  <line x1="40" y1="3065" x2="980" y2="3065" stroke="#000" stroke-width="0.5"/>
+
+  <text x="40" y="3088" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="40" dy="0" font-weight="bold" font-size="13">D</tspan><tspan>atabase backups are like insurance: boring until you</tspan>
+    <tspan x="40" dy="15">need them. polyDBackup makes them reliable. This</tspan>
+    <tspan x="40" dy="15">shell-based tool dumps PostgreSQL, MySQL, or Maria-</tspan>
+    <tspan x="40" dy="15">DB to S3 with compression, optional AES-256 encryp-</tspan>
+    <tspan x="40" dy="15">tion, and automated restore verification via table-level</tspan>
+    <tspan x="40" dy="15">checksums. A hard-coded staging database prevents</tspan>
+    <tspan x="40" dy="15">accidental writes to production. The backup user gets</tspan>
+    <tspan x="40" dy="15">read-only grants on live data and full control only on</tspan>
+    <tspan x="40" dy="15">the staging workspace. Even a misconfigured cron job</tspan>
+    <tspan x="40" dy="15">can't damage live data.</tspan>
+  </text>
+  <text x="530" y="3088" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="530" dy="0">We tested with a 40 GB PostgreSQL instance: dump,</tspan>
+    <tspan x="530" dy="15">compress, encrypt, upload, and verify in under 12</tspan>
+    <tspan x="530" dy="15">minutes. The '.verified' marker in S3 after a successful</tspan>
+    <tspan x="530" dy="15">checksum comparison gives peace of mind no other</tspan>
+    <tspan x="530" dy="15">backup tool provides out of the box. Retention purges</tspan>
+    <tspan x="530" dy="15">old backups automatically. Runs as a container, systemd</tspan>
+    <tspan x="530" dy="15">timer, or cron. Deducting one star only because docs</tspan>
+    <tspan x="530" dy="15">assume S3 CLI familiarity. Otherwise excellent for any</tspan>
+    <tspan x="530" dy="15">shop running PostgreSQL or MariaDB in production.</tspan>
+  </text>
+  <line x1="510" y1="3075" x2="510" y2="3240" stroke="#ddd" stroke-width="0.5"/>
+  <text x="40" y="3270" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 204 on the reader service card.</text>
+
+  <!-- Bottom ad: Borland Turbo Pascal -->
+  <g transform="translate(40, 3300)">
+    <rect x="0" y="0" width="940" height="160" fill="#fff" stroke="#cc0000" stroke-width="2" rx="2"/>
+    <text x="470" y="30" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#cc0000" text-anchor="middle">BORLAND</text>
+    <text x="470" y="55" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">TURBO PASCAL 4.0</text>
+    <text x="470" y="80" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle" font-style="italic">"The most talked about software in the industry" — BYTE</text>
+    <text x="470" y="102" font-family="Times New Roman, serif" font-size="11" fill="#000" text-anchor="middle">Compiles 27,000 lines/min. Integrated editor. Built-in debugger. Overlays. 8087 support. Only $99.95!</text>
+    <text x="470" y="125" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#cc0000" text-anchor="middle">Call 1-800-255-8008 or see your dealer today.</text>
+    <text x="470" y="150" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 87 on the reader service card.</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 4: sheLLaMa + UTILITY ROUNDUP                                 -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="3960" width="1020" height="1320" fill="#f5f2ea"/>
+  <rect x="0" y="3960" width="1020" height="38" fill="#cc0000"/>
+  <text x="30" y="3986" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" letter-spacing="2">PERSONAL COMPUTING</text>
+  <text x="510" y="3986" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle">FIRST LOOKS</text>
+  <text x="990" y="3986" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="end">June 10, 2026</text>
+  <text x="510" y="5268" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">48    PERSONAL COMPUTING    JUNE 10, 2026</text>
+
+  <!-- sheLLaMa review -->
+  <text x="40" y="4030" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000">sheLLaMa — AI-Powered Agentic Shell</text>
+  <text x="980" y="4030" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cc0000" text-anchor="end">★★★★½</text>
+  <text x="40" y="4050" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#444">PFWorks • Free (Open Source)</text>
+  <line x1="40" y1="4060" x2="980" y2="4060" stroke="#000" stroke-width="0.5"/>
+
+  <text x="40" y="4083" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="40" dy="0" font-weight="bold" font-size="13">W</tspan><tspan>hat if your shell could write its own commands?</tspan>
+    <tspan x="40" dy="15">sheLLaMa integrates LLMs directly into bash and</tspan>
+    <tspan x="40" dy="15">PowerShell. Type a natural-language request prefixed</tspan>
+    <tspan x="40" dy="15">with a comma, and the AI proposes commands, executes</tspan>
+    <tspan x="40" dy="15">them (with approval), reads output, and iterates up to</tspan>
+    <tspan x="40" dy="15">10 rounds. Supports local LLMs via Ollama, cloud fall-</tspan>
+    <tspan x="40" dy="15">back, and distributed backends. Runs fully offline after</tspan>
+    <tspan x="40" dy="15">model pull. Permission tiers block destructive commands</tspan>
+    <tspan x="40" dy="15">while read-only ops auto-execute.</tspan>
+    <tspan x="40" dy="17">Beyond the shell: web GUI, REST API, OpenAI-compat-</tspan>
+    <tspan x="40" dy="15">ible endpoint (works with Cursor), image generation,</tspan>
+    <tspan x="40" dy="15">cloud cost estimation. Ambitious but cohesive.</tspan>
+  </text>
+  <text x="530" y="4083" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="530" dy="0">We tested with Ollama + Llama 3 on RTX 4090.</tspan>
+    <tspan x="530" dy="15">Response times: 1.2s simple, 4-6s for agentic loops.</tspan>
+    <tspan x="530" dy="15">Conversation save/load, branching, and auto-compac-</tspan>
+    <tspan x="530" dy="15">tion are genuinely useful. The PowerShell integration is</tspan>
+    <tspan x="530" dy="15">equally capable — rare for AI tools that treat Windows</tspan>
+    <tspan x="530" dy="15">as an afterthought. File editing uses diff-based search-</tspan>
+    <tspan x="530" dy="15">and-replace with previews. Web search lets the AI look</tspan>
+    <tspan x="530" dy="15">up docs mid-task. Admin console shows token stats,</tspan>
+    <tspan x="530" dy="15">costs, backend health. Half star off for setup complexity.</tspan>
+  </text>
+  <line x1="510" y1="4070" x2="510" y2="4250" stroke="#ddd" stroke-width="0.5"/>
+  <text x="40" y="4275" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 205 on the reader service card.</text>
+
+  <!-- Separator -->
+  <line x1="40" y1="4295" x2="980" y2="4295" stroke="#cc0000" stroke-width="1.5"/>
+
+  <!-- UTILITY ROUNDUP -->
+  <text x="40" y="4330" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#000">UTILITY ROUNDUP</text>
+  <line x1="40" y1="4340" x2="980" y2="4340" stroke="#000" stroke-width="0.5"/>
+
+  <!-- lsb_release (left) -->
+  <text x="40" y="4370" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">lsb_release</text>
+  <text x="480" y="4370" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#cc0000" text-anchor="end">★★★★☆</text>
+  <text x="40" y="4387" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#444">PFWorks • Free • Shell Script</text>
+  <text x="40" y="4408" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="40" dy="0">Red Hat dropped lsb_release from RHEL 9, breaking</tspan>
+    <tspan x="40" dy="14">countless scripts. This drop-in shell replacement parses</tspan>
+    <tspan x="40" dy="14">/etc/os-release and provides identical output. Install it,</tspan>
+    <tspan x="40" dy="14">your automation works again. No dependencies beyond</tspan>
+    <tspan x="40" dy="14">bash. Dead simple, exactly as it should be.</tspan>
+  </text>
+  <text x="40" y="4485" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 206 on the reader service card.</text>
+
+  <!-- dhcp-bridge-test (right) -->
+  <text x="530" y="4370" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">dhcp-bridge-test</text>
+  <text x="980" y="4370" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#cc0000" text-anchor="end">★★★★☆</text>
+  <text x="530" y="4387" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#444">PFWorks • Free • Bash</text>
+  <text x="530" y="4408" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="530" dy="0">Testing DHCP on bridged or VLAN-tagged interfaces is</tspan>
+    <tspan x="530" dy="14">painful. This script takes a MAC and bridge name, fires</tspan>
+    <tspan x="530" dy="14">a DHCP request, shows what happened. TUI mode</tspan>
+    <tspan x="530" dy="14">(--tui) gives split-screen real-time packet capture.</tspan>
+    <tspan x="530" dy="14">Invaluable for libvirt/KVM network debugging.</tspan>
+  </text>
+  <text x="530" y="4485" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 207 on the reader service card.</text>
+
+  <!-- Column divider for utility roundup -->
+  <line x1="510" y1="4355" x2="510" y2="4490" stroke="#ddd" stroke-width="0.5"/>
+
+  <!-- Bottom ads -->
+  <line x1="40" y1="4510" x2="980" y2="4510" stroke="#000" stroke-width="1"/>
+  <text x="510" y="4525" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+
+  <!-- Hayes modem ad -->
+  <g transform="translate(40, 4535)">
+    <rect x="0" y="0" width="450" height="160" fill="#000" rx="2"/>
+    <text x="225" y="30" font-family="Times New Roman, serif" font-size="20" fill="#fff" text-anchor="middle" font-style="italic">Hayes Smartmodem 2400</text>
+    <text x="225" y="52" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#ffcc00" text-anchor="middle">THE WORLD'S MOST INTELLIGENT MODEM.</text>
+    <!-- Modem LEDs -->
+    <circle cx="150" cy="80" r="4" fill="#0c0"/>
+    <circle cx="165" cy="80" r="4" fill="#0c0"/>
+    <circle cx="180" cy="80" r="4" fill="#0c0"/>
+    <circle cx="195" cy="80" r="4" fill="#f00"/>
+    <circle cx="210" cy="80" r="4" fill="#333"/>
+    <circle cx="225" cy="80" r="4" fill="#0c0"/>
+    <circle cx="240" cy="80" r="4" fill="#333"/>
+    <circle cx="255" cy="80" r="4" fill="#0c0"/>
+    <rect x="140" y="90" width="125" height="20" fill="#e8e0d0" rx="2"/>
+    <text x="225" y="118" font-family="Times New Roman, serif" font-size="10" fill="#ccc" text-anchor="middle">2400 bps. Auto-dial. AT command set. $699.</text>
+    <text x="225" y="150" font-family="Times New Roman, serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Circle number 45 on the reader service card.</text>
+  </g>
+
+  <!-- Norton Utilities ad -->
+  <g transform="translate(530, 4535)">
+    <rect x="0" y="0" width="450" height="160" fill="#000" rx="2"/>
+    <text x="225" y="30" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffd700" text-anchor="middle">The Norton Utilities</text>
+    <text x="225" y="50" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle">Advanced Edition 4.5</text>
+    <text x="225" y="78" font-family="Times New Roman, serif" font-size="10" fill="#ccc" text-anchor="middle">Recover deleted files. Optimize disks.</text>
+    <text x="225" y="94" font-family="Times New Roman, serif" font-size="10" fill="#ccc" text-anchor="middle">Diagnose hardware. Edit any sector. $150.</text>
+    <text x="225" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#ffd700" text-anchor="middle">Peter Norton Computing • Santa Monica, CA</text>
+    <text x="225" y="150" font-family="Times New Roman, serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Circle number 92 on the reader service card.</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 5: LETTERS + MARKETPLACE                                       -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="5280" width="1020" height="1320" fill="#f5f2ea"/>
+  <rect x="0" y="5280" width="1020" height="38" fill="#cc0000"/>
+  <text x="30" y="5306" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" letter-spacing="2">PERSONAL COMPUTING</text>
+  <text x="510" y="5306" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle">LETTERS</text>
+  <text x="990" y="5306" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="end">June 10, 2026</text>
+  <text x="510" y="6588" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">112    PERSONAL COMPUTING    JUNE 10, 2026</text>
+
+  <!-- Letters -->
+  <text x="40" y="5350" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#000">LETTERS TO THE EDITOR</text>
+  <line x1="40" y1="5360" x2="980" y2="5360" stroke="#000" stroke-width="0.5"/>
+
+  <text x="40" y="5385" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">WSL BACKUPS SAVED MY PROJECT</text>
+  <text x="40" y="5402" font-family="Times New Roman, serif" font-size="11" fill="#000">
+    <tspan x="40" dy="0">After reading your preview of PCmigrate, I set it up for WSL-only backups. Last week I ran 'rm -rf /' inside my</tspan>
+    <tspan x="40" dy="14">Ubuntu instance instead of the container I was targeting. PCmigrate had a 3-hour-old VHDX on my USB. Restored</tspan>
+    <tspan x="40" dy="14">in two minutes. — D. Markham, Portland, OR</tspan>
+  </text>
+
+  <text x="40" y="5460" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">POLYDB CHECKSUMS CAUGHT SILENT CORRUPTION</text>
+  <text x="40" y="5477" font-family="Times New Roman, serif" font-size="11" fill="#000">
+    <tspan x="40" dy="0">We've run polyDBackup for three months. The verification step flagged a checksum mismatch — turned out a bad</tspan>
+    <tspan x="40" dy="14">RAM stick was flipping bits during dumps. Without checksums, we'd have restored corrupted backups and never</tspan>
+    <tspan x="40" dy="14">known. The staging safety model gives our DBA peace of mind. — R. Vasquez, Miami, FL</tspan>
+  </text>
+
+  <text x="40" y="5540" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">SHELLAMA REPLACED THREE TOOLS</text>
+  <text x="40" y="5557" font-family="Times New Roman, serif" font-size="11" fill="#000">
+    <tspan x="40" dy="0">I was using Copilot CLI, a separate Ollama wrapper, and ChatGPT in a browser. sheLLaMa replaced all three. The</tspan>
+    <tspan x="40" dy="14">agentic loop is genuinely useful for sysadmin tasks, and it runs fully local. No data leaves my network.</tspan>
+    <tspan x="40" dy="14">— K. Johansson, Stockholm, Sweden</tspan>
+  </text>
+
+  <!-- Separator -->
+  <line x1="40" y1="5620" x2="980" y2="5620" stroke="#000" stroke-width="1"/>
+  <text x="510" y="5640" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">MARKETPLACE</text>
+
+  <!-- Marketplace ads - 2x2 grid -->
+  <!-- CompuServe -->
+  <g transform="translate(40, 5655)">
+    <rect x="0" y="0" width="455" height="120" fill="#003366" rx="2"/>
+    <text x="228" y="25" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">CompuServe</text>
+    <text x="228" y="45" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#ffcc00" text-anchor="middle">THE INFORMATION SERVICE YOU WON'T OUTGROW.</text>
+    <text x="228" y="65" font-family="Times New Roman, serif" font-size="10" fill="#ddd" text-anchor="middle">Forums. Email. 200,000+ files. $6/hour (300 baud).</text>
+    <text x="228" y="85" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#fff" text-anchor="middle">1-800-848-8199 for free introductory membership.</text>
+    <text x="228" y="112" font-family="Times New Roman, serif" font-size="8" fill="#aaa" text-anchor="middle" font-style="italic">Circle number 201 on the reader service card.</text>
+  </g>
+
+  <!-- QEMM-386 -->
+  <g transform="translate(525, 5655)">
+    <rect x="0" y="0" width="455" height="120" fill="#fff" stroke="#000" stroke-width="1" rx="2"/>
+    <text x="228" y="25" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#0000aa" text-anchor="middle">QEMM-386</text>
+    <text x="228" y="44" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" text-anchor="middle">Quarterdeck Office Systems</text>
+    <text x="228" y="65" font-family="Times New Roman, serif" font-size="10" fill="#000" text-anchor="middle">Break the 640K barrier! Load TSRs into high memory.</text>
+    <text x="228" y="82" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#0000aa" text-anchor="middle">$99.95</text>
+    <text x="228" y="112" font-family="Times New Roman, serif" font-size="8" fill="#333" text-anchor="middle" font-style="italic">Circle number 177 on the reader service card.</text>
+  </g>
+
+  <!-- Epson printer -->
+  <g transform="translate(40, 5795)">
+    <rect x="0" y="0" width="455" height="120" fill="#f8f8f0" stroke="#000" stroke-width="0.75" rx="2"/>
+    <text x="228" y="25" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">EPSON LQ-850</text>
+    <text x="228" y="44" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">24-Pin Dot Matrix • Near letter-quality 220 cps</text>
+    <text x="228" y="65" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">8 resident fonts. Parallel + serial. Push tractor. $849.</text>
+    <text x="228" y="112" font-family="Times New Roman, serif" font-size="8" fill="#333" text-anchor="middle" font-style="italic">Circle number 63 on the reader service card.</text>
+  </g>
+
+  <!-- SideKick Plus -->
+  <g transform="translate(525, 5795)">
+    <rect x="0" y="0" width="455" height="120" fill="#000" rx="2"/>
+    <text x="228" y="25" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#00ccff" text-anchor="middle">SideKick Plus</text>
+    <text x="228" y="44" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#fff" text-anchor="middle">Borland International</text>
+    <text x="228" y="65" font-family="Times New Roman, serif" font-size="10" fill="#ccc" text-anchor="middle">Notepad. Calculator. Calendar. Dialer. Always resident.</text>
+    <text x="228" y="82" font-family="Times New Roman, serif" font-size="10" fill="#ccc" text-anchor="middle">Ctrl-Alt anytime, anywhere. $79.95.</text>
+    <text x="228" y="112" font-family="Times New Roman, serif" font-size="8" fill="#888" text-anchor="middle" font-style="italic">Circle number 88 on the reader service card.</text>
+  </g>
+
+  <!-- Reader service card box -->
+  <g transform="translate(40, 5940)">
+    <rect x="0" y="0" width="940" height="60" fill="#fff8e0" stroke="#cc0000" stroke-width="1" rx="2"/>
+    <text x="470" y="18" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#cc0000" text-anchor="middle">FREE PRODUCT INFORMATION — USE THE READER SERVICE CARD</text>
+    <text x="470" y="35" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">Circle the numbers on the attached postage-paid card. We'll rush you free info from the manufacturer.</text>
+    <text x="470" y="52" font-family="Times New Roman, serif" font-size="9" fill="#666" text-anchor="middle">Allow 6-8 weeks for delivery. Card expires August 31, 2026.</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 6: BACK COVER — Full-page 3Com ISA ad                          -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="6600" width="1020" height="1320" fill="#001a33"/>
+
+  <!-- 3Com logo bar -->
+  <rect x="0" y="6600" width="1020" height="50" fill="#003366"/>
+  <text x="510" y="6633" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">3Com</text>
+
+  <!-- Headline -->
+  <text x="510" y="6710" font-family="Times New Roman, serif" font-size="38" fill="#ffffff" text-anchor="middle" font-style="italic">Connect your office.</text>
+  <text x="510" y="6750" font-family="Times New Roman, serif" font-size="38" fill="#ffffff" text-anchor="middle" font-style="italic">Connect your future.</text>
+
+  <!-- Large ISA card illustration -->
+  <g transform="translate(180, 6790)">
+    <!-- PCB -->
+    <rect x="0" y="30" width="660" height="180" fill="#1a6b1a" rx="3" stroke="#0d4d0d" stroke-width="2"/>
+    <!-- Edge connector -->
+    <rect x="150" y="210" width="360" height="40" fill="#2a5e2a"/>
+    <rect x="160" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="174" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="188" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="202" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="216" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="230" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="244" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="258" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="272" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="286" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="300" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="314" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="328" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="342" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="356" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="370" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="384" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="398" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="412" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="426" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="440" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="454" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="468" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="482" y="215" width="8" height="30" fill="#d4a017"/>
+    <rect x="496" y="215" width="8" height="30" fill="#d4a017"/>
+    <!-- Chips -->
+    <rect x="50" y="55" width="80" height="35" fill="#111" rx="2"/>
+    <rect x="160" y="55" width="80" height="35" fill="#111" rx="2"/>
+    <rect x="270" y="50" width="100" height="45" fill="#222" rx="2"/>
+    <text x="320" y="78" font-family="monospace" font-size="8" fill="#666" text-anchor="middle">3C503</text>
+    <rect x="400" y="55" width="60" height="30" fill="#111" rx="2"/>
+    <rect x="490" y="55" width="60" height="30" fill="#111" rx="2"/>
+    <rect x="580" y="50" width="50" height="50" fill="#111" rx="2"/>
+    <!-- Capacitors -->
+    <rect x="50" y="120" width="10" height="20" fill="#336" rx="1"/>
+    <rect x="70" y="120" width="10" height="20" fill="#336" rx="1"/>
+    <rect x="90" y="120" width="10" height="20" fill="#336" rx="1"/>
+    <!-- Traces (decorative) -->
+    <line x1="130" y1="75" x2="155" y2="75" stroke="#3a8a3a" stroke-width="1"/>
+    <line x1="245" y1="70" x2="265" y2="70" stroke="#3a8a3a" stroke-width="1"/>
+    <line x1="375" y1="72" x2="395" y2="72" stroke="#3a8a3a" stroke-width="1"/>
+    <!-- Bracket -->
+    <rect x="0" y="10" width="16" height="210" fill="#c0c0c0"/>
+    <!-- RJ-45 port -->
+    <rect x="-8" y="40" width="18" height="22" fill="#888" stroke="#666" stroke-width="1"/>
+    <rect x="-5" y="44" width="12" height="14" fill="#222"/>
+    <!-- BNC connector -->
+    <circle cx="5" cy="100" r="12" fill="#999" stroke="#666" stroke-width="1"/>
+    <circle cx="5" cy="100" r="6" fill="#ccc"/>
+    <circle cx="5" cy="100" r="2" fill="#666"/>
+    <!-- AUI port -->
+    <rect x="-6" y="140" width="16" height="30" fill="#888" stroke="#666" stroke-width="1" rx="2"/>
+  </g>
+
+  <!-- Product name -->
+  <text x="510" y="7100" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff" text-anchor="middle">EtherLink II</text>
+  <text x="510" y="7135" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#ffcc00" text-anchor="middle">8-BIT ISA ETHERNET FOR EVERY PC IN YOUR OFFICE.</text>
+
+  <!-- Body copy -->
+  <text x="510" y="7185" font-family="Times New Roman, serif" font-size="15" fill="#dddddd" text-anchor="middle">
+    <tspan x="510" dy="0">Works in any IBM PC, XT, AT, or compatible with a single 8-bit slot.</tspan>
+    <tspan x="510" dy="22">10Base-2 (thin coax) and AUI connectors. On-board 8KB buffer.</tspan>
+    <tspan x="510" dy="22">Hardware-configurable IRQ and I/O base address. Novell NetWare certified.</tspan>
+    <tspan x="510" dy="22">Includes drivers for NetWare 2.x/3.x, NDIS, and Packet Driver spec.</tspan>
+    <tspan x="510" dy="22">Full 802.3 compliance. 5-year limited warranty.</tspan>
+  </text>
+
+  <!-- Price and CTA -->
+  <text x="510" y="7340" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" text-anchor="middle">$295 suggested retail</text>
+  <text x="510" y="7370" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#aaaaaa" text-anchor="middle">See your authorized 3Com dealer or call 1-800-NET-3COM</text>
+
+  <!-- Footer -->
+  <line x1="100" y1="7400" x2="920" y2="7400" stroke="#333" stroke-width="1"/>
+  <text x="510" y="7430" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#888" text-anchor="middle">3Com Corporation • 3165 Kifer Road • Santa Clara, CA 95052</text>
+  <text x="510" y="7455" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle">EtherLink is a registered trademark of 3Com Corporation. IBM is a registered trademark of International Business Machines Corporation.</text>
+  <text x="510" y="7480" font-family="Times New Roman, serif" font-size="11" fill="#666" text-anchor="middle" font-style="italic">Circle number 34 on the reader service card.</text>
+
+  <!-- Back cover footer info -->
+  <text x="510" y="7880" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">PERSONAL COMPUTING (ISSN 0800-5432) is published biweekly by PF Publications, Inc., One Park Avenue, New York, NY 10016.</text>
+  <text x="510" y="7896" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">Subscription: $47.97/year (26 issues). Canada/Mexico add $12. International add $50 (air mail).</text>
 
 </svg>
