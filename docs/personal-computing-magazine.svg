@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1020 7920" width="1020" height="7920">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1020 9240" width="1020" height="9240">
   <!-- 
     PERSONAL COMPUTING MAGAZINE — June 2026
     Portrait format: 1020×1320 per page, 6 pages
@@ -701,5 +701,115 @@
   <!-- Back cover footer info -->
   <text x="510" y="7880" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">PERSONAL COMPUTING (ISSN 0800-5432) is published biweekly by PF Publications, Inc., One Park Avenue, New York, NY 10016.</text>
   <text x="510" y="7896" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">Subscription: $47.97/year (26 issues). Canada/Mexico add $12. International add $50 (air mail).</text>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- PAGE 7: FULL-PAGE AD — MiniScribe External Hard Drive               -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <rect x="0" y="7920" width="1020" height="1320" fill="#ffffff"/>
+
+  <!-- Thin elegant border -->
+  <rect x="30" y="7950" width="960" height="1260" fill="none" stroke="#000" stroke-width="1.5"/>
+
+  <!-- Company logo/name -->
+  <text x="510" y="8010" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="bold" fill="#000" text-anchor="middle" letter-spacing="4">MiniScribe</text>
+  <text x="510" y="8035" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">Longmont, Colorado</text>
+
+  <!-- Main headline -->
+  <text x="510" y="8100" font-family="Times New Roman, serif" font-size="38" fill="#000" text-anchor="middle" font-style="italic">40 megabytes.</text>
+  <text x="510" y="8145" font-family="Times New Roman, serif" font-size="38" fill="#000" text-anchor="middle" font-style="italic">On your desk. Not in it.</text>
+
+  <!-- External drive illustration -->
+  <g transform="translate(250, 8180)">
+    <!-- Main enclosure body -->
+    <rect x="0" y="20" width="520" height="200" fill="#d4cfc4" rx="6" stroke="#999" stroke-width="2"/>
+    <!-- Front bezel - darker -->
+    <rect x="0" y="20" width="520" height="200" fill="none" rx="6" stroke="#888" stroke-width="1"/>
+    <!-- Top highlight -->
+    <rect x="5" y="22" width="510" height="8" fill="#e8e4da" rx="2"/>
+    <!-- Drive bay visible -->
+    <rect x="20" y="60" width="200" height="130" fill="#333" rx="3"/>
+    <rect x="25" y="65" width="190" height="120" fill="#2a2a2a" rx="2"/>
+    <!-- Drive activity LED -->
+    <circle cx="240" cy="90" r="5" fill="#cc0000"/>
+    <text x="255" y="94" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">BUSY</text>
+    <!-- Power LED -->
+    <circle cx="240" cy="115" r="5" fill="#00aa00"/>
+    <text x="255" y="119" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666">POWER</text>
+    <!-- MiniScribe label on unit -->
+    <text x="350" y="100" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">MiniScribe</text>
+    <text x="350" y="120" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#000" text-anchor="middle">8450XT</text>
+    <text x="350" y="142" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">40MB External Hard Disk System</text>
+    <!-- Ventilation slots on right side -->
+    <rect x="440" y="60" width="60" height="2" fill="#aaa"/>
+    <rect x="440" y="68" width="60" height="2" fill="#aaa"/>
+    <rect x="440" y="76" width="60" height="2" fill="#aaa"/>
+    <rect x="440" y="84" width="60" height="2" fill="#aaa"/>
+    <rect x="440" y="92" width="60" height="2" fill="#aaa"/>
+    <rect x="440" y="100" width="60" height="2" fill="#aaa"/>
+    <rect x="440" y="108" width="60" height="2" fill="#aaa"/>
+    <rect x="440" y="116" width="60" height="2" fill="#aaa"/>
+    <!-- Rubber feet -->
+    <rect x="30" y="218" width="40" height="6" fill="#333" rx="2"/>
+    <rect x="450" y="218" width="40" height="6" fill="#333" rx="2"/>
+    <!-- Cable coming out back (suggesting connectivity) -->
+    <path d="M260,220 C260,235 270,240 280,240 L340,240 C360,240 370,235 370,230" stroke="#444" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- ISA controller card (small, beside unit) -->
+    <rect x="400" y="240" width="100" height="50" fill="#1a6b1a" rx="2" stroke="#0d4d0d" stroke-width="1"/>
+    <rect x="430" y="290" width="40" height="12" fill="#2a5e2a"/>
+    <rect x="433" y="292" width="3" height="8" fill="#d4a017"/>
+    <rect x="439" y="292" width="3" height="8" fill="#d4a017"/>
+    <rect x="445" y="292" width="3" height="8" fill="#d4a017"/>
+    <rect x="451" y="292" width="3" height="8" fill="#d4a017"/>
+    <rect x="457" y="292" width="3" height="8" fill="#d4a017"/>
+    <rect x="463" y="292" width="3" height="8" fill="#d4a017"/>
+    <!-- Chip on card -->
+    <rect x="415" y="252" width="25" height="12" fill="#111" rx="1"/>
+    <rect x="450" y="252" width="30" height="15" fill="#222" rx="1"/>
+    <!-- Label -->
+    <text x="450" y="320" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ISA Controller Card (included)</text>
+  </g>
+
+  <!-- Body copy -->
+  <text x="510" y="8540" font-family="Times New Roman, serif" font-size="16" fill="#000" text-anchor="middle">
+    <tspan x="510" dy="0">The MiniScribe 8450XT gives you 40 megabytes of fast, reliable storage without</tspan>
+    <tspan x="510" dy="24">opening your PC. Simply connect the external enclosure to the included half-length</tspan>
+    <tspan x="510" dy="24">ISA controller card, plug in the power supply, and you're running in minutes.</tspan>
+  </text>
+
+  <!-- Features in two columns -->
+  <text x="140" y="8650" font-family="Times New Roman, serif" font-size="13" fill="#000">
+    <tspan x="140" dy="0">■ 40MB formatted capacity (53MB unformatted)</tspan>
+    <tspan x="140" dy="20">■ 28ms average access time</tspan>
+    <tspan x="140" dy="20">■ 5¼" half-height form factor</tspan>
+    <tspan x="140" dy="20">■ RLL or MFM encoding (factory configured)</tspan>
+    <tspan x="140" dy="20">■ Whisper-quiet operation (40 dBA)</tspan>
+  </text>
+  <text x="580" y="8650" font-family="Times New Roman, serif" font-size="13" fill="#000">
+    <tspan x="580" dy="0">■ External power supply included</tspan>
+    <tspan x="580" dy="20">■ Half-length 8-bit ISA controller card</tspan>
+    <tspan x="580" dy="20">■ Works with PC, XT, AT, and compatibles</tspan>
+    <tspan x="580" dy="20">■ DOS 3.x and 4.x compatible</tspan>
+    <tspan x="580" dy="20">■ 1-year limited warranty</tspan>
+  </text>
+
+  <!-- Price callout -->
+  <rect x="300" y="8790" width="420" height="60" fill="#000" rx="4"/>
+  <text x="510" y="8822" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#fff" text-anchor="middle">$595 complete</text>
+  <text x="510" y="8843" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ccc" text-anchor="middle">Drive + enclosure + controller + cables + software. Ready to run.</text>
+
+  <!-- Testimonial quote -->
+  <text x="510" y="8900" font-family="Times New Roman, serif" font-size="14" fill="#333" text-anchor="middle" font-style="italic">"The easiest hard disk installation we've ever seen. Plug in and go."</text>
+  <text x="510" y="8920" font-family="Times New Roman, serif" font-size="11" fill="#666" text-anchor="middle">— PC World, March 1988</text>
+
+  <!-- Compatibility note -->
+  <rect x="140" y="8950" width="740" height="50" fill="#f5f5f5" stroke="#ccc" stroke-width="1" rx="3"/>
+  <text x="510" y="8972" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Compatible with IBM PC, PC/XT, PC/AT, PS/2 Model 30, and 100% compatibles including Compaq, Tandy, Epson, Leading Edge,</text>
+  <text x="510" y="8990" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Zenith, and AT&amp;T. Not compatible with Micro Channel (PS/2 Model 50 and above).</text>
+
+  <!-- Footer -->
+  <line x1="100" y1="9040" x2="920" y2="9040" stroke="#000" stroke-width="1"/>
+  <text x="510" y="9070" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#000" text-anchor="middle">MiniScribe • 1861 Lefthand Circle • Longmont, CO 80501 • 303-651-6000</text>
+  <text x="510" y="9092" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Available at ComputerLand, Businessland, MicroAge, and leading computer dealers nationwide.</text>
+  <text x="510" y="9120" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle" font-style="italic">Circle number 47 on the reader service card.</text>
 
 </svg>
