@@ -92,80 +92,97 @@
   <!-- LEFT COLUMN TEXT (col 1: x=50, width ~300) -->
   <!-- ═══════════════════════════════════════════════════════ -->
 
-  <!-- Intro paragraph - spans both cols above the image area, below it goes 2-col -->
-  <text x="40" y="510" font-family="Times New Roman, serif" font-size="12.5" fill="#000">
-    <tspan x="40" dy="0" font-weight="bold" font-size="13">M</tspan><tspan>oving to a new Windows PC has always been an exercise in tedium. You spend the first weekend reinstalling</tspan>
-    <tspan x="40" dy="16">applications, hunting for license keys scrawled on Post-it notes, and praying your WSL environment survives the</tspan>
-    <tspan x="40" dy="16">journey. PCmigrate, a free open-source utility from developer PFWorks, compresses that weekend into fifteen minutes.</tspan>
+  <!-- Intro paragraph - centered, full width -->
+  <text x="510" y="510" font-family="Times New Roman, serif" font-size="12.5" fill="#000" text-anchor="middle">
+    <tspan x="510" dy="0" font-weight="bold" font-size="13">M</tspan><tspan>oving to a new Windows PC has always been an exercise in tedium. You spend the first weekend reinstalling</tspan>
+    <tspan x="510" dy="16">applications, hunting for license keys scrawled on Post-it notes, and praying your WSL environment survives the</tspan>
+    <tspan x="510" dy="16">journey. PCmigrate, a free open-source utility from developer PFWorks, compresses that weekend into fifteen minutes.</tspan>
   </text>
 
   <!-- Column 1 body -->
   <text x="40" y="580" font-family="Times New Roman, serif" font-size="12" fill="#000">
     <tspan x="40" dy="0" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">SETUP AND INTERFACE</tspan>
-    <tspan x="40" dy="18">You can grab PCmigrate as a traditional installer or portable</tspan>
-    <tspan x="40" dy="15">zip from GitHub Releases. The installer weighs under 2 MB.</tspan>
-    <tspan x="40" dy="15">On first launch it requests administrator privileges and presents</tspan>
-    <tspan x="40" dy="15">a dark-themed WPF window that feels surprisingly polished for</tspan>
-    <tspan x="40" dy="15">a PowerShell application. The interface is minimal: a path selec-</tspan>
-    <tspan x="40" dy="15">tor, an Export button with dropdown for mode selection, and a</tspan>
-    <tspan x="40" dy="15">Restore button. No wizard, no account, no telemetry. We</tspan>
-    <tspan x="40" dy="15">appreciated the restraint.</tspan>
+    <tspan x="40" dy="18">You can grab PCmigrate as a traditional installer or portable zip from</tspan>
+    <tspan x="40" dy="15">GitHub Releases. The installer weighs under 2 MB. On first launch it</tspan>
+    <tspan x="40" dy="15">requests administrator privileges and presents a dark-themed WPF</tspan>
+    <tspan x="40" dy="15">window that feels surprisingly polished for a PowerShell application.</tspan>
+    <tspan x="40" dy="15">The interface is minimal: a path selector, an Export button with a</tspan>
+    <tspan x="40" dy="15">dropdown for mode selection, and a Restore button. No wizard, no</tspan>
+    <tspan x="40" dy="15">account creation, no telemetry. We appreciated the restraint.</tspan>
     <tspan x="40" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">EXPORT PROCESS</tspan>
-    <tspan x="40" dy="18">We tested on a Dell Precision workstation running Windows 11</tspan>
-    <tspan x="40" dy="15">23H2 with 47 Win32 apps, 12 Store apps, two WSL distributions</tspan>
-    <tspan x="40" dy="15">(Ubuntu 22.04 on WSL 2 and Alpine on WSL 1), and license</tspan>
-    <tspan x="40" dy="15">keys in the registry.</tspan>
-    <tspan x="40" dy="18">Clicking Export Only with the output aimed at a Samsung T7</tspan>
-    <tspan x="40" dy="15">SSD took 4 minutes 38 seconds. The tool produced a CSV</tspan>
-    <tspan x="40" dy="15">inventory, interactive HTML checklist with download links,</tspan>
-    <tspan x="40" dy="15">winget JSON export, full Ubuntu VHDX and Alpine tar, .wsl-</tspan>
-    <tspan x="40" dy="15">config, zipped AppData folders, and a restore script.</tspan>
-    <tspan x="40" dy="18">The HTML checklist deserves special mention. It renders a dark-</tspan>
-    <tspan x="40" dy="15">themed page with checkboxes. Check off an app and the row</tspan>
-    <tspan x="40" dy="15">grays out. License keys hide behind a click-to-reveal toggle with</tspan>
-    <tspan x="40" dy="15">a per-key copy button. Small touch, real time saved.</tspan>
+    <tspan x="40" dy="18">We tested on a Dell Precision workstation running Windows 11 23H2</tspan>
+    <tspan x="40" dy="15">with 47 Win32 apps, 12 Store apps, two WSL distributions (Ubuntu</tspan>
+    <tspan x="40" dy="15">22.04 on WSL 2 and Alpine on WSL 1), and license keys in the registry.</tspan>
+    <tspan x="40" dy="18">Clicking Export Only with the output aimed at a Samsung T7 SSD took</tspan>
+    <tspan x="40" dy="15">4 minutes 38 seconds. The tool produced a CSV inventory, interactive</tspan>
+    <tspan x="40" dy="15">HTML checklist with download links, winget JSON export, full Ubuntu</tspan>
+    <tspan x="40" dy="15">VHDX and Alpine tar, .wslconfig, zipped AppData folders, and a</tspan>
+    <tspan x="40" dy="15">generated restore script.</tspan>
+    <tspan x="40" dy="18">The HTML checklist deserves special mention. It renders a dark-themed</tspan>
+    <tspan x="40" dy="15">page with checkboxes. Check off an app and the row grays out. License</tspan>
+    <tspan x="40" dy="15">keys hide behind a click-to-reveal toggle with a per-key copy button.</tspan>
+    <tspan x="40" dy="15">Small touch, real time saved.</tspan>
   </text>
 
   <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- RIGHT COLUMN TEXT (col 2: x=530, width ~300) -->
+  <!-- SMALL INLINE AD (bottom of left column) -->
   <!-- ═══════════════════════════════════════════════════════ -->
-  <text x="525" y="580" font-family="Times New Roman, serif" font-size="12" fill="#000">
-    <tspan x="525" dy="0" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">WSL BACKUP</tspan>
-    <tspan x="525" dy="18">The WSL-Only mode skips software inventory and just exports</tspan>
-    <tspan x="525" dy="15">your Linux distributions. For developers who routinely break</tspan>
-    <tspan x="525" dy="15">their WSL setup experimenting with kernel builds, this is a one-</tspan>
-    <tspan x="525" dy="15">click safety net. We exported a 14 GB Ubuntu VHDX to USB</tspan>
-    <tspan x="525" dy="15">3.2 in just over two minutes—limited entirely by sequential</tspan>
-    <tspan x="525" dy="15">write speed. On restore the tool creates install directories, runs</tspan>
-    <tspan x="525" dy="15">wsl --import with correct flags, and prints a reminder to set</tspan>
-    <tspan x="525" dy="15">your default user.</tspan>
-    <tspan x="525" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">RESTORE</tspan>
-    <tspan x="525" dy="18">We moved the Samsung T7 to a fresh Windows 11 machine.</tspan>
-    <tspan x="525" dy="15">Winget imported 39 of 47 packages (the remainder had changed</tspan>
-    <tspan x="525" dy="15">IDs). Both WSL distributions came back intact, including shell</tspan>
-    <tspan x="525" dy="15">history and SSH keys. The entire restore took 11 minutes on a</tspan>
-    <tspan x="525" dy="15">gigabit connection.</tspan>
-    <tspan x="525" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">ROUGH EDGES</tspan>
-    <tspan x="525" dy="18">SmartScreen flags the unsigned installer. No scheduled backup</tspan>
-    <tspan x="525" dy="15">option yet—you must remember to run exports manually. A</tspan>
-    <tspan x="525" dy="15">Task Scheduler integration would round out the WSL backup</tspan>
-    <tspan x="525" dy="15">story nicely.</tspan>
-    <tspan x="525" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">CONCLUSIONS</tspan>
-    <tspan x="525" dy="18">PCmigrate fills the gap Microsoft left when it retired Windows</tspan>
-    <tspan x="525" dy="15">Easy Transfer. It's free, fast, respects your privacy, and handles</tspan>
-    <tspan x="525" dy="15">WSL—the one thing most migration tools ignore entirely.</tspan>
-    <tspan x="525" dy="15">Whether you're moving to a new machine or want insurance</tspan>
-    <tspan x="525" dy="15">before your next rm -rf mishap, PCmigrate earns our Editors'</tspan>
-    <tspan x="525" dy="15">Choice.</tspan>
+  <g transform="translate(40, 930)">
+    <rect x="0" y="0" width="440" height="130" fill="#fff" stroke="#000" stroke-width="1"/>
+    <rect x="4" y="4" width="432" height="122" fill="#fff" stroke="#000" stroke-width="0.5" stroke-dasharray="2,2"/>
+    <!-- Floppy disk icon -->
+    <g transform="translate(15, 18)">
+      <rect x="0" y="0" width="55" height="55" fill="#222" rx="3"/>
+      <rect x="15" y="0" width="25" height="18" fill="#ccc"/>
+      <rect x="19" y="3" width="17" height="12" fill="#666"/>
+      <rect x="10" y="30" width="35" height="22" fill="#eee" rx="2"/>
+    </g>
+    <text x="85" y="32" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">PKZIP 2.04g</text>
+    <text x="85" y="48" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#000">PKWARE, Inc. — Brown Deer, WI</text>
+    <text x="85" y="68" font-family="Times New Roman, serif" font-size="10" fill="#333">The industry-standard compression utility. Shrink files up to</text>
+    <text x="85" y="80" font-family="Times New Roman, serif" font-size="10" fill="#333">95%. Spanning. Self-extracting archives. Password protection.</text>
+    <text x="85" y="92" font-family="Times New Roman, serif" font-size="10" fill="#333">New Deflate algorithm. DOS, OS/2, Windows. Only $47.</text>
+    <text x="85" y="112" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" font-style="italic">Order: 1-414-354-8699 or CompuServe GO PKWARE</text>
+    <text x="220" y="126" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 72 on the reader service card.</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- RIGHT COLUMN TEXT (col 2: x=520, width ~460) -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <text x="520" y="580" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="520" dy="0" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">WSL BACKUP</tspan>
+    <tspan x="520" dy="18">The WSL-Only mode skips software inventory and just exports your</tspan>
+    <tspan x="520" dy="15">Linux distributions. For developers who routinely break their WSL</tspan>
+    <tspan x="520" dy="15">setup experimenting with kernel builds, this is a one-click safety net.</tspan>
+    <tspan x="520" dy="15">We exported a 14 GB Ubuntu VHDX to USB 3.2 in just over two</tspan>
+    <tspan x="520" dy="15">minutes—limited entirely by sequential write speed. On restore the</tspan>
+    <tspan x="520" dy="15">tool creates install directories, runs wsl --import with correct flags,</tspan>
+    <tspan x="520" dy="15">and prints a reminder to set your default user.</tspan>
+    <tspan x="520" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">RESTORE</tspan>
+    <tspan x="520" dy="18">We moved the Samsung T7 to a fresh Windows 11 machine. Winget</tspan>
+    <tspan x="520" dy="15">imported 39 of 47 packages (the remainder had changed IDs or were</tspan>
+    <tspan x="520" dy="15">unavailable). Both WSL distributions came back intact, including shell</tspan>
+    <tspan x="520" dy="15">history and SSH keys. The entire restore took 11 minutes on gigabit.</tspan>
+    <tspan x="520" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">ROUGH EDGES</tspan>
+    <tspan x="520" dy="18">SmartScreen flags the unsigned installer, which will alarm non-</tspan>
+    <tspan x="520" dy="15">technical users. No scheduled backup option yet—you must remember</tspan>
+    <tspan x="520" dy="15">to run exports manually. A Task Scheduler integration would round</tspan>
+    <tspan x="520" dy="15">out the WSL backup story nicely.</tspan>
+    <tspan x="520" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">CONCLUSIONS</tspan>
+    <tspan x="520" dy="18">PCmigrate fills the gap Microsoft left when it retired Windows Easy</tspan>
+    <tspan x="520" dy="15">Transfer. It's free, fast, respects your privacy, and handles WSL—</tspan>
+    <tspan x="520" dy="15">the one thing most migration tools ignore entirely. Whether you're</tspan>
+    <tspan x="520" dy="15">moving to a new machine or want insurance before your next rm -rf</tspan>
+    <tspan x="520" dy="15">mishap, PCmigrate earns our Editors' Choice.</tspan>
   </text>
 
   <!-- ═══════════════════════════════════════════════════════ -->
   <!-- SPECS BOX (bottom of right column) -->
   <!-- ═══════════════════════════════════════════════════════ -->
-  <g transform="translate(525, 920)">
-    <rect x="0" y="0" width="455" height="145" fill="#f0ede4" stroke="#000" stroke-width="0.75"/>
-    <rect x="0" y="0" width="455" height="22" fill="#000"/>
-    <text x="228" y="16" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">SPECIFICATIONS</text>
+  <g transform="translate(520, 920)">
+    <rect x="0" y="0" width="460" height="145" fill="#f0ede4" stroke="#000" stroke-width="0.75"/>
+    <rect x="0" y="0" width="460" height="22" fill="#000"/>
+    <text x="230" y="16" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">SPECIFICATIONS</text>
     <text x="10" y="42" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#000">
       <tspan x="10" dy="0" font-weight="bold">Product:</tspan><tspan> PCmigrate 0.4</tspan>
       <tspan x="10" dy="16" font-weight="bold">Company:</tspan><tspan> PFWorks</tspan>
@@ -180,7 +197,7 @@
   <text x="750" y="1083" font-family="Times New Roman, serif" font-size="11" fill="#333" font-style="italic">Circle number 203 on the reader service card.</text>
 
   <!-- Column divider line -->
-  <line x1="500" y1="570" x2="500" y2="1090" stroke="#ccc" stroke-width="0.5"/>
+  <line x1="495" y1="570" x2="495" y2="1090" stroke="#ccc" stroke-width="0.5"/>
 
   <!-- ═══════════════════════════════════════════════════════ -->
   <!-- ADVERTISEMENT - Bottom third of page -->
