@@ -122,14 +122,14 @@
   <rect x="0" y="1360" width="1020" height="8" fill="#8800cc"/>
 
   <!-- DEC logo - using actual DEC logo from Wikimedia Commons -->
-  <image href="https://upload.wikimedia.org/wikipedia/commons/6/60/DEC_logo.svg" x="360" y="1390" width="300" height="60"/>
+  <image href="dec-logo.svg" x="360" y="1390" width="300" height="60"/>
 
   <!-- Headline -->
   <text x="510" y="1490" font-family="Times New Roman, serif" font-size="44" fill="#ffffff" text-anchor="middle" font-style="italic">The Rainbow 100+</text>
   <text x="510" y="1530" font-family="Times New Roman, serif" font-size="20" fill="#cccccc" text-anchor="middle">The personal computer that runs both CP/M and MS-DOS.</text>
 
   <!-- Actual photo of DEC Rainbow from Wikimedia Commons (CC-BY-SA) -->
-  <image href="https://upload.wikimedia.org/wikipedia/commons/6/68/Digital_Rainbow_100.jpg" x="210" y="1555" width="600" height="450" preserveAspectRatio="xMidYMid meet"/>
+  <image href="dec-rainbow-100.jpg" x="210" y="1555" width="600" height="450" preserveAspectRatio="xMidYMid meet"/>
 
   <!-- Body copy -->
   <text x="510" y="2070" font-family="Times New Roman, serif" font-size="15" fill="#dddddd" text-anchor="middle">
