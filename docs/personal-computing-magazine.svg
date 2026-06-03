@@ -166,7 +166,6 @@
   <text x="30" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" letter-spacing="2">PERSONAL COMPUTING</text>
   <text x="510" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle">FIRST LOOKS</text>
   <text x="990" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="end">June 10, 2026</text>
-  <text x="510" y="3948" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">46    PERSONAL COMPUTING    JUNE 10, 2026</text>
 
   <!-- PCmigrate review -->
   <g transform="translate(820, 2690)">
@@ -260,6 +259,44 @@
     <text x="470" y="150" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 87 on the reader service card.</text>
   </g>
 
+  <!-- Second ad row -->
+  <g transform="translate(40, 3490)">
+    <rect x="0" y="0" width="450" height="140" fill="#000" rx="2"/>
+    <text x="225" y="25" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffd700" text-anchor="middle">The Norton Utilities</text>
+    <text x="225" y="45" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle">Advanced Edition 4.5</text>
+    <text x="225" y="70" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">Recover deleted files. Optimize disks. Diagnose hardware.</text>
+    <text x="225" y="87" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">Edit any sector. Batch enhancements. $150.</text>
+    <text x="225" y="110" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#ffd700" text-anchor="middle">Peter Norton Computing • Santa Monica, CA</text>
+    <text x="225" y="132" font-family="Times New Roman, serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Circle number 92 on the reader service card.</text>
+  </g>
+  <g transform="translate(530, 3490)">
+    <rect x="0" y="0" width="450" height="140" fill="#003366" rx="2"/>
+    <text x="225" y="25" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">CompuServe</text>
+    <text x="225" y="48" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#ffcc00" text-anchor="middle">THE INFORMATION SERVICE YOU WON'T OUTGROW.</text>
+    <text x="225" y="72" font-family="Times New Roman, serif" font-size="11" fill="#ddd" text-anchor="middle">Forums. Email. 200,000+ files. Stock quotes. CB Simulator.</text>
+    <text x="225" y="89" font-family="Times New Roman, serif" font-size="11" fill="#ddd" text-anchor="middle">$6/hour (300 baud), $12.50/hour (2400 baud).</text>
+    <text x="225" y="112" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle">1-800-848-8199 for free introductory membership.</text>
+    <text x="225" y="132" font-family="Times New Roman, serif" font-size="9" fill="#aaa" text-anchor="middle" font-style="italic">Circle number 201 on the reader service card.</text>
+  </g>
+
+  <!-- Specs box for polyDBackup -->
+  <g transform="translate(40, 3660)">
+    <rect x="0" y="0" width="940" height="95" fill="#f0ede4" stroke="#000" stroke-width="0.75"/>
+    <rect x="0" y="0" width="940" height="18" fill="#000"/>
+    <text x="470" y="14" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">SPECIFICATIONS — polyDBackup 1.0</text>
+    <text x="10" y="35" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#000">
+      <tspan x="10" dy="0" font-weight="bold">Supports:</tspan><tspan> PostgreSQL, MySQL, MariaDB</tspan>
+      <tspan x="480" dy="0" font-weight="bold">Deploy:</tspan><tspan> Docker, systemd timer, or cron</tspan>
+      <tspan x="10" dy="16" font-weight="bold">Storage:</tspan><tspan> Any S3-compatible (AWS, MinIO, Wasabi)</tspan>
+      <tspan x="480" dy="0" font-weight="bold">Requires:</tspan><tspan> Bash, S3 CLI, database client tools</tspan>
+      <tspan x="10" dy="16" font-weight="bold">Features:</tspan><tspan> Compression, AES-256, retention, restore verification</tspan>
+      <tspan x="480" dy="0" font-weight="bold">Price:</tspan><tspan> Free (GPL-3.0)</tspan>
+    </text>
+  </g>
+
+  <!-- Page footer -->
+  <text x="510" y="3790" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">46    PERSONAL COMPUTING    JUNE 10, 2026</text>
+
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 4: sheLLaMa + UTILITY ROUNDUP                                 -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
@@ -268,7 +305,6 @@
   <text x="30" y="3986" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" letter-spacing="2">PERSONAL COMPUTING</text>
   <text x="510" y="3986" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle">FIRST LOOKS</text>
   <text x="990" y="3986" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="end">June 10, 2026</text>
-  <text x="510" y="5268" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">48    PERSONAL COMPUTING    JUNE 10, 2026</text>
 
   <!-- sheLLaMa review -->
   <text x="40" y="4030" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000">sheLLaMa — AI-Powered Agentic Shell</text>
@@ -374,6 +410,39 @@
     <text x="225" y="150" font-family="Times New Roman, serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Circle number 92 on the reader service card.</text>
   </g>
 
+  <!-- Third ad row -->
+  <g transform="translate(40, 4720)">
+    <rect x="0" y="0" width="450" height="140" fill="#fff" stroke="#000" stroke-width="1" rx="2"/>
+    <rect x="4" y="4" width="442" height="132" fill="#fff" stroke="#000" stroke-width="0.5" stroke-dasharray="2,2"/>
+    <text x="225" y="28" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">PKZIP 2.04g</text>
+    <text x="225" y="46" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" text-anchor="middle">PKWARE, Inc. — Brown Deer, WI</text>
+    <text x="225" y="66" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">The industry-standard compression utility. Shrink files up to 95%.</text>
+    <text x="225" y="82" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">Spanning. Self-extracting archives. Password protection. Only $47.</text>
+    <text x="225" y="105" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle" font-style="italic">1-414-354-8699 or CompuServe GO PKWARE</text>
+    <text x="225" y="130" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 72 on the reader service card.</text>
+  </g>
+  <g transform="translate(530, 4720)">
+    <rect x="0" y="0" width="450" height="140" fill="#f8f8f0" stroke="#000" stroke-width="1" rx="2"/>
+    <text x="225" y="28" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">PC Tools™ Deluxe 5.1</text>
+    <text x="225" y="46" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle">Central Point Software, Portland, OR</text>
+    <text x="225" y="66" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">The complete disk management toolkit. Undelete. Backup.</text>
+    <text x="225" y="82" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">Desktop manager with notepad, calculator, scheduler. TSR. $79.95.</text>
+    <text x="225" y="105" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" text-anchor="middle" font-style="italic">"A must-have utility suite." — Personal Computing</text>
+    <text x="225" y="130" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 156 on the reader service card.</text>
+  </g>
+
+  <!-- QEMM ad - full width -->
+  <g transform="translate(40, 4885)">
+    <rect x="0" y="0" width="940" height="100" fill="#fff" stroke="#0000aa" stroke-width="2" rx="2"/>
+    <text x="470" y="28" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#0000aa" text-anchor="middle">QEMM-386</text>
+    <text x="470" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#333" text-anchor="middle">Quarterdeck Office Systems • Santa Monica, CA</text>
+    <text x="470" y="68" font-family="Times New Roman, serif" font-size="11" fill="#000" text-anchor="middle">Break the 640K barrier! Load TSRs and drivers into high memory. Stealth maps ROM into RAM. Requires 386+. $99.95.</text>
+    <text x="470" y="90" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 177 on the reader service card.</text>
+  </g>
+
+  <!-- Page footer -->
+  <text x="510" y="5020" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">48    PERSONAL COMPUTING    JUNE 10, 2026</text>
+
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 5: LETTERS + MARKETPLACE                                       -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
@@ -461,6 +530,19 @@
     <text x="470" y="52" font-family="Times New Roman, serif" font-size="9" fill="#666" text-anchor="middle">Allow 6-8 weeks for delivery. Card expires August 31, 2026.</text>
   </g>
 
+  <!-- Full-width Lotus ad to fill space -->
+  <g transform="translate(40, 6030)">
+    <rect x="0" y="0" width="940" height="200" fill="#000" rx="2"/>
+    <text x="470" y="40" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#ffffff" text-anchor="middle">Lotus 1-2-3</text>
+    <text x="470" y="65" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffcc00" text-anchor="middle">Release 3 — The New Standard in Spreadsheet Power</text>
+    <text x="470" y="95" font-family="Times New Roman, serif" font-size="12" fill="#ddd" text-anchor="middle">Three-dimensional worksheets. Built-in database. Presentation-quality graphics.</text>
+    <text x="470" y="115" font-family="Times New Roman, serif" font-size="12" fill="#ddd" text-anchor="middle">Solver. Macro language. Network-ready. Reads 1-2-3, Symphony, and dBASE files.</text>
+    <text x="470" y="135" font-family="Times New Roman, serif" font-size="12" fill="#ddd" text-anchor="middle">Requires 80286 or higher. 1MB RAM. Hard disk. $595 suggested retail.</text>
+    <text x="470" y="165" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffcc00" text-anchor="middle">Lotus Development Corporation • Cambridge, MA • 1-800-TRADEUP</text>
+    <text x="470" y="190" font-family="Times New Roman, serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Circle number 15 on the reader service card.</text>
+  </g>
+
+  <!-- Publisher info -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 6: BACK COVER — Full-page 3Com ISA ad                          -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
