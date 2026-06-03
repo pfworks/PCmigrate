@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1020 25080" width="1020" height="25080">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1020 23760" width="1020" height="23760">
   <!-- 
     SECTOR &amp; TRACK MAGAZINE — June 2026
     Portrait format: 1020×1320 per page, 6 pages
@@ -847,80 +847,72 @@
   <text x="510" y="9120" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle" font-style="italic">Circle number 47 on the reader service card.</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PAGES 8-9: TWO-PAGE SPREAD — Compaq Deskpro 386                     -->
+  <!-- PAGE 8: Full-page — Compaq Deskpro 386                              -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="9240" width="1020" height="2640" fill="#1a1a1a"/>
-  <text x="510" y="9340" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
-  <!-- Large Compaq logo -->
-  <text x="510" y="9450" font-family="Helvetica, Arial, sans-serif" font-size="52" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="8">COMPAQ</text>
+  <rect x="0" y="9240" width="1020" height="1320" fill="#1a1a1a"/>
+  <text x="510" y="9290" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+  <!-- Compaq logo -->
+  <text x="510" y="9360" font-family="Helvetica, Arial, sans-serif" font-size="44" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="8">COMPAQ</text>
   <!-- Headline -->
-  <text x="510" y="9550" font-family="Times New Roman, serif" font-size="44" fill="#ffffff" text-anchor="middle" font-style="italic">It simply works better.</text>
-  <!-- Large tower illustration -->
-  <g transform="translate(300, 9600)">
-    <rect x="0" y="0" width="180" height="500" fill="#e0dcd0" rx="6" stroke="#999" stroke-width="2"/>
-    <rect x="15" y="20" width="150" height="30" fill="#333" rx="2"/>
-    <rect x="15" y="60" width="150" height="30" fill="#333" rx="2"/>
-    <text x="90" y="40" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#aaa" text-anchor="middle">5¼" 1.2MB</text>
-    <text x="90" y="80" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#aaa" text-anchor="middle">3½" 1.44MB</text>
-    <circle cx="160" cy="110" r="4" fill="#0a0"/>
-    <rect x="15" y="130" width="150" height="3" fill="#bbb"/>
-    <text x="90" y="470" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888" text-anchor="middle">COMPAQ</text>
-    <text x="90" y="485" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#888" text-anchor="middle">DESKPRO 386/25</text>
-    <!-- Ventilation -->
-    <rect x="50" y="380" width="80" height="2" fill="#ccc"/>
-    <rect x="50" y="386" width="80" height="2" fill="#ccc"/>
-    <rect x="50" y="392" width="80" height="2" fill="#ccc"/>
-    <rect x="50" y="398" width="80" height="2" fill="#ccc"/>
-    <rect x="50" y="404" width="80" height="2" fill="#ccc"/>
+  <text x="510" y="9420" font-family="Times New Roman, serif" font-size="32" fill="#ffffff" text-anchor="middle" font-style="italic">It simply works better.</text>
+  <!-- Tower + Monitor side by side, smaller -->
+  <g transform="translate(180, 9450)">
+    <!-- Tower -->
+    <rect x="0" y="0" width="120" height="340" fill="#e0dcd0" rx="4" stroke="#999" stroke-width="1.5"/>
+    <rect x="12" y="15" width="96" height="22" fill="#333" rx="2"/>
+    <rect x="12" y="42" width="96" height="22" fill="#333" rx="2"/>
+    <text x="60" y="30" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#aaa" text-anchor="middle">5¼" 1.2MB</text>
+    <text x="60" y="57" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#aaa" text-anchor="middle">3½" 1.44MB</text>
+    <circle cx="105" cy="75" r="3" fill="#0a0"/>
+    <rect x="12" y="85" width="96" height="2" fill="#bbb"/>
+    <text x="60" y="320" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#888" text-anchor="middle">DESKPRO 386/25</text>
   </g>
-  <!-- Monitor beside tower -->
-  <g transform="translate(530, 9700)">
-    <rect x="0" y="0" width="340" height="260" fill="#e0dcd0" rx="8"/>
-    <rect x="15" y="15" width="310" height="210" fill="#001a00"/>
-    <text x="170" y="80" font-family="Consolas, monospace" font-size="12" fill="#33ff33" text-anchor="middle">C:\&gt; dir /w</text>
-    <text x="170" y="100" font-family="Consolas, monospace" font-size="10" fill="#33ff33" text-anchor="middle">AUTOEXEC BAT  CONFIG  SYS  DOS</text>
-    <text x="170" y="116" font-family="Consolas, monospace" font-size="10" fill="#33ff33" text-anchor="middle">LOTUS  WP51  DBASE  WINDOWS</text>
-    <text x="170" y="136" font-family="Consolas, monospace" font-size="12" fill="#33ff33" text-anchor="middle">C:\&gt;_</text>
-    <rect x="130" y="260" width="80" height="15" fill="#c0b89c"/>
-    <rect x="100" y="275" width="140" height="8" fill="#b0a890" rx="2"/>
+  <!-- Monitor -->
+  <g transform="translate(380, 9470)">
+    <rect x="0" y="0" width="280" height="210" fill="#e0dcd0" rx="6"/>
+    <rect x="12" y="12" width="256" height="165" fill="#001a00"/>
+    <text x="140" y="50" font-family="Consolas, monospace" font-size="11" fill="#33ff33" text-anchor="middle">C:\&gt; dir /w</text>
+    <text x="140" y="70" font-family="Consolas, monospace" font-size="9" fill="#33ff33" text-anchor="middle">AUTOEXEC BAT  CONFIG SYS  DOS</text>
+    <text x="140" y="86" font-family="Consolas, monospace" font-size="9" fill="#33ff33" text-anchor="middle">LOTUS  WP51  DBASE  WINDOWS</text>
+    <text x="140" y="106" font-family="Consolas, monospace" font-size="11" fill="#33ff33" text-anchor="middle">C:\&gt;_</text>
+    <rect x="110" y="210" width="60" height="12" fill="#c0b89c"/>
+    <rect x="90" y="222" width="100" height="6" fill="#b0a890" rx="2"/>
   </g>
-  <!-- Body text -->
-  <text x="510" y="10200" font-family="Times New Roman, serif" font-size="18" fill="#ddd" text-anchor="middle">
-    <tspan x="510" dy="0">The COMPAQ DESKPRO 386/25 delivers 25 MHz Intel 80386 performance</tspan>
-    <tspan x="510" dy="26">with up to 16MB RAM, 300MB hard disk, and full ISA/EISA expansion.</tspan>
-    <tspan x="510" dy="26">Run DOS, OS/2, UNIX, and Windows/386 — all at maximum speed.</tspan>
+  <!-- Body -->
+  <text x="510" y="9800" font-family="Times New Roman, serif" font-size="14" fill="#ddd" text-anchor="middle">
+    <tspan x="510" dy="0">25 MHz Intel 80386. Up to 16MB RAM. 300MB hard disk. Full ISA/EISA expansion.</tspan>
+    <tspan x="510" dy="20">Run DOS, OS/2, UNIX, and Windows/386 — all at maximum speed.</tspan>
   </text>
-  <!-- Specs row -->
-  <text x="150" y="10320" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaa">
+  <!-- Specs -->
+  <text x="150" y="9870" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#aaa">
     <tspan x="150" dy="0" font-weight="bold" fill="#fff">CPU:</tspan><tspan> 25 MHz 80386</tspan>
-    <tspan x="150" dy="18" font-weight="bold" fill="#fff">RAM:</tspan><tspan> 1MB–16MB</tspan>
-    <tspan x="150" dy="18" font-weight="bold" fill="#fff">CACHE:</tspan><tspan> 64KB static RAM</tspan>
+    <tspan x="150" dy="16" font-weight="bold" fill="#fff">RAM:</tspan><tspan> 1MB–16MB</tspan>
+    <tspan x="150" dy="16" font-weight="bold" fill="#fff">CACHE:</tspan><tspan> 64KB SRAM</tspan>
   </text>
-  <text x="400" y="10320" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaa">
-    <tspan x="400" dy="0" font-weight="bold" fill="#fff">STORAGE:</tspan><tspan> 40MB–300MB</tspan>
-    <tspan x="400" dy="18" font-weight="bold" fill="#fff">SLOTS:</tspan><tspan> 8 (ISA/EISA)</tspan>
-    <tspan x="400" dy="18" font-weight="bold" fill="#fff">GRAPHICS:</tspan><tspan> VGA standard</tspan>
+  <text x="420" y="9870" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#aaa">
+    <tspan x="420" dy="0" font-weight="bold" fill="#fff">STORAGE:</tspan><tspan> 40–300MB</tspan>
+    <tspan x="420" dy="16" font-weight="bold" fill="#fff">SLOTS:</tspan><tspan> 8 (ISA/EISA)</tspan>
+    <tspan x="420" dy="16" font-weight="bold" fill="#fff">GRAPHICS:</tspan><tspan> VGA</tspan>
   </text>
-  <text x="680" y="10320" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaa">
+  <text x="680" y="9870" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#aaa">
     <tspan x="680" dy="0" font-weight="bold" fill="#fff">OS:</tspan><tspan> DOS, OS/2, UNIX</tspan>
-    <tspan x="680" dy="18" font-weight="bold" fill="#fff">NETWORK:</tspan><tspan> Token Ring/Ethernet</tspan>
-    <tspan x="680" dy="18" font-weight="bold" fill="#fff">PRICE:</tspan><tspan> From $6,499</tspan>
+    <tspan x="680" dy="16" font-weight="bold" fill="#fff">NETWORK:</tspan><tspan> Ethernet/TR</tspan>
+    <tspan x="680" dy="16" font-weight="bold" fill="#fff">PRICE:</tspan><tspan> From $6,499</tspan>
   </text>
-  <!-- Footer -->
-  <line x1="100" y1="10400" x2="920" y2="10400" stroke="#444" stroke-width="1"/>
-  <text x="510" y="10430" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#888" text-anchor="middle">Compaq Computer Corporation • Houston, Texas • 1-800-231-0900</text>
-  <text x="510" y="10455" font-family="Times New Roman, serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">Circle number 2 on the reader service card.</text>
+  <line x1="100" y1="9940" x2="920" y2="9940" stroke="#444" stroke-width="1"/>
+  <text x="510" y="9970" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#888" text-anchor="middle">Compaq Computer Corporation • Houston, Texas • 1-800-231-0900</text>
+  <text x="510" y="9995" font-family="Times New Roman, serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">Circle number 2 on the reader service card.</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 10: Full-page — Intel 80387 Math Coprocessor                   -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="11880" width="1020" height="1320" fill="#ffffff"/>
-  <rect x="40" y="11910" width="940" height="1260" fill="none" stroke="#0033aa" stroke-width="2"/>
-  <text x="510" y="11980" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="bold" fill="#0033aa" text-anchor="middle">intel</text>
-  <text x="510" y="12060" font-family="Times New Roman, serif" font-size="34" fill="#000" text-anchor="middle">The 80387.</text>
-  <text x="510" y="12100" font-family="Times New Roman, serif" font-size="34" fill="#000" text-anchor="middle">Your spreadsheet just got wings.</text>
+  <rect x="0" y="10560" width="1020" height="1320" fill="#ffffff"/>
+  <rect x="40" y="10590" width="940" height="1260" fill="none" stroke="#0033aa" stroke-width="2"/>
+  <text x="510" y="10660" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="bold" fill="#0033aa" text-anchor="middle">intel</text>
+  <text x="510" y="10740" font-family="Times New Roman, serif" font-size="34" fill="#000" text-anchor="middle">The 80387.</text>
+  <text x="510" y="10780" font-family="Times New Roman, serif" font-size="34" fill="#000" text-anchor="middle">Your spreadsheet just got wings.</text>
   <!-- Chip illustration -->
-  <g transform="translate(350, 12140)">
+  <g transform="translate(350, 10820)">
     <rect x="0" y="0" width="320" height="280" fill="#222" rx="4"/>
     <rect x="10" y="10" width="300" height="260" fill="#333"/>
     <!-- Die area -->
@@ -950,24 +942,24 @@
     <rect x="252" y="270" width="4" height="14" fill="#d4a017"/>
     <rect x="264" y="270" width="4" height="14" fill="#d4a017"/>
   </g>
-  <text x="510" y="12490" font-family="Times New Roman, serif" font-size="14" fill="#333" text-anchor="middle">
+  <text x="510" y="11170" font-family="Times New Roman, serif" font-size="14" fill="#333" text-anchor="middle">
     <tspan x="510" dy="0">Recalculates in seconds what used to take minutes. The Intel 80387 math coprocessor</tspan>
     <tspan x="510" dy="20">accelerates floating-point operations up to 500% in Lotus 1-2-3, AutoCAD, and any</tspan>
     <tspan x="510" dy="20">application that uses the x87 instruction set. Simply plug into the empty socket on</tspan>
     <tspan x="510" dy="20">your 386 motherboard. No software changes required.</tspan>
   </text>
-  <text x="510" y="12600" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">Available in 16, 20, 25, and 33 MHz. From $495.</text>
-  <text x="510" y="12640" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Intel Corporation • Santa Clara, CA • Ask your dealer or call 1-800-538-3373</text>
-  <text x="510" y="12670" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 8 on the reader service card.</text>
+  <text x="510" y="11280" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">Available in 16, 20, 25, and 33 MHz. From $495.</text>
+  <text x="510" y="11320" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Intel Corporation • Santa Clara, CA • Ask your dealer or call 1-800-538-3373</text>
+  <text x="510" y="11350" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 8 on the reader service card.</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 11: Mixed ads — 2 half-page + 2 quarter-page                   -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="13200" width="1020" height="1320" fill="#f5f2ea"/>
-  <text x="510" y="13230" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+  <rect x="0" y="11880" width="1020" height="1320" fill="#f5f2ea"/>
+  <text x="510" y="11910" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
 
   <!-- Half-page: US Robotics Courier 9600 -->
-  <g transform="translate(40, 13250)">
+  <g transform="translate(40, 11930)">
     <rect x="0" y="0" width="940" height="310" fill="#000" rx="3"/>
     <text x="470" y="40" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="bold" fill="#fff" text-anchor="middle">USRobotics Courier HST 9600</text>
     <text x="470" y="70" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffcc00" text-anchor="middle">9600 BPS. HALF-DUPLEX. THE BBS OPERATOR'S CHOICE.</text>
@@ -989,7 +981,7 @@
   </g>
 
   <!-- Half-page: Western Digital WD1003 controller -->
-  <g transform="translate(40, 13580)">
+  <g transform="translate(40, 12260)">
     <rect x="0" y="0" width="940" height="280" fill="#fff" stroke="#000" stroke-width="1.5" rx="3"/>
     <text x="470" y="35" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000" text-anchor="middle">Western Digital WD1006V-SR2</text>
     <text x="470" y="60" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">RLL HARD DISK / FLOPPY CONTROLLER — ONE ISA SLOT DOES IT ALL</text>
@@ -1002,7 +994,7 @@
   </g>
 
   <!-- Quarter-page: Tripp Lite UPS -->
-  <g transform="translate(40, 13880)">
+  <g transform="translate(40, 12560)">
     <rect x="0" y="0" width="455" height="180" fill="#f8f8f0" stroke="#000" stroke-width="1" rx="2"/>
     <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#000" text-anchor="middle">Tripp Lite BC-450</text>
     <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">Uninterruptible Power Supply</text>
@@ -1014,7 +1006,7 @@
   </g>
 
   <!-- Quarter-page: Practical Peripherals modem -->
-  <g transform="translate(525, 13880)">
+  <g transform="translate(525, 12560)">
     <rect x="0" y="0" width="455" height="180" fill="#000" rx="2"/>
     <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">Practical Peripherals</text>
     <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffcc00" text-anchor="middle">PM2400SA Internal Modem</text>
@@ -1028,11 +1020,11 @@
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 12: Full-page — Novell NetWare                                 -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="14520" width="1020" height="1320" fill="#cc0000"/>
-  <text x="510" y="14610" font-family="Helvetica, Arial, sans-serif" font-size="44" font-weight="bold" fill="#fff" text-anchor="middle">NOVELL NetWare 386</text>
-  <text x="510" y="14655" font-family="Times New Roman, serif" font-size="22" fill="#fff" text-anchor="middle" font-style="italic">The network that runs your business.</text>
+  <rect x="0" y="13200" width="1020" height="1320" fill="#cc0000"/>
+  <text x="510" y="13290" font-family="Helvetica, Arial, sans-serif" font-size="44" font-weight="bold" fill="#fff" text-anchor="middle">NOVELL NetWare 386</text>
+  <text x="510" y="13335" font-family="Times New Roman, serif" font-size="22" fill="#fff" text-anchor="middle" font-style="italic">The network that runs your business.</text>
   <!-- Network topology diagram -->
-  <g transform="translate(160, 14680)">
+  <g transform="translate(160, 13360)">
     <!-- Server -->
     <rect x="280" y="0" width="140" height="80" fill="#800000" stroke="#fcc" stroke-width="1" rx="4"/>
     <text x="350" y="30" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle">FILE SERVER</text>
@@ -1065,23 +1057,23 @@
     <rect x="600" y="55" width="80" height="30" fill="#800000" stroke="#fcc" stroke-width="1" rx="2"/>
     <text x="640" y="74" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#fff" text-anchor="middle">PRINT SERVER</text>
   </g>
-  <text x="510" y="14920" font-family="Times New Roman, serif" font-size="15" fill="#ffe0e0" text-anchor="middle">
+  <text x="510" y="13600" font-family="Times New Roman, serif" font-size="15" fill="#ffe0e0" text-anchor="middle">
     <tspan x="510" dy="0">250 simultaneous users. 32TB volume support. Runs on any 386-based server.</tspan>
     <tspan x="510" dy="22">File, print, and database services. Certified for Ethernet, Token Ring, and ARCnet.</tspan>
     <tspan x="510" dy="22">Over 4,000 compatible applications. C2 security. Fault tolerance with SFT III.</tspan>
   </text>
-  <text x="510" y="15020" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">5-user: $3,495 • 100-user: $12,495</text>
-  <text x="510" y="15060" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffcccc" text-anchor="middle">Novell, Inc. • Provo, Utah • 1-800-453-1267</text>
-  <text x="510" y="15090" font-family="Times New Roman, serif" font-size="10" fill="#ffaaaa" text-anchor="middle" font-style="italic">Circle number 5 on the reader service card.</text>
+  <text x="510" y="13700" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">5-user: $3,495 • 100-user: $12,495</text>
+  <text x="510" y="13740" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffcccc" text-anchor="middle">Novell, Inc. • Provo, Utah • 1-800-453-1267</text>
+  <text x="510" y="13770" font-family="Times New Roman, serif" font-size="10" fill="#ffaaaa" text-anchor="middle" font-style="italic">Circle number 5 on the reader service card.</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 13: Mixed — full-page ad + quarter ads                         -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="15840" width="1020" height="1320" fill="#fff"/>
-  <text x="510" y="15870" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+  <rect x="0" y="14520" width="1020" height="1320" fill="#fff"/>
+  <text x="510" y="14550" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
 
   <!-- Full-page top: Seagate ST-225 -->
-  <g transform="translate(40, 15890)">
+  <g transform="translate(40, 14570)">
     <rect x="0" y="0" width="940" height="520" fill="#f0f0f0" stroke="#000" stroke-width="1" rx="3"/>
     <text x="470" y="40" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#000" text-anchor="middle">Seagate</text>
     <text x="470" y="75" font-family="Times New Roman, serif" font-size="22" fill="#333" text-anchor="middle">The ST-225: America's best-selling hard disk.</text>
@@ -1100,7 +1092,7 @@
 
   <!-- Quarter ads below Seagate -->
   <!-- Kraft joystick -->
-  <g transform="translate(40, 16440)">
+  <g transform="translate(40, 15120)">
     <rect x="0" y="0" width="455" height="180" fill="#fff" stroke="#000" stroke-width="1" rx="2"/>
     <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#000" text-anchor="middle">Kraft Systems Thunderstick</text>
     <text x="228" y="50" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Premium analog joystick for IBM PC and compatibles.</text>
@@ -1111,7 +1103,7 @@
   </g>
 
   <!-- Multitech MultiModem -->
-  <g transform="translate(525, 16440)">
+  <g transform="translate(525, 15120)">
     <rect x="0" y="0" width="455" height="180" fill="#000" rx="2"/>
     <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">Multi-Tech MultiModem</text>
     <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#ffcc00" text-anchor="middle">V.32 9600 bps FULL DUPLEX</text>
@@ -1124,7 +1116,7 @@
 
   <!-- Quarter ads row 2 -->
   <!-- DTK 386 clone -->
-  <g transform="translate(40, 16650)">
+  <g transform="translate(40, 15330)">
     <rect x="0" y="0" width="455" height="180" fill="#f5f5f5" stroke="#000" stroke-width="1" rx="2"/>
     <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#000" text-anchor="middle">DTK FEAT-3301 Motherboard</text>
     <text x="228" y="50" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">Build your own 386! 33 MHz, 8 ISA slots,</text>
@@ -1135,7 +1127,7 @@
   </g>
 
   <!-- Star Micronics printer -->
-  <g transform="translate(525, 16650)">
+  <g transform="translate(525, 15330)">
     <rect x="0" y="0" width="455" height="180" fill="#fff" stroke="#000" stroke-width="1" rx="2"/>
     <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#000" text-anchor="middle">Star NX-1000 Rainbow</text>
     <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#cc0000" text-anchor="middle">COLOR DOT MATRIX PRINTER</text>
@@ -1149,11 +1141,11 @@
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 14: Full-page — WordPerfect 5.1                                -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="17160" width="1020" height="1320" fill="#003366"/>
-  <text x="510" y="17260" font-family="Helvetica, Arial, sans-serif" font-size="48" font-weight="bold" fill="#fff" text-anchor="middle">WordPerfect 5.1</text>
-  <text x="510" y="17305" font-family="Times New Roman, serif" font-size="20" fill="#aaddff" text-anchor="middle" font-style="italic">The best-selling word processor in the world. Again.</text>
+  <rect x="0" y="15840" width="1020" height="1320" fill="#003366"/>
+  <text x="510" y="15940" font-family="Helvetica, Arial, sans-serif" font-size="48" font-weight="bold" fill="#fff" text-anchor="middle">WordPerfect 5.1</text>
+  <text x="510" y="15985" font-family="Times New Roman, serif" font-size="20" fill="#aaddff" text-anchor="middle" font-style="italic">The best-selling word processor in the world. Again.</text>
   <!-- Screenshot of WP5.1 blue screen -->
-  <g transform="translate(200, 17330)">
+  <g transform="translate(200, 16010)">
     <rect x="0" y="0" width="620" height="300" fill="#0000aa"/>
     <!-- Status bar top -->
     <rect x="0" y="0" width="620" height="16" fill="#00aaaa"/>
@@ -1179,12 +1171,12 @@
     <text x="10" y="296" font-family="Consolas, monospace" font-size="8" fill="#000">1 Shell  2 Search  3 Reveal  4 Block  5 Text  6 Tab  7 Exit  8 Format  9 Merge  0 Macro</text>
   </g>
   <!-- Features with use cases -->
-  <text x="510" y="17670" font-family="Times New Roman, serif" font-size="14" fill="#ddd" text-anchor="middle">
+  <text x="510" y="16350" font-family="Times New Roman, serif" font-size="14" fill="#ddd" text-anchor="middle">
     <tspan x="510" dy="0">Tables with math. Pull-down menus. Mouse support. Equations editor. 500+ printer drivers.</tspan>
     <tspan x="510" dy="22">Mail merge for 10,000-name mailings. Labels. Macros. Thesaurus. 115,000-word spell check.</tspan>
   </text>
   <!-- Printed output mockup -->
-  <g transform="translate(300, 17720)">
+  <g transform="translate(300, 16400)">
     <rect x="0" y="0" width="420" height="160" fill="#fff" stroke="#ccc" stroke-width="1" rx="2"/>
     <!-- Simulated laser printout -->
     <text x="30" y="25" font-family="Times New Roman, serif" font-size="14" fill="#000" font-weight="bold">QUARTERLY REPORT</text>
@@ -1201,18 +1193,18 @@
     <text x="345" y="110" font-family="Helvetica, Arial, sans-serif" font-size="7" fill="#333" text-anchor="middle">Q1  Q2  Q3  Q4</text>
     <text x="210" y="140" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle" font-style="italic">Laser-quality output from any HP LaserJet or PostScript printer</text>
   </g>
-  <text x="510" y="17920" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">$495 (upgrade from 5.0: $89)</text>
-  <text x="510" y="17960" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaddff" text-anchor="middle">WordPerfect Corporation • Orem, Utah • 1-800-321-4566</text>
-  <text x="510" y="17990" font-family="Times New Roman, serif" font-size="10" fill="#88aacc" text-anchor="middle" font-style="italic">Circle number 3 on the reader service card.</text>
+  <text x="510" y="16600" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff" text-anchor="middle">$495 (upgrade from 5.0: $89)</text>
+  <text x="510" y="16640" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#aaddff" text-anchor="middle">WordPerfect Corporation • Orem, Utah • 1-800-321-4566</text>
+  <text x="510" y="16670" font-family="Times New Roman, serif" font-size="10" fill="#88aacc" text-anchor="middle" font-style="italic">Circle number 3 on the reader service card.</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 15: Mixed half + quarter ads                                   -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="18480" width="1020" height="1320" fill="#f5f2ea"/>
-  <text x="510" y="18510" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+  <rect x="0" y="17160" width="1020" height="1320" fill="#f5f2ea"/>
+  <text x="510" y="17190" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
 
   <!-- Half-page: Paradise VGA Plus with graphics demo -->
-  <g transform="translate(40, 18530)">
+  <g transform="translate(40, 17210)">
     <rect x="0" y="0" width="940" height="310" fill="#000" rx="3"/>
     <text x="470" y="35" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#fff" text-anchor="middle">Paradise VGA Professional</text>
     <text x="470" y="60" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffcc00" text-anchor="middle">800×600 IN 16 COLORS. THE SUPER VGA STANDARD.</text>
@@ -1238,7 +1230,7 @@
   </g>
 
   <!-- Half-page: Microsoft Mouse -->
-  <g transform="translate(40, 18830)">
+  <g transform="translate(40, 17510)">
     <rect x="0" y="0" width="940" height="260" fill="#fff" stroke="#000" stroke-width="1.5" rx="3"/>
     <text x="470" y="35" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000" text-anchor="middle">Microsoft Mouse</text>
     <text x="470" y="60" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">with Paintbrush, Windows/286 Runtime, and Mouse Menus</text>
@@ -1250,7 +1242,7 @@
   </g>
 
   <!-- Quarter-page: Irwin tape -->
-  <g transform="translate(40, 19110)">
+  <g transform="translate(40, 17790)">
     <rect x="0" y="0" width="455" height="170" fill="#f8f8f0" stroke="#000" stroke-width="1" rx="2"/>
     <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">Irwin 2020 Tape Backup</text>
     <text x="228" y="50" font-family="Times New Roman, serif" font-size="11" fill="#333" text-anchor="middle">20MB tape backup connects to your floppy</text>
@@ -1261,7 +1253,7 @@
   </g>
 
   <!-- Quarter-page: MISOSYS for TRS-80 -->
-  <g transform="translate(525, 19110)">
+  <g transform="translate(525, 17790)">
     <rect x="0" y="0" width="455" height="170" fill="#fff" stroke="#000" stroke-width="1" rx="2"/>
     <text x="228" y="28" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000" text-anchor="middle">MISOSYS LS-DOS 6.3</text>
     <text x="228" y="48" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#555" text-anchor="middle">For TRS-80 Model 4/4P/4D</text>
@@ -1274,13 +1266,13 @@
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 16: Full-page — Plus Development HardCard                      -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="19800" width="1020" height="1320" fill="#fff"/>
-  <rect x="30" y="19830" width="960" height="1260" fill="none" stroke="#000" stroke-width="1"/>
-  <text x="510" y="19900" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="bold" fill="#000" text-anchor="middle">Plus Development</text>
-  <text x="510" y="19960" font-family="Times New Roman, serif" font-size="36" fill="#000" text-anchor="middle" font-style="italic">HardCard 40</text>
-  <text x="510" y="20010" font-family="Times New Roman, serif" font-size="18" fill="#333" text-anchor="middle">A hard disk on a card. Just slide it in.</text>
+  <rect x="0" y="18480" width="1020" height="1320" fill="#fff"/>
+  <rect x="30" y="18510" width="960" height="1260" fill="none" stroke="#000" stroke-width="1"/>
+  <text x="510" y="18580" font-family="Helvetica, Arial, sans-serif" font-size="32" font-weight="bold" fill="#000" text-anchor="middle">Plus Development</text>
+  <text x="510" y="18640" font-family="Times New Roman, serif" font-size="36" fill="#000" text-anchor="middle" font-style="italic">HardCard 40</text>
+  <text x="510" y="18690" font-family="Times New Roman, serif" font-size="18" fill="#333" text-anchor="middle">A hard disk on a card. Just slide it in.</text>
   <!-- Card illustration -->
-  <g transform="translate(250, 20050)">
+  <g transform="translate(250, 18730)">
     <rect x="0" y="0" width="520" height="350" fill="#1a6b1a" rx="3" stroke="#0d4d0d" stroke-width="2"/>
     <!-- Drive mechanism on card -->
     <rect x="30" y="30" width="300" height="180" fill="#c0c0c0" rx="3" stroke="#999" stroke-width="1"/>
@@ -1318,32 +1310,32 @@
     <!-- Bracket -->
     <rect x="0" y="0" width="14" height="340" fill="#c0c0c0"/>
   </g>
-  <text x="510" y="20470" font-family="Times New Roman, serif" font-size="14" fill="#333" text-anchor="middle">
+  <text x="510" y="19150" font-family="Times New Roman, serif" font-size="14" fill="#333" text-anchor="middle">
     <tspan x="510" dy="0">No cables. No power connections. No drive bay required. The HardCard 40 is a complete</tspan>
     <tspan x="510" dy="20">40MB hard disk built onto a full-length ISA card. Slide it into any open slot and your PC</tspan>
     <tspan x="510" dy="20">has a hard disk. Average access time: 25ms. Works in PC, XT, AT, and compatibles.</tspan>
   </text>
-  <text x="510" y="20560" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">$695</text>
-  <text x="510" y="20595" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Plus Development (a Quantum company) • Milpitas, CA • 408-434-6900</text>
-  <text x="510" y="20625" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 29 on the reader service card.</text>
+  <text x="510" y="19240" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#000" text-anchor="middle">$695</text>
+  <text x="510" y="19275" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Plus Development (a Quantum company) • Milpitas, CA • 408-434-6900</text>
+  <text x="510" y="19305" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 29 on the reader service card.</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 17: aws3d REVIEW                                               -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="21120" width="1020" height="1320" fill="#f5f2ea"/>
-  <rect x="0" y="21120" width="1020" height="52" fill="#cc0000"/>
-  <text x="40" y="21157" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" letter-spacing="3">SECTOR &amp; TRACK</text>
-  <text x="510" y="21157" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">FIRST LOOKS</text>
-  <text x="980" y="21157" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="end">June 10, 2026</text>
+  <rect x="0" y="19800" width="1020" height="1320" fill="#f5f2ea"/>
+  <rect x="0" y="19800" width="1020" height="52" fill="#cc0000"/>
+  <text x="40" y="19837" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" letter-spacing="3">SECTOR &amp; TRACK</text>
+  <text x="510" y="19837" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">FIRST LOOKS</text>
+  <text x="980" y="19837" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="end">June 10, 2026</text>
 
   <!-- Title -->
-  <text x="50" y="21210" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#000">aws3d</text>
-  <text x="980" y="21210" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#cc0000" text-anchor="end">★★★★½</text>
-  <text x="50" y="21235" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#444">wedgemartin • Free (Open Source) • github.com/wedgemartin/aws3d</text>
+  <text x="50" y="19890" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#000">aws3d</text>
+  <text x="980" y="19890" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#cc0000" text-anchor="end">★★★★½</text>
+  <text x="50" y="19915" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#444">wedgemartin • Free (Open Source) • github.com/wedgemartin/aws3d</text>
   <line x1="50" y1="21248" x2="970" y2="21248" stroke="#000" stroke-width="0.5"/>
 
   <!-- Screenshot area: 3D data center mockup -->
-  <g transform="translate(300, 21260)">
+  <g transform="translate(300, 19940)">
     <rect x="0" y="0" width="420" height="220" fill="#0a0a1a" rx="4"/>
     <!-- Floor grid -->
     <line x1="20" y1="180" x2="400" y2="180" stroke="#333" stroke-width="0.5"/>
@@ -1378,10 +1370,10 @@
     <line x1="200" y1="105" x2="220" y2="105" stroke="#fff" stroke-width="0.5"/>
     <line x1="210" y1="95" x2="210" y2="115" stroke="#fff" stroke-width="0.5"/>
   </g>
-  <text x="510" y="21500" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">aws3d renders your live AWS infrastructure as a walkable 3D data center. WASD+mouse navigation.</text>
+  <text x="510" y="20180" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">aws3d renders your live AWS infrastructure as a walkable 3D data center. WASD+mouse navigation.</text>
 
   <!-- Two-column review -->
-  <text x="50" y="21535" font-family="Times New Roman, serif" font-size="12" fill="#000">
+  <text x="50" y="20215" font-family="Times New Roman, serif" font-size="12" fill="#000">
     <tspan x="50" dy="0" font-weight="bold" font-size="13">W</tspan><tspan>hat if you could walk through your AWS infrastructure</tspan>
     <tspan x="50" dy="15">like a physical data center? aws3d does exactly that. This</tspan>
     <tspan x="50" dy="15">browser-based React Three Fiber application connects to</tspan>
@@ -1394,7 +1386,7 @@
     <tspan x="50" dy="15">color-coded routing lines to targets. It's genuinely useful</tspan>
     <tspan x="50" dy="15">for understanding multi-AZ topology at a glance.</tspan>
   </text>
-  <text x="530" y="21535" font-family="Times New Roman, serif" font-size="12" fill="#000">
+  <text x="530" y="20215" font-family="Times New Roman, serif" font-size="12" fill="#000">
     <tspan x="530" dy="0">Navigation is WASD + mouse — like a first-person game.</tspan>
     <tspan x="530" dy="15">Press V to toggle subnet view. Click resources for details</tspan>
     <tspan x="530" dy="15">and interconnect visualization. Supports named profiles,</tspan>
@@ -1410,7 +1402,7 @@
   <line x1="510" y1="21525" x2="510" y2="21720" stroke="#ddd" stroke-width="0.5"/>
 
   <!-- Specs box -->
-  <g transform="translate(50, 21740)">
+  <g transform="translate(50, 20420)">
     <rect x="0" y="0" width="920" height="80" fill="#f0ede4" stroke="#000" stroke-width="0.75"/>
     <rect x="0" y="0" width="920" height="18" fill="#000"/>
     <text x="460" y="14" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">SPECIFICATIONS</text>
@@ -1421,34 +1413,34 @@
       <tspan x="480" dy="0" font-weight="bold">Price:</tspan><tspan> Free (Open Source)</tspan>
     </text>
   </g>
-  <text x="510" y="21850" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 208 on the reader service card.</text>
-  <text x="510" y="22425" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">52    SECTOR &amp; TRACK    JUNE 10, 2026</text>
+  <text x="510" y="20530" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 208 on the reader service card.</text>
+  <text x="510" y="21105" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">52    SECTOR &amp; TRACK    JUNE 10, 2026</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 18: FULL-PAGE AD — PCmigrate (box-cover.svg embedded)          -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="22440" width="1020" height="1320" fill="#0d1b3e"/>
-  <text x="510" y="22475" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+  <rect x="0" y="21120" width="1020" height="1320" fill="#0d1b3e"/>
+  <text x="510" y="21155" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
   <!-- Embed box-cover.svg scaled to fit, centered -->
-  <image xlink:href="box-cover.svg" x="210" y="22490" width="600" height="800" preserveAspectRatio="xMidYMid meet"/>
+  <image xlink:href="box-cover.svg" x="210" y="21170" width="600" height="800" preserveAspectRatio="xMidYMid meet"/>
   <!-- Ad copy below the box -->
-  <text x="510" y="23340" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">Available Now — Free Download</text>
-  <text x="510" y="23370" font-family="Times New Roman, serif" font-size="14" fill="#cccccc" text-anchor="middle">Export your entire PC in minutes. Restore on the new machine in seconds.</text>
-  <text x="510" y="23395" font-family="Times New Roman, serif" font-size="14" fill="#cccccc" text-anchor="middle">Apps, license keys, WSL distros, settings — one click. No subscription. No cloud.</text>
-  <text x="510" y="23430" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffcc00" text-anchor="middle">github.com/pfworks/PCmigrate</text>
-  <text x="510" y="23460" font-family="Times New Roman, serif" font-size="10" fill="#888" text-anchor="middle" font-style="italic">Circle number 203 on the reader service card.</text>
+  <text x="510" y="22020" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">Available Now — Free Download</text>
+  <text x="510" y="22050" font-family="Times New Roman, serif" font-size="14" fill="#cccccc" text-anchor="middle">Export your entire PC in minutes. Restore on the new machine in seconds.</text>
+  <text x="510" y="22075" font-family="Times New Roman, serif" font-size="14" fill="#cccccc" text-anchor="middle">Apps, license keys, WSL distros, settings — one click. No subscription. No cloud.</text>
+  <text x="510" y="22110" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffcc00" text-anchor="middle">github.com/pfworks/PCmigrate</text>
+  <text x="510" y="22140" font-family="Times New Roman, serif" font-size="10" fill="#888" text-anchor="middle" font-style="italic">Circle number 203 on the reader service card.</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 19: BACK COVER — Full-page IBM PS/2                            -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="23760" width="1020" height="1320" fill="#ffffff"/>
-  <rect x="0" y="23760" width="1020" height="6" fill="#003399"/>
+  <rect x="0" y="22440" width="1020" height="1320" fill="#ffffff"/>
+  <rect x="0" y="22440" width="1020" height="6" fill="#003399"/>
   <!-- IBM logo -->
-  <text x="510" y="23850" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="bold" fill="#003399" text-anchor="middle" letter-spacing="-2">IBM</text>
-  <text x="510" y="23900" font-family="Times New Roman, serif" font-size="28" fill="#000" text-anchor="middle" font-style="italic">Personal System/2</text>
-  <text x="510" y="23950" font-family="Times New Roman, serif" font-size="18" fill="#333" text-anchor="middle">How're you going to do it?</text>
+  <text x="510" y="22530" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="bold" fill="#003399" text-anchor="middle" letter-spacing="-2">IBM</text>
+  <text x="510" y="22580" font-family="Times New Roman, serif" font-size="28" fill="#000" text-anchor="middle" font-style="italic">Personal System/2</text>
+  <text x="510" y="22630" font-family="Times New Roman, serif" font-size="18" fill="#333" text-anchor="middle">How're you going to do it?</text>
   <!-- PS/2 Model 50 illustration -->
-  <g transform="translate(310, 23980)">
+  <g transform="translate(310, 22660)">
     <rect x="0" y="0" width="400" height="300" fill="#e8e4d8" rx="10"/>
     <rect x="15" y="15" width="370" height="240" fill="#1a1a1a"/>
     <rect x="20" y="20" width="360" height="230" fill="#000033"/>
@@ -1463,16 +1455,16 @@
     <rect x="160" y="260" width="80" height="15" fill="#d0c8b0"/>
     <rect x="130" y="275" width="140" height="8" fill="#c0b898" rx="2"/>
   </g>
-  <text x="510" y="24330" font-family="Times New Roman, serif" font-size="15" fill="#333" text-anchor="middle">
+  <text x="510" y="23010" font-family="Times New Roman, serif" font-size="15" fill="#333" text-anchor="middle">
     <tspan x="510" dy="0">The IBM Personal System/2 family — from the affordable Model 25 to the</tspan>
     <tspan x="510" dy="22">powerful Model 80 — brings Micro Channel architecture, 3.5" diskettes, VGA</tspan>
     <tspan x="510" dy="22">graphics, and OS/2 to your desktop. Solutions for every business need.</tspan>
   </text>
-  <text x="510" y="24430" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Model 25: $1,350 • Model 30: $1,695 • Model 50: $3,595 • Model 60: $5,295 • Model 80: $6,995</text>
-  <text x="510" y="24470" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Visit your authorized IBM dealer or call 1-800-IBM-2468</text>
-  <text x="510" y="24510" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 4 on the reader service card.</text>
+  <text x="510" y="23110" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#333" text-anchor="middle">Model 25: $1,350 • Model 30: $1,695 • Model 50: $3,595 • Model 60: $5,295 • Model 80: $6,995</text>
+  <text x="510" y="23150" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#555" text-anchor="middle">Visit your authorized IBM dealer or call 1-800-IBM-2468</text>
+  <text x="510" y="23190" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-style="italic">Circle number 4 on the reader service card.</text>
   <!-- IBM footer -->
-  <rect x="0" y="24560" width="1020" height="3" fill="#003399"/>
-  <text x="510" y="24590" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#666" text-anchor="middle">IBM and Personal System/2 are registered trademarks of International Business Machines Corporation. © 1988 IBM Corp.</text>
+  <rect x="0" y="23240" width="1020" height="3" fill="#003399"/>
+  <text x="510" y="23270" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#666" text-anchor="middle">IBM and Personal System/2 are registered trademarks of International Business Machines Corporation. © 1988 IBM Corp.</text>
 
 </svg>
