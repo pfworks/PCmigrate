@@ -219,3 +219,11 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 
 ### Fixed
 - **WSL restore "system cannot find the path"** — `wsl --import` requires the target install directory to exist. Added `New-Item -Path $installDir -ItemType Directory -Force` before each `wsl.exe --import` call in both the full and WSL-only restore scripts.
+
+## Session 13 — 2026-06-02
+
+### Fixed
+- **Restore bundle "Cannot bind argument to parameter 'path'"** — When the output path had a trailing backslash (common from the GUI folder browser dialog), `Split-Path -Parent` returned an empty string, causing `Join-Path` to fail. Fixed by resolving the path and trimming trailing backslashes before splitting. Added fallback for drive root paths and guard against empty file lists.
+
+### Released
+- Deleted erroneous `v0.3.5` tag, tagged and pushed `v0.4.2`
