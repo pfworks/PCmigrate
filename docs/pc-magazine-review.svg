@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 1320" width="1020" height="1320">
+  <defs>
+    <linearGradient id="edchoice" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#cc0000"/>
+      <stop offset="100%" style="stop-color:#990000"/>
+    </linearGradient>
+    <!-- Column guide lines (invisible, for layout reference) -->
+  </defs>
+
+  <!-- Page background - slightly off-white like magazine paper -->
+  <rect width="1020" height="1320" fill="#f5f2ea"/>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- TOP HEADER / MASTHEAD BAR -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <rect x="0" y="0" width="1020" height="52" fill="#cc0000"/>
+  <text x="40" y="37" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" letter-spacing="3">PC MAGAZINE</text>
+  <text x="510" y="37" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">FIRST LOOKS</text>
+  <text x="980" y="37" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="end">June 10, 2026</text>
+
+  <!-- Page number -->
+  <text x="510" y="1305" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">234    PC MAGAZINE    JUNE 10, 2026</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- EDITOR'S CHOICE BADGE -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g transform="translate(780, 70)">
+    <rect x="0" y="0" width="190" height="170" fill="url(#edchoice)" rx="4"/>
+    <rect x="4" y="4" width="182" height="162" fill="none" stroke="#ffd700" stroke-width="2" rx="3"/>
+    <!-- Stars -->
+    <text x="95" y="40" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">★ ★ ★ ★ ★</text>
+    <!-- Editors choice text -->
+    <text x="95" y="72" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold">EDITORS'</text>
+    <text x="95" y="96" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold">CHOICE</text>
+    <line x1="30" y1="110" x2="160" y2="110" stroke="#ffd700" stroke-width="1"/>
+    <text x="95" y="132" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffcccc" text-anchor="middle">PCmigrate 0.4</text>
+    <text x="95" y="150" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffcccc" text-anchor="middle">PFWorks</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- MAIN TITLE AREA -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <text x="50" y="105" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="bold" fill="#000000">PCmigrate 0.4</text>
+  <text x="50" y="135" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#444444">PFWorks • Free (Open Source) • https://github.com/pfworks/PCmigrate</text>
+
+  <!-- Thin rule under title -->
+  <line x1="50" y1="150" x2="750" y2="150" stroke="#000" stroke-width="0.5"/>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SCREENSHOT "IMAGE" AREA -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g transform="translate(50, 165)">
+    <!-- Monitor frame -->
+    <rect x="0" y="0" width="420" height="290" fill="#2a2a2a" rx="8"/>
+    <rect x="12" y="12" width="396" height="246" fill="#1e1e2e"/>
+    <!-- Fake GUI screenshot -->
+    <!-- Title bar -->
+    <rect x="12" y="12" width="396" height="28" fill="#313244"/>
+    <text x="24" y="31" font-family="Segoe UI, sans-serif" font-size="11" fill="#cdd6f4">⬡ PCmigrate</text>
+    <rect x="370" y="18" width="12" height="12" fill="none" stroke="#666" stroke-width="1"/>
+    <line x1="385" y1="18" x2="397" y2="30" stroke="#666" stroke-width="1"/>
+    <!-- Path area -->
+    <rect x="24" y="52" width="372" height="24" fill="#45475a" rx="3"/>
+    <text x="34" y="68" font-family="Consolas, monospace" font-size="10" fill="#f9e2af">📁 Backup / Restore Location:</text>
+    <rect x="24" y="82" width="310" height="22" fill="#313244" rx="3"/>
+    <text x="34" y="97" font-family="Consolas, monospace" font-size="10" fill="#a6adc8">E:\PCmigrate</text>
+    <rect x="340" y="82" width="56" height="22" fill="#45475a" rx="3"/>
+    <text x="356" y="97" font-family="Segoe UI, sans-serif" font-size="10" fill="#cdd6f4">Browse</text>
+    <!-- Buttons -->
+    <rect x="24" y="116" width="100" height="30" fill="#a6e3a1" rx="4"/>
+    <text x="52" y="135" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1e1e2e">Export ▼</text>
+    <rect x="134" y="116" width="80" height="30" fill="#89b4fa" rx="4"/>
+    <text x="153" y="135" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1e1e2e">Restore</text>
+    <!-- Log area -->
+    <rect x="24" y="158" width="372" height="88" fill="#11111b" rx="3"/>
+    <text x="32" y="174" font-family="Consolas, monospace" font-size="9" fill="#a6e3a1">=== Windows Migration Export Started ===</text>
+    <text x="32" y="188" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Output: E:\PCmigrate</text>
+    <text x="32" y="202" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">--- Retrieving license keys ---</text>
+    <text x="32" y="216" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Windows product key: XXXXX-XXXXX-XXXXX-XXXXX</text>
+    <text x="32" y="230" font-family="Consolas, monospace" font-size="9" fill="#f9e2af">--- Exporting WSL distributions ---</text>
+    <text x="32" y="244" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Exporting Ubuntu (WSL 2, VHDX)... 14.2 GB</text>
+    <!-- Monitor stand -->
+    <rect x="175" y="260" width="70" height="12" fill="#1a1a1a"/>
+    <rect x="155" y="272" width="110" height="8" fill="#1a1a1a" rx="2"/>
+  </g>
+
+  <!-- Caption under screenshot -->
+  <text x="260" y="460" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">PCmigrate's dark-themed WPF interface shows live export progress.</text>
+  <text x="260" y="474" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">The split Export button offers WSL-only and bundle modes.</text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- LEFT COLUMN TEXT (col 1: x=50, width ~300) -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <!-- Intro paragraph - spans both cols above the image area, below it goes 2-col -->
+  <text x="50" y="510" font-family="Times New Roman, serif" font-size="12.5" fill="#000">
+    <tspan x="50" dy="0" font-weight="bold" font-size="13">M</tspan><tspan>oving to a new Windows PC has always been an exercise in tedium.</tspan>
+    <tspan x="50" dy="16">You spend the first weekend reinstalling applications, hunting for</tspan>
+    <tspan x="50" dy="16">license keys scrawled on Post-it notes, and praying your WSL envi-</tspan>
+    <tspan x="50" dy="16">ronment survives the journey. PCmigrate, a free open-source utility</tspan>
+    <tspan x="50" dy="16">from developer PFWorks, compresses that weekend into fifteen minutes.</tspan>
+  </text>
+
+  <!-- Column 1 body -->
+  <text x="50" y="610" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="50" dy="0" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">SETUP AND INTERFACE</tspan>
+    <tspan x="50" dy="18">You can grab PCmigrate as a traditional</tspan>
+    <tspan x="50" dy="15">installer or portable zip from GitHub Re-</tspan>
+    <tspan x="50" dy="15">leases. The installer weighs under 2 MB.</tspan>
+    <tspan x="50" dy="15">On first launch it requests administrator</tspan>
+    <tspan x="50" dy="15">privileges and presents a dark-themed WPF</tspan>
+    <tspan x="50" dy="15">window that feels surprisingly polished for</tspan>
+    <tspan x="50" dy="15">a PowerShell application. The interface is</tspan>
+    <tspan x="50" dy="15">minimal: a path selector, an Export button</tspan>
+    <tspan x="50" dy="15">with a dropdown for mode selection, and a</tspan>
+    <tspan x="50" dy="15">Restore button. No wizard, no account, no</tspan>
+    <tspan x="50" dy="15">telemetry. We appreciated the restraint.</tspan>
+    <tspan x="50" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">EXPORT PROCESS</tspan>
+    <tspan x="50" dy="18">We tested on a Dell Precision workstation</tspan>
+    <tspan x="50" dy="15">running Windows 11 23H2 with 47 Win32</tspan>
+    <tspan x="50" dy="15">apps, 12 Store apps, two WSL distributions</tspan>
+    <tspan x="50" dy="15">(Ubuntu 22.04 on WSL 2 and Alpine on WSL</tspan>
+    <tspan x="50" dy="15">1), and license keys in the registry.</tspan>
+    <tspan x="50" dy="18">Clicking Export Only with the output aimed</tspan>
+    <tspan x="50" dy="15">at a Samsung T7 SSD took 4 minutes 38</tspan>
+    <tspan x="50" dy="15">seconds. The tool produced a CSV inventory,</tspan>
+    <tspan x="50" dy="15">interactive HTML checklist with download</tspan>
+    <tspan x="50" dy="15">links, winget JSON export, full Ubuntu</tspan>
+    <tspan x="50" dy="15">VHDX and Alpine tar, .wslconfig, zipped</tspan>
+    <tspan x="50" dy="15">AppData folders, and a restore script.</tspan>
+    <tspan x="50" dy="18">The HTML checklist deserves special men-</tspan>
+    <tspan x="50" dy="15">tion. It renders a dark-themed page with</tspan>
+    <tspan x="50" dy="15">checkboxes. Check off an app and the row</tspan>
+    <tspan x="50" dy="15">grays out. License keys hide behind a click-</tspan>
+    <tspan x="50" dy="15">to-reveal toggle with a per-key copy button.</tspan>
+  </text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- RIGHT COLUMN TEXT (col 2: x=530, width ~300) -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <text x="530" y="510" font-family="Times New Roman, serif" font-size="12" fill="#000">
+    <tspan x="530" dy="0" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">WSL BACKUP</tspan>
+    <tspan x="530" dy="18">The WSL-Only mode skips software inven-</tspan>
+    <tspan x="530" dy="15">tory and just exports your Linux distribu-</tspan>
+    <tspan x="530" dy="15">tions. For developers who routinely break</tspan>
+    <tspan x="530" dy="15">their WSL setup experimenting with kernel</tspan>
+    <tspan x="530" dy="15">builds, this is a one-click safety net. We</tspan>
+    <tspan x="530" dy="15">exported a 14 GB Ubuntu VHDX to USB 3.2</tspan>
+    <tspan x="530" dy="15">in just over two minutes—limited entirely</tspan>
+    <tspan x="530" dy="15">by sequential write speed. On restore the</tspan>
+    <tspan x="530" dy="15">tool creates install directories, runs wsl</tspan>
+    <tspan x="530" dy="15">--import with correct flags, and prints a</tspan>
+    <tspan x="530" dy="15">reminder to set your default user.</tspan>
+    <tspan x="530" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">RESTORE</tspan>
+    <tspan x="530" dy="18">We moved the Samsung T7 to a fresh Win-</tspan>
+    <tspan x="530" dy="15">dows 11 machine. Winget imported 39 of 47</tspan>
+    <tspan x="530" dy="15">packages (the remainder had changed IDs).</tspan>
+    <tspan x="530" dy="15">Both WSL distributions came back intact,</tspan>
+    <tspan x="530" dy="15">including shell history and SSH keys. The</tspan>
+    <tspan x="530" dy="15">entire restore took 11 minutes on gigabit.</tspan>
+    <tspan x="530" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">ROUGH EDGES</tspan>
+    <tspan x="530" dy="18">SmartScreen flags the unsigned installer.</tspan>
+    <tspan x="530" dy="15">No scheduled backup option yet—you must</tspan>
+    <tspan x="530" dy="15">remember to run exports manually. A Task</tspan>
+    <tspan x="530" dy="15">Scheduler integration would round out the</tspan>
+    <tspan x="530" dy="15">WSL backup story nicely.</tspan>
+    <tspan x="530" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">CONCLUSIONS</tspan>
+    <tspan x="530" dy="18">PCmigrate fills the gap Microsoft left when</tspan>
+    <tspan x="530" dy="15">it retired Windows Easy Transfer. It's free,</tspan>
+    <tspan x="530" dy="15">fast, respects your privacy, and handles</tspan>
+    <tspan x="530" dy="15">WSL—the one thing most migration tools</tspan>
+    <tspan x="530" dy="15">ignore entirely. Whether you're moving to</tspan>
+    <tspan x="530" dy="15">a new machine or want insurance before</tspan>
+    <tspan x="530" dy="15">your next rm -rf mishap, PCmigrate earns</tspan>
+    <tspan x="530" dy="15">our Editors' Choice.</tspan>
+  </text>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SPECS BOX (bottom of right column) -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g transform="translate(530, 920)">
+    <rect x="0" y="0" width="440" height="145" fill="#f0ede4" stroke="#000" stroke-width="0.75"/>
+    <rect x="0" y="0" width="440" height="22" fill="#000"/>
+    <text x="220" y="16" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">SPECIFICATIONS</text>
+    <text x="10" y="42" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#000">
+      <tspan x="10" dy="0" font-weight="bold">Product:</tspan><tspan> PCmigrate 0.4</tspan>
+      <tspan x="10" dy="16" font-weight="bold">Company:</tspan><tspan> PFWorks</tspan>
+      <tspan x="10" dy="16" font-weight="bold">Price:</tspan><tspan> Free (MIT License)</tspan>
+      <tspan x="10" dy="16" font-weight="bold">Requires:</tspan><tspan> Windows 10 v1709+ or 11, PowerShell 5.1+,</tspan>
+      <tspan x="10" dy="14">Administrator privileges, winget</tspan>
+      <tspan x="10" dy="16" font-weight="bold">Download:</tspan><tspan> github.com/pfworks/PCmigrate/releases</tspan>
+    </text>
+  </g>
+
+  <!-- Circle number -->
+  <text x="750" y="1083" font-family="Times New Roman, serif" font-size="11" fill="#333" font-style="italic">Circle number 203 on the reader service card.</text>
+
+  <!-- Column divider line -->
+  <line x1="505" y1="500" x2="505" y2="1090" stroke="#ccc" stroke-width="0.5"/>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- ADVERTISEMENT - Bottom third of page -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <line x1="40" y1="1105" x2="980" y2="1105" stroke="#000" stroke-width="1"/>
+  <text x="510" y="1120" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+
+  <!-- Ad background -->
+  <rect x="50" y="1130" width="920" height="150" fill="#000" rx="2"/>
+
+  <!-- Product image area - keyboard illustration -->
+  <g transform="translate(70, 1145)">
+    <!-- Keyboard body -->
+    <rect x="0" y="20" width="200" height="70" fill="#e8e8e8" rx="4" stroke="#999" stroke-width="1"/>
+    <!-- Key rows -->
+    <rect x="8" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="23" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="38" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="53" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="68" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="83" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="98" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="113" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="128" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="143" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="158" y="28" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="173" y="28" width="18" height="12" fill="#d0d0d0" rx="1"/>
+    <!-- Row 2 -->
+    <rect x="8" y="43" width="16" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="27" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="42" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="57" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="72" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="87" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="102" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="117" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="132" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="147" y="43" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="162" y="43" width="29" height="12" fill="#d0d0d0" rx="1"/>
+    <!-- Row 3 - spacebar -->
+    <rect x="8" y="58" width="20" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="31" y="58" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="46" y="58" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="61" y="58" width="70" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="134" y="58" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="149" y="58" width="12" height="12" fill="#d0d0d0" rx="1"/>
+    <rect x="164" y="58" width="27" height="12" fill="#d0d0d0" rx="1"/>
+    <!-- Numpad area -->
+    <rect x="148" y="28" width="0" height="0" fill="none"/>
+    <!-- Cable -->
+    <path d="M100,90 C100,105 95,110 85,120" stroke="#666" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Ad text -->
+  <text x="310" y="1160" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">NorthGate OmniKey ULTRA</text>
+  <text x="310" y="1183" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffcc00">THE KEYBOARD THAT TYPES BACK.</text>
+  <text x="310" y="1206" font-family="Times New Roman, serif" font-size="11" fill="#cccccc">
+    <tspan x="310" dy="0">Genuine ALPS mechanical switches. 12 programmable F-keys.</tspan>
+    <tspan x="310" dy="14">N-key rollover. Built-in AT/XT/PS2 compatibility. Kevlar-</tspan>
+    <tspan x="310" dy="14">reinforced coiled cable. 5-year warranty. Made in the U.S.A.</tspan>
+  </text>
+
+  <text x="310" y="1258" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">$149</text>
+  <text x="365" y="1258" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#aaaaaa">Suggested retail. See your dealer or call 1-800-NORTHGT.</text>
+
+  <!-- NorthGate logo text -->
+  <text x="860" y="1175" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffcc00" text-anchor="middle">NORTHGATE</text>
+  <text x="860" y="1192" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888" text-anchor="middle">COMPUTER SYSTEMS</text>
+  <text x="860" y="1210" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888" text-anchor="middle">Plymouth, MN</text>
+
+  <!-- Ad circle number -->
+  <text x="510" y="1275" font-family="Times New Roman, serif" font-size="10" fill="#aaa" text-anchor="middle" font-style="italic">Circle number 118 on the reader service card.</text>
+</svg>
