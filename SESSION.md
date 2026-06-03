@@ -227,3 +227,18 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 
 ### Released
 - Deleted erroneous `v0.3.5` tag, tagged and pushed `v0.4.2`
+
+## Session 14 — 2026-06-03
+
+### Fixed
+- **Portable zip GUI not launching** — Files extracted from a zip have a Zone.Identifier ADS that blocks PowerShell execution even with `-ExecutionPolicy Bypass`. CMD launcher now runs `Unblock-File` on all `.ps1` files before launching the GUI.
+- **Console window visible behind GUI** — Added Win32 `ShowWindow`/`GetConsoleWindow` call to hide the console after elevation. Both CMD launcher and self-elevation now pass `-WindowStyle Hidden`.
+
+### Added
+- **Custom window icon** — GUI now displays `PCmigrate.ico` in the title bar and taskbar instead of the default PowerShell icon. Uses `BitmapFrame::Create` to load the .ico at runtime.
+- **80s tri-fold brochure** (`docs/brochure.svg`) — Synthwave-style tri-fold matching the box cover: cover panel, features panel, and how-it-works/specs panel.
+
+### Released
+- `v0.4.3` (debug portable launch)
+- `v0.4.4` (show console for error diagnosis)
+- `v0.4.5` (custom icon + hidden console — final fix)
