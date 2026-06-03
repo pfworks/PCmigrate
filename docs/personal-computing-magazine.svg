@@ -159,143 +159,187 @@
   <text x="510" y="2325" font-family="Times New Roman, serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">Circle number 1 on the reader service card.</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <!-- PAGE 3: PCmigrate + polyDBackup REVIEWS                            -->
+  <!-- PAGE 3: PCmigrate REVIEW (from personal-computing-review.svg)      -->
   <!-- ═══════════════════════════════════════════════════════════════════ -->
-  <rect x="0" y="2640" width="1020" height="1320" fill="#f5f2ea"/>
-  <rect x="0" y="2640" width="1020" height="38" fill="#cc0000"/>
-  <text x="30" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" letter-spacing="2">PERSONAL COMPUTING</text>
-  <text x="510" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="middle">FIRST LOOKS</text>
-  <text x="990" y="2666" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#fff" text-anchor="end">June 10, 2026</text>
-
-  <!-- PCmigrate review -->
-  <g transform="translate(820, 2690)">
-    <rect x="0" y="0" width="165" height="100" fill="#cc0000" rx="3" stroke="#ffd700" stroke-width="1.5"/>
-    <text x="82" y="22" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffd700" text-anchor="middle">★ ★ ★ ★ ★</text>
-    <text x="82" y="42" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">EDITORS'</text>
-    <text x="82" y="57" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">CHOICE</text>
-    <text x="82" y="76" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#ffcccc" text-anchor="middle">PCmigrate 0.4</text>
-    <text x="82" y="90" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#ffcccc" text-anchor="middle">PFWorks</text>
-  </g>
-
-  <text x="40" y="2715" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000">PCmigrate 0.4</text>
-  <text x="40" y="2738" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#444">PFWorks • Free (Open Source) • github.com/pfworks/PCmigrate</text>
-  <line x1="40" y1="2748" x2="980" y2="2748" stroke="#000" stroke-width="0.5"/>
-
-  <!-- Two-column PCmigrate review -->
-  <text x="40" y="2773" font-family="Times New Roman, serif" font-size="12" fill="#000">
-    <tspan x="40" dy="0" font-weight="bold" font-size="13">M</tspan><tspan>oving to a new Windows PC has always meant a lost</tspan>
-    <tspan x="40" dy="15">weekend. PCmigrate fixes that. One click exports your</tspan>
-    <tspan x="40" dy="15">entire environment — installed software with versions,</tspan>
-    <tspan x="40" dy="15">license keys, winget packages, WSL distributions (as</tspan>
-    <tspan x="40" dy="15">.tar or .vhdx), and AppData folders — to an external</tspan>
-    <tspan x="40" dy="15">drive. On the new machine, run the generated restore</tspan>
-    <tspan x="40" dy="15">script and 'winget import' and 'wsl --import' bring</tspan>
-    <tspan x="40" dy="15">everything back. Our test: 47 apps, 2 WSL distros,</tspan>
-    <tspan x="40" dy="15">under 5 minutes to export, 11 to restore.</tspan>
-    <tspan x="40" dy="17">The dark WPF GUI is polished and responsive. WSL-</tspan>
-    <tspan x="40" dy="15">Only mode makes it a standalone backup tool. The</tspan>
-    <tspan x="40" dy="15">interactive HTML checklist with per-app download links</tspan>
-    <tspan x="40" dy="15">and hidden license keys is a thoughtful touch.</tspan>
-  </text>
-  <text x="530" y="2773" font-family="Times New Roman, serif" font-size="12" fill="#000">
-    <tspan x="530" dy="0">Export produces a CSV inventory, HTML checklist,</tspan>
-    <tspan x="530" dy="15">winget JSON, WSL archives (.tar for WSL 1, .vhdx for</tspan>
-    <tspan x="530" dy="15">WSL 2), zipped AppData, and a self-contained restore</tspan>
-    <tspan x="530" dy="15">script. The "Export + Bundle" option wraps everything</tspan>
-    <tspan x="530" dy="15">into a single zip you can hand to anyone.</tspan>
-    <tspan x="530" dy="17">SmartScreen warnings on the unsigned installer are</tspan>
-    <tspan x="530" dy="15">the only friction. PowerShell 5.1 compatible. Works on</tspan>
-    <tspan x="530" dy="15">Windows 10 (1709+) and 11. Handles drive roots,</tspan>
-    <tspan x="530" dy="15">trailing slashes, and Zone.Identifier blocking gracefully.</tspan>
-    <tspan x="530" dy="15">Highly recommended for anyone upgrading their PC</tspan>
-    <tspan x="530" dy="15">or anyone who lives in WSL and wants a safety net.</tspan>
-  </text>
-  <line x1="510" y1="2760" x2="510" y2="2965" stroke="#ddd" stroke-width="0.5"/>
-  <text x="40" y="2985" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 203 on the reader service card.</text>
-
-  <!-- Separator -->
-  <line x1="40" y1="3000" x2="980" y2="3000" stroke="#cc0000" stroke-width="1.5"/>
-
-  <!-- polyDBackup review -->
-  <text x="40" y="3035" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#000">polyDBackup 1.0</text>
-  <text x="980" y="3035" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#cc0000" text-anchor="end">★★★★☆</text>
-  <text x="40" y="3055" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#444">PFWorks • Free (GPL-3.0)</text>
-  <line x1="40" y1="3065" x2="980" y2="3065" stroke="#000" stroke-width="0.5"/>
-
-  <text x="40" y="3088" font-family="Times New Roman, serif" font-size="12" fill="#000">
-    <tspan x="40" dy="0" font-weight="bold" font-size="13">D</tspan><tspan>atabase backups are like insurance: boring until you</tspan>
-    <tspan x="40" dy="15">need them. polyDBackup makes them reliable. This</tspan>
-    <tspan x="40" dy="15">shell-based tool dumps PostgreSQL, MySQL, or Maria-</tspan>
-    <tspan x="40" dy="15">DB to S3 with compression, optional AES-256 encryp-</tspan>
-    <tspan x="40" dy="15">tion, and automated restore verification via table-level</tspan>
-    <tspan x="40" dy="15">checksums. A hard-coded staging database prevents</tspan>
-    <tspan x="40" dy="15">accidental writes to production. The backup user gets</tspan>
-    <tspan x="40" dy="15">read-only grants on live data and full control only on</tspan>
-    <tspan x="40" dy="15">the staging workspace. Even a misconfigured cron job</tspan>
-    <tspan x="40" dy="15">can't damage live data.</tspan>
-  </text>
-  <text x="530" y="3088" font-family="Times New Roman, serif" font-size="12" fill="#000">
-    <tspan x="530" dy="0">We tested with a 40 GB PostgreSQL instance: dump,</tspan>
-    <tspan x="530" dy="15">compress, encrypt, upload, and verify in under 12</tspan>
-    <tspan x="530" dy="15">minutes. The '.verified' marker in S3 after a successful</tspan>
-    <tspan x="530" dy="15">checksum comparison gives peace of mind no other</tspan>
-    <tspan x="530" dy="15">backup tool provides out of the box. Retention purges</tspan>
-    <tspan x="530" dy="15">old backups automatically. Runs as a container, systemd</tspan>
-    <tspan x="530" dy="15">timer, or cron. Deducting one star only because docs</tspan>
-    <tspan x="530" dy="15">assume S3 CLI familiarity. Otherwise excellent for any</tspan>
-    <tspan x="530" dy="15">shop running PostgreSQL or MariaDB in production.</tspan>
-  </text>
-  <line x1="510" y1="3075" x2="510" y2="3240" stroke="#ddd" stroke-width="0.5"/>
-  <text x="40" y="3270" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#333" font-style="italic">Circle number 204 on the reader service card.</text>
-
-  <!-- Bottom ad: Borland Turbo Pascal -->
-  <g transform="translate(40, 3300)">
-    <rect x="0" y="0" width="940" height="160" fill="#fff" stroke="#cc0000" stroke-width="2" rx="2"/>
-    <text x="470" y="30" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#cc0000" text-anchor="middle">BORLAND</text>
-    <text x="470" y="55" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#000" text-anchor="middle">TURBO PASCAL 4.0</text>
-    <text x="470" y="80" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle" font-style="italic">"The most talked about software in the industry" — BYTE</text>
-    <text x="470" y="102" font-family="Times New Roman, serif" font-size="11" fill="#000" text-anchor="middle">Compiles 27,000 lines/min. Integrated editor. Built-in debugger. Overlays. 8087 support. Only $99.95!</text>
-    <text x="470" y="125" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#cc0000" text-anchor="middle">Call 1-800-255-8008 or see your dealer today.</text>
-    <text x="470" y="150" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 87 on the reader service card.</text>
-  </g>
-
-  <!-- Second ad row -->
-  <g transform="translate(40, 3490)">
-    <rect x="0" y="0" width="450" height="140" fill="#000" rx="2"/>
-    <text x="225" y="25" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffd700" text-anchor="middle">The Norton Utilities</text>
-    <text x="225" y="45" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle">Advanced Edition 4.5</text>
-    <text x="225" y="70" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">Recover deleted files. Optimize disks. Diagnose hardware.</text>
-    <text x="225" y="87" font-family="Times New Roman, serif" font-size="11" fill="#ccc" text-anchor="middle">Edit any sector. Batch enhancements. $150.</text>
-    <text x="225" y="110" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#ffd700" text-anchor="middle">Peter Norton Computing • Santa Monica, CA</text>
-    <text x="225" y="132" font-family="Times New Roman, serif" font-size="9" fill="#888" text-anchor="middle" font-style="italic">Circle number 92 on the reader service card.</text>
-  </g>
-  <g transform="translate(530, 3490)">
-    <rect x="0" y="0" width="450" height="140" fill="#003366" rx="2"/>
-    <text x="225" y="25" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">CompuServe</text>
-    <text x="225" y="48" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#ffcc00" text-anchor="middle">THE INFORMATION SERVICE YOU WON'T OUTGROW.</text>
-    <text x="225" y="72" font-family="Times New Roman, serif" font-size="11" fill="#ddd" text-anchor="middle">Forums. Email. 200,000+ files. Stock quotes. CB Simulator.</text>
-    <text x="225" y="89" font-family="Times New Roman, serif" font-size="11" fill="#ddd" text-anchor="middle">$6/hour (300 baud), $12.50/hour (2400 baud).</text>
-    <text x="225" y="112" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#fff" text-anchor="middle">1-800-848-8199 for free introductory membership.</text>
-    <text x="225" y="132" font-family="Times New Roman, serif" font-size="9" fill="#aaa" text-anchor="middle" font-style="italic">Circle number 201 on the reader service card.</text>
-  </g>
-
-  <!-- Specs box for polyDBackup -->
-  <g transform="translate(40, 3660)">
-    <rect x="0" y="0" width="940" height="95" fill="#f0ede4" stroke="#000" stroke-width="0.75"/>
-    <rect x="0" y="0" width="940" height="18" fill="#000"/>
-    <text x="470" y="14" font-family="Helvetica, Arial, sans-serif" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">SPECIFICATIONS — polyDBackup 1.0</text>
-    <text x="10" y="35" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#000">
-      <tspan x="10" dy="0" font-weight="bold">Supports:</tspan><tspan> PostgreSQL, MySQL, MariaDB</tspan>
-      <tspan x="480" dy="0" font-weight="bold">Deploy:</tspan><tspan> Docker, systemd timer, or cron</tspan>
-      <tspan x="10" dy="16" font-weight="bold">Storage:</tspan><tspan> Any S3-compatible (AWS, MinIO, Wasabi)</tspan>
-      <tspan x="480" dy="0" font-weight="bold">Requires:</tspan><tspan> Bash, S3 CLI, database client tools</tspan>
-      <tspan x="10" dy="16" font-weight="bold">Features:</tspan><tspan> Compression, AES-256, retention, restore verification</tspan>
-      <tspan x="480" dy="0" font-weight="bold">Price:</tspan><tspan> Free (GPL-3.0)</tspan>
+  <g transform="translate(0, 2640)">
+    <linearGradient id="edchoice" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#cc0000"/>
+      <stop offset="100%" style="stop-color:#990000"/>
+    </linearGradient>
+    <rect width="1020" height="1320" fill="#f5f2ea"/>
+    <rect x="0" y="0" width="1020" height="52" fill="#cc0000"/>
+    <text x="40" y="37" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff" letter-spacing="3">PERSONAL COMPUTING</text>
+    <text x="510" y="37" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">FIRST LOOKS</text>
+    <text x="980" y="37" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="end">June 10, 2026</text>
+    <text x="510" y="1305" font-family="Times New Roman, serif" font-size="12" fill="#333" text-anchor="middle">234    PERSONAL COMPUTING    JUNE 10, 2026</text>
+    <g transform="translate(780, 70)">
+      <rect x="0" y="0" width="190" height="170" fill="url(#edchoice)" rx="4"/>
+      <rect x="4" y="4" width="182" height="162" fill="none" stroke="#ffd700" stroke-width="2" rx="3"/>
+      <text x="95" y="40" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#ffd700" text-anchor="middle">★ ★ ★ ★ ★</text>
+      <text x="95" y="72" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold">EDITORS'</text>
+      <text x="95" y="96" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold">CHOICE</text>
+      <line x1="30" y1="110" x2="160" y2="110" stroke="#ffd700" stroke-width="1"/>
+      <text x="95" y="132" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffcccc" text-anchor="middle">PCmigrate 0.4</text>
+      <text x="95" y="150" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#ffcccc" text-anchor="middle">PFWorks</text>
+    </g>
+    <text x="50" y="105" font-family="Helvetica, Arial, sans-serif" font-size="36" font-weight="bold" fill="#000000">PCmigrate 0.4</text>
+    <text x="50" y="135" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#444444">PFWorks • Free (Open Source) • https://github.com/pfworks/PCmigrate</text>
+    <line x1="50" y1="150" x2="750" y2="150" stroke="#000" stroke-width="0.5"/>
+    <g transform="translate(300, 165)">
+      <rect x="0" y="0" width="420" height="290" fill="#2a2a2a" rx="8"/>
+      <rect x="12" y="12" width="396" height="246" fill="#1e1e2e"/>
+      <rect x="12" y="12" width="396" height="28" fill="#313244"/>
+      <text x="24" y="31" font-family="Segoe UI, sans-serif" font-size="11" fill="#cdd6f4">⬡ PCmigrate</text>
+      <rect x="24" y="52" width="372" height="24" fill="#45475a" rx="3"/>
+      <text x="34" y="68" font-family="Consolas, monospace" font-size="10" fill="#f9e2af">📁 Backup / Restore Location:</text>
+      <rect x="24" y="82" width="310" height="22" fill="#313244" rx="3"/>
+      <text x="34" y="97" font-family="Consolas, monospace" font-size="10" fill="#a6adc8">E:\PCmigrate</text>
+      <rect x="340" y="82" width="56" height="22" fill="#45475a" rx="3"/>
+      <text x="356" y="97" font-family="Segoe UI, sans-serif" font-size="10" fill="#cdd6f4">Browse</text>
+      <rect x="24" y="116" width="100" height="30" fill="#a6e3a1" rx="4"/>
+      <text x="52" y="135" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1e1e2e">Export ▼</text>
+      <rect x="134" y="116" width="80" height="30" fill="#89b4fa" rx="4"/>
+      <text x="153" y="135" font-family="Segoe UI, sans-serif" font-size="12" font-weight="bold" fill="#1e1e2e">Restore</text>
+      <rect x="24" y="158" width="372" height="88" fill="#11111b" rx="3"/>
+      <text x="32" y="174" font-family="Consolas, monospace" font-size="9" fill="#a6e3a1">=== Windows Migration Export Started ===</text>
+      <text x="32" y="188" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Output: E:\PCmigrate</text>
+      <text x="32" y="202" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">--- Retrieving license keys ---</text>
+      <text x="32" y="216" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Windows product key: XXXXX-XXXXX-XXXXX-XXXXX</text>
+      <text x="32" y="230" font-family="Consolas, monospace" font-size="9" fill="#f9e2af">--- Exporting WSL distributions ---</text>
+      <text x="32" y="244" font-family="Consolas, monospace" font-size="9" fill="#cdd6f4">Exporting Ubuntu (WSL 2, VHDX)... 14.2 GB</text>
+      <rect x="175" y="260" width="70" height="12" fill="#1a1a1a"/>
+      <rect x="155" y="272" width="110" height="8" fill="#1a1a1a" rx="2"/>
+    </g>
+    <text x="510" y="468" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">PCmigrate's dark-themed WPF interface shows live export progress.</text>
+    <text x="510" y="482" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#666" text-anchor="middle" font-style="italic">The split Export button offers WSL-only and bundle modes.</text>
+    <text x="510" y="510" font-family="Times New Roman, serif" font-size="12.5" fill="#000" text-anchor="middle">
+      <tspan x="510" dy="0" font-weight="bold" font-size="13">M</tspan><tspan>oving to a new Windows PC has always been an exercise in tedium. You spend the first weekend reinstalling</tspan>
+      <tspan x="510" dy="16">applications, hunting for license keys scrawled on Post-it notes, and praying your WSL environment survives the</tspan>
+      <tspan x="510" dy="16">journey. PCmigrate, a free open-source utility from developer PFWorks, compresses that weekend into fifteen minutes.</tspan>
     </text>
+    <text x="40" y="580" font-family="Times New Roman, serif" font-size="12" fill="#000">
+      <tspan x="40" dy="0" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">SETUP AND INTERFACE</tspan>
+      <tspan x="40" dy="18">You can grab PCmigrate as a traditional installer or portable zip from</tspan>
+      <tspan x="40" dy="15">GitHub Releases. The installer weighs under 2 MB. On first launch it</tspan>
+      <tspan x="40" dy="15">requests administrator privileges and presents a dark-themed WPF</tspan>
+      <tspan x="40" dy="15">window that feels surprisingly polished for a PowerShell application.</tspan>
+      <tspan x="40" dy="15">The interface is minimal: a path selector, an Export button with a</tspan>
+      <tspan x="40" dy="15">dropdown for mode selection, and a Restore button. No wizard, no</tspan>
+      <tspan x="40" dy="15">account creation, no telemetry. We appreciated the restraint.</tspan>
+      <tspan x="40" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">EXPORT PROCESS</tspan>
+      <tspan x="40" dy="18">We tested on a Dell Precision workstation running Windows 11 23H2</tspan>
+      <tspan x="40" dy="15">with 47 Win32 apps, 12 Store apps, two WSL distributions (Ubuntu</tspan>
+      <tspan x="40" dy="15">22.04 on WSL 2 and Alpine on WSL 1), and license keys in the registry.</tspan>
+      <tspan x="40" dy="18">Clicking Export Only with the output aimed at a Samsung T7 SSD took</tspan>
+      <tspan x="40" dy="15">4 minutes 38 seconds. The tool produced a CSV inventory, interactive</tspan>
+      <tspan x="40" dy="15">HTML checklist with download links, winget JSON export, full Ubuntu</tspan>
+      <tspan x="40" dy="15">VHDX and Alpine tar, .wslconfig, zipped AppData folders, and a</tspan>
+      <tspan x="40" dy="15">generated restore script.</tspan>
+      <tspan x="40" dy="18">The HTML checklist deserves special mention. It renders a dark-themed</tspan>
+      <tspan x="40" dy="15">page with checkboxes. Check off an app and the row grays out. License</tspan>
+      <tspan x="40" dy="15">keys hide behind a click-to-reveal toggle with a per-key copy button.</tspan>
+      <tspan x="40" dy="15">Small touch, real time saved.</tspan>
+    </text>
+    <g transform="translate(40, 930)">
+      <rect x="0" y="0" width="440" height="130" fill="#fff" stroke="#000" stroke-width="1"/>
+      <rect x="4" y="4" width="432" height="122" fill="#fff" stroke="#000" stroke-width="0.5" stroke-dasharray="2,2"/>
+      <g transform="translate(15, 18)">
+        <rect x="0" y="0" width="55" height="55" fill="#222" rx="3"/>
+        <rect x="15" y="0" width="25" height="18" fill="#ccc"/>
+        <rect x="19" y="3" width="17" height="12" fill="#666"/>
+        <rect x="10" y="30" width="35" height="22" fill="#eee" rx="2"/>
+      </g>
+      <text x="85" y="32" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#000">PKZIP 2.04g</text>
+      <text x="85" y="48" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#000">PKWARE, Inc. — Brown Deer, WI</text>
+      <text x="85" y="68" font-family="Times New Roman, serif" font-size="10" fill="#333">The industry-standard compression utility. Shrink files up to</text>
+      <text x="85" y="80" font-family="Times New Roman, serif" font-size="10" fill="#333">95%. Spanning. Self-extracting archives. Password protection.</text>
+      <text x="85" y="92" font-family="Times New Roman, serif" font-size="10" fill="#333">New Deflate algorithm. DOS, OS/2, Windows. Only $47.</text>
+      <text x="85" y="112" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#555" font-style="italic">Order: 1-414-354-8699 or CompuServe GO PKWARE</text>
+      <text x="220" y="126" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-style="italic">Circle number 72 on the reader service card.</text>
+    </g>
+    <text x="520" y="580" font-family="Times New Roman, serif" font-size="12" fill="#000">
+      <tspan x="520" dy="0" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">WSL BACKUP</tspan>
+      <tspan x="520" dy="18">The WSL-Only mode skips software inventory and just exports your</tspan>
+      <tspan x="520" dy="15">Linux distributions. For developers who routinely break their WSL</tspan>
+      <tspan x="520" dy="15">setup experimenting with kernel builds, this is a one-click safety net.</tspan>
+      <tspan x="520" dy="15">We exported a 14 GB Ubuntu VHDX to USB 3.2 in just over two</tspan>
+      <tspan x="520" dy="15">minutes—limited entirely by sequential write speed. On restore the</tspan>
+      <tspan x="520" dy="15">tool creates install directories, runs wsl --import with correct flags,</tspan>
+      <tspan x="520" dy="15">and prints a reminder to set your default user.</tspan>
+      <tspan x="520" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">RESTORE</tspan>
+      <tspan x="520" dy="18">We moved the Samsung T7 to a fresh Windows 11 machine. Winget</tspan>
+      <tspan x="520" dy="15">imported 39 of 47 packages (the remainder had changed IDs or were</tspan>
+      <tspan x="520" dy="15">unavailable). Both WSL distributions came back intact, including shell</tspan>
+      <tspan x="520" dy="15">history and SSH keys. The entire restore took 11 minutes on gigabit.</tspan>
+      <tspan x="520" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">ROUGH EDGES</tspan>
+      <tspan x="520" dy="18">SmartScreen flags the unsigned installer, which will alarm non-</tspan>
+      <tspan x="520" dy="15">technical users. No scheduled backup option yet—you must remember</tspan>
+      <tspan x="520" dy="15">to run exports manually. A Task Scheduler integration would round</tspan>
+      <tspan x="520" dy="15">out the WSL backup story nicely.</tspan>
+      <tspan x="520" dy="22" font-weight="bold" font-family="Helvetica, Arial, sans-serif" font-size="11">CONCLUSIONS</tspan>
+      <tspan x="520" dy="18">PCmigrate fills the gap Microsoft left when it retired Windows Easy</tspan>
+      <tspan x="520" dy="15">Transfer. It's free, fast, respects your privacy, and handles WSL—</tspan>
+      <tspan x="520" dy="15">the one thing most migration tools ignore entirely. Whether you're</tspan>
+      <tspan x="520" dy="15">moving to a new machine or want insurance before your next rm -rf</tspan>
+      <tspan x="520" dy="15">mishap, PCmigrate earns our Editors' Choice.</tspan>
+    </text>
+    <g transform="translate(520, 920)">
+      <rect x="0" y="0" width="460" height="145" fill="#f0ede4" stroke="#000" stroke-width="0.75"/>
+      <rect x="0" y="0" width="460" height="22" fill="#000"/>
+      <text x="230" y="16" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff" text-anchor="middle">SPECIFICATIONS</text>
+      <text x="10" y="42" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#000">
+        <tspan x="10" dy="0" font-weight="bold">Product:</tspan><tspan> PCmigrate 0.4</tspan>
+        <tspan x="10" dy="16" font-weight="bold">Company:</tspan><tspan> PFWorks</tspan>
+        <tspan x="10" dy="16" font-weight="bold">Price:</tspan><tspan> Free (MIT License)</tspan>
+        <tspan x="10" dy="16" font-weight="bold">Requires:</tspan><tspan> Windows 10 v1709+ or 11, PowerShell 5.1+,</tspan>
+        <tspan x="10" dy="14">Administrator privileges, winget</tspan>
+        <tspan x="10" dy="16" font-weight="bold">Download:</tspan><tspan> github.com/pfworks/PCmigrate/releases</tspan>
+      </text>
+    </g>
+    <text x="750" y="1083" font-family="Times New Roman, serif" font-size="11" fill="#333" font-style="italic">Circle number 203 on the reader service card.</text>
+    <line x1="495" y1="570" x2="495" y2="1090" stroke="#ccc" stroke-width="0.5"/>
+    <line x1="40" y1="1105" x2="980" y2="1105" stroke="#000" stroke-width="1"/>
+    <text x="510" y="1120" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" text-anchor="middle">ADVERTISEMENT</text>
+    <rect x="50" y="1130" width="920" height="150" fill="#000" rx="2"/>
+    <g transform="translate(70, 1148)">
+      <rect x="0" y="30" width="220" height="60" fill="#1a6b1a" rx="2" stroke="#0d4d0d" stroke-width="1"/>
+      <rect x="60" y="90" width="100" height="18" fill="#2a5e2a"/>
+      <rect x="65" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="72" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="79" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="86" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="93" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="100" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="107" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="114" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="121" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="128" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="135" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="142" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="149" y="92" width="4" height="14" fill="#d4a017"/>
+      <rect x="20" y="42" width="30" height="14" fill="#111" rx="1"/>
+      <rect x="60" y="42" width="30" height="14" fill="#111" rx="1"/>
+      <rect x="100" y="42" width="40" height="18" fill="#222" rx="1"/>
+      <rect x="155" y="38" width="20" height="20" fill="#111" rx="1"/>
+      <rect x="185" y="44" width="6" height="12" fill="#336" rx="1"/>
+      <rect x="195" y="44" width="6" height="12" fill="#336" rx="1"/>
+      <rect x="0" y="20" width="10" height="78" fill="#c0c0c0"/>
+      <rect x="-4" y="35" width="10" height="14" fill="#888" stroke="#666" stroke-width="0.5"/>
+    </g>
+    <text x="310" y="1160" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">SMC EtherCard ELITE16T</text>
+    <text x="310" y="1183" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffcc00">16-BIT ISA ETHERNET. NO COMPROMISES.</text>
+    <text x="310" y="1206" font-family="Times New Roman, serif" font-size="11" fill="#cccccc">
+      <tspan x="310" dy="0">Full 16-bit ISA bus mastering. 10Base-T and BNC connectors.</tspan>
+      <tspan x="310" dy="14">Hardware-selectable IRQ (3, 5, 7, 9, 10, 11). 16KB on-board</tspan>
+      <tspan x="310" dy="14">RAM buffer. NetWare, LAN Manager, and TCP/IP drivers included.</tspan>
+    </text>
+    <text x="310" y="1258" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#ffffff">$195</text>
+    <text x="365" y="1258" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#aaaaaa">Suggested retail. See your dealer or call 1-800-SMC-4-YOU.</text>
+    <text x="860" y="1175" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffcc00" text-anchor="middle">SMC</text>
+    <text x="860" y="1192" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888" text-anchor="middle">STANDARD MICROSYSTEMS</text>
+    <text x="860" y="1210" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#888" text-anchor="middle">Hauppauge, NY</text>
+    <text x="510" y="1275" font-family="Times New Roman, serif" font-size="10" fill="#aaa" text-anchor="middle" font-style="italic">Circle number 118 on the reader service card.</text>
   </g>
-
-  <!-- Page footer -->
-  <text x="510" y="3790" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle">46    PERSONAL COMPUTING    JUNE 10, 2026</text>
 
   <!-- ═══════════════════════════════════════════════════════════════════ -->
   <!-- PAGE 4: sheLLaMa + UTILITY ROUNDUP                                 -->
