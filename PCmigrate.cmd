@@ -10,5 +10,6 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-:: Run the GUI script
+:: Run the GUI script (unblock first in case extracted from zip)
+powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "Get-ChildItem -Path '%~dp0' -Filter '*.ps1' | Unblock-File -ErrorAction SilentlyContinue"
 start "" /b powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -File "%~dp0PCmigrate-GUI.ps1"

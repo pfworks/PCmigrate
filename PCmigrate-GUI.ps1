@@ -11,7 +11,7 @@
 
 # Self-elevate to admin if not already
 if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Start-Process powershell.exe "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$PSCommandPath`"" -Verb RunAs
+    Start-Process powershell.exe "-ExecutionPolicy Bypass -WindowStyle Hidden -Command `"& '$($PSCommandPath -replace \"'\",\"''\")'`"" -Verb RunAs
     exit
 }
 
