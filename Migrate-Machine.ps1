@@ -618,13 +618,18 @@ Write-Log "Restore script created: Restore-Machine.ps1"
 # ─────────────────────────────────────────────
 if ($Bundle) {
     Write-Log "--- Creating restore bundle ---"
-    $resolvedOutput = (Resolve-Path $OutputPath).Path.TrimEnd('\')
+    $resolvedOutput = (Resolve-Path $OutputPath).Path -replace '\\$', ''
     $parentDir = Split-Path $resolvedOutput -Parent
     $folderName = Split-Path $resolvedOutput -Leaf
-    if (-not $parentDir) { $parentDir = $resolvedOutput }
-    $zipPath = Join-Path $parentDir "${folderName}_RestoreBundle.zip"
+    if (-not $parentDir -or -not $folderName -or $folderName -match '^[A-Z]:$') {
+        # Output is a drive root — place the bundle inside it
+        $zipPath = Join-Path "$resolvedOutput\" "PCmigrate_RestoreBundle.zip"
+    } else {
+        $zipPath = Join-Path $parentDir "${folderName}_RestoreBundle.zip"
+    }
     if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
-    $items = Get-ChildItem -LiteralPath $resolvedOutput
+    if ($resolvedOutput -match '^[A-Z]:$') { $listPath = "$resolvedOutput\" } else { $listPath = $resolvedOutput }
+    $items = Get-ChildItem -LiteralPath $listPath
     if (-not $items) {
         Write-Log "WARNING: No files to bundle"
     } else {

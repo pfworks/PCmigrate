@@ -392,15 +392,20 @@ function Start-Export {
 
             if ($createBundle) {
                 Log ""; Log "--- Creating restore bundle ---"
-                $resolvedOutput = (Resolve-Path $outputPath).Path.TrimEnd('\')
+                $resolvedOutput = (Resolve-Path $outputPath).Path -replace '\\$', ''
                 $parentDir = Split-Path $resolvedOutput -Parent
                 $folderName = Split-Path $resolvedOutput -Leaf
-                if (-not $parentDir) { $parentDir = $resolvedOutput }
-                $zipName = "${folderName}_RestoreBundle.zip"
-                $zipPath = Join-Path $parentDir $zipName
+                if (-not $parentDir -or -not $folderName -or $folderName -match '^[A-Z]:$') {
+                    $zipName = "PCmigrate_RestoreBundle.zip"
+                    $zipPath = Join-Path "$resolvedOutput\" $zipName
+                } else {
+                    $zipName = "${folderName}_RestoreBundle.zip"
+                    $zipPath = Join-Path $parentDir $zipName
+                }
                 if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
                 Log "Compressing files (this may take a while for large WSL exports)..."
-                $items = Get-ChildItem -LiteralPath $resolvedOutput
+                if ($resolvedOutput -match '^[A-Z]:$') { $listPath = "$resolvedOutput\" } else { $listPath = $resolvedOutput }
+                $items = Get-ChildItem -LiteralPath $listPath
                 if (-not $items) { Log "WARNING: No files to bundle"; return }
                 Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
                 if (Test-Path $zipPath) {
