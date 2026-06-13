@@ -242,3 +242,12 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 - `v0.4.3` (debug portable launch)
 - `v0.4.4` (show console for error diagnosis)
 - `v0.4.5` (custom icon + hidden console — final fix)
+
+## Session 15 — 2026-06-13
+
+### Fixed
+- **Log output not copyable** — GUI log panel used a `TextBlock` (no text selection). Replaced with a read-only `TextBox` with built-in scrollbar so users can select, copy, and paste log output.
+- **Restore bundle "Stream was too long" error** — `Compress-Archive` in PowerShell 5.1 buffers into a `MemoryStream` (2 GB max). Replaced with `System.IO.Compression.ZipFile` API which writes directly to disk, removing the size limit. Fixed in both GUI and CLI (`-Bundle`) code paths.
+
+### Released
+- `v0.4.7`
