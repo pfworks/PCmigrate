@@ -131,10 +131,10 @@ Add-Type -AssemblyName System.Windows.Forms
 
         <!-- Log Output -->
         <Border Grid.Row="3" Background="#181825" CornerRadius="6" Padding="4" Margin="0,0,0,12">
-            <ScrollViewer x:Name="LogScroller" VerticalScrollBarVisibility="Auto">
-                <TextBlock x:Name="LogBlock" FontFamily="Cascadia Mono,Consolas,Courier New" FontSize="12"
-                           Foreground="#a6adc8" TextWrapping="Wrap" Padding="8"/>
-            </ScrollViewer>
+            <TextBox x:Name="LogBlock" FontFamily="Cascadia Mono,Consolas,Courier New" FontSize="12"
+                     Foreground="#a6adc8" Background="#181825" BorderThickness="0" Padding="8"
+                     IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                     AcceptsReturn="True"/>
         </Border>
 
         <!-- Status Bar -->
@@ -166,7 +166,6 @@ $exportDropBtn = $window.FindName("ExportDropBtn")
 $importBtn = $window.FindName("ImportBtn")
 $cancelBtn = $window.FindName("CancelBtn")
 $logBlock = $window.FindName("LogBlock")
-$logScroller = $window.FindName("LogScroller")
 $progressBar = $window.FindName("ProgressBar")
 $statusText = $window.FindName("StatusText")
 
@@ -249,7 +248,7 @@ $cancelBtn.Add_Click({
         }, $ps) | Out-Null
 
         $logBlock.Text += "`n[CANCELLED] Operation stopped by user.`n"
-        $logScroller.ScrollToEnd()
+        $logBlock.ScrollToEnd()
         $statusText.Text = "Cancelled"
         $progressBar.IsIndeterminate = $false
         $progressBar.Value = 0
@@ -278,7 +277,6 @@ function Start-BackgroundTask {
     # Always pass UI controls
     $runspace.SessionStateProxy.SetVariable("window", $window)
     $runspace.SessionStateProxy.SetVariable("logBlock", $logBlock)
-    $runspace.SessionStateProxy.SetVariable("logScroller", $logScroller)
     $runspace.SessionStateProxy.SetVariable("statusText", $statusText)
     $runspace.SessionStateProxy.SetVariable("progressBar", $progressBar)
     $runspace.SessionStateProxy.SetVariable("exportBtn", $exportBtn)
@@ -306,7 +304,7 @@ $importBtn.Add_Click({
     $statusText.Text = "Restoring..."
 
     Start-BackgroundTask -Variables @{ importPath = $pathBox.Text } -Script {
-        function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logScroller.ScrollToEnd() }) }
+        function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logBlock.ScrollToEnd() }) }
         function Done {
             try {
                 $window.Dispatcher.Invoke([Action]{
@@ -368,7 +366,7 @@ function Start-Export {
     if ($WslOnly) { $statusText.Text = "Exporting WSL..." }
 
     Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot; createBundle = $CreateBundle; wslOnly = $WslOnly } -Script {
-        function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logScroller.ScrollToEnd() }) }
+        function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logBlock.ScrollToEnd() }) }
         function Done {
             try {
                 $window.Dispatcher.Invoke([Action]{
@@ -407,7 +405,22 @@ function Start-Export {
                 if ($resolvedOutput -match '^[A-Z]:$') { $listPath = "$resolvedOutput\" } else { $listPath = $resolvedOutput }
                 $items = Get-ChildItem -LiteralPath $listPath
                 if (-not $items) { Log "WARNING: No files to bundle"; return }
-                Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
+                Add-Type -AssemblyName System.IO.Compression
+                Add-Type -AssemblyName System.IO.Compression.FileSystem
+                $zip = [System.IO.Compression.ZipFile]::Open($zipPath, 'Create')
+                try {
+                    foreach ($item in $items) {
+                        if ($item.PSIsContainer) {
+                            $subFiles = Get-ChildItem -LiteralPath $item.FullName -Recurse -File
+                            foreach ($f in $subFiles) {
+                                $entryName = $item.Name + '/' + $f.FullName.Substring($item.FullName.Length + 1).Replace('\', '/')
+                                [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $f.FullName, $entryName, 'Optimal') | Out-Null
+                            }
+                        } else {
+                            [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $item.FullName, $item.Name, 'Optimal') | Out-Null
+                        }
+                    }
+                } finally { $zip.Dispose() }
                 if (Test-Path $zipPath) {
                     $sizeBytes = (Get-Item $zipPath).Length
                     if ($sizeBytes -ge 1MB) { $sizeStr = "$([math]::Round($sizeBytes / 1MB, 1)) MB" } else { $sizeStr = "$([math]::Round($sizeBytes / 1KB, 0)) KB" }

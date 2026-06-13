@@ -633,7 +633,22 @@ if ($Bundle) {
     if (-not $items) {
         Write-Log "WARNING: No files to bundle"
     } else {
-        Compress-Archive -LiteralPath $items.FullName -DestinationPath $zipPath -CompressionLevel Optimal
+        Add-Type -AssemblyName System.IO.Compression
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
+        $zip = [System.IO.Compression.ZipFile]::Open($zipPath, 'Create')
+        try {
+            foreach ($item in $items) {
+                if ($item.PSIsContainer) {
+                    $subFiles = Get-ChildItem -LiteralPath $item.FullName -Recurse -File
+                    foreach ($f in $subFiles) {
+                        $entryName = $item.Name + '/' + $f.FullName.Substring($item.FullName.Length + 1).Replace('\', '/')
+                        [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $f.FullName, $entryName, 'Optimal') | Out-Null
+                    }
+                } else {
+                    [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $item.FullName, $item.Name, 'Optimal') | Out-Null
+                }
+            }
+        } finally { $zip.Dispose() }
     }
     if (Test-Path $zipPath) {
         $sizeBytes = (Get-Item $zipPath).Length
