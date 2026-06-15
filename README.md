@@ -66,6 +66,12 @@ Launch the app from the Start Menu, desktop shortcut, or `PCmigrate.cmd`. Use th
 # Optimize WSL before export (convert WSL 1→2, compact disk images)
 .\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -OptimizeWsl
 
+# Just convert WSL 1 distros to WSL 2 (no export)
+.\Migrate-Machine.ps1 -ConvertWsl
+
+# Just compact WSL 2 disk images (no export)
+.\Migrate-Machine.ps1 -CompactWsl
+
 # Or default to Desktop\PCmigrate
 .\Migrate-Machine.ps1
 ```

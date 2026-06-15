@@ -20,7 +20,9 @@ param(
     [string]$OutputPath = "$env:USERPROFILE\Desktop\PCmigrate",
     [switch]$Bundle,
     [switch]$WslOnly,
-    [switch]$OptimizeWsl
+    [switch]$OptimizeWsl,
+    [switch]$ConvertWsl,
+    [switch]$CompactWsl
 )
 
 $ErrorActionPreference = "Continue"
@@ -38,6 +40,94 @@ function Write-Log {
 Write-Log "=== Windows Migration Export Started ==="
 Write-Log "Output: $OutputPath"
 if ($WslOnly) { Write-Log "Mode: WSL Only" }
+
+# ─────────────────────────────────────────────
+# Standalone WSL maintenance modes (no export)
+# ─────────────────────────────────────────────
+if ($ConvertWsl -or $CompactWsl) {
+    if (-not (Get-Command wsl.exe -ErrorAction SilentlyContinue)) {
+        Write-Log "ERROR: wsl.exe not found"; exit 1
+    }
+    $osBuild = [int](Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion").CurrentBuildNumber
+    $supportsVhd = $osBuild -ge 22000
+
+    # Parse distro versions
+    $wslVersionMap = @{}
+    $vOutput = wsl.exe -l -v 2>$null
+    if ($vOutput) {
+        foreach ($line in $vOutput) {
+            if ($line -match '^\s*\*?\s*(.+?)\s+(Running|Stopped)\s+(\d+)\s*$') {
+                $wslVersionMap[$Matches[1].Trim()] = [int]$Matches[3]
+            }
+        }
+    }
+    $distros = wsl.exe --list --quiet 2>$null | Where-Object { $_ -and $_ -notmatch "^\s*$" } |
+        ForEach-Object { ($_ -replace "`0","").Trim() } | Where-Object { $_ }
+
+    if (-not $distros) { Write-Log "No WSL distributions found"; exit 0 }
+
+    if ($ConvertWsl) {
+        if (-not $supportsVhd) { Write-Log "ERROR: WSL 2 conversion requires Windows 11 (build 22000+)"; exit 1 }
+        Write-Log "--- Converting WSL 1 distros to WSL 2 ---"
+        wsl.exe --shutdown
+        Start-Sleep -Seconds 2
+        $converted = 0
+        foreach ($d in $distros) {
+            if ($wslVersionMap.ContainsKey($d) -and $wslVersionMap[$d] -eq 1) {
+                Write-Log "  Converting $d to WSL 2 (this may take several minutes)..."
+                wsl.exe --set-version $d 2
+                if ($LASTEXITCODE -eq 0) {
+                    Write-Log "  Converted $d to WSL 2"
+                    $converted++
+                } else {
+                    Write-Log "  WARNING: Failed to convert $d"
+                }
+            }
+        }
+        if ($converted -eq 0) { Write-Log "  No WSL 1 distros found to convert" }
+        Write-Log "Done."
+    }
+
+    if ($CompactWsl) {
+        Write-Log "--- Compacting WSL 2 disk images ---"
+        wsl.exe --shutdown
+        Start-Sleep -Seconds 2
+        $compacted = 0
+        foreach ($d in $distros) {
+            $ver = 0
+            if ($wslVersionMap.ContainsKey($d)) { $ver = $wslVersionMap[$d] }
+            if ($ver -ne 2) { continue }
+            $regPath = Get-ChildItem "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss" -ErrorAction SilentlyContinue |
+                Where-Object { (Get-ItemProperty $_.PSPath).DistributionName -eq $d } |
+                Select-Object -First 1
+            if (-not $regPath) { continue }
+            $basePath = (Get-ItemProperty $regPath.PSPath).BasePath
+            $vhdxPath = Join-Path $basePath "ext4.vhdx"
+            if (-not (Test-Path $vhdxPath)) { continue }
+            $sizeBefore = [math]::Round((Get-Item $vhdxPath).Length / 1MB, 1)
+            Write-Log "  Compacting $d ($sizeBefore MB)..."
+            try {
+                if (Get-Command Optimize-VHD -ErrorAction SilentlyContinue) {
+                    Optimize-VHD -Path $vhdxPath -Mode Full
+                } else {
+                    $dpScript = "select vdisk file=`"$vhdxPath`"`r`ncompact vdisk"
+                    $dpFile = [System.IO.Path]::GetTempFileName()
+                    Set-Content -Path $dpFile -Value $dpScript
+                    diskpart /s $dpFile 2>$null | Out-Null
+                    Remove-Item $dpFile -Force
+                }
+                $sizeAfter = [math]::Round((Get-Item $vhdxPath).Length / 1MB, 1)
+                Write-Log "  Compacted $d`: $sizeBefore MB -> $sizeAfter MB (saved $([math]::Round($sizeBefore - $sizeAfter, 1)) MB)"
+                $compacted++
+            } catch {
+                Write-Log "  WARNING: Could not compact $d`: $_"
+            }
+        }
+        if ($compacted -eq 0) { Write-Log "  No WSL 2 distros found to compact" }
+        Write-Log "Done."
+    }
+    exit 0
+}
 
 # Check winget availability early
 if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {

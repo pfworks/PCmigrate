@@ -347,11 +347,19 @@ $menuWslOnly = New-Object System.Windows.Controls.MenuItem
 $menuWslOnly.Header = "WSL Only"
 $menuOptimizeExport = New-Object System.Windows.Controls.MenuItem
 $menuOptimizeExport.Header = "Optimize WSL + Export"
+$menuSep = New-Object System.Windows.Controls.Separator
+$menuConvertWsl = New-Object System.Windows.Controls.MenuItem
+$menuConvertWsl.Header = "Convert WSL 1 → 2 (no export)"
+$menuCompactWsl = New-Object System.Windows.Controls.MenuItem
+$menuCompactWsl.Header = "Compact WSL Disks (no export)"
 
 $exportMenu.Items.Add($menuExportOnly) | Out-Null
 $exportMenu.Items.Add($menuExportBundle) | Out-Null
 $exportMenu.Items.Add($menuWslOnly) | Out-Null
 $exportMenu.Items.Add($menuOptimizeExport) | Out-Null
+$exportMenu.Items.Add($menuSep) | Out-Null
+$exportMenu.Items.Add($menuConvertWsl) | Out-Null
+$exportMenu.Items.Add($menuCompactWsl) | Out-Null
 
 $exportDropBtn.Add_Click({
     $exportMenu.PlacementTarget = $exportDropBtn
@@ -458,5 +466,37 @@ $menuExportOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false -O
 $menuExportBundle.Add_Click({ Start-Export -CreateBundle $true -WslOnly $false -OptimizeWsl $false })
 $menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true -OptimizeWsl $false })
 $menuOptimizeExport.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false -OptimizeWsl $true })
+
+# WSL maintenance (no export)
+function Start-WslTask {
+    param([string]$Flag, [string]$Label)
+    Set-Running
+    $logBlock.Text = ""
+    $statusText.Text = $Label
+    Start-BackgroundTask -Variables @{ scriptRoot = $PSScriptRoot; flag = $Flag } -Script {
+        function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logBlock.ScrollToEnd() }) }
+        function Done {
+            try { $window.Dispatcher.Invoke([Action]{
+                $cancelBtn.Visibility = "Collapsed"
+                $exportBtn.IsEnabled = $true; $importBtn.IsEnabled = $true; $exportDropBtn.IsEnabled = $true
+                $progressBar.IsIndeterminate = $false; $progressBar.Value = 100
+            }) } catch {}
+        }
+        try {
+            $migrateScript = Join-Path $scriptRoot "Migrate-Machine.ps1"
+            if (-not (Test-Path $migrateScript)) { Log "ERROR: Migrate-Machine.ps1 not found"; return }
+            $params = @{ $flag = $true }
+            $output = & $migrateScript @params 2>&1
+            foreach ($line in $output) { Log $line }
+            $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Done!" })
+        } catch {
+            Log "ERROR: $_"
+            $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Failed" })
+        } finally { Done }
+    }
+}
+
+$menuConvertWsl.Add_Click({ Start-WslTask -Flag "ConvertWsl" -Label "Converting WSL 1 → 2..." })
+$menuCompactWsl.Add_Click({ Start-WslTask -Flag "CompactWsl" -Label "Compacting WSL disks..." })
 
 $window.ShowDialog() | Out-Null
