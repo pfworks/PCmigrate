@@ -19,7 +19,8 @@
 param(
     [string]$OutputPath = "$env:USERPROFILE\Desktop\PCmigrate",
     [switch]$Bundle,
-    [switch]$WslOnly
+    [switch]$WslOnly,
+    [switch]$OptimizeWsl
 )
 
 $ErrorActionPreference = "Continue"
@@ -411,6 +412,87 @@ if (Get-Command wsl.exe -ErrorAction SilentlyContinue) {
                 foreach ($line in $vOutput) {
                     if ($line -match '^\s*\*?\s*(.+?)\s+(Running|Stopped)\s+(\d+)\s*$') {
                         $wslVersionMap[$Matches[1].Trim()] = [int]$Matches[3]
+                    }
+                }
+            }
+
+            # Optimize WSL distros before export
+            if ($supportsVhd) {
+                # Offer to convert WSL 1 distros to WSL 2 for faster VHDX export
+                $wsl1Distros = @()
+                foreach ($d in $distros) {
+                    $d = $d.Trim()
+                    if ($d -and $wslVersionMap.ContainsKey($d) -and $wslVersionMap[$d] -eq 1) {
+                        $wsl1Distros += $d
+                    }
+                }
+                if ($wsl1Distros.Count -gt 0) {
+                    $doConvert = $false
+                    if ($OptimizeWsl) {
+                        $doConvert = $true
+                        Write-Log "Found WSL 1 distros: $($wsl1Distros -join ', ')"
+                        Write-Log "  -OptimizeWsl: converting to WSL 2 for faster export"
+                    } elseif ($host.UI -and $host.Name -eq 'ConsoleHost') {
+                        Write-Log "Found WSL 1 distros: $($wsl1Distros -join ', ')"
+                        Write-Log "  Converting to WSL 2 enables faster VHDX export (disk copy vs tar)."
+                        try {
+                            $convertChoice = $host.UI.PromptForChoice(
+                                "Convert WSL 1 to WSL 2?",
+                                "Converting to WSL 2 speeds up export significantly. This is a one-time operation.",
+                                @([System.Management.Automation.Host.ChoiceDescription]::new("&Yes","Convert all WSL 1 distros to WSL 2"),
+                                  [System.Management.Automation.Host.ChoiceDescription]::new("&No","Keep as WSL 1 (tar export)")),
+                                1
+                            )
+                        } catch { $convertChoice = 1 }
+                        if ($convertChoice -eq 0) { $doConvert = $true }
+                    }
+                    if ($doConvert) {
+                        foreach ($d in $wsl1Distros) {
+                            Write-Log "  Converting $d to WSL 2 (this may take several minutes)..."
+                            wsl.exe --set-version $d 2
+                            if ($LASTEXITCODE -eq 0) {
+                                $wslVersionMap[$d] = 2
+                                Write-Log "  Converted $d to WSL 2"
+                            } else {
+                                Write-Log "  WARNING: Failed to convert $d to WSL 2, will export as tar"
+                            }
+                        }
+                    }
+                }
+
+                # Compact VHDX for WSL 2 distros to reduce export size and time
+                if ($OptimizeWsl) {
+                    foreach ($d in $distros) {
+                        $d = $d.Trim()
+                        if (-not $d) { continue }
+                        if ($wslVersionMap.ContainsKey($d) -and $wslVersionMap[$d] -eq 2) {
+                            # Find the distro's VHDX path from registry
+                            $regPath = Get-ChildItem "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss" -ErrorAction SilentlyContinue |
+                                Where-Object { (Get-ItemProperty $_.PSPath).DistributionName -eq $d } |
+                                Select-Object -First 1
+                            if ($regPath) {
+                                $basePath = (Get-ItemProperty $regPath.PSPath).BasePath
+                                $vhdxPath = Join-Path $basePath "ext4.vhdx"
+                                if (Test-Path $vhdxPath) {
+                                    Write-Log "  Compacting $d disk image..."
+                                    try {
+                                        if (Get-Command Optimize-VHD -ErrorAction SilentlyContinue) {
+                                            Optimize-VHD -Path $vhdxPath -Mode Full
+                                        } else {
+                                            # Fallback: diskpart compact
+                                            $dpScript = "select vdisk file=`"$vhdxPath`"`r`ncompact vdisk"
+                                            $dpFile = [System.IO.Path]::GetTempFileName()
+                                            Set-Content -Path $dpFile -Value $dpScript
+                                            diskpart /s $dpFile 2>$null | Out-Null
+                                            Remove-Item $dpFile -Force
+                                        }
+                                        Write-Log "  Compacted $d"
+                                    } catch {
+                                        Write-Log "  WARNING: Could not compact $d`: $_"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -115,7 +115,7 @@ Launch the application from the Start Menu, the desktop shortcut, or by running 
 \begin{enumerate}
     \item Click \textbf{Browse} to select your external drive or output folder.
     \item Click \textbf{Export} to back up this machine (export only).
-    \item Click the \textbf{{\footnotesize$\nabla$}} arrow next to Export for options: ``Export Only'', ``Export + Create Restore Bundle'', or ``WSL Only''.
+    \item Click the \textbf{{\footnotesize$\nabla$}} arrow next to Export for options: ``Export Only'', ``Export + Create Restore Bundle'', ``WSL Only'', or ``Optimize WSL + Export''.
     \item On the destination machine, click \textbf{Browse} to locate the export folder, then click \textbf{Restore}.
     \item Click \textbf{Cancel} at any time to stop a running operation.
 \end{enumerate}
@@ -144,6 +144,9 @@ The GUI features:
 
 # WSL only (skip software inventory and license keys)
 .\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -WslOnly
+
+# Optimize WSL before export (convert WSL 1->2, compact disk images)
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -OptimizeWsl
 
 # Or use the default (Desktop\PCmigrate)
 .\Migrate-Machine.ps1
@@ -202,6 +205,23 @@ E:\WSL-Backup\Restore-Machine.ps1
 \end{lstlisting}
 
 The export produces \texttt{.tar} files for WSL~1 distros and \texttt{.vhdx} files for WSL~2 distros (on Windows~11 build 22000+). The restore script handles both formats automatically and prints the commands needed to set your default user afterward.
+
+\subsection{Optimizing WSL Before Export}
+
+Use the \texttt{-OptimizeWsl} flag (or the ``Optimize WSL + Export'' option in the GUI) to speed up the export:
+
+\begin{lstlisting}[language=bash]
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -OptimizeWsl
+\end{lstlisting}
+
+This performs two optimizations before exporting:
+
+\begin{enumerate}
+    \item \textbf{Converts WSL~1 distros to WSL~2} --- WSL~2 distros export as a VHDX disk copy (fast) rather than a tar archive of every file (slow). This is a one-time, permanent conversion.
+    \item \textbf{Compacts VHDX disk images} --- WSL~2 virtual disks grow over time but never shrink automatically. Compacting reclaims unused space, making the export file smaller and the copy faster. Uses \texttt{Optimize-VHD} (Hyper-V) if available, otherwise falls back to \texttt{diskpart}.
+\end{enumerate}
+
+\noindent\textbf{Note:} The WSL~1 to WSL~2 conversion is permanent and requires the WSL~2 Linux kernel to be installed. In CLI mode without \texttt{-OptimizeWsl}, the script will prompt interactively if WSL~1 distros are detected.
 
 %----------------------------------------------------------------------
 \section{Output Structure}

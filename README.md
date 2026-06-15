@@ -45,7 +45,7 @@ Double-click `PCmigrate.cmd` or run `PCmigrate-GUI.ps1` directly.
 ### GUI Mode
 Launch the app from the Start Menu, desktop shortcut, or `PCmigrate.cmd`. Use the Browse button to select your external drive, then:
 - Click **Export** to back up this machine
-- Click the **▼** arrow next to Export for options: "Export Only", "Export + Create Restore Bundle", or "WSL Only"
+- Click the **▼** arrow next to Export for options: "Export Only", "Export + Create Restore Bundle", "WSL Only", or "Optimize WSL + Export"
 - Click **Restore** on the new machine (point it at the export folder)
 - Click **Cancel** at any time to stop a running operation
 
@@ -62,6 +62,9 @@ Launch the app from the Start Menu, desktop shortcut, or `PCmigrate.cmd`. Use th
 
 # WSL only (skip software inventory and license keys)
 .\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -WslOnly
+
+# Optimize WSL before export (convert WSL 1→2, compact disk images)
+.\Migrate-Machine.ps1 -OutputPath "E:\PCmigrate" -OptimizeWsl
 
 # Or default to Desktop\PCmigrate
 .\Migrate-Machine.ps1

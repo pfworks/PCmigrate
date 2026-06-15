@@ -345,10 +345,13 @@ $menuExportBundle = New-Object System.Windows.Controls.MenuItem
 $menuExportBundle.Header = "Export + Create Restore Bundle"
 $menuWslOnly = New-Object System.Windows.Controls.MenuItem
 $menuWslOnly.Header = "WSL Only"
+$menuOptimizeExport = New-Object System.Windows.Controls.MenuItem
+$menuOptimizeExport.Header = "Optimize WSL + Export"
 
 $exportMenu.Items.Add($menuExportOnly) | Out-Null
 $exportMenu.Items.Add($menuExportBundle) | Out-Null
 $exportMenu.Items.Add($menuWslOnly) | Out-Null
+$exportMenu.Items.Add($menuOptimizeExport) | Out-Null
 
 $exportDropBtn.Add_Click({
     $exportMenu.PlacementTarget = $exportDropBtn
@@ -358,14 +361,15 @@ $exportDropBtn.Add_Click({
 
 # Shared export logic
 function Start-Export {
-    param([bool]$CreateBundle, [bool]$WslOnly)
+    param([bool]$CreateBundle, [bool]$WslOnly, [bool]$OptimizeWsl)
 
     Set-Running
     $logBlock.Text = ""
     $statusText.Text = "Exporting..."
     if ($WslOnly) { $statusText.Text = "Exporting WSL..." }
+    if ($OptimizeWsl) { $statusText.Text = "Optimizing WSL + Exporting..." }
 
-    Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot; createBundle = $CreateBundle; wslOnly = $WslOnly } -Script {
+    Start-BackgroundTask -Variables @{ outputPath = $pathBox.Text; scriptRoot = $PSScriptRoot; createBundle = $CreateBundle; wslOnly = $WslOnly; optimizeWsl = $OptimizeWsl } -Script {
         function Log($msg) { $window.Dispatcher.Invoke([Action]{ $logBlock.Text += "$msg`n"; $logBlock.ScrollToEnd() }) }
         function Done {
             try {
@@ -383,6 +387,7 @@ function Start-Export {
             Log ""
             $params = @{ OutputPath = $outputPath }
             if ($wslOnly) { $params.WslOnly = $true }
+            if ($optimizeWsl) { $params.OptimizeWsl = $true }
             $output = & $migrateScript @params 2>&1
             foreach ($line in $output) { Log $line }
             $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Export complete!" })
@@ -446,11 +451,12 @@ function Start-Export {
 }
 
 # Export button (default: export only)
-$exportBtn.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false })
+$exportBtn.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false -OptimizeWsl $false })
 
 # Menu items
-$menuExportOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false })
-$menuExportBundle.Add_Click({ Start-Export -CreateBundle $true -WslOnly $false })
-$menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true })
+$menuExportOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false -OptimizeWsl $false })
+$menuExportBundle.Add_Click({ Start-Export -CreateBundle $true -WslOnly $false -OptimizeWsl $false })
+$menuWslOnly.Add_Click({ Start-Export -CreateBundle $false -WslOnly $true -OptimizeWsl $false })
+$menuOptimizeExport.Add_Click({ Start-Export -CreateBundle $false -WslOnly $false -OptimizeWsl $true })
 
 $window.ShowDialog() | Out-Null

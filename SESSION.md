@@ -251,3 +251,17 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 
 ### Released
 - `v0.4.7`
+
+## Session 16 — 2026-06-14
+
+### Added
+- **`-OptimizeWsl` switch** — New CLI flag and GUI menu option ("Optimize WSL + Export") that speeds up WSL export by:
+  1. Converting WSL 1 distros to WSL 2 (enables fast VHDX export instead of slow tar)
+  2. Compacting WSL 2 VHDX disk images before export (reclaims unused space)
+- **Interactive WSL 1→2 prompt** — In CLI mode without `-OptimizeWsl`, if WSL 1 distros are detected, the script prompts the user to convert (defaults to No)
+- **VHDX compaction** — Uses `Optimize-VHD` (Hyper-V) with diskpart fallback for systems without the Hyper-V module
+- **GUI "Optimize WSL + Export"** — New dropdown menu item that passes `-OptimizeWsl` to the export script
+
+### Updated
+- **README.md** — Added `-OptimizeWsl` CLI example, updated GUI options list
+- **UserManual.tex** — Added "Optimizing WSL Before Export" subsection, updated CLI examples and GUI options list
