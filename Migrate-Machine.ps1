@@ -56,7 +56,8 @@ if ($ConvertWsl -or $CompactWsl) {
     $vOutput = wsl.exe -l -v 2>$null
     if ($vOutput) {
         foreach ($line in $vOutput) {
-            if ($line -match '^\s*\*?\s*(.+?)\s+(Running|Stopped)\s+(\d+)\s*$') {
+            $clean = ($line -replace "`0","").Trim()
+            if ($clean -match '^\*?\s*(.+?)\s+(Running|Stopped)\s+(\d+)\s*$') {
                 $wslVersionMap[$Matches[1].Trim()] = [int]$Matches[3]
             }
         }
@@ -500,7 +501,8 @@ if (Get-Command wsl.exe -ErrorAction SilentlyContinue) {
             $vOutput = wsl.exe -l -v 2>$null
             if ($vOutput) {
                 foreach ($line in $vOutput) {
-                    if ($line -match '^\s*\*?\s*(.+?)\s+(Running|Stopped)\s+(\d+)\s*$') {
+                    $clean = ($line -replace "`0","").Trim()
+                    if ($clean -match '^\*?\s*(.+?)\s+(Running|Stopped)\s+(\d+)\s*$') {
                         $wslVersionMap[$Matches[1].Trim()] = [int]$Matches[3]
                     }
                 }

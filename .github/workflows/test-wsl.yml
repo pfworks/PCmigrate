@@ -1,0 +1,130 @@
+name: Test WSL Operations
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  test-convert-wsl:
+    name: Test WSL 1→2 Conversion
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable WSL and Virtual Machine Platform
+        shell: powershell
+        run: |
+          dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+          dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+      - name: Install WSL 2 kernel update
+        shell: powershell
+        run: |
+          $wslUpdateUrl = "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi"
+          Invoke-WebRequest -Uri $wslUpdateUrl -OutFile "$env:TEMP\wsl_update.msi" -UseBasicParsing
+          Start-Process msiexec.exe -ArgumentList "/i","$env:TEMP\wsl_update.msi","/quiet","/norestart" -Wait
+
+      - name: Set WSL default version to 1 and import test distro
+        shell: powershell
+        run: |
+          wsl.exe --set-default-version 1
+          # Download Alpine miniroot as a lightweight test distro
+          $alpineUrl = "https://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/alpine-minirootfs-3.20.3-x86_64.tar.gz"
+          Invoke-WebRequest -Uri $alpineUrl -OutFile "$env:TEMP\alpine.tar.gz" -UseBasicParsing
+          # Import as WSL 1
+          $installDir = "$env:TEMP\wsl-test-distro"
+          New-Item -Path $installDir -ItemType Directory -Force | Out-Null
+          wsl.exe --import TestAlpine $installDir "$env:TEMP\alpine.tar.gz"
+
+      - name: Verify distro is WSL 1
+        shell: powershell
+        run: |
+          $output = wsl.exe -l -v 2>&1 | ForEach-Object { ($_ -replace "`0","").Trim() } | Where-Object { $_ }
+          Write-Host "WSL distros:"
+          $output | ForEach-Object { Write-Host "  $_" }
+          $match = $output | Where-Object { $_ -match 'TestAlpine.*\s+1\s*$' }
+          if (-not $match) { Write-Error "TestAlpine is not WSL 1"; exit 1 }
+          Write-Host "Confirmed: TestAlpine is WSL version 1"
+
+      - name: Run -ConvertWsl
+        shell: powershell
+        run: |
+          .\Migrate-Machine.ps1 -ConvertWsl
+
+      - name: Verify distro is now WSL 2
+        shell: powershell
+        run: |
+          $output = wsl.exe -l -v 2>&1 | ForEach-Object { ($_ -replace "`0","").Trim() } | Where-Object { $_ }
+          Write-Host "WSL distros after conversion:"
+          $output | ForEach-Object { Write-Host "  $_" }
+          $match = $output | Where-Object { $_ -match 'TestAlpine.*\s+2\s*$' }
+          if (-not $match) { Write-Error "TestAlpine was not converted to WSL 2"; exit 1 }
+          Write-Host "SUCCESS: TestAlpine is now WSL version 2"
+
+  test-compact-wsl:
+    name: Test VHDX Compaction
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable WSL and Virtual Machine Platform
+        shell: powershell
+        run: |
+          dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+          dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+      - name: Install WSL 2 kernel update
+        shell: powershell
+        run: |
+          $wslUpdateUrl = "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi"
+          Invoke-WebRequest -Uri $wslUpdateUrl -OutFile "$env:TEMP\wsl_update.msi" -UseBasicParsing
+          Start-Process msiexec.exe -ArgumentList "/i","$env:TEMP\wsl_update.msi","/quiet","/norestart" -Wait
+
+      - name: Import test distro as WSL 2
+        shell: powershell
+        run: |
+          wsl.exe --set-default-version 2
+          # Download Alpine miniroot
+          $alpineUrl = "https://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/alpine-minirootfs-3.20.3-x86_64.tar.gz"
+          Invoke-WebRequest -Uri $alpineUrl -OutFile "$env:TEMP\alpine.tar.gz" -UseBasicParsing
+          # Import as WSL 2
+          $installDir = "$env:TEMP\wsl-compact-distro"
+          New-Item -Path $installDir -ItemType Directory -Force | Out-Null
+          wsl.exe --import CompactTest $installDir "$env:TEMP\alpine.tar.gz"
+
+      - name: Write data then delete it (to create reclaimable space)
+        shell: powershell
+        run: |
+          # Write ~50MB of data then remove it — leaves allocated but unused blocks in the VHDX
+          wsl.exe -d CompactTest -- sh -c "dd if=/dev/urandom of=/tmp/junk bs=1M count=50 2>/dev/null && rm /tmp/junk && sync"
+
+      - name: Verify distro is WSL 2
+        shell: powershell
+        run: |
+          $output = wsl.exe -l -v 2>&1 | ForEach-Object { ($_ -replace "`0","").Trim() } | Where-Object { $_ }
+          Write-Host "WSL distros:"
+          $output | ForEach-Object { Write-Host "  $_" }
+          $match = $output | Where-Object { $_ -match 'CompactTest.*\s+2\s*$' }
+          if (-not $match) { Write-Error "CompactTest is not WSL 2"; exit 1 }
+
+      - name: Run -CompactWsl
+        shell: powershell
+        run: |
+          .\Migrate-Machine.ps1 -CompactWsl
+
+      - name: Verify compaction completed
+        shell: powershell
+        run: |
+          # Check that the VHDX file still exists and the script reported sizes
+          $regPath = Get-ChildItem "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss" -ErrorAction SilentlyContinue |
+              Where-Object { (Get-ItemProperty $_.PSPath).DistributionName -eq "CompactTest" } |
+              Select-Object -First 1
+          if (-not $regPath) { Write-Error "CompactTest registry entry not found"; exit 1 }
+          $basePath = (Get-ItemProperty $regPath.PSPath).BasePath
+          $vhdxPath = Join-Path $basePath "ext4.vhdx"
+          if (-not (Test-Path $vhdxPath)) { Write-Error "VHDX not found at $vhdxPath"; exit 1 }
+          $sizeMB = [math]::Round((Get-Item $vhdxPath).Length / 1MB, 1)
+          Write-Host "SUCCESS: CompactTest VHDX exists at $vhdxPath ($sizeMB MB after compaction)"

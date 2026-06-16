@@ -326,6 +326,9 @@ After running the restore script, it prints a reminder with the exact commands y
 
     \item[Copying text from the log window]
     The log output panel supports text selection. Click and drag or use Ctrl+A to select all, then Ctrl+C to copy.
+
+    \item[Convert/Compact WSL reports ``No distros found'' despite having distros]
+    This was a bug in versions prior to v0.4.8 where \texttt{wsl -l -v} output (UTF-16LE with embedded null characters) was not being cleaned before parsing. Update to the latest version to resolve this.
 \end{description}
 
 %----------------------------------------------------------------------

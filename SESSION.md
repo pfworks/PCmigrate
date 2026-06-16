@@ -267,3 +267,17 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 ### Updated
 - **README.md** — Added `-OptimizeWsl`, `-ConvertWsl`, `-CompactWsl` CLI examples, updated GUI options list
 - **UserManual.tex** — Added "Optimizing WSL Before Export" subsection, updated CLI examples and GUI options list
+
+## Session 17 — 2026-06-15
+
+### Fixed
+- **`-ConvertWsl` and `-CompactWsl` silently doing nothing** — `wsl.exe -l -v` outputs UTF-16LE text with null characters between every real character. The script already stripped nulls for `wsl --list --quiet` but did **not** strip them from the `-l -v` output used to build `$wslVersionMap`. The regex never matched, so the version map was always empty — conversion found no WSL 1 distros and compaction found no WSL 2 distros. Fixed by adding `$line -replace "\`0",""` before the regex match in both the standalone maintenance mode and the export section.
+
+## Session 18 — 2026-06-16
+
+### Added
+- **`.github/workflows/test-wsl.yml`** — GitHub Actions workflow implementing the Session 17 future work items:
+  - **`test-convert-wsl` job** — Enables WSL + Virtual Machine Platform, installs WSL 2 kernel update, imports Alpine minirootfs as WSL 1, runs `-ConvertWsl`, verifies distro is now WSL 2 via `wsl -l -v`
+  - **`test-compact-wsl` job** — Enables WSL + Virtual Machine Platform, installs WSL 2 kernel update, imports Alpine minirootfs as WSL 2, writes and deletes 50 MB of data (to create reclaimable blocks), runs `-CompactWsl`, verifies VHDX still exists and reports size
+  - Both jobs use Alpine minirootfs (~3 MB) for fast CI
+  - Triggers on push/PR to `master` and `workflow_dispatch`
