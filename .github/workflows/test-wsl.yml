@@ -3,6 +3,7 @@ name: Test WSL Operations
 on:
   push:
     branches: [master]
+    tags: ["v*"]
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -31,10 +32,8 @@ jobs:
         shell: powershell
         run: |
           wsl.exe --set-default-version 1
-          # Download Alpine miniroot as a lightweight test distro
           $alpineUrl = "https://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/alpine-minirootfs-3.20.3-x86_64.tar.gz"
           Invoke-WebRequest -Uri $alpineUrl -OutFile "$env:TEMP\alpine.tar.gz" -UseBasicParsing
-          # Import as WSL 1
           $installDir = "$env:TEMP\wsl-test-distro"
           New-Item -Path $installDir -ItemType Directory -Force | Out-Null
           wsl.exe --import TestAlpine $installDir "$env:TEMP\alpine.tar.gz"
@@ -52,7 +51,7 @@ jobs:
       - name: Run -ConvertWsl
         shell: powershell
         run: |
-          .\Migrate-Machine.ps1 -ConvertWsl
+          .\Migrate-Machine.ps1 -ConvertWsl | Tee-Object -FilePath "$env:GITHUB_WORKSPACE\convert-wsl-output.txt"
 
       - name: Verify distro is now WSL 2
         shell: powershell
@@ -63,6 +62,13 @@ jobs:
           $match = $output | Where-Object { $_ -match 'TestAlpine.*\s+2\s*$' }
           if (-not $match) { Write-Error "TestAlpine was not converted to WSL 2"; exit 1 }
           Write-Host "SUCCESS: TestAlpine is now WSL version 2"
+
+      - name: Upload script output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: convert-wsl-output
+          path: convert-wsl-output.txt
 
   test-compact-wsl:
     name: Test VHDX Compaction
@@ -87,10 +93,8 @@ jobs:
         shell: powershell
         run: |
           wsl.exe --set-default-version 2
-          # Download Alpine miniroot
           $alpineUrl = "https://dl-cdn.alpinelinux.org/alpine/v3.20/releases/x86_64/alpine-minirootfs-3.20.3-x86_64.tar.gz"
           Invoke-WebRequest -Uri $alpineUrl -OutFile "$env:TEMP\alpine.tar.gz" -UseBasicParsing
-          # Import as WSL 2
           $installDir = "$env:TEMP\wsl-compact-distro"
           New-Item -Path $installDir -ItemType Directory -Force | Out-Null
           wsl.exe --import CompactTest $installDir "$env:TEMP\alpine.tar.gz"
@@ -98,7 +102,6 @@ jobs:
       - name: Write data then delete it (to create reclaimable space)
         shell: powershell
         run: |
-          # Write ~50MB of data then remove it — leaves allocated but unused blocks in the VHDX
           wsl.exe -d CompactTest -- sh -c "dd if=/dev/urandom of=/tmp/junk bs=1M count=50 2>/dev/null && rm /tmp/junk && sync"
 
       - name: Verify distro is WSL 2
@@ -113,12 +116,11 @@ jobs:
       - name: Run -CompactWsl
         shell: powershell
         run: |
-          .\Migrate-Machine.ps1 -CompactWsl
+          .\Migrate-Machine.ps1 -CompactWsl | Tee-Object -FilePath "$env:GITHUB_WORKSPACE\compact-wsl-output.txt"
 
       - name: Verify compaction completed
         shell: powershell
         run: |
-          # Check that the VHDX file still exists and the script reported sizes
           $regPath = Get-ChildItem "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss" -ErrorAction SilentlyContinue |
               Where-Object { (Get-ItemProperty $_.PSPath).DistributionName -eq "CompactTest" } |
               Select-Object -First 1
@@ -128,3 +130,10 @@ jobs:
           if (-not (Test-Path $vhdxPath)) { Write-Error "VHDX not found at $vhdxPath"; exit 1 }
           $sizeMB = [math]::Round((Get-Item $vhdxPath).Length / 1MB, 1)
           Write-Host "SUCCESS: CompactTest VHDX exists at $vhdxPath ($sizeMB MB after compaction)"
+
+      - name: Upload script output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: compact-wsl-output
+          path: compact-wsl-output.txt
