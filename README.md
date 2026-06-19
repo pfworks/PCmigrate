@@ -127,3 +127,15 @@ After restore completes, the script prints a reminder with the exact commands yo
 - License keys are only retrievable if stored in BIOS/UEFI or the registry. Digital licenses tied to a Microsoft account transfer automatically.
 - Some winget packages may fail to import if the source or package ID has changed.
 - WSL exports include the full filesystem — large distros will produce large tar files.
+
+## CI / GitHub Actions
+
+Three workflows run automatically:
+
+| Workflow | Trigger | What it does |
+|----------|---------|--------------|
+| `build-installer.yml` | Push/PR to `master` | Builds the Inno Setup installer, runs export script, verifies output structure |
+| `release.yml` | Version tags (`v*`) | Builds installer + portable zip, publishes as GitHub Release assets |
+| `test-wsl.yml` | Push/PR to `master`, tags (`v*`) | Tests WSL 1→2 conversion and VHDX compaction on a real Windows runner |
+
+The WSL test workflow uploads script output as downloadable artifacts so you can inspect the full `-ConvertWsl` and `-CompactWsl` logs from each run.

@@ -334,11 +334,12 @@ After running the restore script, it prints a reminder with the exact commands y
 %----------------------------------------------------------------------
 \section{Continuous Integration \& Releases}
 
-The project includes GitHub Actions workflows for automated builds:
+The project includes GitHub Actions workflows for automated builds and testing:
 
 \begin{description}[style=nextline]
-    \item[\texttt{.github/workflows/build-installer.yml}] Runs on every push and pull request to \texttt{main}. Compiles the Inno Setup installer and uploads it as a workflow artifact.
+    \item[\texttt{.github/workflows/build-installer.yml}] Runs on every push and pull request to \texttt{master}. Compiles the Inno Setup installer, runs the export script, and verifies the output structure.
     \item[\texttt{.github/workflows/release.yml}] Triggered when a version tag (e.g., \texttt{v1.0.0}) is pushed. Builds the installer, packages a portable zip, and publishes both as GitHub Release assets.
+    \item[\texttt{.github/workflows/test-wsl.yml}] Runs on push/PR to \texttt{master} and version tags. Tests WSL~1 to WSL~2 conversion and VHDX compaction on a real Windows runner. Script output is uploaded as downloadable artifacts for inspection.
 \end{description}
 
 To create a release:
@@ -365,6 +366,7 @@ This produces a GitHub Release with two downloadable assets:
     \item[\texttt{icon.ico}] Application icon used by the installer.
     \item[\texttt{.github/workflows/build-installer.yml}] CI workflow for building the installer on push/PR.
     \item[\texttt{.github/workflows/release.yml}] Release workflow for publishing tagged versions.
+    \item[\texttt{.github/workflows/test-wsl.yml}] CI workflow for testing WSL conversion and compaction.
 \end{description}
 
 \end{document}

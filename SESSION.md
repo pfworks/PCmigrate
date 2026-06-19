@@ -280,4 +280,8 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
   - **`test-convert-wsl` job** — Enables WSL + Virtual Machine Platform, installs WSL 2 kernel update, imports Alpine minirootfs as WSL 1, runs `-ConvertWsl`, verifies distro is now WSL 2 via `wsl -l -v`
   - **`test-compact-wsl` job** — Enables WSL + Virtual Machine Platform, installs WSL 2 kernel update, imports Alpine minirootfs as WSL 2, writes and deletes 50 MB of data (to create reclaimable blocks), runs `-CompactWsl`, verifies VHDX still exists and reports size
   - Both jobs use Alpine minirootfs (~3 MB) for fast CI
-  - Triggers on push/PR to `master` and `workflow_dispatch`
+  - Triggers on push/PR to `master`, version tags (`v*`), and `workflow_dispatch`
+  - Script output (`Tee-Object`) uploaded as workflow artifacts for visibility in GitHub Actions UI
+
+### Released
+- `v0.5.0`
