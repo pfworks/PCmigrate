@@ -290,3 +290,25 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 
 ### Fixed
 - **Restore bundle skips compression for WSL exports** — `.vhdx` and `.tar` files are now stored with `NoCompression` in the zip bundle. These formats don't compress meaningfully (VHDX is a virtual disk with allocated blocks; tar after compaction has little reclaimable space), so attempting `Optimal` compression just wastes CPU time on multi-GB files for negligible size reduction. All other files (scripts, CSVs, HTML, app data zips) still use `Optimal` compression. Updated in both `Migrate-Machine.ps1` (CLI `-Bundle`) and `PCmigrate-GUI.ps1` (GUI "Export + Create Restore Bundle").
+
+## Session 20 — 2026-06-20
+
+### Fixed
+- **Restore bundle "does nothing" when right-clicking Restore-Machine.ps1** — Files extracted from a downloaded or transferred zip have a Zone.Identifier ADS that silently blocks PowerShell execution, even via "Run with PowerShell". The same issue was fixed for the portable zip (Session 14) with `PCmigrate.cmd`, but the restore bundle had no equivalent launcher.
+
+### Added
+- **`Restore.cmd` launcher** — Generated alongside `Restore-Machine.ps1` in the export folder. When double-clicked:
+  1. Self-elevates to admin via UAC
+  2. Runs `Unblock-File` on all `.ps1` files (removes zone block)
+  3. Launches `Restore-Machine.ps1` with `-ExecutionPolicy Bypass`
+  4. Pauses at the end so users can see output
+- This is now the recommended way to run the restore on the new machine (same pattern as `PCmigrate.cmd` for the portable zip)
+
+### Updated
+- **README.md** — "On the new machine" section now says to double-click `Restore.cmd`; output structure shows both `Restore.cmd` and `Restore-Machine.ps1`
+- **UserManual.tex** — Updated restore instructions, output structure, file descriptions, migration workflow, WSL backup workflow, and added troubleshooting entry for the zone-blocked script issue
+- **`Migrate-Machine.ps1`** — Summary/next-steps log messages reference `Restore.cmd`
+- **`PCmigrate-GUI.ps1`** — Bundle completion message references `Restore.cmd`
+
+### Released
+- `v0.5.1`

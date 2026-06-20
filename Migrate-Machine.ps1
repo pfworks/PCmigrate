@@ -785,7 +785,27 @@ Write-Host ""
 }
 
 Set-Content -Path (Join-Path $OutputPath "Restore-Machine.ps1") -Value $restoreScript
-Write-Log "Restore script created: Restore-Machine.ps1"
+
+# Create CMD launcher for the restore script (handles zone-blocked files from zip extraction)
+$restoreCmd = @'
+@echo off
+:: Restore launcher — unblocks scripts and runs with admin elevation
+:: Double-click this file after extracting the restore bundle
+
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    powershell -Command "Start-Process cmd -ArgumentList '/c \"%~f0\"' -Verb RunAs"
+    exit /b
+)
+
+cd /d "%~dp0"
+powershell -Command "Get-ChildItem -Path '%~dp0' -Filter *.ps1 -Recurse | Unblock-File"
+powershell -ExecutionPolicy Bypass -File "%~dp0Restore-Machine.ps1"
+pause
+'@
+Set-Content -Path (Join-Path $OutputPath "Restore.cmd") -Value $restoreCmd
+
+Write-Log "Restore script created: Restore-Machine.ps1 (+ Restore.cmd launcher)"
 
 # ─────────────────────────────────────────────
 # 6. RESTORE BUNDLE (optional zip)
@@ -850,11 +870,12 @@ Write-Log "  installed_software.txt  - Human-readable software list"
 Write-Log "  winget_packages.json    - Winget package list (for automated reinstall)"
 Write-Log "  AppData\                - Application settings/data backups (.zip)"
 Write-Log "  WSL\                    - WSL distribution archives (.tar/.vhdx)"
-Write-Log "  Restore-Machine.ps1    - Run this on the new machine to import"
+Write-Log "  Restore.cmd             - Double-click this on the new machine to restore"
+Write-Log "  Restore-Machine.ps1    - (PowerShell script called by Restore.cmd)"
 Write-Log ""
 Write-Log "NEXT STEPS:"
 Write-Log "  1. Copy this entire folder to the new machine"
-Write-Log "  2. Run Restore-Machine.ps1 as Administrator on the new machine"
+Write-Log "  2. Double-click Restore.cmd on the new machine (handles admin + unblocking)"
 Write-Log "  3. Manually install apps not available via winget (check the CSV)"
 Write-Log "  4. Re-enter license keys from license_keys.txt"
 Write-Log "  5. Restore app data from AppData\ zips to %APPDATA% / %LOCALAPPDATA%"

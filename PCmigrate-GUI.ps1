@@ -448,7 +448,7 @@ function Start-Export {
                     Log "To restore on the new machine:"
                     Log "  1. Copy $zipName to the new machine"
                     Log "  2. Extract the zip"
-                    Log "  3. Right-click Restore-Machine.ps1 -> Run with PowerShell (as Admin)"
+                    Log "  3. Double-click Restore.cmd"
                     $window.Dispatcher.Invoke([Action]{ $statusText.Text = "Bundle created ($sizeStr)" })
                 } else {
                     Log "ERROR: Failed to create zip file."

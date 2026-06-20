@@ -78,13 +78,13 @@ Launch the app from the Start Menu, desktop shortcut, or `PCmigrate.cmd`. Use th
 
 #### On the new machine
 
-Move the drive over, then:
+Move the drive over, then double-click `Restore.cmd`:
 
-```powershell
-E:\PCmigrate\Restore-Machine.ps1
+```
+E:\PCmigrate\Restore.cmd
 ```
 
-Or specify the path manually:
+Or run the PowerShell script directly (requires admin + unblocked files):
 
 ```powershell
 .\Restore-Machine.ps1 -ImportPath "E:\PCmigrate"
@@ -106,7 +106,8 @@ PCmigrate/
 │   ├── Ubuntu.tar            # (example) WSL 1 distro archive
 │   ├── Debian.vhdx           # (example) WSL 2 distro disk image
 │   └── .wslconfig            # WSL global config
-├── Restore-Machine.ps1       # Run this on the new machine
+├── Restore.cmd                # Double-click this on the new machine
+├── Restore-Machine.ps1       # (called by Restore.cmd)
 └── migration_log_*.txt       # Export log
 ```
 

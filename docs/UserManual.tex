@@ -160,13 +160,13 @@ The GUI features:
 
 \subsubsection{Restoring (On the New Machine)}
 
-Move the external drive to the new machine, then run:
+Move the external drive to the new machine, then double-click \texttt{Restore.cmd}:
 
 \begin{lstlisting}[language=bash]
-E:\PCmigrate\Restore-Machine.ps1
+E:\PCmigrate\Restore.cmd
 \end{lstlisting}
 
-Or specify the import path manually:
+Or run the PowerShell script directly (requires admin + unblocked files):
 
 \begin{lstlisting}[language=bash]
 .\Restore-Machine.ps1 -ImportPath "E:\PCmigrate"
@@ -182,7 +182,7 @@ The recommended end-to-end workflow:
     \item Run the export (GUI or command line) targeting the external drive.
     \item Wait for the export to complete (WSL archives may take time for large distros).
     \item Move the drive to the \textbf{new machine}.
-    \item Run the restore script from the export folder.
+    \item Double-click \texttt{Restore.cmd} from the export folder (or use the GUI's Restore button).
     \item Complete the post-restore steps (see Section~\ref{sec:postrestore}).
 \end{enumerate}
 
@@ -207,7 +207,7 @@ PCmigrate doubles as a dedicated WSL backup tool. Use the \texttt{-WslOnly} flag
 .\Migrate-Machine.ps1 -OutputPath "E:\WSL-Backup" -WslOnly
 
 # Restore on the same or a different machine
-E:\WSL-Backup\Restore-Machine.ps1
+E:\WSL-Backup\Restore.cmd
 \end{lstlisting}
 
 The export produces \texttt{.tar} files for WSL~1 distros and \texttt{.vhdx} files for WSL~2 distros (on Windows~11 build 22000+). The restore script handles both formats automatically and prints the commands needed to set your default user afterward.
@@ -248,7 +248,8 @@ PCmigrate/
     Ubuntu.tar              # (example) WSL 1 distro archive
     Debian.vhdx             # (example) WSL 2 distro disk image
     .wslconfig              # WSL global config
-  Restore-Machine.ps1       # Run this on the new machine
+  Restore.cmd               # Double-click this on the new machine
+  Restore-Machine.ps1       # (called by Restore.cmd)
   migration_log_*.txt       # Export log
 \end{lstlisting}
 
@@ -264,6 +265,7 @@ PCmigrate/
     \item[\texttt{WSL/*.tar}] Each WSL 1 distribution exported as a tar archive.
     \item[\texttt{WSL/*.vhdx}] Each WSL 2 distribution exported as a virtual disk image (Windows 11 only).
     \item[\texttt{WSL/.wslconfig}] Global WSL configuration file.
+    \item[\texttt{Restore.cmd}] CMD launcher for the restore script. Handles UAC elevation, unblocks zone-marked files, and invokes \texttt{Restore-Machine.ps1}. This is the recommended entry point after extracting a restore bundle.
     \item[\texttt{Restore-Machine.ps1}] Auto-generated restore script that uses \texttt{\$PSScriptRoot} to locate sibling data files.
     \item[\texttt{migration\_log\_*.txt}] Timestamped log of the export process.
 \end{description}
@@ -327,6 +329,9 @@ After running the restore script, it prints a reminder with the exact commands y
 
     \item[Copying text from the log window]
     The log output panel supports text selection. Click and drag or use Ctrl+A to select all, then Ctrl+C to copy.
+
+    \item[Restore script does nothing when right-clicked ``Run with PowerShell'']
+    Files extracted from a downloaded zip are marked with a Zone Identifier that blocks PowerShell execution. Use \texttt{Restore.cmd} instead---it unblocks the scripts automatically. Alternatively, right-click each \texttt{.ps1} file, open Properties, and check ``Unblock'' before running.
 
     \item[Convert/Compact WSL reports ``No distros found'' despite having distros]
     This was a bug in versions prior to v0.4.8 where \texttt{wsl -l -v} output (UTF-16LE with embedded null characters) was not being cleaned before parsing. Update to the latest version to resolve this.
