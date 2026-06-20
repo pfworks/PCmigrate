@@ -285,3 +285,8 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 
 ### Released
 - `v0.5.0`
+
+## Session 19 — 2026-06-20
+
+### Fixed
+- **Restore bundle skips compression for WSL exports** — `.vhdx` and `.tar` files are now stored with `NoCompression` in the zip bundle. These formats don't compress meaningfully (VHDX is a virtual disk with allocated blocks; tar after compaction has little reclaimable space), so attempting `Optimal` compression just wastes CPU time on multi-GB files for negligible size reduction. All other files (scripts, CSVs, HTML, app data zips) still use `Optimal` compression. Updated in both `Migrate-Machine.ps1` (CLI `-Bundle`) and `PCmigrate-GUI.ps1` (GUI "Export + Create Restore Bundle").

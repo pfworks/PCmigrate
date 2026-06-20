@@ -427,10 +427,13 @@ function Start-Export {
                             $subFiles = Get-ChildItem -LiteralPath $item.FullName -Recurse -File
                             foreach ($f in $subFiles) {
                                 $entryName = $item.Name + '/' + $f.FullName.Substring($item.FullName.Length + 1).Replace('\', '/')
-                                [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $f.FullName, $entryName, 'Optimal') | Out-Null
+                                # Store WSL exports uncompressed — VHDX/tar don't compress well and waste time
+                                if ($f.Extension -match '\.(vhdx|tar)$') { $level = 'NoCompression' } else { $level = 'Optimal' }
+                                [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $f.FullName, $entryName, $level) | Out-Null
                             }
                         } else {
-                            [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $item.FullName, $item.Name, 'Optimal') | Out-Null
+                            if ($item.Extension -match '\.(vhdx|tar)$') { $level = 'NoCompression' } else { $level = 'Optimal' }
+                            [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $item.FullName, $item.Name, $level) | Out-Null
                         }
                     }
                 } finally { $zip.Dispose() }

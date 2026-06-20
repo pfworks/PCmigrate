@@ -127,6 +127,7 @@ After restore completes, the script prints a reminder with the exact commands yo
 - License keys are only retrievable if stored in BIOS/UEFI or the registry. Digital licenses tied to a Microsoft account transfer automatically.
 - Some winget packages may fail to import if the source or package ID has changed.
 - WSL exports include the full filesystem — large distros will produce large tar files.
+- The `-Bundle` zip stores WSL exports (`.tar`/`.vhdx`) uncompressed since they don't compress meaningfully. Other files are fully compressed.
 
 ## CI / GitHub Actions
 

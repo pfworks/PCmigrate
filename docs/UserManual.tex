@@ -305,6 +305,7 @@ After running the restore script, it prints a reminder with the exact commands y
     \item License keys are only retrievable if stored in BIOS/UEFI or the Windows registry. Digital licenses tied to a Microsoft account transfer automatically and will not appear in the export.
     \item Some winget packages may fail to import if the source or package ID has changed since the export.
     \item WSL exports include the full filesystem---large distributions will produce large \texttt{.tar} files. Ensure your external drive has sufficient free space.
+    \item The \texttt{-Bundle} zip stores WSL exports (\texttt{.tar}/\texttt{.vhdx}) uncompressed since they do not compress meaningfully. All other files are fully compressed.
     \item Framework and runtime packages from the Microsoft Store are filtered out to reduce noise, but some may still appear.
 \end{itemize}
 
