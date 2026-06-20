@@ -311,4 +311,4 @@ Uses `$PSScriptRoot` to find sibling data files. Runs `winget import` and `wsl -
 - **`PCmigrate-GUI.ps1`** — Bundle completion message references `Restore.cmd`
 
 ### Released
-- `v0.5.1`
+- `v0.5.2`

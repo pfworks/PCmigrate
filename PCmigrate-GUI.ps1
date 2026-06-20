@@ -188,7 +188,7 @@ $menuHelp.Add_Click({
 
 $menuAbout.Add_Click({
     [System.Windows.MessageBox]::Show(
-        "PCmigrate v0.3`nTotal System Transfer Utility`n`n(C) 2026 pfworks`nMIT License`n`nhttps://github.com/pfworks/PCmigrate",
+        "PCmigrate v0.5.2`nTotal System Transfer Utility`n`n(C) 2026 pfworks`nMIT License`n`nhttps://github.com/pfworks/PCmigrate",
         "About PCmigrate",
         "OK",
         "Information"
